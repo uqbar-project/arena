@@ -1,0 +1,8 @@
+syntax: glob
+.project
+.classpath
+.settings
+.worksheet
+.cache
+target
+
