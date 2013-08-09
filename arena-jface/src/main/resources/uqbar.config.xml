@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<Config>
+	<property name="apo.classloader.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.pot.TransactionFieldAccessInterceptor.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.poo.ObservableFieldAccessInterceptor.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.poo.changeSupport">
+		<value>POOPropertyChangeSupport</value>
+	</property>
+	<property name="apo.poo.propertyListener">
+		<value>java.beans.PropertyChangeListener</value>
+	</property>
+	<property name="apo.poo.isolationLevel">
+		<value>SERIALIZABLE</value>
+	</property>
+	<property name="arena.applicationRunner">
+		<value>org.uqbar.lacar.ui.impl.jface.JFaceApplicationBuilder</value>
+	</property>
+	<property name="apo.adviceConfiguration">
+		<value>org.uqbar.arena.apo.ArenaConfiguration</value>
+		<value>org.uqbar.arena.jface.apo.JFaceConfiguration</value>
+	</property>
+	<property name="apo.exclude.package">
+		<value>groovy.lang</value>
+		<value>org.codehaus.groovy</value>
+		<value>scala</value>
+		<value>javassist</value>
+	</property>
+</Config>
