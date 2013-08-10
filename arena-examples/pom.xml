@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>arena-examples</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>Tests básicos del framework Arena</description>
+	<description>Ejemplos básicos y tests del framework Arena</description>
 
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>uqbar-scala-parent</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0</version>
 	</parent>
 
 	<scm>
@@ -21,7 +21,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>uqbar</groupId>
+			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
 			<version>3.3-SNAPSHOT</version>
 		</dependency>
