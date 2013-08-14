@@ -11,9 +11,9 @@ a:active, a:hover {
 h2 {
   padding: 4px 4px 4px 6px;
   border: 1px solid #999;
-  color: #009900;
+  color: white;
   text-outline: red 2px;
-  background-color: #AB9C96;
+  background-color: #2375D9;
   font-weight:900;
   font-size: x-large;
 }
