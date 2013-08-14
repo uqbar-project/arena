@@ -1,0 +1,41 @@
+a:link {
+  color:#009900;
+}
+a:visited  {
+  color:#47a;
+}
+a:active, a:hover {
+  color:#69c;
+}
+
+h2 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #999;
+  color: #009900;
+  text-outline: red 2px;
+  background-color: #AB9C96;
+  font-weight:900;
+  font-size: x-large;
+}
+
+h3 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #aaa;
+  color: #009900;
+  background-color: #eee;
+  font-weight: normal;
+  font-size: large;
+}
+h4 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #bbb;
+  color: #009900;
+  background-color: #fff;
+  font-weight: normal;
+  font-size: large;
+}
+h5 {
+  padding: 4px 4px 4px 6px;
+  color: #009900;
+  font-size: normal;
+}
