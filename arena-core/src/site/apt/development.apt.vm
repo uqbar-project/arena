@@ -1,0 +1,27 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Developing Arena
+ 
+ Arena is currently being developed in {{{http://www.scala-lang.org/}Scala Language}}. Here a list of requirements in order to setup a working 
+ environment to start working in Arena development (note that these are not instructions to "use" Arena, but to extend it of change it)
+
+
+* Requirements
+ 
+   * Java Development Kit 1.7 
+   
+   * Scala 2.10
+
+* Suggested Tools
+ 
+   * Eclipse >= 3.7:
+
+   * {{{http://m2eclipse.codehaus.org}m2eclipse}}: {{{http://download.eclipse.org/technology/m2e/releases}Update Site}}
+
+   * {{{http://scala-ide.org/download/current.html}Scala IDE 3.0.1}}
+
+   * {{{https://github.com/sonatype/m2eclipse-scala}m2e-scala}} (m2eclipse scala integration): {{{http://alchim31.free.fr/m2e-scala/update-site} Update Site}}
