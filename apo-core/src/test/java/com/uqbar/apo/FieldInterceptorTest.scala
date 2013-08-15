@@ -39,7 +39,7 @@ class FieldInterceptorTest extends FunSpec with GivenWhenThen with Listener {
       val testObject = new TestObjectt("Pepe", "pp@p.p")
       testObject.addListener(this)
 
-      When("Cuando se invoca un el setter del nombre")
+      When("Cuando se invoca el setter del nombre")
       testObject.name = "Juan"
 
       Then("Deberia haber tirado el evento 'Juan'")
@@ -52,4 +52,4 @@ class FieldInterceptorTest extends FunSpec with GivenWhenThen with Listener {
       assert(eventDispatch === "Pepe")
     }
   }
-} 
+}
