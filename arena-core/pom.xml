@@ -18,6 +18,13 @@
 		<url>scm:hg:${scm.hgServer}/${project.artifactId}</url>
 	</scm>
 
+	<distributionManagement>
+		<site>
+		    <id>sites-uqbar-project.org</id>
+		    <url>ftp://uqbar-project.org/arena</url>
+		</site>
+	</distributionManagement>
+
 	<dependencies>
 		<!-- UQBAR -->
 		<dependency>
