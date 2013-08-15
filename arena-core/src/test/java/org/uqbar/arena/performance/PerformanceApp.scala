@@ -8,7 +8,7 @@ import org.uqbar.commons.model.UserException
 import System.{ currentTimeMillis => time }
 import scala.collection.mutable.ArrayBuffer
 
-object PerformanceTest extends BasicTaskOwner("Performance test") with App {
+object PerformanceApp extends BasicTaskOwner("Performance test") with App {
 
   run
 

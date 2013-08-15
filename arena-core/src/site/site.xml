@@ -20,6 +20,7 @@
 	<body>
 		<menu name="Overview">
 			<item name="Introduction" href="index.html"/>
+			<item name="Development" href="development.html"/>
 		</menu>
 
 		<menu ref="reports"/>
