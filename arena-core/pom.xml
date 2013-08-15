@@ -13,9 +13,9 @@
 	</parent>
 
 	<scm>
-		<connection>scm:hg:${scm.hgServer}/${project.artifactId}</connection>
-		<developerConnection>scm:hg:${scm.hgServer}/${project.artifactId}</developerConnection>
-		<url>scm:hg:${scm.hgServer}/${project.artifactId}</url>
+		<connection>scm:hg:${scm.hgServer}/arena-core</connection>
+		<developerConnection>scm:hg:${scm.hgServer}/arena-core</developerConnection>
+		<url>scm:hg:${scm.hgServer}/arena-core</url>
 	</scm>
 
 	<distributionManagement>
