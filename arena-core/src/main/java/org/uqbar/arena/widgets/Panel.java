@@ -12,6 +12,7 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 
 import com.uqbar.commons.exceptions.ProgramException;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
+import com.uqbar.commons.utils.Utils;
 
 public class Panel extends Widget implements Container {
 	protected IModel<?> model;
@@ -112,7 +113,7 @@ public class Panel extends Widget implements Container {
 	}
 
 	protected void validateModel() {
-		if(this.model == null && this.getContainer().getModel() == null){
+		if (this.model == null && this.getContainer().getModel() == null) {
 			throw new UserException("El Panel no tiene un modelo asignado");
 		}
 	}

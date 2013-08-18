@@ -59,18 +59,11 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 
 	@SuppressWarnings("unchecked")
 	public Window(WindowOwner owner, T model) {
-		this.owner = owner;
-
-		if(model == null ){
+		if (model == null ){
 			throw new UserException("The window does not have a  model assigned");
 		}
-		
-		if (model instanceof IModel) {
-			this.model = (IModel<T>) model;
-		}
-		else {
-			this.model = new Model<T>(model);
-		}
+		this.owner = owner;
+		this.model = model instanceof IModel ? (IModel<T>) model : new Model<T>(model);
 	}
 	
 
