@@ -12,7 +12,7 @@ import com.uqbar.common.transaction.ObjectTransaction;
 
 public class DetailTransactionalObservableSet extends DetailObservableSet{
 	
-	private final String isolationKey = "aop.opo.isolationLevel";
+	private final String isolationKey = "apo.poo.isolationLevel";
 	private ObjectTransaction objectTransactionImpl = ObjectTransactionManager.getTransaction();
 	private IsolationLevelEvents isolationLevelEvents = IsolationLevelEvents.valueOf(APOConfig.getProperty(isolationKey).value());
 
