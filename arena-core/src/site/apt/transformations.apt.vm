@@ -1,0 +1,79 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Transformations
+
+ When you bind two properties usually a transformation is needed to adapt them.
+ This is achieved using a Transformer. 
+ This is allways the case if you bind properties of different types, 
+ but also you can use a Transformer in order to adapt two different formats of Strings.
+
+* Built-in transformations
+
+  Arena automatically provides some built in transformations. 
+  Also these transformations are inferred from the type of the properties, 
+  so they are automatically inserted into your bindings.
+
+  The built-in transformations are:
+~~ Esta info sale de org.eclipse.core.databinding.UpdateStrategy.getConverterMap()
+ * Any primitive Java type (boolean, byte, short, char, int, long, float, double)
+   to its corresponding wrapper object
+   (Boolean, Byte, Short, Character, Integer, Long, Float, Double). 
+   For example, primitive int's are transformed into java.lang.Integer's
+   
+ * String's to both primitive types and their corresponding wrapper objects.
+   For example, a String can be transformed both to an int or to a Integer
+   
+ * Between different integer number types, including 
+   primitive types (also char), 
+   wrappers (also Character) 
+   and java.math.BigInteger 
+ 
+ * Between different floating point types, including
+   primitive types, wrappers and java.math.BigDecimal 
+   
+ * Between java.util.Date and java.lang.String
+ * Between java.math.BigInteger and java.lang.String
+ 
+ * Any Object can be transformed into to a String using its toString() method.
+ 
+ * A bit more specific: org.eclipse.core.runtime.IStatus objects 
+   can be transformed to Strings
+ 
+* Writing custon transformers
+  
+  Here is an example or a Transformer between BigDecimal's and String's,
+  written in XTend. 
+  
+  []  
+
++-----------------------------------------------------------------------------+
+class BigDecimalTransformer implements Transformer<BigDecimal, String> {
+
+	override getModelType() {
+		BigDecimal
+	}
+
+	override getViewType() {
+		String
+	}
+
+	override modelToView(BigDecimal valueFromModel) {
+		valueFromModel.toString
+	}
+
+	override viewToModel(String valueFromView) {
+		if (valueFromView == "")
+			null
+		else
+			try
+				new BigDecimal(valueFromView)
+			catch (NumberFormatException e)
+				throw new UserException("El valor ingresado debe ser un número", e)
+
+	}
+}
++-----------------------------------------------------------------------------+ 

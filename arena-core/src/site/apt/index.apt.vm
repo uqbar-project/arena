@@ -6,7 +6,7 @@
 
 Introduction
 
- <<Arena is an MVVM UI framework>> that strongly encourage the separation between model and ui classes. Although
+ <<Arena is an MVVM UI framework>> that strongly encourages the separation between model and ui classes. Although
  based on automatic bidirectional bindings and small <single-responsability> reusable controllers.
  Through this it clearly shape the core concepts of object design applied to UI-development.
 
