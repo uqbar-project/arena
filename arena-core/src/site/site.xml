@@ -8,7 +8,7 @@
 		<name>${project.name}</name>
 	</bannerRight>
 
-	<publishDate position="none"/>
+	<publishDate position="right"/>
 	<version position="left"/>
 
 	<skin>

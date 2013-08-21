@@ -35,3 +35,33 @@ Uqbar Maven Repositories
 
 +--------------------------------------------+
 
+Arena Artifacts
+
+
+ //TODO:
+
+ You UI project must depend on one of the Arena implementations. Currently the stable implementation is based on <<eclipse swt+jface>> and its call
+ <<arena-jface>>:
+
++---------------------------------------------+
+
+<dependency>
+	<groupId>org.uqbar-project</groupId>
+	<artifactId>arena-jface</artifactId>
+	<version>${project.version}</version>
+</dependency>
+
++---------------------------------------------+
+
+ Your domain project must depend on <<uqbar-domain>>:
+
++---------------------------------------------+
+<dependency>
+	<groupId>org.uqbar-project</groupId>
+	<artifactId>uqbar-domain</artifactId>
+	<version>3.3</version>
+</dependency>
++---------------------------------------------+
+
+ If you have a single project which contains the ui along with the domain, then you just need to include the dependency to <<arena-jface>> only. Although this is not the recommended way to do it since you'll be coupling model with UI in terms of artifact.
+
