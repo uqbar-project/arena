@@ -18,6 +18,7 @@
 		<url>scm:hg:${scm.hgServer}/arena-core</url>
 	</scm>
 
+
 	<dependencies>
 		<!-- UQBAR -->
 		<dependency>
@@ -37,6 +38,19 @@
 <build>
   <pluginManagement>
     <plugins>
+	<plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>2.1</version>
+  
+                    <dependencies>
+                        <!-- additional dependencies required by "source-class" implementations are added here -->
+                        <dependency>
+                            <groupId>org.tinyjee.dim</groupId>
+                            <artifactId>doxia-include-macro</artifactId>
+                            <version>1.1</version>
+                        </dependency>
+                    </dependencies>
+                </plugin> 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>sonar-maven-plugin</artifactId>

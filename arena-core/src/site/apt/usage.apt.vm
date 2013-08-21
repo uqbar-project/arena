@@ -1,0 +1,37 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Uqbar Maven Repositories
+ 
+ In order to use use Arena you need to configure Uqbar's repositories in your maven's settings file.
+
++--------------------------------------------+
+
+  <profiles>
+        <profile>
+              <id>uqbar-wiki</id>
+              <repositories>
+                    <repository>
+                        <id>uqbar-wiki.org-releases</id>
+                        <name>uqbar-wiki.org-releases</name>
+                        <url>http://uqbar-wiki.org/mvn/releases</url>
+                    </repository>
+                    <repository>
+                        <snapshots/>
+                        <id>uqbar-wiki.org-snapshots</id>
+                        <name>uqbar-wiki.org-snapshots</name>
+                        <url>http://uqbar-wiki.org/mvn/snapshots</url>
+                   </repository>
+              </repositories>
+        </profile>
+  </profiles>
+
+  <activeProfiles>
+       <activeProfile>uqbar-wiki</activeProfile>
+  </activeProfiles>
+
++--------------------------------------------+
+

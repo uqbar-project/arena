@@ -6,6 +6,8 @@
 
 Documentation (work in progress)
  
+ * {{{./usage.html}Usage}}
+
  * {{{./transformations.html}Transformations}}
   
  * {{{./validations.html}Validations}} 

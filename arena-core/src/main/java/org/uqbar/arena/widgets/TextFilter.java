@@ -18,7 +18,7 @@ public interface TextFilter {
 		}
 	};
 	
-	public final static TextFilter BlANK_TEXT_FILTER = new TextFilter() {
+	public final static TextFilter BLANK_TEXT_FILTER = new TextFilter() {
 		@Override
 		public boolean accept(TextInputEvent event) {
 			return StringUtils.isBlank(event.getPotentialTextResult());
