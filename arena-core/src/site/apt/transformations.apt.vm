@@ -43,7 +43,7 @@ Transformations
  * A bit more specific: org.eclipse.core.runtime.IStatus objects 
    can be transformed to Strings
  
-* Writing custon transformers
+* Writing custom transformers
   
   Besides the built-in transformations there are cases where you need to customize this in order to work with your own domain objects (mostly value objects).
   That can be done extending Arena by implementing the Transformer interface.
