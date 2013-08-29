@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.TypedListener;
  * @author Matthew Hall <matthall@woodcraftmill.com>
  */
 public class RadioGroup extends Composite {
-	RadioItem[] items = {};
+	private RadioItem[] items = {};
 
 	private RadioItem selectionItem = null;
 	private int selectionIndex = -1;
@@ -58,33 +58,27 @@ public class RadioGroup extends Composite {
 	 */
 	private boolean vertical = true;
 
-	int style;
-	int buttonStyle;
+	private int style;
+	private int buttonStyle;
 
 	private RowLayout layout;
 
 	public RadioGroup(Composite parent, int style) {
 		super(parent, checkCompositeStyle(style));
 
-		vertical = (style & SWT.VERTICAL) != 0;
-		layout = new RowLayout(vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
-		super.setLayout(layout);
+		this.vertical = (style & SWT.VERTICAL) != 0;
+		this.layout = new RowLayout(this.vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
+		super.setLayout(this.layout);
 
-		buttonStyle = checkButtonStyle(style);
-		style = super.getStyle() | buttonStyle
-				| (vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
+		this.buttonStyle = checkButtonStyle(style);
+		style = super.getStyle() | this.buttonStyle 	| (this.vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
 
 		setBackgroundMode(SWT.INHERIT_DEFAULT);
 	}
 
 	public int getStyle() {
-		return style;
+		return this.style;
 	}
-
-	// public Control[] getChildren() {
-	// checkWidget();
-	// return new Control[0];
-	// }
 
 	/**
 	 * Sets the layout which is associated with the receiver to be the argument
@@ -106,7 +100,7 @@ public class RadioGroup extends Composite {
 	 *                </ul>
 	 */
 	public void setLayout(Layout layout) {
-		checkWidget();
+		this.checkWidget();
 		return;
 	}
 
@@ -183,13 +177,15 @@ public class RadioGroup extends Composite {
 	}
 
 	void itemSelected(RadioItem item, Event event) {
-		if (item.getButton().getSelection()) {
-			selectionItem = item;
-			selectionIndex = indexOf(item);
-		} else {
-			selectionItem = null;
-			selectionIndex = -1;
+		if (item == selectionItem) {
+			// the previously selected radio produces an event
+			// so there are 2 events: 1) previous radio deselected, 2) new radio selected.
+			// we only want to process the second one. 
+			// Otherwise it will call the model twice: with null, and with the new selected value. 
+			return;
 		}
+		selectionItem = item;
+		selectionIndex = indexOf(item);
 		notifyListeners(SWT.Selection, null);
 	}
 
@@ -327,6 +323,10 @@ public class RadioGroup extends Composite {
 	public void reveal(RadioItem item) {
 		checkWidget();
 		// TODO
+	}
+	
+	public int getButtonStyle() {
+		return this.buttonStyle;
 	}
 }
 

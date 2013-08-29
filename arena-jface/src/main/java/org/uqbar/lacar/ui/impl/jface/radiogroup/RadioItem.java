@@ -47,7 +47,7 @@ public class RadioItem extends Item {
 			}
 		};
 
-		button = new Button(parent, parent.buttonStyle);
+		button = new Button(parent, parent.getButtonStyle());
 
 		button.addListener(SWT.Selection, selectionListener);
 		parent.addListener(SWT.Dispose, disposeListener);
