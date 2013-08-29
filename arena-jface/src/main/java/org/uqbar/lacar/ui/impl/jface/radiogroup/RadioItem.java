@@ -47,11 +47,11 @@ public class RadioItem extends Item {
 			}
 		};
 
-		button = new Button(parent, parent.getButtonStyle());
+		this.button = new Button(parent, parent.getButtonStyle());
 
-		button.addListener(SWT.Selection, selectionListener);
+		this.button.addListener(SWT.Selection, selectionListener);
 		parent.addListener(SWT.Dispose, disposeListener);
-		button.addListener(SWT.Dispose, disposeListener);
+		this.button.addListener(SWT.Dispose, disposeListener);
 
 		addListener(SWT.Dispose, new Listener() {
 			public void handleEvent(Event event) {
@@ -78,7 +78,7 @@ public class RadioItem extends Item {
 		return position;
 	}
 
-	Button getButton() {
+	public Button getButton() {
 		return button;
 	}
 
@@ -127,21 +127,23 @@ public class RadioItem extends Item {
 
 	public void setBackground(Color background) {
 		checkWidget();
-		if (background == null)
+		if (background == null) {
 			SWT.error(SWT.ERROR_NULL_ARGUMENT);
-		button.setBackground(background);
+		}
+		this.button.setBackground(background);
 	}
 
 	public Font getFont() {
-		checkWidget();
-		return button.getFont();
+		this.checkWidget();
+		return this.button.getFont();
 	}
 
 	public void setFont(Font font) {
-		checkWidget();
-		if (font == null)
+		this.checkWidget();
+		if (font == null) {
 			SWT.error(SWT.ERROR_NULL_ARGUMENT);
-		button.setFont(font);
+		}
+		this.button.setFont(font);
 	}
+	
 }
-
