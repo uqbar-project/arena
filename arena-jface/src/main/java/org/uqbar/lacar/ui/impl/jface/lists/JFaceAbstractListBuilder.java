@@ -42,7 +42,7 @@ public abstract class JFaceAbstractListBuilder<T, Viewer extends AbstractListVie
 						// set. So the value binding is not reflected in the view. Updating the model on the
 						// pack time allows to ensure that the view is updated (as we are sure that the
 						// contents of the list are set now). This allows the user to configure the bindings
-						// in whatever order he wants and it will allways work.
+						// in whatever order he wants and it will always work.
 						binding.updateModelToTarget();
 					}
 				});

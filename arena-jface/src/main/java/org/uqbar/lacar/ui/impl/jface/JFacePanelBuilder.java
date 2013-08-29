@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage;
 import org.uqbar.lacar.ui.impl.jface.lists.JFaceListBuilder;
+import org.uqbar.lacar.ui.impl.jface.radiogroup.JFaceRadioGroupBuilder;
 import org.uqbar.lacar.ui.impl.jface.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.impl.jface.tree.JFaceTreeBuilder;
 import org.uqbar.lacar.ui.model.Action;
@@ -99,6 +100,11 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	@Override
 	public <T> ListBuilder<T> addList() {
 		return new JFaceListBuilder<T>(this);
+	}
+	
+	@Override
+	public <T> ListBuilder<T> addRadioSelector() {
+		return new JFaceRadioGroupBuilder<T>(this);
 	}
 
 	// ********************************************************
