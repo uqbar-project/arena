@@ -35,12 +35,9 @@ public class RadioItem extends Item {
 	public RadioItem(final RadioGroup parent, int style, int index) {
 		super(parent, style, checkIndex(parent, index));
 		this.parent = parent;
+		Listener disposeListener = this.createDisposeListener();
+		parent.addListener(SWT.Dispose, disposeListener);
 
-		Listener disposeListener = new Listener() {
-			public void handleEvent(Event event) {
-				dispose();
-			}
-		};
 		Listener selectionListener = new Listener() {
 			public void handleEvent(Event event) {
 				parent.itemSelected(RadioItem.this, event);
@@ -48,12 +45,10 @@ public class RadioItem extends Item {
 		};
 
 		this.button = new Button(parent, parent.getButtonStyle());
-
 		this.button.addListener(SWT.Selection, selectionListener);
-		parent.addListener(SWT.Dispose, disposeListener);
 		this.button.addListener(SWT.Dispose, disposeListener);
-
-		addListener(SWT.Dispose, new Listener() {
+		
+		this.addListener(SWT.Dispose, new Listener() {
 			public void handleEvent(Event event) {
 				if (parent != null) {
 					parent.removeItem(RadioItem.this);
@@ -70,80 +65,77 @@ public class RadioItem extends Item {
 		parent.addItem(this, index);
 	}
 
+	protected Listener createDisposeListener() {
+		return new Listener() {
+			public void handleEvent(Event event) {
+				dispose();
+			}
+		};
+	}
+
 	private static int checkIndex(RadioGroup parent, int position) {
-		if (position == -1)
+		if (position == -1) {
 			return parent.getItemCount();
-		if (position < 0 || position > parent.getItemCount())
+		}
+		if (position < 0 || position > parent.getItemCount()) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
+		}
 		return position;
 	}
 
 	public Button getButton() {
-		return button;
+		return this.button;
 	}
 
 	public RadioGroup getParent() {
-		return parent;
+		return this.parent;
 	}
 
 	public String getText() {
-		checkWidget();
-		return button.getText();
+		return this.safeGetButton().getText();
 	}
 
 	public void setText(String string) {
-		checkWidget();
-		button.setText(string);
-		parent.layout(new Control[] { button });
+		this.safeGetButton().setText(string);
+		this.parent.layout(new Control[] { this.button });
 	}
 
 	public Image getImage() {
-		checkWidget();
-		return button.getImage();
+		return this.safeGetButton().getImage();
 	}
 
 	public void setImage(Image image) {
-		checkWidget();
-		button.setImage(image);
-		parent.layout(new Control[] { button });
+		this.safeGetButton().setImage(image);
+		this.parent.layout(new Control[] { this.button });
 	}
 
 	public Color getForeground() {
-		checkWidget();
-		return button.getForeground();
+		return this.safeGetButton().getForeground();
 	}
 
 	public void setForeground(Color foreground) {
-		checkWidget();
-		if (foreground == null)
-			SWT.error(SWT.ERROR_NULL_ARGUMENT);
-		button.setForeground(foreground);
+		this.safeGetButton().setForeground(foreground);
 	}
 
 	public Color getBackground() {
-		checkWidget();
-		return button.getBackground();
+		return this.safeGetButton().getBackground();
+	}
+	
+	protected Button safeGetButton() {
+		this.checkWidget();
+		return this.button;
 	}
 
 	public void setBackground(Color background) {
-		checkWidget();
-		if (background == null) {
-			SWT.error(SWT.ERROR_NULL_ARGUMENT);
-		}
-		this.button.setBackground(background);
+		this.safeGetButton().setBackground(background);
 	}
 
 	public Font getFont() {
-		this.checkWidget();
-		return this.button.getFont();
+		return this.safeGetButton().getFont();
 	}
 
 	public void setFont(Font font) {
-		this.checkWidget();
-		if (font == null) {
-			SWT.error(SWT.ERROR_NULL_ARGUMENT);
-		}
-		this.button.setFont(font);
+		this.safeGetButton().setFont(font);
 	}
-	
+
 }

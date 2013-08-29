@@ -61,11 +61,11 @@ public class RadioGroupViewer extends AbstractListViewer {
 	public RadioGroupViewer(RadioGroup group) {
 		Assert.isNotNull(group);
 		this.group = group;
-		hookControl(group);
+		this.hookControl(group);
 	}
 
 	public Control getControl() {
-		return group;
+		return this.group;
 	}
 	
 	public RadioGroup getRadioGroup() {
@@ -101,8 +101,8 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listSetSelection(int[] ixs) {
-		for (int idx = 0; idx < ixs.length; idx++) {
-			group.select(ixs[idx]);
+		for (int ix : ixs) {
+			this.group.select(ix);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected int[] listGetSelectionIndices() {
-		return new int[] { group.getSelectionIndex() };
+		return new int[] { this.group.getSelectionIndex() };
 	}
 
 	/**
@@ -123,12 +123,11 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listAdd(String string, int index) {
-		group.setLayoutDeferred(true);
+		this.group.setLayoutDeferred(true);
 		try {
-			RadioItem item = new RadioItem(group, SWT.NONE, index);
-			item.setText(string);
+			new RadioItem(this.group, SWT.NONE, index).setText(string);
 		} finally {
-			group.setLayoutDeferred(false);
+			this.group.setLayoutDeferred(false);
 		}
 	}
 
@@ -139,7 +138,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listDeselectAll() {
-		group.deselectAll();
+		this.group.deselectAll();
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected int listGetItemCount() {
-		return group.getItemCount();
+		return this.group.getItemCount();
 	}
 
 	/**
@@ -159,7 +158,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listRemove(int index) {
-		group.remove(index);
+		this.group.remove(index);
 	}
 
 	/**
@@ -169,7 +168,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listRemoveAll() {
-		group.removeAll();
+		this.group.removeAll();
 	}
 
 	/**
@@ -179,8 +178,7 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listSetItem(int index, String string) {
-		RadioItem item = group.getItems()[index];
-		item.setText(string);
+		this.group.getItems()[index].setText(string);
 	}
 
 	/**
@@ -190,102 +188,10 @@ public class RadioGroupViewer extends AbstractListViewer {
 	 *              AbstractListViewer API.
 	 */
 	protected void listSetItems(String[] labels) {
-		group.removeAll();
-
-		for (int i = 0; i < labels.length; i++) {
-			RadioItem item = new RadioItem(group, SWT.NONE);
-			item.setText(labels[i]);
+		this.group.removeAll();
+		for (String label : labels) {
+			new RadioItem(this.group, SWT.NONE).setText(label);
 		}
 	}
 
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public void add(Object element) {
-		super.add(element);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public void add(Object[] elements) {
-		super.add(elements);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public void insert(Object element, int position) {
-		super.insert(element, position);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public Object getElementAt(int index) {
-		return super.getElementAt(index);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	protected int indexForElement(Object element) {
-		return super.indexForElement(element);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	protected int listGetTopIndex() {
-		return super.listGetTopIndex();
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	protected void listSetTopIndex(int index) {
-		super.listSetTopIndex(index);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public void remove(Object element) {
-		super.remove(element);
-	}
-
-	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
-	 */
-	public void remove(Object[] elements) {
-		super.remove(elements);
-	}
 }
-

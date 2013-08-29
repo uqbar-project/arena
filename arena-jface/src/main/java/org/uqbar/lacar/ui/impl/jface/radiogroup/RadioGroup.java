@@ -71,7 +71,7 @@ public class RadioGroup extends Composite {
 		super.setLayout(this.layout);
 
 		this.buttonStyle = checkButtonStyle(style);
-		style = super.getStyle() | this.buttonStyle 	| (this.vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
+		style = super.getStyle() | this.buttonStyle | (this.vertical ? SWT.VERTICAL : SWT.HORIZONTAL);
 
 		setBackgroundMode(SWT.INHERIT_DEFAULT);
 	}
@@ -107,54 +107,63 @@ public class RadioGroup extends Composite {
 	private static int checkCompositeStyle(int style) {
 		// V_SCROLL == VERTICAL, H_SCROLL == HORIZONTAL
 		int result = style & SWT.BORDER;
-		if ((style & SWT.LEFT_TO_RIGHT) != 0)
-			result |= SWT.LEFT_TO_RIGHT;
-		else if ((style & SWT.RIGHT_TO_LEFT) != 0)
-			result |= SWT.RIGHT_TO_LEFT;
+		if ((style & SWT.LEFT_TO_RIGHT) != 0) {
+			return result | SWT.LEFT_TO_RIGHT;
+		}
+		else if ((style & SWT.RIGHT_TO_LEFT) != 0) {
+			return result | SWT.RIGHT_TO_LEFT;
+		}
 		return result;
 	}
 
 	private static int checkButtonStyle(int style) {
 		int result = SWT.RADIO;
-		if ((style & SWT.LEFT) != 0)
+		if ((style & SWT.LEFT) != 0) {
 			result |= SWT.LEFT;
-		else if ((style & SWT.CENTER) != 0)
+		}
+		else if ((style & SWT.CENTER) != 0) {
 			result |= SWT.CENTER;
-		else if ((style & SWT.RIGHT) != 0)
+		}
+		else if ((style & SWT.RIGHT) != 0) {
 			result |= SWT.RIGHT;
-		else
+		}			
+		else {
 			result |= SWT.LEFT;
+		}
 		return result;
 	}
 
 	void addItem(RadioItem item, int position) {
-		if (position == -1)
+		if (position == -1) {
 			position = getItemCount();
-		else if (position < 0 || position > getItemCount())
+		}
+		else if (position < 0 || position > getItemCount()) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
-		RadioItem[] newItems = new RadioItem[items == null ? 1
-				: items.length + 1];
+		}
+		RadioItem[] newItems = new RadioItem[items == null ? 1 	: items.length + 1];
 
-		if (position == -1)
+		if (position == -1) {
 			position = newItems.length - 1;
+		}
 
 		if (items == null) {
 			items = new RadioItem[] { item };
 		} else {
-			if (items.length > position)
+			if (items.length > position) {
 				item.getButton().moveAbove(items[position].getButton());
+			}
 
 			System.arraycopy(items, 0, newItems, 0, position);
 			newItems[position] = item;
-			System.arraycopy(items, position, newItems, position + 1,
-					items.length - position);
+			System.arraycopy(items, position, newItems, position + 1, items.length - position);
 			items = newItems;
 		}
 
 		layout(new Control[] { item.getButton() });
 
-		if (selectionIndex >= position)
+		if (selectionIndex >= position) {
 			selectionIndex++;
+		}
 	}
 
 	void removeItem(RadioItem item) {
@@ -162,65 +171,68 @@ public class RadioGroup extends Composite {
 		int position = indexOf(item);
 		if (position != -1) {
 			RadioItem[] newItems = new RadioItem[items.length - 1];
-			System.arraycopy(items, 0, newItems, 0, position);
-			System.arraycopy(items, position + 1, newItems, position,
-					newItems.length - position);
-			items = newItems;
+			System.arraycopy(this.items, 0, newItems, 0, position);
+			System.arraycopy(this.items, position + 1, newItems, position, newItems.length - position);
+			this.items = newItems;
 		}
 
-		if (selectionIndex == position) {
-			selectionItem = null;
-			selectionIndex = 0;
-		} else if (selectionIndex > position) {
-			selectionIndex--;
+		if (this.selectionIndex == position) {
+			this.selectionItem = null;
+			this.selectionIndex = 0;
+		} else if (this.selectionIndex > position) {
+			this.selectionIndex--;
 		}
 	}
 
 	void itemSelected(RadioItem item, Event event) {
-		if (item == selectionItem) {
+		if (item == this.selectionItem) {
 			// the previously selected radio produces an event
 			// so there are 2 events: 1) previous radio deselected, 2) new radio selected.
 			// we only want to process the second one. 
 			// Otherwise it will call the model twice: with null, and with the new selected value. 
 			return;
 		}
-		selectionItem = item;
-		selectionIndex = indexOf(item);
-		notifyListeners(SWT.Selection, null);
+		this.selectionItem = item;
+		this.selectionIndex = indexOf(item);
+		this.notifyListeners(SWT.Selection, null);
 	}
 
 	public void clear(int i) {
-		checkWidget();
-		RadioItem item = items[i];
+		this.checkWidget();
+		RadioItem item = this.items[i];
 		item.setText("");
 		item.setImage(null);
-		item.setFont(getFont());
-		item.setForeground(getForeground());
-		item.setBackground(getBackground());
+		item.setFont(this.getFont());
+		item.setForeground(this.getForeground());
+		item.setBackground(this.getBackground());
 	}
 
 	public void remove(RadioItem item) {
-		checkWidget();
-		if (item.isDisposed() || item.getParent() != this)
+		this.checkWidget();
+		if (item.isDisposed() || item.getParent() != this) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
+		}
 		item.dispose();
 	}
 
 	public void remove(int position) {
-		checkWidget();
-		if (position < 0 || position >= getItemCount())
+		this.checkWidget();
+		if (position < 0 || position >= getItemCount()) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
-		items[position].dispose();
+		}
+		this.items[position].dispose();
 	}
 
 	public void remove(int start, int end) {
-		checkWidget();
-		if (start > end)
+		this.checkWidget();
+		if (start > end) {
 			return;
-		if (start < 0 || end >= items.length)
+		}
+		if (start < 0 || end >= this.items.length) {
 			SWT.error(SWT.ERROR_INVALID_RANGE);
+		}
 
-		setLayoutDeferred(true);
+		this.setLayoutDeferred(true);
 		try {
 			Item[] items = (Item[]) this.items.clone();
 			for (int i = start; i <= end; i++) {
@@ -232,8 +244,8 @@ public class RadioGroup extends Composite {
 	}
 
 	public void removeAll() {
-		checkWidget();
-		remove(0, items.length - 1);
+		this.checkWidget();
+		this.remove(0, items.length - 1);
 	}
 
 	/**
@@ -242,86 +254,90 @@ public class RadioGroup extends Composite {
 	 * @return the number of items in the receiver.
 	 */
 	public int getItemCount() {
-		checkWidget();
-		if (items == null)
+		this.checkWidget();
+		if (this.items == null)
 			return 0;
-		return items.length;
+		return this.items.length;
 	}
 
 	public void addSelectionListener(SelectionListener listener) {
-		checkWidget();
-		if (listener == null)
+		this.checkWidget();
+		if (listener == null) {
 			SWT.error(SWT.ERROR_NULL_ARGUMENT);
+		}
 		TypedListener typedListener = new TypedListener(listener);
-		addListener(SWT.Selection, typedListener);
-		addListener(SWT.DefaultSelection, typedListener);
+		this.addListener(SWT.Selection, typedListener);
+		this.addListener(SWT.DefaultSelection, typedListener);
 	}
 
 	public void removeSelectionListener(SelectionListener listener) {
-		checkWidget();
-		removeListener(SWT.Selection, listener);
-		removeListener(SWT.DefaultSelection, listener);
+		this.checkWidget();
+		this.removeListener(SWT.Selection, listener);
+		this.removeListener(SWT.DefaultSelection, listener);
 	}
 
 	public RadioItem[] getItems() {
-		checkWidget();
-		if (items == null)
+		this.checkWidget();
+		if (this.items == null) {
 			return new RadioItem[0];
-		RadioItem[] result = new RadioItem[items.length];
-		System.arraycopy(items, 0, result, 0, items.length);
-		return items;
+		}
+		RadioItem[] result = new RadioItem[this.items.length];
+		System.arraycopy(this.items, 0, result, 0, this.items.length);
+		return this.items;
 	}
 
 	public int indexOf(RadioItem item) {
-		checkWidget();
-		if (items == null)
+		this.checkWidget();
+		if (this.items == null)
 			return -1;
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] == item)
+		for (int i = 0; i < this.items.length; i++) {
+			if (this.items[i] == item)
 				return i;
 		}
 		return -1;
 	}
 
 	public RadioItem getSelection() {
-		checkWidget();
-		return selectionItem;
+		this.checkWidget();
+		return this.selectionItem;
 	}
 
 	public int getSelectionIndex() {
-		checkWidget();
-		return selectionIndex;
+		this.checkWidget();
+		return this.selectionIndex;
 	}
 
 	public void setSelection(RadioItem item) {
-		checkWidget();
+		this.checkWidget();
 		if (item == null) {
-			deselectAll();
+			this.deselectAll();
 			return;
 		}
-		if (item.getParent() != this)
+		if (item.getParent() != this) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
+		}
 		item.getButton().setSelection(true);
 	}
 
 	public void deselectAll() {
-		checkWidget();
-		if (selectionItem != null) {
-			selectionItem.getButton().setSelection(false);
-			selectionItem = null;
-			selectionIndex = -1;
+		this.checkWidget();
+		if (this.selectionItem != null) {
+			this.selectionItem.getButton().setSelection(false);
+			this.selectionItem = null;
+			this.selectionIndex = -1;
 		}
 	}
 
 	public void select(int index) {
-		checkWidget();
-		if (index < 0 || index >= getItemCount())
+		this.checkWidget();
+		if (index < 0 || index >= getItemCount()) {
 			SWT.error(SWT.ERROR_INVALID_ARGUMENT);
-		items[index].getButton().setSelection(true);
+		}
+		this.items[index].getButton().setSelection(true);
 	}
 
 	public void reveal(RadioItem item) {
-		checkWidget();
+		this.checkWidget();
 		// TODO
 	}
 	
