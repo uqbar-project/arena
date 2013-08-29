@@ -7,6 +7,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.List;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
@@ -48,15 +49,16 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 	public void createContents(Panel mainPanel) {
 		mainPanel.setLayout(new VerticalLayout());
 
-		Selector<Country> countries = new Selector<Country>(mainPanel);
+		Selector<Country> countries = new RadioSelector<Country>(mainPanel);
 		countries.setContents(this.getModelObject().getPossibleCountries(), "name");
 
 		PropertyAdapter nameAdapter = new PropertyAdapter(Country.class, "name");
 
 		countries.bindItemsToProperty("possibleCountries") //
-			.setAdapter(nameAdapter); // Debería ser setItemsAdapter
+			.setAdapter(nameAdapter);
 
 		countries.bindValueToProperty("country");
+		
 		Action changedAction = new Action() {
 			@Override
 			public void execute() {

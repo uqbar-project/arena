@@ -14,8 +14,7 @@ public class NestedCombosDomain {
 	private int times = 0;
 
 	public NestedCombosDomain() {
-		this.country = this.addCountry("Argentina", "Buenos Aires", "Córdoba",
-				"Santa Fé");
+		this.country = this.addCountry("Argentina", "Buenos Aires", "Córdoba", "Santa Fé");
 		this.addCountry("Bolivia", "Cochabamba", "Potosí", "La Paz");
 	}
 
