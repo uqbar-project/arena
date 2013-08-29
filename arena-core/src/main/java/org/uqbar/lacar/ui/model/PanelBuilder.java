@@ -22,11 +22,17 @@ public interface PanelBuilder {
 
 	public ButtonBuilder addButton(String caption, Action action);
 
+	// SELECTORS
+	
 	public <T> ListBuilder<T> addSelector(boolean nullValue);
 
-	public <R> TableBuilder<R> addTable(Class<R> itemType);
-
 	public <T> ListBuilder<T> addList();
+	
+	public <T> ListBuilder<T> addRadioSelector();
+	
+	// 
+
+	public <R> TableBuilder<R> addTable(Class<R> itemType);
 
 	public <T> ControlBuilder addTree(Tree<T> tree, String propertyNode);
 
