@@ -12,17 +12,9 @@ import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Listener;
 
 /**
- * Instances of this class represent a selectable user interface object that
- * represents an radio button in a radio group.
- * <dl>
- * <dt><b>Styles:</b></dt>
- * <dd>(none)</dd>
- * <dt><b>Events:</b></dt>
- * <dd>(none)</dd>
- * </dl>
- * <p>
- * IMPORTANT: This class is <em>not</em> intended to be subclassed.
- * </p>
+ * An item from a {@link RadioGroup}.
+ * 
+ * @author jfernandes
  */
 public class RadioItem extends Item {
 	private RadioGroup parent;
@@ -97,7 +89,7 @@ public class RadioItem extends Item {
 
 	public void setText(String string) {
 		this.safeGetButton().setText(string);
-		this.parent.layout(new Control[] { this.button });
+		this.parent.redraw(this);
 	}
 
 	public Image getImage() {

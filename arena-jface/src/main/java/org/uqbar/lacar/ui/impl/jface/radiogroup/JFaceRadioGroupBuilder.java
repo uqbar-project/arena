@@ -18,7 +18,7 @@ public class JFaceRadioGroupBuilder<T> extends JFaceAbstractListBuilder<T, Radio
 	@Override
 	protected RadioGroupViewer createViewer(Composite jFaceComposite) {
 		RadioGroupViewer theViewer = new RadioGroupViewer(jFaceComposite);
-		this.initialize(theViewer.getRadioGroup());
+		this.initialize(theViewer.getControl());
 		return theViewer;
 	}
 
