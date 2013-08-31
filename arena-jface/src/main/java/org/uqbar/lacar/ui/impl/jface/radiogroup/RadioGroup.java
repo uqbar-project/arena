@@ -1,6 +1,8 @@
  
 package org.uqbar.lacar.ui.impl.jface.radiogroup;
 
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.SelectionListener;
@@ -255,8 +257,9 @@ public class RadioGroup extends Composite {
 	 */
 	public int getItemCount() {
 		this.checkWidget();
-		if (this.items == null)
+		if (this.items == null) {
 			return 0;
+		}
 		return this.items.length;
 	}
 
@@ -278,18 +281,14 @@ public class RadioGroup extends Composite {
 
 	public RadioItem[] getItems() {
 		this.checkWidget();
-		if (this.items == null) {
-			return new RadioItem[0];
-		}
-		RadioItem[] result = new RadioItem[this.items.length];
-		System.arraycopy(this.items, 0, result, 0, this.items.length);
-		return this.items;
+		return this.items == null ? new RadioItem[0] : Arrays.copyOf(this.items, this.items.length);
 	}
 
 	public int indexOf(RadioItem item) {
 		this.checkWidget();
-		if (this.items == null)
+		if (this.items == null) {
 			return -1;
+		}
 		for (int i = 0; i < this.items.length; i++) {
 			if (this.items[i] == item)
 				return i;
