@@ -2,6 +2,7 @@ package org.uqbar.arena.tests.nestedCombos;
 
 import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.bindings.PropertyAdapter;
+import org.uqbar.arena.bindings.transformers.AbstractReadOnlyTransformer;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
@@ -49,7 +50,7 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 	public void createContents(Panel mainPanel) {
 		mainPanel.setLayout(new VerticalLayout());
 
-		Selector<Country> countries = new RadioSelector<Country>(mainPanel);
+		Selector<Country> countries = new Selector<Country>(mainPanel);
 		countries.setContents(this.getModelObject().getPossibleCountries(), "name");
 
 		PropertyAdapter nameAdapter = new PropertyAdapter(Country.class, "name");
@@ -69,8 +70,25 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		countries.onSelection(changedAction);
 
 		Label country = new Label(mainPanel);
-		country.bindValueToProperty("country"); // TODO esto todavía no se puede hacer:
-												// .setAdapter(nameAdapter);
+		country.bindValueToProperty("country")
+		// TODO esto todavía no se puede hacer:
+		// .setAdapter(nameAdapter);		
+			.setTransformer(new AbstractReadOnlyTransformer<Country, String>() {
+				@Override
+				public String modelToView(Country value) {
+					return value.name();
+				}
+
+				@Override
+				public Class<Country> getModelType() {
+					return Country.class;
+				}
+
+				@Override
+				public Class<String> getViewType() {
+					return String.class;
+				}
+			}); 
 
 		List<Province> provincesList = new List<Province>(mainPanel);
 		provincesList.bindItemsToProperty("possibleProvinces") //
@@ -84,6 +102,12 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		provinces.bindItemsToProperty("possibleProvinces").setAdapter(new PropertyAdapter(Province.class, "name"));
 		provinces.bindValueToProperty("province");
 		provinces.onSelection(changedAction);
+		
+		Selector<Province> provincesRadioSelector = new RadioSelector<Province>(mainPanel);
+		provincesRadioSelector.bindItemsToProperty("possibleProvinces").setAdapter(new PropertyAdapter(Province.class, "name"));
+		provincesRadioSelector.bindValueToProperty("province");
+		provincesRadioSelector.setHeigth(30);
+		provincesRadioSelector.onSelection(changedAction);
 
 		Label times = new Label(mainPanel);
 		times.bindValueToProperty("times"); // TODO esto todavía no se puede hacer: .setAdapter(nameAdapter);
