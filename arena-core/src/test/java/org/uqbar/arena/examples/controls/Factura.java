@@ -18,5 +18,5 @@ public class Factura extends ObservableObject {
 	public void addItem(ItemFactura item) {
 		this.items.add(item);
 	}
-	
+
 }
