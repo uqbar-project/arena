@@ -1,5 +1,6 @@
 package org.uqbar.lacar.ui.model;
 
+import org.uqbar.arena.windows.MessageBox;
 import org.uqbar.ui.view.ErrorViewer;
 
 /**
@@ -33,7 +34,7 @@ public interface WindowBuilder extends WindowFactory, WidgetBuilder {
 
 	public void open();
 
-	public void showMessage(int style, String message);
+	public void showMessage(MessageBox.Type type, String message);
 
 	public void close();
 

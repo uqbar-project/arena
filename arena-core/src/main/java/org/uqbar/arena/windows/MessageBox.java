@@ -1,13 +1,15 @@
 package org.uqbar.arena.windows;
 
 public class MessageBox {
+	public static enum Type { Information, Warning, Error}
+	
 	private final Window<?> parent;
-	private final int style;
+	private final Type type;
 	private String message;
 
-	public MessageBox(Window<?> parent, int style) {
+	public MessageBox(Window<?> parent, Type type) {
 		this.parent = parent;
-		this.style = style;
+		this.type = type;
 	}
 
 	public void setMessage(String message) {
@@ -15,7 +17,7 @@ public class MessageBox {
 	}
 
 	public void open() {
-		this.parent.getDelegate().showMessage(this.style, this.message);
+		this.parent.getDelegate().showMessage(this.type, this.message);
 	}
 
 }

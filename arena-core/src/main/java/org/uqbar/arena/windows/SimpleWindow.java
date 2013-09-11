@@ -93,21 +93,21 @@ public abstract class SimpleWindow<T> extends Window<T> implements ErrorViewer {
 
 	@Override
 	public void showInfo(String message) {
-//		this.showMessageBox(message, SWT.OK | SWT.ICON_INFORMATION);
+		this.showMessageBox(MessageBox.Type.Information, message);
 	}
 
 	@Override
 	public void showWarning(String message) {
-//		this.showMessageBox(message, SWT.OK | SWT.ICON_WARNING);
+		this.showMessageBox(MessageBox.Type.Warning, message);
 	}
 
 	@Override
 	public void showError(String message) {
-//		this.showMessageBox(message, SWT.OK | SWT.ICON_ERROR);
+		this.showMessageBox(MessageBox.Type.Error, message);
 	}
 
-	protected void showMessageBox(String message, int style) {
-		MessageBox messageBox = new MessageBox(this, style);
+	protected void showMessageBox(MessageBox.Type type, String message) {
+		MessageBox messageBox = new MessageBox(this, type);
 		messageBox.setMessage(message);
 		messageBox.open();
 	}
