@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.uqbar.arena.windows.MessageBox.Type;
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer;
 import org.uqbar.lacar.ui.impl.jface.JFacePanelBuilder;
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder;
@@ -25,7 +26,8 @@ import org.uqbar.ui.view.ErrorViewer;
 import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.exceptions.ProgramException;
 
-public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowBuilder, JFaceContainer {
+public class JFaceWindowBuilder extends AbstractWidgetBuilder implements
+		WindowBuilder, JFaceContainer {
 	private Window window;
 
 	private DataBindingContext dbc;
@@ -34,7 +36,8 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 
 	private ViewDescriptor<PanelBuilder> windowDescriptor;
 
-	// TODO Para no obligar a definir un ErrorViewer, podríamos tener uno default que tira los errores por
+	// TODO Para no obligar a definir un ErrorViewer, podríamos tener uno
+	// default que tira los errores por
 	// consola o algo así.
 	private ErrorViewer errorViewer;
 	private String title;
@@ -60,18 +63,22 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 	}
 
 	/**
-	 * Finaliza la construcción de la ventana utilizando un {@link ViewDescriptor} y la abre.
+	 * Finaliza la construcción de la ventana utilizando un
+	 * {@link ViewDescriptor} y la abre.
 	 * 
-	 * @param windowDescriptor La descripción del contenido de la ventana.
+	 * @param windowDescriptor
+	 *            La descripción del contenido de la ventana.
 	 */
 	@Override
 	public void open() {
 		Window window = this.getJFaceWindow();
 
-		// Esto crea tanto la ventana como sus contenidos (termina llamando a createWindowContents).
+		// Esto crea tanto la ventana como sus contenidos (termina llamando a
+		// createWindowContents).
 		window.create();
 
-		// Esto debe hacerse después del create, en caso contrario no hay shell todavía.
+		// Esto debe hacerse después del create, en caso contrario no hay shell
+		// todavía.
 		window.getShell().setText(this.title);
 		window.getShell().pack();
 
@@ -84,7 +91,8 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 			}
 		});
 
-		// Al hacer open se podría evitar el create anterior, pero necesito hacerlo para poder hacer getShell
+		// Al hacer open se podría evitar el create anterior, pero necesito
+		// hacerlo para poder hacer getShell
 		// entre ambos.
 		window.open();
 	}
@@ -131,11 +139,26 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 	// ********************************************************
 
 	@Override
-	public void showMessage(int style, String message) {
-		MessageBox messageBox = new MessageBox(this.getShell(), style);
+	public void showMessage(Type type, String message) {
+		MessageBox messageBox = new MessageBox(this.getShell(), SWT.OK
+				| computeStyle(type));
 		messageBox.setMessage(message);
 		messageBox.setText(this.getShell().getText());
 		messageBox.open();
+	}
+
+	protected int computeStyle(Type type) {
+		switch (type) {
+		case Information:
+			return SWT.ICON_INFORMATION;
+		case Warning:
+			return SWT.ICON_WARNING;
+		case Error:
+			return SWT.ICON_ERROR;
+		default:
+			throw new UnsupportedOperationException(
+					"Invalid message box style: " + type);
+		}
 	}
 
 	@Override
@@ -152,23 +175,26 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 	@Override
 	public AggregateValidationStatus getStatus() {
 		if (this.status == null) {
-			this.status = new AggregateValidationStatus(this.getDataBindingContext(),
-				AggregateValidationStatus.MAX_SEVERITY);
+			this.status = new AggregateValidationStatus(
+					this.getDataBindingContext(),
+					AggregateValidationStatus.MAX_SEVERITY);
 		}
 
 		return this.status;
 	}
 
 	/**
-	 * @throws ProgramException Si no se le asignó un {@link ErrorViewer} a esta ventana. Esto puede pasar si
-	 *             se intenta agregar un Panel de errores a una ventana que no implementa la interfaz
-	 *             {@link ErrorViewer} y tampoco se designó un {@link ErrorViewer} alternativo.
+	 * @throws ProgramException
+	 *             Si no se le asignó un {@link ErrorViewer} a esta ventana.
+	 *             Esto puede pasar si se intenta agregar un Panel de errores a
+	 *             una ventana que no implementa la interfaz {@link ErrorViewer}
+	 *             y tampoco se designó un {@link ErrorViewer} alternativo.
 	 */
 	@Override
 	public ErrorViewer getErrorViewer() {
 		if (this.errorViewer == null) {
 			throw new ProgramException(
-				"Esta ventana no tiene capacidad de mostrar errores por no habérsele configurado un ErrorViewer");
+					"Esta ventana no tiene capacidad de mostrar errores por no habérsele configurado un ErrorViewer");
 		}
 
 		return this.errorViewer;
