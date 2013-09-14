@@ -6,6 +6,7 @@
 	<name>Aspect for Pure Objects</name>
 	<packaging>jar</packaging>
 
+
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>uqbar-scala-parent</artifactId>
