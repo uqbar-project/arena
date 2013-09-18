@@ -34,7 +34,7 @@ public abstract class Widget implements Loggeable {
 		container.addChild(this);
 	}
 	
-	public <O> O getModelObject() {
+	public <O> O getContainerModelObject() {
 		return (O) this.getContainer().getModel().getSource();
 	}
 
@@ -42,7 +42,7 @@ public abstract class Widget implements Loggeable {
 	// ** Inter widget-communication
 	// ********************************************************
 
-	protected Container getContainer() {
+	public Container getContainer() {
 		return this.container;
 	}
 
