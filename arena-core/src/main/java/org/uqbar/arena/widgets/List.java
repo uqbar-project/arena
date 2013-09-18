@@ -5,6 +5,12 @@ import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 
 
+/**
+ * 
+ * 
+ * @author npasserini
+ */
+//TODO: rename to ListSelector
 public class List<T> extends Selector<T> {
 	private static final long serialVersionUID = 1L;
 

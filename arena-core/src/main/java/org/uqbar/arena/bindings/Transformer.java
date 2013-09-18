@@ -11,6 +11,8 @@ import org.uqbar.commons.model.UserException;
  * 
  * @author npasserini
  */
+//TODO: rename to avoid confusion with a regular Transformer. 
+// something like ViewTransformer, o BindingValueTransformer, ValueTransformer, ?
 public interface Transformer<M, V> {
 	/**
 	 * Convert and/or validate a value coming from the view to the type and/or format needed in the model.

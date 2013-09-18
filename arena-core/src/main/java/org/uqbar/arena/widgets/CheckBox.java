@@ -9,6 +9,7 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
  * @author npasserini
  */
 public class CheckBox extends Control {
+	
 	public CheckBox(Panel container) {
 		super(container);
 	}

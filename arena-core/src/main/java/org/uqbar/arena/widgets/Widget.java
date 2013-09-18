@@ -14,6 +14,8 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
  * @author npasserini
  */
 public abstract class Widget implements Loggeable {
+	private static final long serialVersionUID = 7034829204374950200L;
+
 	/**
 	 * Map of generated indices, allows to generate default captions for labels, buttons and other widgets.
 	 * For each type of widget it contains the next index to be used.
@@ -30,6 +32,10 @@ public abstract class Widget implements Loggeable {
 	public Widget(Container container) {
 		this.container = container;
 		container.addChild(this);
+	}
+	
+	public <O> O getModelObject() {
+		return (O) this.getContainer().getModel().getSource();
 	}
 
 	// ********************************************************
