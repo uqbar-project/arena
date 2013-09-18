@@ -11,8 +11,11 @@ import com.uqbar.aop.transaction.ObjectTransactionManager;
 import com.uqbar.apo.APOConfig;
 import com.uqbar.common.transaction.ObjectTransaction;
 
+/**
+ * 
+ * @author npasserini
+ */
 public class JavaBeanTransacionalObservableMap extends JavaBeanObservableMap{
-	
 	private final String isolationKey = "apo.poo.isolationLevel";
 	private ObjectTransaction objectTransactionImpl = ObjectTransactionManager.getTransaction();
 	private IsolationLevelEvents isolationLevelEvents = IsolationLevelEvents.valueOf(APOConfig.getProperty(isolationKey).value());

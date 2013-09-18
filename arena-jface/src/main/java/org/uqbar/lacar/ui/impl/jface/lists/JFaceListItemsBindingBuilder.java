@@ -23,7 +23,7 @@ public class JFaceListItemsBindingBuilder extends JFaceItemsBindingBuilder imple
 
 	@Override
 	public <M, V> BindingBuilder adaptItemsUsingProperty(Class<?> modelType, String propertyName) {
-		IObservableMap labelProviderMap = JFaceObservableFactory.observeMap(itemsObservableSet, modelType, propertyName);
+		IObservableMap labelProviderMap = JFaceObservableFactory.observeMap(this.itemsObservableSet, modelType, propertyName);
 		this.getViewer().setLabelProvider(new ObservableMapLabelProvider(labelProviderMap));
 		return this;
 	}

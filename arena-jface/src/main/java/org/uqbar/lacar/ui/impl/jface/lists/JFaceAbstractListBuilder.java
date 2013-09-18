@@ -59,10 +59,6 @@ public abstract class JFaceAbstractListBuilder<T, Viewer extends AbstractListVie
 	@Override
 	public ListBuilder<T> onSelection(Action action) {
 		this.viewer.addSelectionChangedListener(new SelectionChangeListener(action));
-		// TODO Borrar esto.
-		// if (action != null) {
-		// this.getWidget().addSelectionListener(new JFaceActionAdapter(this.getContainer(), action));
-		// }
 		return this;
 	}
 
