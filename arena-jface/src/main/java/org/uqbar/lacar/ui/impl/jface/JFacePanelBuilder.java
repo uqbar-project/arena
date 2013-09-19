@@ -10,6 +10,7 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.uqbar.arena.widgets.tree.Tree;
@@ -32,6 +33,10 @@ import org.uqbar.ui.view.ErrorViewer;
 
 import com.uqbar.commons.collections.CollectionFactory;
 
+/**
+ * 
+ * @author npasserini
+ */
 public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements PanelBuilder, JFaceContainer {
 	private List<WidgetBuilder> children = CollectionFactory.createList();
 
@@ -114,6 +119,13 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	@Override
 	public PanelBuilder addChildPanel() {
 		return new JFacePanelBuilder(this);
+	}
+	
+	@Override
+	public PanelBuilder addChildGroup(String title) {
+		Group group = new Group(this.getJFaceComposite(), SWT.SHADOW_IN);
+		group.setText(title);
+		return new JFacePanelBuilder(this, group);
 	}
 
 	@Override
