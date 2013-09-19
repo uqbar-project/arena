@@ -10,6 +10,10 @@ import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.ui.jface.base.BaseUpdateValueStrategy;
 
+/**
+ * 
+ * @author npasserini
+ */
 public class JFaceBindingBuilder implements BindingBuilder {
 	private final DataBindingContext dbc;
 	private IObservableValue model;

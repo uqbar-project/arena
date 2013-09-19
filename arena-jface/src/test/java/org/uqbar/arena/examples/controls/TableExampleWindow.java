@@ -1,7 +1,11 @@
 package org.uqbar.arena.examples.controls;
 
+import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
+import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
@@ -34,6 +38,10 @@ public class TableExampleWindow extends MainWindow<Factura> {
 		table.bindItemsToProperty("items");
 		
 		this.addColumns(table);
+		
+		new Label(mainPanel).setText("Nombre:");
+		new TextBox(mainPanel).bindValueToProperty("nombre");
+		new Button(mainPanel).bindCaptionToProperty("nombre");
 	}
 
 	protected void addColumns(Table<ItemFactura> table) {

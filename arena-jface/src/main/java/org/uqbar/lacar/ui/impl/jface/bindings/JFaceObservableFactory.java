@@ -24,6 +24,10 @@ import org.uqbar.commons.model.ScalaBeanInfo;
 
 import scala.actors.threadpool.Arrays;
 
+/**
+ * 
+ * @author npasserini
+ */
 public class JFaceObservableFactory {
 
 	public static IObservableValue observeProperty(Object bean, String propertyChain) {

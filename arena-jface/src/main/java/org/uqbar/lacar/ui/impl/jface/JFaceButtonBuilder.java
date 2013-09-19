@@ -5,7 +5,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
-
 import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
 import org.uqbar.lacar.ui.model.Action;
@@ -59,4 +58,10 @@ public class JFaceButtonBuilder extends JFaceSkinnableControlBuilder<Button> imp
 	public BindingBuilder observeValue() {
 		throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad");
 	}
+	
+	@Override
+	public BindingBuilder observeCaption() {
+		return new JFaceBindingBuilder(this, new ButtonCaptionObservableValue(this.getWidget()));
+	}
+	
 }
