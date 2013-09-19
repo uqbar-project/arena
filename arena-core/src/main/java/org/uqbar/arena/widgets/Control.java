@@ -1,13 +1,12 @@
 package org.uqbar.arena.widgets;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
-import org.uqbar.lacar.ui.model.PanelBuilder;
+import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
@@ -22,7 +21,6 @@ import com.uqbar.commons.collections.CollectionFactory;
  * @author npasserini
  */
 public abstract class Control extends Widget {
-	private Collection<Binding<ControlBuilder>> bindings = CollectionFactory.createCollection();
 	protected List<Closure<ControlBuilder>> configurations = CollectionFactory.createList();
 
 	public Control(Container container) {
@@ -99,51 +97,21 @@ public abstract class Control extends Widget {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
 
-	/**
-	 * Adds a binding betweeen two observables, validating them in this context.
-	 * 
-	 * @param model An observable property associated to a model.
-	 * @param view An observable characteristic of this control.
-	 * @return A {@link Binding} that allows to configure further the creating binding between view and model.
-	 */
-	protected <C extends ControlBuilder> Binding<C> addBinding(Observable model, ViewObservable<C> view) {
-		model.setContainer(this.getContainer());
-
-		return this.addBinding(new Binding<C>(model, view));
-	}
-
-	@SuppressWarnings("unchecked")
-	public <C extends ControlBuilder> Binding<C> addBinding(Binding<C> binding) {
-		this.bindings.add((Binding<ControlBuilder>) binding);
-		return binding;
-	}
-
 	// ********************************************************
 	// ** Rendering
 	// ********************************************************
-
+	
+	/**
+	 * Remember to call super if you override this template method.
+	 */
 	@Override
-	public void showOn(PanelBuilder container) {
-		ControlBuilder builder = this.createBuilder(container);
-
+	public void configure(WidgetBuilder builder) {
 		for (Closure<ControlBuilder> configuration : this.configurations) {
-			configuration.execute(builder);
+			//horrible hack to reduce the refactor: trying to move up bindings to all widgets
+			// instead of just Controls.
+			configuration.execute((ControlBuilder) builder);
 		}
-
-		this.configure(builder);
-
-		for (Binding<ControlBuilder> binding : this.bindings) {
-			binding.execute(builder);
-		}
-
-		builder.pack();
 	}
-
-	public void configure(ControlBuilder builder) {
-
-	}
-
-	protected abstract ControlBuilder createBuilder(PanelBuilder container);
 
 	public Control setWidth(final int preferredSize) {
 		this.configurations.add(new Closure<ControlBuilder>() {

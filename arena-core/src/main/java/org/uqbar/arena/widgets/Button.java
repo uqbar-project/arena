@@ -1,10 +1,13 @@
 package org.uqbar.arena.widgets;
 
+import org.uqbar.arena.bindings.ObservableCaption;
+import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
+import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import com.uqbar.commons.collections.Closure;
 
@@ -64,7 +67,15 @@ public class Button extends SkinnableControl {
 		});
 		return this;
 	}
-
+	
+	// ********************************************************
+	// ** Binding
+	// ********************************************************
+	
+	public Binding bindCaptionToProperty(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
+	}
+	
 	// ********************************************************
 	// ** Rendering
 	// ********************************************************

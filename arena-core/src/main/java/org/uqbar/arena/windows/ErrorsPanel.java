@@ -3,6 +3,10 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Widget;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 
+/**
+ * 
+ * @author npasserini
+ */
 public class ErrorsPanel extends Widget {
 	private String okMessage;
 

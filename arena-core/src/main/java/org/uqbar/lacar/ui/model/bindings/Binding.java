@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.model.bindings;
 import org.uqbar.arena.bindings.Adapter;
 import org.uqbar.arena.bindings.Transformer;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.model.ControlBuilder;
+import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.adapter.NotEmptyTransformer;
 import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
 
@@ -15,7 +15,7 @@ import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
  * @param<A> Adapter type
  * @author npasserini
  */
-public class Binding<C extends ControlBuilder> {
+public class Binding<C extends WidgetBuilder> {
 	/**
 	 * Referencia a una característica observable del modelo.
 	 */

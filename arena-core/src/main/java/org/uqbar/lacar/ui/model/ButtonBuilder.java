@@ -25,5 +25,12 @@ public interface ButtonBuilder extends SkinnableBuilder {
 	 * @param action An {@link Action} that will be executed when the button is clicked.
 	 */
 	public abstract ButtonBuilder onClick(Action action);
+	
+	/**
+	 * Starts a binding creation by returning a BindingBuilder
+	 * to bind the button's "caption" with something else (probably a
+	 * model's property).
+	 */
+	public BindingBuilder observeCaption();
 
 }
