@@ -81,7 +81,7 @@ public class Button extends SkinnableControl {
 	// ********************************************************
 
 	@Override
-	protected ControlBuilder createBuilder(PanelBuilder container) {
+	protected ButtonBuilder createBuilder(PanelBuilder container) {
 		final ButtonBuilder button = container.addButton(this.caption, this.onClick);
 		this.configureSkineableBuilder(button);
 		return button;

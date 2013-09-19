@@ -12,8 +12,17 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 
 import com.uqbar.commons.exceptions.ProgramException;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
-import com.uqbar.commons.utils.Utils;
 
+/**
+ * A generic container widget.
+ * Commonly used with an specific layout object in order to layout
+ * a set of related widgets.
+ * 
+ * It might have its own model, which eventually will be inherited to all
+ * of its components.
+ * 
+ * @author npasserini
+ */
 public class Panel extends Widget implements Container {
 	protected IModel<?> model;
 
@@ -133,13 +142,20 @@ public class Panel extends Widget implements Container {
 			throw new ProgramException("No se especificó un layout para el Panel");
 		}
 
-		PanelBuilder me = container.addChildPanel();
+		PanelBuilder me = createPanel(container);
 
 		this.layout.configure(me);
 
 		for (Widget child : this.children) {
 			child.showOn(me);
 		}
+	}
+
+	/**
+	 * template method.
+	 */
+	protected PanelBuilder createPanel(PanelBuilder container) {
+		return container.addChildPanel();
 	}
 
 	// ********************************************************

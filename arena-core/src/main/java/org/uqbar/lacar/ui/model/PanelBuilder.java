@@ -41,6 +41,8 @@ public interface PanelBuilder {
 	// ********************************************************
 
 	public PanelBuilder addChildPanel();
+	
+	public PanelBuilder addChildGroup(String title);
 
 	public void addErrorPanel(String okMessage);
 

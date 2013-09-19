@@ -23,12 +23,14 @@ public interface ControlBuilder extends WidgetBuilder {
 	 * @return A {@link BindingBuilder} associated to this control, which allows to further configure the
 	 *         binding and has the ultimate responsibility of creating it.
 	 */
+	//TODO: does this apply to all Widgets or just controls ?
 	public BindingBuilder observeEnabled();
 	
 	/**
 	 * Used to create a binding associated to the "visible" property of this control.
 	 * Usually you'll need this to show/hide a control based on some other condition (binding).
 	 */
+	//TODO: move up to widget
 	public BindingBuilder observeVisible();
 
 	public void setWidth(int preferredSize);
