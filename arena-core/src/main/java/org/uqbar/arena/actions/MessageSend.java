@@ -27,5 +27,13 @@ public class MessageSend implements Action {
 	public void execute() {
 		ReflectionUtils.invokeMethod(this.target, this.methodName);
 	}
+	
+	/**
+	 * Returns a new {@link Action} object that is this same one
+	 * but that will execute in a different thread asynchronously.
+	 */
+	public Action asAsync() {
+		return new AsyncActionDecorator(this);
+	}
 
 }
