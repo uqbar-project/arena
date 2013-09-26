@@ -1,4 +1,4 @@
-package org.uqbar.arena.examples.conversor.xtend
+package org.uqbar.arena.examples.conversor.xtend.typesafe
 
 import org.uqbar.commons.utils.Observable
 
