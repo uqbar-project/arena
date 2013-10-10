@@ -1,5 +1,7 @@
 package org.uqbar.lacar.ui.model;
 
+import com.uqbar.commons.collections.Transformer;
+
 /**
  * @author npasserini
  */
@@ -25,6 +27,8 @@ public interface ControlBuilder extends WidgetBuilder {
 	 */
 	//TODO: does this apply to all Widgets or just controls ?
 	public BindingBuilder observeEnabled();
+	
+	public <T, U> BindingBuilder observeBackground(Transformer<T, U> transform);
 	
 	/**
 	 * Used to create a binding associated to the "visible" property of this control.
