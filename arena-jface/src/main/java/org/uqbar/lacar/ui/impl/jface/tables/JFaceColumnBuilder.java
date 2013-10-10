@@ -1,6 +1,8 @@
 package org.uqbar.lacar.ui.impl.jface.tables;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
@@ -9,10 +11,12 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Control;
 import org.uqbar.arena.widgets.tables.ColumnLayoutBuilder;
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder;
+import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
-public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements ColumnBuilder<Row> {
+public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
+		ColumnBuilder<Row> {
 	/**
 	 * El componente de JFace asociado.
 	 */
@@ -24,23 +28,30 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements Co
 	private ColumnLayoutBuilder layoutBuilder = new DefaultColumnLayoutBuilder();
 
 	/**
-	 * Proveedor de los contenidos de esta columna, que luego se utiliza para construir el
-	 * {@link org.eclipse.jface.viewers.LabelProvider} de JFace.
+	 * Proveedor de los contenidos de esta columna, que luego se utiliza para
+	 * construir el {@link org.eclipse.jface.viewers.LabelProvider} de JFace.
 	 */
-	private final LabelProvider<Row> labelProvider;
+	private final List<LabelProvider<Row>>  labelProviders;
+
+	private final JFaceTableBuilder<Row> table;
+	private List<BindingBuilder> bindings = new ArrayList<>();
 
 	// ********************************************************
 	// ** Constructors
 	// ********************************************************
 
 	/**
-	 * @param table La tabla a la que pertenece esta columna
-	 * @param labelProvider La estrategia para obtener el contenido de la columna a partir del modelo (de la
-	 *            fila).
+	 * @param table
+	 *            La tabla a la que pertenece esta columna
+	 * @param labelProviders
+	 *            La estrategia para obtener el contenido de la columna a partir
+	 *            del modelo (de la fila).
 	 */
-	public JFaceColumnBuilder(JFaceTableBuilder<Row> table, LabelProvider<Row> labelProvider) {
-		this.labelProvider = labelProvider;
-		this.tableViewerColumn = new TableViewerColumn(table.getJFaceTableViewer(), SWT.NONE);
+	public JFaceColumnBuilder(JFaceTableBuilder<Row> table, List<LabelProvider<Row>> labelProviders) {
+		this.table = table;
+		this.labelProviders = labelProviders;
+		this.tableViewerColumn = new TableViewerColumn(
+				table.getJFaceTableViewer(), SWT.NONE);
 	}
 
 	// ********************************************************
@@ -90,8 +101,8 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements Co
 		int blue = color.getBlue();
 		int green = color.getGreen();
 		int red = color.getRed();
-		org.eclipse.swt.graphics.Color swtColor = new org.eclipse.swt.graphics.Color(getControl().getDisplay(), red,
-			green, blue);
+		org.eclipse.swt.graphics.Color swtColor = new org.eclipse.swt.graphics.Color(
+				getControl().getDisplay(), red, green, blue);
 		return swtColor;
 	}
 
@@ -113,11 +124,19 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements Co
 		return this.layoutBuilder;
 	}
 
-	protected LabelProvider<Row> getLabelProvider() {
-		return this.labelProvider;
+	protected List<LabelProvider<Row>>  getLabelProvider() {
+		return this.labelProviders;
 	}
 
 	protected Control getControl() {
 		return this.tableViewerColumn.getViewer().getControl();
+	}
+
+	public List<BindingBuilder> getBindings() {
+		return bindings;
+	}
+
+	public void setBindings(List<BindingBuilder> bindings) {
+		this.bindings = bindings;
 	}
 }

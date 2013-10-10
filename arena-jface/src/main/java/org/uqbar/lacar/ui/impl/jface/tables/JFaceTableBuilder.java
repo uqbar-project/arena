@@ -65,7 +65,7 @@ public class JFaceTableBuilder<R> extends JFaceControlBuilder<Table> implements 
 	// ********************************************************
 
 	@Override
-	public ColumnBuilder<R> addColumn(LabelProvider<R> labelProvider) {
+	public ColumnBuilder<R> addColumn(List<LabelProvider<R>> labelProvider) {
 		JFaceColumnBuilder<R> column = new JFaceColumnBuilder<R>(this, labelProvider);
 		this.columns.add(column);
 		return column;

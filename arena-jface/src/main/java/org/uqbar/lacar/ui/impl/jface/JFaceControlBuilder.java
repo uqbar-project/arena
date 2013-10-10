@@ -1,9 +1,12 @@
 package org.uqbar.lacar.ui.impl.jface;
 
 
+import java.util.Map;
+
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
+import org.eclipse.jface.internal.databinding.swt.SWTProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -11,10 +14,13 @@ import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
+import org.uqbar.lacar.ui.impl.jface.bindings.ControlObservableValue;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
+
+import com.uqbar.commons.collections.Transformer;
 
 /**
  * 
@@ -39,6 +45,11 @@ public abstract class JFaceControlBuilder<T extends Control> extends JFaceWidget
 	@Override
 	public BindingBuilder observeEnabled() {
 		return new JFaceBindingBuilder(this, observeEnabled(this.getWidget()));
+	}
+	
+	@Override
+	public <M, U> BindingBuilder observeBackground(Transformer<M, U> transformer) {
+		return new JFaceBindingBuilder(this, new ControlObservableValue<M, U>(this.getWidget(), SWTProperties.BACKGROUND, transformer));
 	}
 
 	protected ISWTObservableValue observeEnabled(T t) {

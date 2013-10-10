@@ -120,12 +120,7 @@ public class JFaceObservableFactory {
 		 IObservableMap[] result = new IObservableMap[propertyNames.length];
 		 int i = 0;
 		 for (String propertyChain : propertyNames) {
-			 List<String> propertyChainParts = getChainParts(propertyChain);
-			 if (propertyChainParts.size() > 1) {
-				 result[i] = observeMap(domain, beanClass, propertyChain);
-			 }else{
-				 result[i] = observeMap(domain, beanClass, propertyChain);
-			 }
+			 result[i] = observeMap(domain, beanClass, propertyChain);
 			 i++;
 		}
 		 
@@ -133,11 +128,24 @@ public class JFaceObservableFactory {
 	 }
 
 	public static JavaBeanTransacionalObservableMap observeMap(IObservableSet domain, Class<?> beanClass, String propertyChain) {
-		return new JavaBeanTransacionalObservableMap(domain, getPropertyDescriptor(beanClass, propertyChain));
+		List<String> propertyChainParts = getChainParts(propertyChain);
+		return  new JavaBeanTransacionalObservableMap(domain, getPropertyDescriptor(beanClass, propertyChainParts.get(0)), propertyChainParts); 
+//		 if (propertyChainParts.size() > 1) {
+//		 }else{
+//			 return  new JavaBeanTransacionalObservableMap(domain, getPropertyDescriptor(beanClass, propertyChain));
+//		 }
 	}
 	
-	public static IObservableMap observeDetailMap(IObservableValue master, String propertyName) {
-		DetailObservableMap detailObservableMap = new DetailObservableMap(BeansObservables.mapPropertyFactory(Realm.getDefault(), propertyName), master);
+	public static JavaBeanTransacionalObservableMap observeDetailMap(IObservableSet domain, String propertyChain) {
+		DetailTransactionalObservableSet observableSet = (DetailTransactionalObservableSet) ((BeanObservableSetDecorator) domain).getDelegate();
+		return (JavaBeanTransacionalObservableMap) observeDetailMap(observeProperty(observableSet.getCurrentValue(), ((BeanObservableSetDecorator) domain).getPropertyDescriptor().getName()), propertyChain);
+	}
+	
+	public static IObservableMap observeDetailMap(final IObservableValue master, final String propertyName) {
+		DetailObservableMap detailObservableMap = new DetailObservableMap(new IObservableFactory() {
+			public IObservable createObservable(Object target) {
+				return new JavaBeanPropertyObservableMap(Realm.getDefault(), target, getPropertyDescriptor(target.getClass(), propertyName));
+			}}, master);
 		
 		BeanObservableMapDecorator decorator = new BeanObservableMapDecorator(
 				detailObservableMap, master, getValueTypePropertyDescriptor(master,	propertyName));

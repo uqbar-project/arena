@@ -7,10 +7,10 @@ import java.util.Map;
 
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
-import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
+import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
 import com.uqbar.commons.collections.Transformer;
@@ -25,9 +25,11 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	private int columnIndex = 0;
 	private int delegatedColumnIndex = 0;
 	private Map<Integer, Transformer<R, ?>> calculatedColumns = new HashMap<Integer, Transformer<R, ?>>();
+	private Map<Integer, Transformer<Object, ?>> calculatedBackgroundColumns = new HashMap<>();
 	private final JFaceTableBuilder<R> table;
 	private ColumnsLabelProvider<R> columnsLabelProvider;
 	private final IObservableSet tableContents;
+	private Map<Integer, JavaBeanTransacionalObservableMap> observeBackgounds = new HashMap<>();
 
 	public JFaceLabelProviderBuilder(JFaceTableBuilder<R> table, IObservableSet tableContents) {
 		this.table = table;
@@ -37,17 +39,23 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 
 	public IBaseLabelProvider createLabelProvider() {
 		for (JFaceColumnBuilder<R> column : this.table.getColumns()) {
-			LabelProvider<R> labelProvider = column.getLabelProvider();
-			if (labelProvider == null) {
+			List<LabelProvider<R>>  labelProviders = column.getLabelProvider();
+			if (labelProviders.isEmpty()) {
 				throw new RuntimeException("Column without label provider");
 			}
-			labelProvider.configure(this);
+			
+			for (LabelProvider<R> labelProvider : labelProviders) {
+				labelProvider.configure(this);
+			}
 		}
 
 		IObservableMap[] attributeMaps = JFaceObservableFactory.observeMaps(tableContents, this.table.getItemType(),
 			this.columnPropertyNames.toArray(new String[this.columnPropertyNames.size()]));
 
-		this.columnsLabelProvider.initialize(new ObservableMapLabelProvider(attributeMaps), this.calculatedColumns);
+		ObservableMapProvider decorated = new ObservableMapProvider(attributeMaps);
+		decorated.initializeBackground(calculatedBackgroundColumns, observeBackgounds);
+		decorated.widget_$eq(table.getWidget());
+		this.columnsLabelProvider.initialize(decorated, this.calculatedColumns);
 		return this.columnsLabelProvider;
 		// return new ObservableMapLabelProvider(attributeMaps);
 	}
@@ -68,4 +76,12 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 		this.calculatedColumns.put(this.columnIndex++, transformer);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public void observeBackgoundColumn(String propertyName, Transformer<?, ?> transformer) {
+		observeBackgounds.put(this.columnIndex-1, JFaceObservableFactory.observeMap(tableContents, this.table.getItemType(), propertyName));
+		this.calculatedBackgroundColumns.put(this.columnIndex-1, (Transformer<Object, ?>) transformer);
+	}
+	
+	
 }

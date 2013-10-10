@@ -10,7 +10,7 @@
 		<value>true</value>
 	</property>
 	<property name="apo.poo.changeSupport">
-		<value>POOPropertyChangeSupport</value>
+		<value>com.uqbar.poo.aop.POOPropertyChangeSupport</value>
 	</property>
 	<property name="apo.poo.propertyListener">
 		<value>java.beans.PropertyChangeListener</value>

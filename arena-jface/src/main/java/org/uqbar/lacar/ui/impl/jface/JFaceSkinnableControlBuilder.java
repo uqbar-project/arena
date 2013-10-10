@@ -2,9 +2,12 @@ package org.uqbar.lacar.ui.impl.jface;
 
 import java.awt.Color;
 
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Control;
+import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
+import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.SkinnableBuilder;
 
 
@@ -19,7 +22,11 @@ public abstract class JFaceSkinnableControlBuilder<T extends Control> extends JF
 		super(container, jfaceWidget);
 	}
 	
-	
+//	@Override
+	public BindingBuilder observeBackground() {
+		return new JFaceBindingBuilder(this, SWTObservables.observeBackground(getWidget()));
+	}
+		
 	@Override
 	public void setForeground(Color color) {
 		org.eclipse.swt.graphics.Color swtColor = getSWTColor(color);
