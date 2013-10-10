@@ -24,7 +24,7 @@ public class Binding<C extends WidgetBuilder> {
 	/**
 	 * Referencia a una característica observable de la vista.
 	 */
-	private final ViewObservable<C> view;
+	private ViewObservable<C> view;
 
 	private Adapter adapter;
 
@@ -34,6 +34,11 @@ public class Binding<C extends WidgetBuilder> {
 	public Binding(Observable model, ViewObservable<C> view) {
 		this.model = model;
 		this.view = view;
+	}
+	
+	public Binding<C> setView(ViewObservable<C> view){
+		this.view = view;
+		return this;
 	}
 
 	/**

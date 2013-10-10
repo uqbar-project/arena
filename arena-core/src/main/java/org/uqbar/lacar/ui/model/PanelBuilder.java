@@ -21,6 +21,8 @@ public interface PanelBuilder {
 	public ControlBuilder addCheckBox();
 
 	public ButtonBuilder addButton(String caption, Action action);
+	public ButtonBuilder addFileButton(String caption, String title, String path, String[] extensions);
+
 
 	// SELECTORS
 	
@@ -57,5 +59,4 @@ public interface PanelBuilder {
 	public void setLayoutInColumns(int columnCount);
 
 	public void setPreferredWidth(int width);
-
 }

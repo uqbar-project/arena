@@ -1,6 +1,7 @@
 package org.uqbar.arena.widgets;
 
 import java.util.List;
+import java.util.Map;
 
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
@@ -8,11 +9,13 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
+import org.uqbar.lacar.ui.model.bindings.ControlBinding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
 import com.uqbar.commons.collections.Closure;
 import com.uqbar.commons.collections.CollectionFactory;
+import com.uqbar.commons.collections.Transformer;
 
 /**
  * A {@link Widget} that allows to edit a single value. Superclass for all of the most common widgets: text
@@ -95,6 +98,34 @@ public abstract class Control extends Widget {
 	
 	public <C extends ControlBuilder> Binding<C> bindVisibleToProperty(String propertyName) {
 		return this.bindVisible(new ObservableProperty(propertyName));
+	}
+	
+	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroud(String propertyName) {
+		ObservableProperty model = new ObservableProperty(propertyName);
+		model.setContainer(this.getContainer());
+		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
+		binding.setView(new ViewObservable<C>() {
+			@Override
+			public BindingBuilder createBinding(C builder) {
+				return builder.observeBackground(binding.buildTransformer());
+			}
+		});
+		this.addBinding(binding);
+		return binding;
+	}
+	
+	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroudToTransformer(String propertyName, final Transformer<T, U> transformer) {
+		ObservableProperty model = new ObservableProperty(propertyName);
+		model.setContainer(this.getContainer());
+		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
+		binding.setView(new ViewObservable<C>() {
+			@Override
+			public BindingBuilder createBinding(C builder) {
+				return builder.observeBackground(transformer);
+			}
+		});
+		this.addBinding(binding);
+		return binding;
 	}
 
 	// ********************************************************
