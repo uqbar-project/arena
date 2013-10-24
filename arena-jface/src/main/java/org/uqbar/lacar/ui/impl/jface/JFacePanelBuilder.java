@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -13,7 +14,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
-import org.scalatest.Entry;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor;
@@ -66,7 +66,7 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	
 
 	@Override
-	public SkinnableBuilder addStyleTextArea(List<Entry<String[], Style>> configurationStyle) {
+	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle) {
 		return new  JFaceStyledTextBuilder(this, configurationStyle);
 	}
 	
