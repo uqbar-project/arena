@@ -1,9 +1,8 @@
 package org.uqbar.arena.widgets;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.scalatest.Entry;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
@@ -11,7 +10,7 @@ import org.uqbar.lacar.ui.model.SkinnableBuilder;
 
 public class KeyWordTextArea extends TextBox{
 	
-	private List<Entry<String[], Style>> configurationStyle = new ArrayList<>();
+	private Map<String[], Style> configurationStyle = new HashMap<>();
 
 	public KeyWordTextArea(Panel container) {
 		super(container);
@@ -19,7 +18,7 @@ public class KeyWordTextArea extends TextBox{
 	
 	public Style keyWords(String... keyWords){
 		Style style = new Style();
-		configurationStyle.add(new Entry<String[], Style>(keyWords, style));
+		configurationStyle.put(keyWords, style);
 		return style;
 	}
 	

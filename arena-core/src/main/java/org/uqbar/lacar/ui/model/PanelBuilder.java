@@ -1,9 +1,8 @@
 package org.uqbar.lacar.ui.model;
 
 
-import java.util.List;
+import java.util.Map;
 
-import org.scalatest.Entry;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 
@@ -19,7 +18,7 @@ public interface PanelBuilder {
 	public LabelBuilder addLabel();
 
 	public SkinnableBuilder addTextBox();
-	public SkinnableBuilder addStyleTextArea(List<Entry<String[], Style>> configurationStyle);
+	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);
 
