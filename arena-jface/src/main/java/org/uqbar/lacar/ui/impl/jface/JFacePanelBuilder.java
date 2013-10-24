@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
+import org.scalatest.Entry;
+import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage;
@@ -60,6 +62,12 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	@Override
 	public SkinnableBuilder addTextBox() {
 		return new JFaceTextBuilder(this);
+	}
+	
+
+	@Override
+	public SkinnableBuilder addStyleTextArea(List<Entry<String[], Style>> configurationStyle) {
+		return new  JFaceStyledTextBuilder(this, configurationStyle);
 	}
 	
 	@Override

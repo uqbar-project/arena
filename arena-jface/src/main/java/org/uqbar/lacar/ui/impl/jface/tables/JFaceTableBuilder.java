@@ -43,15 +43,6 @@ public class JFaceTableBuilder<R> extends JFaceControlBuilder<Table> implements 
 		this.initialize(this.getViewer().getTable());
 	}
 
-	protected org.eclipse.swt.graphics.Color getSWTColor(java.awt.Color color) {
-		int blue = color.getBlue();
-		int green = color.getGreen();
-		int red = color.getRed();
-		org.eclipse.swt.graphics.Color swtColor = new org.eclipse.swt.graphics.Color(getWidget().getDisplay(), red,
-			green, blue);
-		return swtColor;
-	}
-
 	private TableViewer createTableViewer(Composite jFaceComposite) {
 		TableViewer viewer = new TableViewer(jFaceComposite, SWT.H_SCROLL | SWT.V_SCROLL | SWT.SINGLE | SWT.BORDER);
 		viewer.getTable().setLinesVisible(true);
