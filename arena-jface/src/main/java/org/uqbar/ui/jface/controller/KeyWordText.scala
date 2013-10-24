@@ -1,15 +1,12 @@
 package org.uqbar.ui.jface.controller
 
-import java.awt.Color
-import java.util.Map
-import org.scalatest.Entry
+import scala.collection.JavaConversions.mapAsScalaMap
+
 import org.eclipse.swt.SWT
 import org.eclipse.swt.custom.StyleRange
 import org.eclipse.swt.custom.StyledText
 import org.eclipse.swt.widgets.Composite
 import org.uqbar.arena.widgets.style.Style
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 import org.uqbar.ui.swt.utils.SWTUtils
 
 class KeyWordText(parent: Composite, var configuration: java.util.Map[Array[String], Style]) extends StyledText(parent, SWT.MULTI | SWT.BORDER) {
@@ -22,7 +19,7 @@ class KeyWordText(parent: Composite, var configuration: java.util.Map[Array[Stri
   def paintStyle() {
     var currentText = this.getText();
     configuration.foreach {
-      	case (keywords, style) => keywords.foreach{addStyleRange(currentText, style, _)
+    case (keywords, style) => keywords.foreach{addStyleRange(currentText, style, _)
      }
     }
   }
