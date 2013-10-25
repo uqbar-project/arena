@@ -18,6 +18,13 @@
 		<url>scm:hg:${scm.hgServer}/arena-core</url>
 	</scm>
 
+	<licenses>
+		<license>
+			<name>GNU Library or Lesser General Public License (LGPL) 3.0</name>
+			<url>http://www.opensource.org/licenses/lgpl-3.0.html</url>
+		</license>
+	</licenses>
+
 
 	<dependencies>
 		<!-- UQBAR -->
