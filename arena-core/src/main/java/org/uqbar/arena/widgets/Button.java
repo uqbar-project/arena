@@ -4,7 +4,6 @@ import org.uqbar.arena.bindings.ObservableCaption;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
-import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
@@ -46,6 +45,10 @@ public class Button extends SkinnableControl {
 	public Button onClick(Action onClick) {
 		this.onClick = onClick;
 		return this;
+	}
+	
+	protected String getCaption(){
+		return this.caption;
 	}
 
 	public Button setAsDefault() {

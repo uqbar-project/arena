@@ -23,7 +23,7 @@ import com.uqbar.commons.collections.Transformer;
  * @author npasserini
  */
 public class Column<R> {
-	private LabelProvider<R> labelProvider;
+	private List<LabelProvider<R>> labelProvider = CollectionFactory.createList();
 	private List<Closure<ColumnBuilder<R>>> configurations = CollectionFactory.createList();
 
 	public Column(Table<R> table) {
@@ -104,12 +104,17 @@ public class Column<R> {
 	// ********************************************************
 
 	public Column<R> bindContentsToProperty(String propertyName) {
-		this.labelProvider = new PropertyLabelProvider<R>(propertyName);
+		this.labelProvider.add(new PropertyLabelProvider<R>(propertyName));
 		return this;
 	}
 
 	public <U> Column<R> bindContentsToTransformer(Transformer<R, U> transformer) {
-		this.labelProvider = new TransformerLabelProvider<R, U>(transformer);
+		this.labelProvider.add(new TransformerLabelProvider<R, U>(transformer));
+		return this;
+	}
+	
+	public <U> Column<R> bindBackground(final String propertyName, Transformer<U, Color> transformer) {
+		this.labelProvider.add(new BackgoundProvider<R, U, Color>(propertyName, transformer));
 		return this;
 	}
 

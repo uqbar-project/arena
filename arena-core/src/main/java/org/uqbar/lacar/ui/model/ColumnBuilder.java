@@ -19,5 +19,5 @@ public interface ColumnBuilder<Row> extends WidgetBuilder {
 	void setBackground(Color color);
 
 	void setFontSize(int size);
-
+	
 }
