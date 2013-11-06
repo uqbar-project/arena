@@ -17,7 +17,7 @@ public interface PanelBuilder {
 
 	public LabelBuilder addLabel();
 
-	public SkinnableBuilder addTextBox();
+	public SkinnableBuilder addTextBox(boolean multiLine);
 	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);

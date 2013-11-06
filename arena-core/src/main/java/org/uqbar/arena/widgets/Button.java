@@ -75,8 +75,8 @@ public class Button extends SkinnableControl {
 	// ** Binding
 	// ********************************************************
 	
-	public Binding bindCaptionToProperty(String propertyName) {
-		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
+	public Binding<ButtonBuilder> bindCaptionToProperty(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption<ButtonBuilder>());
 	}
 	
 	// ********************************************************

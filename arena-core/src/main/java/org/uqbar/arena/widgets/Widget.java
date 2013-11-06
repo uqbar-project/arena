@@ -42,6 +42,7 @@ public abstract class Widget implements Loggeable {
 		container.addChild(this);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <O> O getContainerModelObject() {
 		return (O) this.getContainer().getModel().getSource();
 	}

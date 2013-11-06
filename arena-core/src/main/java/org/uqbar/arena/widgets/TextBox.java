@@ -14,6 +14,7 @@ import com.uqbar.commons.collections.Closure;
  */
 public class TextBox extends SkinnableControl {
 	private static final long serialVersionUID = 1L;
+	private boolean multiLine = false;
 
 	public TextBox(Panel container) {
 		super(container);
@@ -21,7 +22,7 @@ public class TextBox extends SkinnableControl {
 
 	@Override
 	protected ControlBuilder createBuilder(PanelBuilder container) {
-		SkinnableBuilder textBox = container.addTextBox();
+		SkinnableBuilder textBox = container.addTextBox(multiLine);
 		this.configureSkineableBuilder(textBox);
 		return textBox;
 	}
@@ -33,6 +34,25 @@ public class TextBox extends SkinnableControl {
 				builder.addTextFilter(filter);
 			}
 		});
+		return this;
+	}
+	
+	public TextBox selectFinalLine() {
+		this.addConfiguration(new Closure<TextControlBuilder>() {
+			@Override
+			public void execute(TextControlBuilder builder) {
+				builder.selectFinalLine();
+			}
+		});
+		return this;
+	}
+
+	public boolean isMultiLine() {
+		return multiLine;
+	}
+
+	public TextBox setMultiLine(boolean multiLine) {
+		this.multiLine = multiLine;
 		return this;
 	}
 
