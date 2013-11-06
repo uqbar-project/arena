@@ -20,7 +20,7 @@ public class SelectionChangeListener implements ISelectionChangedListener {
 	public void selectionChanged(SelectionChangedEvent event) {
 		StructuredSelection selection = (StructuredSelection) event.getSelection();
 		if (!selection.isEmpty()) {
-//			onSelection.execute(selection.getFirstElement());
+			onSelection.execute();
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package org.uqbar.arena.examples.controls;
 
-import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;

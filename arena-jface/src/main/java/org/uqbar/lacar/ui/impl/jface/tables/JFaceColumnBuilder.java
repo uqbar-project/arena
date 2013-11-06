@@ -26,7 +26,7 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	/**
 	 * Información de layout, que luego se traduce a un layout de JFace.
 	 */
-	private ColumnLayoutBuilder layoutBuilder = new DefaultColumnLayoutBuilder();
+	private ColumnLayoutBuilder<JFaceTableLayoutBuilder> layoutBuilder = new DefaultColumnLayoutBuilder();
 
 	/**
 	 * Proveedor de los contenidos de esta columna, que luego se utiliza para
@@ -34,7 +34,6 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	 */
 	private final List<LabelProvider<Row>>  labelProviders;
 
-	private final JFaceTableBuilder<Row> table;
 	private List<BindingBuilder> bindings = new ArrayList<>();
 
 	// ********************************************************
@@ -49,7 +48,6 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	 *            del modelo (de la fila).
 	 */
 	public JFaceColumnBuilder(JFaceTableBuilder<Row> table, List<LabelProvider<Row>> labelProviders) {
-		this.table = table;
 		this.labelProviders = labelProviders;
 		this.tableViewerColumn = new TableViewerColumn(
 				table.getJFaceTableViewer(), SWT.NONE);
@@ -113,7 +111,7 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	// ** Internal accessors
 	// ********************************************************
 
-	protected ColumnLayoutBuilder getLayoutBuilder() {
+	protected ColumnLayoutBuilder<JFaceTableLayoutBuilder> getLayoutBuilder() {
 		return this.layoutBuilder;
 	}
 

@@ -26,12 +26,10 @@ public class TreeContentProvider  implements ITreeContentProvider {
 
 
 	public Object[] getChildren(Object parentElement) {
-//		return this.observableChildrenValue.toArray();
-		return ((List) ReflectionUtils.invokeGetter(parentElement, childrenPropertyName)).toArray();
+		return ((List<?>) ReflectionUtils.invokeGetter(parentElement, childrenPropertyName)).toArray();
 	}
 
 	public Object getParent(Object element) {
-//		return observableParentValue.getValue();
 		return ReflectionUtils.invokeGetter(element, parentPropertyName);
 	}
 

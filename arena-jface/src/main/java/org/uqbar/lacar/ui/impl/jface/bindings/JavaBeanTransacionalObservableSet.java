@@ -18,7 +18,7 @@ public class JavaBeanTransacionalObservableSet extends JavaBeanObservableSet{
 	  private IsolationLevelEvents isolationLevelEvents = IsolationLevelEvents.valueOf(APOConfig.getProperty(isolationKey).value());
 
 	public JavaBeanTransacionalObservableSet(Realm realm, Object object,
-			PropertyDescriptor descriptor, Class elementType) {
+			PropertyDescriptor descriptor, Class<?> elementType) {
 		super(realm, object, descriptor, elementType);
 	}
 	

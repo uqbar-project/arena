@@ -60,8 +60,8 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	}
 
 	@Override
-	public SkinnableBuilder addTextBox() {
-		return new JFaceTextBuilder(this);
+	public SkinnableBuilder addTextBox(boolean multiLine) {
+		return new JFaceTextBuilder(this, multiLine);
 	}
 	
 
