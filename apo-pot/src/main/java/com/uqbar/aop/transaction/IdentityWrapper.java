@@ -1,5 +1,7 @@
 package com.uqbar.aop.transaction;
 
+import javassist.expr.Instanceof;
+
 /**
  * Clase util para wrapear un objeto cuyo hashcode es mutable, para que se comporte por identidad.
  * 
@@ -46,7 +48,10 @@ public class IdentityWrapper {
      */
     public boolean equals(Object obj) {
 	// Se evalua la igualdad por referencia
-	return this.key == ((IdentityWrapper) obj).key;
+	    if(obj instanceof IdentityWrapper){
+	    	return this.key == ((IdentityWrapper) obj).key;
+	    }
+	    return false;
     }
 
     public String toString() {

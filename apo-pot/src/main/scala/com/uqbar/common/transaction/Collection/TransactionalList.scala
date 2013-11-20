@@ -7,10 +7,10 @@ import java.util.List
 import org.uqbar.commons.utils.Transactional
 
 @Transactional
-class TransacionalList[E] extends TransactionalCollection[List[E], E] with List[E]{
+class TransacionalList[E](owner:Any, fieldName:String) extends TransactionalCollection[List[E], E](owner, fieldName) with List[E]{
 	
-	def this(list:List[E]) {
-	  this()
+	def this(list:List[E], owner:Any, fieldName:String) {
+	  this(owner, fieldName)
 	  this.setData(list)
 	}
 

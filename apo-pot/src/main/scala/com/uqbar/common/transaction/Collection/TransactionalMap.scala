@@ -11,10 +11,10 @@ import java.util.HashMap
 /**
  * @param map
  */
-class TransactionalMap[K, V] extends TransactionalData[Map[K, V]] with Map[K, V]{
+class TransactionalMap[K, V](owner:Any, fieldName:String) extends TransactionalData[Map[K, V]](owner, fieldName) with Map[K, V]{
 	
-	def this(map:Map[K, V]) {
-	  this()
+	def this(map:Map[K, V], owner:Any, fieldName:String) {
+		this(owner, fieldName)
 		setData(map);
 	}
 

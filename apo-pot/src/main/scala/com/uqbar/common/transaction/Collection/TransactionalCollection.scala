@@ -7,7 +7,7 @@ import java.util.Collection
  * @param <D>
  * @param <E>
  */
-abstract class TransactionalCollection[D<: Collection[E], E] extends TransactionalData[D] with Collection[E] {
+abstract class TransactionalCollection[D<: Collection[E], E](owner:Any, fieldName:String) extends TransactionalData[D](owner, fieldName) with Collection[E] {
 	
 	override def size() = data.size();
 	override def isEmpty() = data.isEmpty()

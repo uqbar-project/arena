@@ -2,7 +2,6 @@ package com.uqbar.objecttransactions;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Test;
 
 import com.uqbar.aop.transaction.ObjectTransactionManager;
 import com.uqbar.aop.transaction.utils.BasicTaskOwner;

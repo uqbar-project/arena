@@ -15,7 +15,7 @@ class TransactionFieldInterceptor extends FieldInterceptor {
     if (!Modifier.isTransient(field.getField().getModifiers())) {
       var newExpresion =
         """
-		  $defaultField = ($fieldTypeName) $interceptor.fieldWrite($this, $S$fieldName$S, $argument1, $this.$fieldName);
+		  $defaultField = ($fieldTypeName) $interceptor.fieldWrite($this, $S$fieldName$S, ($fieldTypeName)$argument1, ($fieldTypeName)$this.$fieldName);
 		"""
       var reemplaze = $originalAsigment().name;
       statement.replace(reemplaze, newExpresion);

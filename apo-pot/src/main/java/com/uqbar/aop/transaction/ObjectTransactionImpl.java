@@ -84,15 +84,15 @@ public class ObjectTransactionImpl implements ObjectTransaction {
     }
     
     public List fieldWrite(Object owner, String fieldName, List newValue, List oldValue) {
-    	return ((List) this.fieldWrite(owner, fieldName, (Object)new TransacionalList(newValue), (Object)oldValue));
+    	return ((List) this.fieldWrite(owner, fieldName, newValue == null? newValue : (Object)new TransacionalList(newValue, owner, fieldName), (Object)oldValue));
     }
     
 	public Map fieldWrite(Object owner, String fieldName, Map newValue, Map oldValue) {
-    	return ((Map) this.fieldWrite(owner, fieldName, (Object)new TransactionalMap(newValue), (Object)oldValue));
+    	return ((Map) this.fieldWrite(owner, fieldName, newValue == null? newValue : (Object)new TransactionalMap(newValue, owner, fieldName), (Object)oldValue));
     }
 	
 	public Set fieldWrite(Object owner, String fieldName, Set newValue, Set oldValue) {
-    	return ((Set) this.fieldWrite(owner, fieldName, (Object)new TransactionalSet(newValue), (Object)oldValue));
+    	return ((Set) this.fieldWrite(owner, fieldName, newValue == null? newValue : (Object)new TransactionalSet(newValue, owner, fieldName), (Object)oldValue));
     }
 
 

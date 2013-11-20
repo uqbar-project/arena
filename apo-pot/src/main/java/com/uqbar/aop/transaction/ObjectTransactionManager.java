@@ -86,7 +86,7 @@ public class ObjectTransactionManager {
     	//assertUnderTransaction();
     	ProgramException.assertNotNull(owner.getTransaction(), "The TaskOwner doesn't have an associated transaction!");
     	//assertOwnership(owner);
-    	ObjectTransaction nextTransaction = ((ObjectTransactionImpl) owner.getTransaction()).rollback();
+    	((ObjectTransactionImpl) owner.getTransaction()).rollback();
     	unregisterTransaction(owner.getTransaction());
     	//setTransaction(objectTransaction);
     }
