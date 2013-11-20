@@ -16,7 +16,7 @@ class CtMethodBuilder {
 
   def withName(name: String)  = {this.methodName = name;this }
 
-  def withModifier(modifier: Int) { this.modifier = modifier; this}
+  def withModifier(modifier: Int) = { this.modifier = modifier; this}
 
   def withReturnType(returnType: CtClass) = {this.returnType = returnType; this}
 

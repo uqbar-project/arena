@@ -1,6 +1,7 @@
 package com.uqbar.apo.parser
 import javassist.CtPrimitiveType
 import javassist.expr.FieldAccess
+import org.uqbar.commons.utils.ReflectionUtils
 
 abstract class Token[T]() {
   def apply(t: T): String
@@ -59,7 +60,15 @@ object $fieldName {
 }
 
 object $fieldTypeName {
-	def apply(field: FieldAccess) = field.getField().getType().getName()
+	def apply(field: FieldAccess) = {
+	  val f = field.getField() 
+	  val c = Class.forName(f.getDeclaringClass().getName())
+	  try{
+		  ReflectionUtils.getField(c, f.getName()).getType().getName()
+	  }catch{
+	    case x:Exception => f.getType().getName()
+	  } 
+	}
 }
 
 object $argument {def apply(t: Any) = "$" }
