@@ -12,9 +12,10 @@ import com.uqbar.aop.transaction.ObjectTransactionImpl
 import org.uqbar.arena.bindings.PropertyAdapter
 import com.uqbar.aop.transaction.IdentityWrapper
 import org.uqbar.arena.windows.ErrorsPanel
+import org.uqbar.arena.windows.Dialog
 
 class PureObjectTransactionMonitorWindow(parent: WindowOwner, model: MonitorApplicationModel)
-  extends SimpleWindow[MonitorApplicationModel](parent, model) {
+  extends Dialog[MonitorApplicationModel](parent, model) {
 
   var ot: ObjectTransactionImpl = _
   

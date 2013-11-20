@@ -13,6 +13,8 @@ import com.uqbar.common.transaction.TaskOwner
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.lacar.ui.model.Action
+import org.uqbar.arena.windows.SimpleWindow
+import org.uqbar.arena.windows.Window
 
 abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dialog[T](owner, model) with TaskOwner {
   var transaction: ObjectTransaction = null
@@ -56,8 +58,8 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
       return result
     } catch {
       case e: Exception =>
-        ObjectTransactionManager.rollback(TransactionalDialog.this)
-        throw new UserException(e.getMessage(), e)
+        ObjectTransactionManager.rollback(this)
+        throw new Exception(e.getMessage(), e)
     }
   }
 
@@ -72,6 +74,6 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
   }
 
   def openMonitor(): Unit =
-    new PureObjectTransactionMonitorWindow(this.getOwner(), new MonitorApplicationModel()).open();
+    new PureObjectTransactionMonitorWindow(owner, new MonitorApplicationModel()).open();
 
 }
