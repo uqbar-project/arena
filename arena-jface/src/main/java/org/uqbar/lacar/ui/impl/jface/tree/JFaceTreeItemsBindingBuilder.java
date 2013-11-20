@@ -11,9 +11,9 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.model.ItemsBindingBuilder;
+import org.uqbar.lacar.ui.model.TreeItemsBindingBuilder;
 
-public class JFaceTreeItemsBindingBuilder extends JFaceBindingBuilder implements ItemsBindingBuilder{
+public class JFaceTreeItemsBindingBuilder extends JFaceBindingBuilder implements TreeItemsBindingBuilder{
 	private TreeViewer treeViewer;
 	private IObservableSet itemsObservableSet;
 

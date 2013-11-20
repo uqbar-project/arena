@@ -101,6 +101,11 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	}
 	
 	@Override
+	public ButtonBuilder addLink(String caption, Action action) {
+		return new JfaceLinkBuilder(this).setCaption(caption).onClick(action);
+	}
+	
+	@Override
 	public ButtonBuilder addFileButton(String caption, String title, String path, String[] extensions) {
 		return new JFaceFileSelectorBuilder(this, caption, title, path, extensions);
 	}
