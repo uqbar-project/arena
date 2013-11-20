@@ -1,12 +1,9 @@
 package org.uqbar.arena.widgets;
 
-import org.uqbar.arena.bindings.ObservableCaption;
-import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import com.uqbar.commons.collections.Closure;
 
@@ -26,9 +23,7 @@ import com.uqbar.commons.collections.Closure;
  * 
  * @author npasserini
  */
-public class Button extends SkinnableControl {
-	private String caption = this.nextCaption();
-	private Action onClick = new NoopAction();
+public class Button extends Link {
 	public Button(Container container) {
 		super(container);
 	}
@@ -36,20 +31,6 @@ public class Button extends SkinnableControl {
 	// ********************************************************
 	// ** Configurations
 	// ********************************************************
-
-	public Button setCaption(String caption) {
-		this.caption = caption;
-		return this;
-	}
-
-	public Button onClick(Action onClick) {
-		this.onClick = onClick;
-		return this;
-	}
-	
-	protected String getCaption(){
-		return this.caption;
-	}
 
 	public Button setAsDefault() {
 		this.addConfiguration(new Closure<ButtonBuilder>() {
@@ -61,23 +42,6 @@ public class Button extends SkinnableControl {
 		return this;
 	}
 
-	public Button disableOnError() {
-		this.addConfiguration(new Closure<ButtonBuilder>() {
-			@Override
-			public void execute(ButtonBuilder builder) {
-				builder.disableOnError();
-			}
-		});
-		return this;
-	}
-	
-	// ********************************************************
-	// ** Binding
-	// ********************************************************
-	
-	public Binding<ButtonBuilder> bindCaptionToProperty(String propertyName) {
-		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption<ButtonBuilder>());
-	}
 	
 	// ********************************************************
 	// ** Rendering
