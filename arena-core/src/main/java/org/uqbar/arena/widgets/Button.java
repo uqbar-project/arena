@@ -27,6 +27,17 @@ public class Button extends Link {
 	public Button(Container container) {
 		super(container);
 	}
+	
+	
+	@Override
+	public Button setCaption(String caption) {
+		return super.setCaption(caption);
+	}
+
+	@Override
+	public Button onClick(Action onClick) {
+		return super.onClick(onClick);
+	}
 
 	// ********************************************************
 	// ** Configurations
