@@ -59,7 +59,7 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
     } catch {
       case e: Exception =>
         ObjectTransactionManager.rollback(this)
-        throw new Exception(e.getMessage(), e)
+        throw new UserException(e.getMessage(), e)
     }
   }
 
