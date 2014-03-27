@@ -39,7 +39,7 @@ class ObservableBehavior {
       ctClass.getField(fieldName);
     } catch {
       case e: NotFoundException => {
-        this.addField(ctClass, classOf[PropertySupport], fieldName, Modifier.TRANSIENT);
+        val field = this.addField(ctClass, classOf[PropertySupport], fieldName, Modifier.TRANSIENT);
       }
     }
   }
@@ -137,6 +137,17 @@ class ObservableBehavior {
       withOwner(ctClassOwner)
       witBody(getChangeSupportBody.replace("${changeSupport}", changeSupport))
     }.build()
+    
+    try {
+    	Class.forName("javax.persistence.Transient");
+	    val constPool = ctClassOwner.getClassFile().getConstPool()
+	    val attr = new AnnotationsAttribute(constPool, AnnotationsAttribute.visibleTag);
+	    val annot = new Annotation("javax.persistence.Transient",constPool)
+	    attr.addAnnotation(annot)
+	    method.getMethodInfo().addAttribute(attr)
+	}catch {
+	  case e:ClassNotFoundException => //nothing to do 
+	}
 
     addMethod(ctClassOwner, method);
 
@@ -157,12 +168,10 @@ class ObservableBehavior {
   protected def addField(owner: CtClass, fieldClass: Class[_], name: String, modifier: Int): CtField = {
     var ctField = new CtField(getClass(fieldClass.getName(), owner), name, owner);
     ctField.setModifiers(modifier);
-    if (!owner.getFields().contains(ctField)) {
-      owner.addField(ctField);
-    }
-
+	    if (!owner.getFields().contains(ctField)) {
+	      owner.addField(ctField);
+	    }
     ctField
-
   }
 
 }
