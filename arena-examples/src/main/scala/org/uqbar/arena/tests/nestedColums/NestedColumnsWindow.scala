@@ -19,10 +19,11 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.Action
-import com.uqbar.commons.collections.Transformer;
+import com.uqbar.commons.collections.Transformer
 import org.uqbar.arena.layout.ColumnLayout
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
+import org.uqbar.arena.test.scala.collections.binding.TableWithScalaListWindow
 
 
 /**
@@ -34,6 +35,7 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 	startApplication()
 	
 	override def createContents(mainPanel:Panel) {
+		
 		mainPanel.setLayout(new VerticalLayout())
 		
 		val table = new Table[Estudent](mainPanel, classOf[Estudent])
