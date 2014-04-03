@@ -17,10 +17,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.TypedListener;
 
-import com.uqbar.commons.StringUtils;
-import com.uqbar.commons.collections.CollectionUtils;
-import com.uqbar.commons.collections.ListUtils;
-
 /**
  * A {@link Composite} control that represents a group of {@link RadioItem} items 
  * from which the user can only make a single-selection. 

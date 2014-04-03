@@ -3,11 +3,11 @@ package org.uqbar.lacar.ui.impl.jface.tree;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class TreeNode implements ITreeNode {
-	protected ITreeNode fParent;
-	protected List fChildren;
+abstract class TreeNode<T> implements ITreeNode<T> {
+	protected ITreeNode<T> fParent;
+	protected List<T> fChildren;
 
-	public TreeNode(ITreeNode parent) {
+	public TreeNode(ITreeNode<T> parent) {
 		fParent = parent;
 	}
 
@@ -15,20 +15,20 @@ abstract class TreeNode implements ITreeNode {
 		return true;
 	}
 
-	public ITreeNode getParent() {
+	public ITreeNode<T> getParent() {
 		return fParent;
 	}
 
-	public List getChildren() {
+	public List<T> getChildren() {
 		if (fChildren != null)
 			return fChildren;
 
-		fChildren = new ArrayList();
+		fChildren = new ArrayList<>();
 		createChildren(fChildren);
 
 		return fChildren;
 	}
 
 	/* subclasses should override this method and add the child nodes */
-	protected abstract void createChildren(List children);
+	protected abstract void createChildren(List<T> children);
 }

@@ -1,6 +1,5 @@
 package org.uqbar.lacar.ui.impl.jface.bindings;
 
-import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

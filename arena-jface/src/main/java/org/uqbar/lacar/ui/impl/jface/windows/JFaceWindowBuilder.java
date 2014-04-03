@@ -2,11 +2,13 @@ package org.uqbar.lacar.ui.impl.jface.windows;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
@@ -43,6 +45,8 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 
 	private AggregateValidationStatus status;
 
+	private String iconImage;
+
 	public JFaceWindowBuilder() {
 		this.dbc = new DataBindingContext();
 	}
@@ -59,6 +63,12 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 	@Override
 	public void setContents(ViewDescriptor<PanelBuilder> windowDescriptor) {
 		this.windowDescriptor = windowDescriptor;
+	}
+	
+	@Override
+	public void setIcon(String iconImage) {
+		this.iconImage = iconImage;
+		
 	}
 
 	/**
@@ -80,6 +90,9 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 		// todavía.
 		window.getShell().setText(this.title);
 		window.getShell().pack();
+		if(StringUtils.isNotEmpty(iconImage)){
+			window.getShell().setImage(new Image(window.getShell().getDisplay(), iconImage));
+		}
 
 		// Una configuración adicional.
 		window.setBlockOnOpen(true);

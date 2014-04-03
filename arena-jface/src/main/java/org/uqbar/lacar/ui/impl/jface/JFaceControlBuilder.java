@@ -1,8 +1,6 @@
 package org.uqbar.lacar.ui.impl.jface;
 
 
-import java.util.Map;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;

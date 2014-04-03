@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -13,6 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
+import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage;
@@ -58,8 +60,14 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	}
 
 	@Override
-	public SkinnableBuilder addTextBox() {
-		return new JFaceTextBuilder(this);
+	public SkinnableBuilder addTextBox(boolean multiLine) {
+		return new JFaceTextBuilder(this, multiLine);
+	}
+	
+
+	@Override
+	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle) {
+		return new  JFaceStyledTextBuilder(this, configurationStyle);
 	}
 	
 	@Override
@@ -90,6 +98,11 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	@Override
 	public ButtonBuilder addButton(String caption, Action action) {
 		return new JFaceButtonBuilder(this).setCaption(caption).onClick(action);
+	}
+	
+	@Override
+	public ButtonBuilder addLink(String caption, Action action) {
+		return new JfaceLinkBuilder(this).setCaption(caption).onClick(action);
 	}
 	
 	@Override

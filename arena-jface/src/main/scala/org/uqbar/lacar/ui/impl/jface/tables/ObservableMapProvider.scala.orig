@@ -15,7 +15,6 @@ import com.uqbar.commons.collections.Transformer
 import java.awt.Color
 import org.eclipse.swt.widgets.Widget
 import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap
-import org.uqbar.ui.swt.utils.SWTUtils
 
 /**
  * @since 1.1
@@ -24,7 +23,7 @@ import org.uqbar.ui.swt.utils.SWTUtils
 class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider with ITableColorProvider{
 
 	var attributeLabelMaps = List[IObservableMap]()
-	var attributeBackgroudMaps =  Map[Integer, JavaBeanTransacionalObservableMap]()
+	var attributeBackgroudMaps =  Map[Integer, IObservableMap]()
 	var backgroundTransformers = Map[Integer, Transformer[Any, _]]()
 	var widget:Widget=_
 
@@ -47,7 +46,7 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 		this(Array(attributeMap))
 	}
 	
-	def initializeBackground(maps:java.util.Map[Integer, Transformer[Any, _]], backgroundMaps:java.util.Map[Integer, JavaBeanTransacionalObservableMap] ){
+	def initializeBackground(maps:java.util.Map[Integer, Transformer[Any, _]], backgroundMaps:java.util.Map[Integer, IObservableMap] ){
 	  backgroundTransformers = maps.toMap
 	  attributeBackgroudMaps = backgroundMaps.toMap
 	  attributeBackgroudMaps.values.foreach(_.addMapChangeListener(mapChangeListener))
@@ -76,12 +75,16 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 	
 	def getBackground(element:Object, columnIndex:Int):org.eclipse.swt.graphics.Color = {
 		if(backgroundTransformers.contains(columnIndex)){
-			val modelValue = attributeBackgroudMaps(columnIndex).getValue(element)
-			if(modelValue != null){
-				val color = backgroundTransformers(columnIndex).transform(modelValue).asInstanceOf[Color]
-				return SWTUtils.getSWTColor(widget.getDisplay(), color)
-			}
+//			val modelValue = attributeBackgroudMaps(columnIndex).getValue(element)
+//			if(modelValue != null){
+//				val color = backgroundTransformers(columnIndex).transform(modelValue).asInstanceOf[Color]
+//				return getSWTColor(color)
+//			}
 		}
 		null
+	}
+	
+	protected def getSWTColor(color:Color):org.eclipse.swt.graphics.Color  ={
+		new org.eclipse.swt.graphics.Color(widget.getDisplay(), color.getRed, color.getGreen, color.getBlue);
 	}
 }

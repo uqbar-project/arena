@@ -14,6 +14,7 @@ import org.uqbar.lacar.ui.model.AbstractWidgetBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
+import org.uqbar.ui.swt.utils.SWTUtils;
 
 public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 		ColumnBuilder<Row> {
@@ -25,7 +26,7 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	/**
 	 * Información de layout, que luego se traduce a un layout de JFace.
 	 */
-	private ColumnLayoutBuilder layoutBuilder = new DefaultColumnLayoutBuilder();
+	private ColumnLayoutBuilder<JFaceTableLayoutBuilder> layoutBuilder = new DefaultColumnLayoutBuilder();
 
 	/**
 	 * Proveedor de los contenidos de esta columna, que luego se utiliza para
@@ -33,7 +34,6 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	 */
 	private final List<LabelProvider<Row>>  labelProviders;
 
-	private final JFaceTableBuilder<Row> table;
 	private List<BindingBuilder> bindings = new ArrayList<>();
 
 	// ********************************************************
@@ -48,7 +48,6 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	 *            del modelo (de la fila).
 	 */
 	public JFaceColumnBuilder(JFaceTableBuilder<Row> table, List<LabelProvider<Row>> labelProviders) {
-		this.table = table;
 		this.labelProviders = labelProviders;
 		this.tableViewerColumn = new TableViewerColumn(
 				table.getJFaceTableViewer(), SWT.NONE);
@@ -75,13 +74,13 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 
 	@Override
 	public void setForeground(Color color) {
-		org.eclipse.swt.graphics.Color swtColor = getSWTColor(color);
+		org.eclipse.swt.graphics.Color swtColor = SWTUtils.getSWTColor(getControl().getDisplay(), color);
 		this.getControl().setForeground(swtColor);
 	}
 
 	@Override
 	public void setBackground(Color color) {
-		org.eclipse.swt.graphics.Color swtColor = getSWTColor(color);
+		org.eclipse.swt.graphics.Color swtColor = SWTUtils.getSWTColor(getControl().getDisplay(), color);
 		this.getControl().setBackground(swtColor);
 	}
 
@@ -97,14 +96,6 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 		this.getControl().getFont();
 	}
 
-	protected org.eclipse.swt.graphics.Color getSWTColor(Color color) {
-		int blue = color.getBlue();
-		int green = color.getGreen();
-		int red = color.getRed();
-		org.eclipse.swt.graphics.Color swtColor = new org.eclipse.swt.graphics.Color(
-				getControl().getDisplay(), red, green, blue);
-		return swtColor;
-	}
 
 	// ********************************************************
 	// ** Pack
@@ -120,7 +111,7 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	// ** Internal accessors
 	// ********************************************************
 
-	protected ColumnLayoutBuilder getLayoutBuilder() {
+	protected ColumnLayoutBuilder<JFaceTableLayoutBuilder> getLayoutBuilder() {
 		return this.layoutBuilder;
 	}
 

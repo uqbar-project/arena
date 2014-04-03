@@ -13,7 +13,7 @@ public class JFaceListBuilder<T> extends JFaceAbstractListBuilder<T, ListViewer,
 	}
 
 	protected ListViewer createViewer(Composite jFaceComposite) {
-		ListViewer viewer = new ListViewer(jFaceComposite, SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
+		ListViewer viewer = new ListViewer(jFaceComposite, SWT.H_SCROLL | SWT.V_SCROLL | SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
 		this.initialize(viewer.getList());
 		return viewer;
 	}

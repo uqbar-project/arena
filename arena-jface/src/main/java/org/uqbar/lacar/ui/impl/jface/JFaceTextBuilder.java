@@ -4,6 +4,8 @@ import java.util.concurrent.Callable;
 
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.widgets.Text;
@@ -20,13 +22,23 @@ import org.uqbar.lacar.ui.model.TextControlBuilder;
  */
 public class JFaceTextBuilder extends JFaceSkinnableControlBuilder<Text> implements TextControlBuilder {
 
-	public JFaceTextBuilder(JFaceContainer container) {
-		super(container, new Text(container.getJFaceComposite(), SWT.SINGLE | SWT.BORDER));
+	public JFaceTextBuilder(JFaceContainer container, boolean multiLine) {
+		super(container, new Text(container.getJFaceComposite(), multiLine ? SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP: SWT.SINGLE | SWT.BORDER));
 	}
 
 	@Override
 	public BindingBuilder observeValue() {
 		return new JFaceBindingBuilder(this, SWTObservables.observeText(this.getWidget(), SWT.Modify));
+	}
+	
+	@Override
+	public void selectFinalLine(){
+		getWidget().addModifyListener(new ModifyListener() {
+	        @Override
+	        public void modifyText(ModifyEvent e) {
+	        	getWidget().setSelection(getWidget().getText().length());
+	        }
+	    });
 	}
 
 	@Override
