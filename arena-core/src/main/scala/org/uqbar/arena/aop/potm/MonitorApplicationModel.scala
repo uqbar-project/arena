@@ -22,19 +22,24 @@ class MonitorApplicationModel {
   def getTransaction() = this.transaction
   def setTransaction(transaction: ObjectTransactionImplObservable) {
     this.transaction = transaction
-    this.listResult = transaction.getObjectTransaction().getAttributeMap().keys.toList
+    this.listResult = attributeMap.keys.toList
     this.transactionalObject = null
     this.tableResult = Buffer[Entry]()
   }
   
   def getTransactionalObject() = this.transactionalObject
   def setTransactionalObject(objec: IdentityWrapper) {
-    this.transactionalObject = objec
-    this.tableResult = this.transaction.objectTransaction.getAttributeMap()(this.transactionalObject).entrySet().map(entry =>{
-      new Entry(entry.getKey(), entry.getValue(), this.transactionalObject.getKey())
-    }).toBuffer
+    transactionalObject = objec
+    if(attributeMap.containsKey(transactionalObject)){
+    	tableResult = attributeMap(transactionalObject).entrySet.map(entry =>{
+    		new Entry(entry.getKey, entry.getValue, transactionalObject.getKey)
+    	}).toBuffer
+    }else{
+    	tableResult = Buffer()
+    }
   }
 
+  def attributeMap = transaction.objectTransaction.getAttributeMap()
   def getTableResult() = tableResult.asJava
   def setTableResult(tableResult: Buffer[Entry]) = this.tableResult = tableResult
   def getListResult() = listResult

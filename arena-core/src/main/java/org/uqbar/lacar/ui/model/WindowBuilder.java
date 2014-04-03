@@ -22,11 +22,14 @@ public interface WindowBuilder extends WindowFactory, WidgetBuilder {
 
 	public void setContents(ViewDescriptor<PanelBuilder> windowDescriptor);
 
+	public void setIcon(String iconImage);
+
 	/**
 	 * Registra el objeto que recibirá los eventos de error que ocurran dentro de la ventana.
 	 */
 	// TODO Tal vez esto podría ser #addErrorListener y llevarlo a una metáfora de eventos.
 	public void setErrorViewer(ErrorViewer errorViewer);
+	
 
 	// ********************************************************
 	// ** Acciones de la ventana

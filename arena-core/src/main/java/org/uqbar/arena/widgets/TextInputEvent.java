@@ -3,7 +3,6 @@ package org.uqbar.arena.widgets;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-import com.uqbar.commons.StringUtils;
 import com.uqbar.commons.exceptions.ProgramException;
 
 /**

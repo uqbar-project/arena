@@ -1,6 +1,9 @@
 package org.uqbar.lacar.ui.model;
 
 
+import java.util.Map;
+
+import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 
 /**
@@ -14,13 +17,15 @@ public interface PanelBuilder {
 
 	public LabelBuilder addLabel();
 
-	public SkinnableBuilder addTextBox();
+	public SkinnableBuilder addTextBox(boolean multiLine);
+	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);
 
 	public ControlBuilder addCheckBox();
 
 	public ButtonBuilder addButton(String caption, Action action);
+	public ButtonBuilder addLink(String caption, Action action);
 	public ButtonBuilder addFileButton(String caption, String title, String path, String[] extensions);
 
 
@@ -60,3 +65,4 @@ public interface PanelBuilder {
 
 	public void setPreferredWidth(int width);
 }
+
