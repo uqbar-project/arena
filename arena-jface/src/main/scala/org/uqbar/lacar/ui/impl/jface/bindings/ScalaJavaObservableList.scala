@@ -17,7 +17,7 @@ trait ScalaJavaConverter {
 class ScalaJavaListConverter extends ScalaJavaConverter {
     override def convertScalaCollectionToJavaIfNeeded(value : Object) : java.util.Collection[_] = {
     value match {
-      case i: Iterable[_] => WrapAsJava.asJavaCollection(i) // creo que con este ya alcanza, no hacen falta las otras implicits 
+      case i: Iterable[_] => WrapAsJava.asJavaCollection(i)  
       // already using java collections, ok!
       case c: java.util.Collection[_] => c
       // fail otherwise
@@ -27,9 +27,3 @@ class ScalaJavaListConverter extends ScalaJavaConverter {
     }
   }
 }
-
-      // implicit conversions
-//      case s: Seq[_] => s
-//      case s: Set[_] => s
-//      case s: scala.collection.mutable.Seq[_] => s
-//      case b: Buffer[_] => b

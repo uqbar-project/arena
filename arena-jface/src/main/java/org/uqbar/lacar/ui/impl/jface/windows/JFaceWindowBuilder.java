@@ -26,8 +26,7 @@ import org.uqbar.ui.view.ErrorViewer;
 import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.exceptions.ProgramException;
 
-public class JFaceWindowBuilder extends AbstractWidgetBuilder implements
-		WindowBuilder, JFaceContainer {
+public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowBuilder, JFaceContainer {
 	private Window window;
 
 	private DataBindingContext dbc;
