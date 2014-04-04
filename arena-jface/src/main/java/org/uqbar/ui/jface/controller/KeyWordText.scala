@@ -36,12 +36,12 @@ class KeyWordText(parent: Composite, var configuration: java.util.Map[Array[Stri
   }
 
   def setConfigurationStyle(style: Style, stylerange: StyleRange) {
-    if (style.backgound() != null)
-      stylerange.background = SWTUtils.getSWTColor(getDisplay(), style.backgound());
-    if (style.foreground() != null)
-      stylerange.foreground = SWTUtils.getSWTColor(getDisplay(), style.foreground());
-    if (style.fontStyle() != 0)
-      stylerange.fontStyle = style.fontStyle();
-    stylerange.underline = style.underline();
+    if (style.backgound != null)
+      stylerange.background = SWTUtils.getSWTColor(getDisplay(), style.backgound);
+    if (style.foreground != null)
+      stylerange.foreground = SWTUtils.getSWTColor(getDisplay(), style.foreground);
+    if (style.fontStyle != 0)
+      stylerange.fontStyle = style.fontStyle;
+    stylerange.underline = style.underline;
   }
 }
