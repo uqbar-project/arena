@@ -3,7 +3,7 @@
 	http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>pot</artifactId>
-	<version>3.3-SNAPSHOT</version>
+	<version>3.4-SNAPSHOT</version>
 	<name>Uqbar Pure Object Transactions Project</name>
 
 	<parent>
@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>apo-core</artifactId>
-			<version>3.3-SNAPSHOT</version>
+			<version>3.4-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
