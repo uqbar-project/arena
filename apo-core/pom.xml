@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apo-core</artifactId>
-	<version>3.3-SNAPSHOT</version>
+	<version>3.4-SNAPSHOT</version>
 	<name>Aspect for Pure Objects</name>
 	<packaging>jar</packaging>
 
@@ -36,12 +36,19 @@
 			<artifactId>uqbar-commons-exceptions</artifactId>
 			<version>1.5-SNAPSHOT</version>
 		</dependency>
+
 		<!-- /UQBAR DEPENDENCIES -->
 
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.16.1-GA</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>2.10.2</version>
 		</dependency>
 
 		<!-- ADDED TO FIX DEPENDENCIES ISSUES -->
@@ -69,37 +76,37 @@
 
 	<build>
 		<plugins>
-	    <!-- disable surefire -->
-		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-		  	<artifactId>maven-surefire-plugin</artifactId>
-		  	<version>2.7</version>
-		  	<configuration>
-			    <skipTests>true</skipTests>
-		  	</configuration>
-		</plugin>
-		<!-- /disable surefire -->
-		<!-- enable scalatest -->
-		<plugin>
-  			<groupId>org.scalatest</groupId>
-  			<artifactId>scalatest-maven-plugin</artifactId>
-  			<version>1.0-M4-SNAP1</version>
-		  	<configuration>
-		  		<argLine>-Djava.system.class.loader=com.uqbar.apo.APOClassLoader</argLine>
-			    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-		    	<junitxml>.</junitxml>
-		    	<filereports>WDF TestSuite.txt</filereports>
-		  	</configuration>
-		  	<executions>
-			    <execution>
-			      <id>test</id>
-			      <goals>
-		    	    <goal>test</goal>
-		      	</goals>
-		    	</execution>
-		  	</executions>
-		</plugin>
-		<!-- /enable scalatest -->
+			<!-- disable surefire -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<!-- /disable surefire -->
+			<!-- enable scalatest -->
+			<plugin>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest-maven-plugin</artifactId>
+				<version>1.0-M4-SNAP1</version>
+				<configuration>
+					<argLine>-Djava.system.class.loader=com.uqbar.apo.APOClassLoader</argLine>
+					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+					<junitxml>.</junitxml>
+					<filereports>WDF TestSuite.txt</filereports>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- /enable scalatest -->
 		</plugins>
 	</build>
 </project>
