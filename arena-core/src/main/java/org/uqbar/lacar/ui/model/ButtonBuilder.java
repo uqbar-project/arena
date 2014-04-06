@@ -1,5 +1,6 @@
 package org.uqbar.lacar.ui.model;
 
+import org.uqbar.arena.widget.traits.Clickable;
 import org.uqbar.lacar.ui.model.builder.traits.Clickeable;
 import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 import org.uqbar.lacar.ui.model.builder.traits.WithCaption;
@@ -11,7 +12,7 @@ import org.uqbar.lacar.ui.model.builder.traits.WithImageBuilder;
  * 
  * @author npasserini
  */
-public interface ButtonBuilder extends SkinnableBuilder, WithImageBuilder, Clickeable<ButtonBuilder>, WithCaption {
+public interface ButtonBuilder extends SkinnableBuilder, WithImageBuilder, Clickable, WithCaption {
 
 	/**
 	 * Defines this button as the default action for the window.

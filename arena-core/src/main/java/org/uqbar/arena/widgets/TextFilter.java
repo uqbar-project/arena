@@ -2,7 +2,6 @@ package org.uqbar.arena.widgets;
 
 import com.uqbar.commons.StringUtils;
 
-
 /**
  * An object that receives {@link TextInputEvent} events
  * from the user and can decide whether to accept the input or not.
