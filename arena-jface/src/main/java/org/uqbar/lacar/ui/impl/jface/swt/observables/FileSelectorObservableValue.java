@@ -1,4 +1,4 @@
-package org.uqbar.lacar.ui.impl.jface.bindings;
+package org.uqbar.lacar.ui.impl.jface.swt.observables;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTVetoableValue;
@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 
 public class FileSelectorObservableValue extends AbstractSWTVetoableValue {
-	
 	public boolean open = false;
 	private final FileDialog fileDialog;
 	

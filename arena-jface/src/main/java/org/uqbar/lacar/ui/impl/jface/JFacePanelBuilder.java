@@ -18,6 +18,8 @@ import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor;
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage;
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceButtonBuilder;
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceLabelBuilder;
 import org.uqbar.lacar.ui.impl.jface.lists.JFaceListBuilder;
 import org.uqbar.lacar.ui.impl.jface.radiogroup.JFaceRadioGroupBuilder;
 import org.uqbar.lacar.ui.impl.jface.tables.JFaceTableBuilder;

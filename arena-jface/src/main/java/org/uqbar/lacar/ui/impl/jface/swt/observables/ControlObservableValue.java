@@ -1,4 +1,4 @@
-package org.uqbar.lacar.ui.impl.jface.bindings;
+package org.uqbar.lacar.ui.impl.jface.swt.observables;
 import java.awt.Color;
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObserva
 import org.eclipse.jface.internal.databinding.swt.SWTProperties;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Control;
-import org.uqbar.ui.swt.utils.SWTUtils;
 
 import scala.actors.threadpool.Arrays;
 
@@ -18,7 +17,6 @@ import com.uqbar.commons.collections.Transformer;
  *
  */
 public class ControlObservableValue<T, U> extends AbstractSWTObservableValue {
-
 	private final Control control;
 	private final String attribute;
 	
@@ -48,9 +46,9 @@ public class ControlObservableValue<T, U> extends AbstractSWTObservableValue {
 		if(value== null)
 			return;
 		if (attribute.equals(SWTProperties.FOREGROUND)) {
-			control.setForeground(SWTUtils.getSWTColor(getWidget().getDisplay(), (Color) value));
+			control.setForeground(getSWTColor((Color) value));
 		} else if (attribute.equals(SWTProperties.BACKGROUND)) {
-			control.setBackground(SWTUtils.getSWTColor(getWidget().getDisplay(), (Color) value));
+			control.setBackground(getSWTColor((Color) value));
 		} else if (attribute.equals(SWTProperties.FONT)) {
 			control.setFont((Font) value);
 		}
@@ -63,5 +61,8 @@ public class ControlObservableValue<T, U> extends AbstractSWTObservableValue {
 
 	public Object getValueType() {
 		return Object.class;
+	}
+	protected org.eclipse.swt.graphics.Color getSWTColor(Color color) {
+		return new org.eclipse.swt.graphics.Color(getWidget().getDisplay(), color.getRed(), color.getGreen(), color.getBlue());
 	}
 }

@@ -5,12 +5,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Link;
+import org.uqbar.arena.graphics.Image;
 import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
 
+import com.uqbar.commons.collections.Transformer;
+
+//TODO: fix name "F"
 public class JfaceLinkBuilder extends JFaceSkinnableControlBuilder<Link> implements ButtonBuilder {
 	
 	public JfaceLinkBuilder(JFaceContainer context) {
@@ -57,6 +61,11 @@ public class JfaceLinkBuilder extends JFaceSkinnableControlBuilder<Link> impleme
 	@Override
 	public BindingBuilder observeCaption() {
 		return new JFaceBindingBuilder(this, new ButtonCaptionObservableValue(this.getWidget()));
+	}
+	
+	@Override
+	public <M> BindingBuilder observeImage(Transformer<M, Image> transformer) {
+		throw new UnsupportedOperationException("Images are not supported on Link components!");
 	}
 	
 }

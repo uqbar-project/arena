@@ -1,4 +1,4 @@
-package org.uqbar.lacar.ui.impl.jface;
+package org.uqbar.lacar.ui.impl.jface.swt.observables;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
@@ -41,7 +41,7 @@ public class ButtonCaptionObservableValue extends AbstractSWTObservableValue {
 
 	public void doSetValue(final Object value) {
 		String oldValue = this.button.getText();
-		String newValue = value == null ? "" : value.toString(); //$NON-NLS-1$
+		String newValue = value == null ? "" : value.toString();
 		this.button.setText(newValue);
 		this.button.pack();
 		
