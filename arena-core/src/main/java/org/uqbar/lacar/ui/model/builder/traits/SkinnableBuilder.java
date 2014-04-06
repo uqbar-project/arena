@@ -1,7 +1,8 @@
-package org.uqbar.lacar.ui.model;
+package org.uqbar.lacar.ui.model.builder.traits;
 
 import java.awt.Color;
 
+import org.uqbar.lacar.ui.model.ControlBuilder;
 
 public interface SkinnableBuilder extends ControlBuilder {
 	

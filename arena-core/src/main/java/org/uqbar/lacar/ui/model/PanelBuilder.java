@@ -1,10 +1,11 @@
 package org.uqbar.lacar.ui.model;
 
-
 import java.util.Map;
 
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
+import org.uqbar.lacar.ui.model.builder.LinkBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 
 /**
  * @author npasserini
@@ -25,7 +26,7 @@ public interface PanelBuilder {
 	public ControlBuilder addCheckBox();
 
 	public ButtonBuilder addButton(String caption, Action action);
-	public ButtonBuilder addLink(String caption, Action action);
+	public LinkBuilder addLink(String caption, Action action);
 	public ButtonBuilder addFileButton(String caption, String title, String path, String[] extensions);
 
 

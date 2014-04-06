@@ -22,10 +22,6 @@ public class Table<R> extends Control {
 	private Class<R> itemType;
 	private List<Column<R>> columns = new ArrayList<Column<R>>();
 
-	public Table(Container container) {
-		super(container);
-	}
-	
 	public Table(Container container, Class<R> itemType) {
 		super(container);
 		setItemType(itemType);

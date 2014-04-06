@@ -1,6 +1,7 @@
 package org.uqbar.arena.scala
 
 import com.uqbar.commons.collections.Transformer
+import org.uqbar.lacar.ui.model.Action
 
 /**
  * Contiene implicits utiles para usar arena desde scala
@@ -17,6 +18,10 @@ object ArenaScalaImplicits {
 	      closure(i)
 	    }
 	}
+  }
+  
+  implicit def closureToAction[I,O](closure: () => Unit) : Action = new Action {
+	  override def execute() = closure()
   }
 
 }

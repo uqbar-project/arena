@@ -2,8 +2,8 @@ package org.uqbar.arena.widgets;
 
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.SkinnableBuilder;
 import org.uqbar.lacar.ui.model.TextControlBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 
 import com.uqbar.commons.collections.Closure;
 

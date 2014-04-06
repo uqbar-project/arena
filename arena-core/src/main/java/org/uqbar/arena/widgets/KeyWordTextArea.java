@@ -6,7 +6,7 @@ import java.util.Map;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 
 public class KeyWordTextArea extends TextBox {
 	private Map<String[], Style> configurationStyle = new HashMap<>();

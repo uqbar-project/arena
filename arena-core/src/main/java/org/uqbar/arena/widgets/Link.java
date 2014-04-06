@@ -7,11 +7,11 @@ import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
+import org.uqbar.lacar.ui.model.builder.LinkBuilder;
 
 import com.uqbar.commons.collections.Closure;
 
 public class Link extends SkinnableControl {
-
 	protected String caption = this.nextCaption();
 	protected Action onClick = new NoopAction();
 
@@ -19,14 +19,16 @@ public class Link extends SkinnableControl {
 		super(container);
 	}
 
-	public <T extends Link>  T setCaption(String caption) {
+	//TODO: no deberiamos automaticamente agregar el <a> a todo el texto </a> ?
+	// Es horrible la estrategia de swt de que tengas que poner el html dentro del string.
+	public Link setCaption(String caption) {
 		this.caption = caption;
-		return  (T) this;
+		return this;
 	}
 
-	public <T extends Link> T onClick(Action onClick) {
+	public Link onClick(Action onClick) {
 		this.onClick = onClick;
-		return (T) this;
+		return this;
 	}
 
 	protected String getCaption() {
@@ -48,7 +50,7 @@ public class Link extends SkinnableControl {
 	}
 
 	public Binding<ButtonBuilder> bindCaptionToProperty(String propertyName) {
-		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption<ButtonBuilder>());
+		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
 	}
 	
 	
@@ -57,8 +59,8 @@ public class Link extends SkinnableControl {
 	// ********************************************************
 
 	@Override
-	protected ButtonBuilder createBuilder(PanelBuilder container) {
-		final ButtonBuilder button = container.addLink(this.caption, this.onClick);
+	protected LinkBuilder createBuilder(PanelBuilder container) {
+		final LinkBuilder button = container.addLink(this.caption, this.onClick);
 		this.configureSkineableBuilder(button);
 		return button;
 	}

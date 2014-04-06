@@ -1,5 +1,8 @@
 package org.uqbar.lacar.ui.model;
 
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.WithImageBuilder;
+
 /**
  * 
  * @author jfernandes

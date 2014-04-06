@@ -5,7 +5,7 @@ import org.uqbar.lacar.ui.model.ButtonBuilder
 import org.uqbar.lacar.ui.model.BindingBuilder
 import com.uqbar.commons.collections.Transformer
 import org.uqbar.arena.graphics.Image
-import org.uqbar.lacar.ui.model.WithImageBuilder
+import org.uqbar.lacar.ui.model.builder.traits.WithImageBuilder
 
 object ViewObservables {
   

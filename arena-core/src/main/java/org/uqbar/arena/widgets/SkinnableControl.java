@@ -2,7 +2,7 @@ package org.uqbar.arena.widgets;
 
 import java.awt.Color;
 
-import org.uqbar.lacar.ui.model.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 
 public abstract class SkinnableControl extends Control {
 	private static final long serialVersionUID = 1L;
