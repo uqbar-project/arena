@@ -1,7 +1,6 @@
 package org.uqbar.arena.widgets;
 
 import java.util.List;
-import java.util.Map;
 
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;

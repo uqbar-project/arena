@@ -47,6 +47,8 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	private List<Widget> children = CollectionFactory.createList();
 
 	private String title = "";
+	
+	private String iconImage;
 
 	/**
 	 * Indica si los contenidos de la ventana ya han sido creados, para evitar crearlos nuevamente.
@@ -74,6 +76,15 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 
 	public T getModelObject() {
 		return this.model.getSource();
+	}
+	
+	public String getIconImage() {
+		return iconImage;
+	}
+
+
+	public void setIconImage(String iconImage) {
+		this.iconImage = iconImage;
 	}
 
 	// ********************************************************
@@ -132,6 +143,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		WindowBuilder delegate = this.getDelegate();
 		delegate.setTitle(this.title);
 		delegate.setContents(this);
+		delegate.setIcon(this.iconImage);
 		delegate.open();
 	}
 

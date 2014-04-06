@@ -1,7 +1,6 @@
 package org.uqbar.arena.windows;
 
 import org.uqbar.arena.Application;
-import org.uqbar.commons.model.ObservableObject;
 
 /**
  * Window especial para aplicaciones sencillas con una sola ventana.

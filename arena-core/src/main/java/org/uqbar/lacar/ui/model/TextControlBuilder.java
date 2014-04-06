@@ -10,5 +10,6 @@ import org.uqbar.arena.widgets.TextFilter;
 public interface TextControlBuilder extends ControlBuilder {
 
 	public void addTextFilter(TextFilter filter);
+	public void selectFinalLine();
 	
 }
