@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
-			<version>3.3-SNAPSHOT</version>
+			<version>3.4-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	
