@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Control;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.model.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 import org.uqbar.ui.swt.utils.SWTUtils;
 
 

@@ -1,20 +1,21 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
+import org.eclipse.core.runtime.IStatus
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Button
+import org.uqbar.arena.jface.JFaceImplicits.closureToComputedValue
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
-import org.uqbar.lacar.ui.model.ButtonBuilder
-import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.eclipse.jface.databinding.swt.SWTObservables._
-import org.eclipse.core.databinding.observable.value.ComputedValue
-import org.eclipse.core.runtime.IStatus
-import org.uqbar.arena.jface.JFaceImplicits._
-import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
-import org.uqbar.lacar.ui.impl.jface.swt.observables.ButtonCaptionObservableValue
+import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
+import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.BindingBuilder
+import org.uqbar.lacar.ui.model.ButtonBuilder
+import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 
+/**
+ * @author jfernandes
+ */
 class JFaceButtonBuilder(c: JFaceContainer)
   extends JFaceSkinnableControlBuilder[Button](c, new Button(c.getJFaceComposite(), SWT.PUSH))
   with ButtonBuilder
@@ -43,6 +44,6 @@ class JFaceButtonBuilder(c: JFaceContainer)
 
   override def observeValue() : BindingBuilder = throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 
-  override def observeCaption() = new JFaceBindingBuilder(this, new ButtonCaptionObservableValue(this.getWidget()));
+  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(getWidget));
 
 }

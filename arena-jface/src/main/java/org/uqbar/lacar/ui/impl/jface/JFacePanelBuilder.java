@@ -20,6 +20,7 @@ import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColo
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage;
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceButtonBuilder;
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceLabelBuilder;
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceLinkBuilder;
 import org.uqbar.lacar.ui.impl.jface.lists.JFaceListBuilder;
 import org.uqbar.lacar.ui.impl.jface.radiogroup.JFaceRadioGroupBuilder;
 import org.uqbar.lacar.ui.impl.jface.tables.JFaceTableBuilder;
@@ -30,9 +31,10 @@ import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.LabelBuilder;
 import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.SkinnableBuilder;
 import org.uqbar.lacar.ui.model.TableBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
+import org.uqbar.lacar.ui.model.builder.LinkBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 import org.uqbar.ui.view.ErrorViewer;
 
 import com.uqbar.commons.collections.CollectionFactory;
@@ -103,8 +105,8 @@ public class JFacePanelBuilder extends JFaceWidgetBuilder<Composite> implements 
 	}
 	
 	@Override
-	public ButtonBuilder addLink(String caption, Action action) {
-		return new JfaceLinkBuilder(this).setCaption(caption).onClick(action);
+	public LinkBuilder addLink(String caption, Action action) {
+		return new JFaceLinkBuilder(this).setCaption(caption).onClick(action);
 	}
 	
 	@Override
