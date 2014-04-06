@@ -1,12 +1,12 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
-import org.uqbar.lacar.ui.model.LabelBuilder
-import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
+import org.eclipse.jface.databinding.swt.SWTObservables.observeText
+import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Label
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.eclipse.swt.SWT
-import org.eclipse.jface.databinding.swt.SWTObservables._
+import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
+import org.uqbar.lacar.ui.model.LabelBuilder
 
 class JFaceLabelBuilder(container:JFaceContainer, label: Label) 
 	extends JFaceSkinnableControlBuilder[Label](container, label)

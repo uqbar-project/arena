@@ -1,11 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.bindings
 
-import scala.collection.Seq
-import scala.collection.JavaConversions._
-import scala.collection.mutable.Buffer
-import scala.collection.Set
-import scala.collection.convert.WrapAsJava
 import scala.collection.Iterable
+import scala.collection.convert.WrapAsJava
 
 /**
  * Convierte una posibles coleccion de Scala a Java

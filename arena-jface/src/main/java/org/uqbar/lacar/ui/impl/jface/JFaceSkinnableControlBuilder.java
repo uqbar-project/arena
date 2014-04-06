@@ -11,9 +11,7 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 import org.uqbar.ui.swt.utils.SWTUtils;
 
-
 public abstract class JFaceSkinnableControlBuilder<T extends Control> extends JFaceControlBuilder<T>  implements SkinnableBuilder{
-	
 
 	public JFaceSkinnableControlBuilder(JFaceContainer container) {
 		super(container);

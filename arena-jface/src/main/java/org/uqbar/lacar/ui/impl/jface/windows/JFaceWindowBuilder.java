@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.uqbar.arena.windows.MessageBox.Type;
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer;
-import org.uqbar.lacar.ui.impl.jface.JFacePanelBuilder;
+import org.uqbar.lacar.ui.impl.jface.builder.JFacePanelBuilder;
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;

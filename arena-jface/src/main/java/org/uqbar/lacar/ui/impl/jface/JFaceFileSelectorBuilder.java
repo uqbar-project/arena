@@ -1,12 +1,11 @@
 package org.uqbar.lacar.ui.impl.jface;
 
 import org.eclipse.swt.widgets.Control;
-import org.uqbar.arena.widgets.Button;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceButtonBuilder;
 import org.uqbar.lacar.ui.impl.jface.swt.observables.FileSelectorObservableValue;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.impl.jface.builder.JFaceButtonBuilder;
 
 public class JFaceFileSelectorBuilder extends JFaceButtonBuilder {
 	private FileSelectorObservableValue value;

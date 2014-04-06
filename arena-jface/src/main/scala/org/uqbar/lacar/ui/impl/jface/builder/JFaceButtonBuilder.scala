@@ -6,12 +6,11 @@ import org.eclipse.swt.widgets.Button
 import org.uqbar.arena.jface.JFaceImplicits.closureToComputedValue
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
-import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.uqbar.lacar.ui.model.Action
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
+import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.lacar.ui.model.ButtonBuilder
-import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 
 /**
  * @author jfernandes
@@ -19,7 +18,9 @@ import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 class JFaceButtonBuilder(c: JFaceContainer)
   extends JFaceSkinnableControlBuilder[Button](c, new Button(c.getJFaceComposite(), SWT.PUSH))
   with ButtonBuilder
-  with WithImageControlBuilder[Button] {
+  with WithImageControlBuilder[Button]
+  with JFaceClickable
+{
 
   def setCaption(caption: String) = {
     getWidget setText caption
@@ -37,13 +38,8 @@ class JFaceButtonBuilder(c: JFaceContainer)
 
   def computeValue(): Object = getContainer.getStatus.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
 
-  override def onClick(action: Action) = {
-    getWidget.addSelectionListener(new JFaceActionAdapter(getContainer, action))
-    this
-  }
-
   override def observeValue() : BindingBuilder = throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 
   override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(getWidget));
-
+  
 }
