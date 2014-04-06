@@ -2,6 +2,9 @@ package org.uqbar.arena.widgets;
 
 import org.uqbar.arena.bindings.ObservableCaption;
 import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.observables.ViewObservables;
+import org.uqbar.arena.graphics.Image;
+import org.uqbar.arena.widgets.traits.WidgetWithImage;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
@@ -9,6 +12,7 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
 import com.uqbar.commons.collections.Closure;
+import com.uqbar.commons.collections.Transformer;
 
 
 /**
@@ -26,7 +30,7 @@ import com.uqbar.commons.collections.Closure;
  * 
  * @author npasserini
  */
-public class Button extends SkinnableControl {
+public class Button extends SkinnableControl implements WidgetWithImage {
 	private String caption = this.nextCaption();
 	private Action onClick = new NoopAction();
 	public Button(Container container) {
@@ -77,6 +81,11 @@ public class Button extends SkinnableControl {
 	
 	public Binding bindCaptionToProperty(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
+	}
+	
+	@Override
+	public <M> Binding bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
+		return this.addBinding(new ObservableProperty(propertyName), ViewObservables.observableImage(transformer));
 	}
 	
 	// ********************************************************

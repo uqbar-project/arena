@@ -1,11 +1,12 @@
 package org.uqbar.lacar.ui.model;
 
+
 /**
  * Extension of {@link ControlBuilder} specific for configurating buttons.
  * 
  * @author npasserini
  */
-public interface ButtonBuilder extends SkinnableBuilder {
+public interface ButtonBuilder extends SkinnableBuilder, WithImageBuilder {
 
 	/**
 	 * Defines this button as the default action for the window.
