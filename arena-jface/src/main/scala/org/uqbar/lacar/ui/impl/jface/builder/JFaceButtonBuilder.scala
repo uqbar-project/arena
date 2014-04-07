@@ -11,6 +11,7 @@ import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
 import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.lacar.ui.model.ButtonBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceWithCaption
 
 /**
  * @author jfernandes
@@ -20,12 +21,8 @@ class JFaceButtonBuilder(c: JFaceContainer)
   with ButtonBuilder
   with WithImageControlBuilder[Button]
   with JFaceClickable
+  with JFaceWithCaption
 {
-
-  def setCaption(caption: String) = {
-    getWidget setText caption
-    this
-  }
 
   override def setAsDefault() = {
     getWidget.getShell.setDefaultButton(getWidget)
@@ -40,6 +37,4 @@ class JFaceButtonBuilder(c: JFaceContainer)
 
   override def observeValue() : BindingBuilder = throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 
-  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(getWidget));
-  
 }

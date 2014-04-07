@@ -1,18 +1,9 @@
 package org.uqbar.lacar.ui.impl.jface.swt.observables
 
 import org.eclipse.core.databinding.observable.Diffs
+import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue
 import org.eclipse.swt.widgets.Control
-
-/**
- * Defines new structural type to treat all swt components polymorphically.
- */
-object WidgetWithText {
-  type WithText = Control {
-	  def getText():String
-	  def setText(a:String)
-  } 
-}
 
 /**
  * Observes a Control.text property (the caption).
@@ -26,7 +17,7 @@ object WidgetWithText {
  * 
  * @author jfernandes
  */
-class CaptionObservableValue(component:WidgetWithText.WithText) extends AbstractSWTObservableValue(component) {
+class CaptionObservableValue(component:WithText) extends AbstractSWTObservableValue(component) {
 
 	override def doSetValue(value:Object) {
 		val oldValue = component.getText

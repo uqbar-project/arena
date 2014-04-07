@@ -1,11 +1,14 @@
 package org.uqbar.lacar.ui.impl.jface.builder.traits
 
-import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
-import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
-import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes.SelectionListening
-import org.uqbar.lacar.ui.model.Action
-import org.uqbar.lacar.ui.model.builder.traits.Clickeable
 import org.uqbar.arena.widget.traits.Clickable
+import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
+import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
+import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
+import org.uqbar.lacar.ui.model.Action
+import org.uqbar.lacar.ui.model.builder.traits.WithCaption
+import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
+import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
+import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 
 /**
  * Generic implementation of Clickable interface 
@@ -21,5 +24,15 @@ trait JFaceClickable extends Clickable {
     getWidget.addSelectionListener(new JFaceActionAdapter(getContainer, action))
     this
   }
+}
 
+trait JFaceWithCaption extends WithCaption {
+  this : JFaceWidgetBuilder[_ <: WithText] =>
+    
+  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(getWidget))
+  
+  def setCaption(caption: String) : this.type = {
+    getWidget setText caption
+    this
+  }
 }

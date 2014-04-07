@@ -18,4 +18,9 @@ object SwtTypes {
   
   type SelectionListening = Control { def addSelectionListener(l:SelectionListener) }
 
+  type WithText = Control {
+	  def getText():String
+	  def setText(a:String)
+  } 
+  
 }
