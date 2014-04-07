@@ -23,4 +23,9 @@ object SwtTypes {
 	  def setText(a:String)
   } 
   
+  type WidgetWithImage = Widget { 
+    def getImage() : org.eclipse.swt.graphics.Image 
+  	def setImage(image:org.eclipse.swt.graphics.Image) : Unit
+  }
+  
 }

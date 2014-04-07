@@ -1,31 +1,18 @@
 package org.uqbar.lacar.ui.impl.jface.swt.observables
 
-import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue
-import org.eclipse.core.databinding.observable.value.IValueChangeListener
-import org.eclipse.core.databinding.observable.Realm
-import org.eclipse.swt.widgets.Widget
-import org.eclipse.swt.widgets.Button
-import org.eclipse.swt.widgets.Label
 import org.eclipse.core.databinding.observable.Diffs
-import com.uqbar.commons.collections.Transformer
-import org.uqbar.arena.graphics.Image
+import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue
 import org.eclipse.jface.resource.ImageDescriptor
-import org.eclipse.swt.SWT
-import org.eclipse.swt.widgets.Text
+import org.uqbar.arena.graphics.Image
+import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes.WidgetWithImage
 
-object ImageObservableValue {
-  type WidgetWithImage = Widget { 
-    def getImage() : org.eclipse.swt.graphics.Image 
-  	def setImage(image:org.eclipse.swt.graphics.Image) : Unit
-  }
-}
-
+import com.uqbar.commons.collections.Transformer
 /**
  * @author jfernandes
  */
-class ImageObservableValue[T](w : ImageObservableValue.WidgetWithImage, var transformer : Transformer[T, Image] ) extends AbstractSWTObservableValue(w) {
+class ImageObservableValue[T](w : WidgetWithImage, var transformer : Transformer[T, Image] ) extends AbstractSWTObservableValue(w) {
   
-  override def getWidget() : ImageObservableValue.WidgetWithImage = { super.getWidget().asInstanceOf[ImageObservableValue.WidgetWithImage] }
+  override def getWidget() : WidgetWithImage = { super.getWidget().asInstanceOf[WidgetWithImage] }
   
   override def doGetValue() = { getWidget.getImage }
   

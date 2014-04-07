@@ -1,6 +1,8 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
 import org.uqbar.lacar.ui.model.ControlBuilder
+
+import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
 import org.uqbar.lacar.ui.model.BindingBuilder
 import com.uqbar.commons.collections.Transformer
@@ -14,7 +16,7 @@ import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
  * 
  * @author jfernandes
  */
-trait WithImageControlBuilder[T <: ImageObservableValue.WidgetWithImage] extends JFaceWidgetBuilder[T] {
+trait WithImageControlBuilder[T <: WidgetWithImage] extends JFaceWidgetBuilder[T] {
   
 	def observeImage[M](transformer : Transformer[M, Image] ) : BindingBuilder = {
 		new JFaceBindingBuilder(this, new ImageObservableValue[M](getWidget, transformer));
