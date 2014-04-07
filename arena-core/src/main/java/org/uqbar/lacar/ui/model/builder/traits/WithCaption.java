@@ -16,5 +16,5 @@ public interface WithCaption extends WidgetBuilder {
 	 * model's property).
 	 */
 	public BindingBuilder observeCaption();
-	
+
 }

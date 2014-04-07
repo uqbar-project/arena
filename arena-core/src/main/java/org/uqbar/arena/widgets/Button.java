@@ -10,9 +10,11 @@ import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
+import org.uqbar.lacar.ui.model.builder.traits.WithCaption;
 
 import com.uqbar.commons.collections.Closure;
 import com.uqbar.commons.collections.Transformer;
+import static org.uqbar.arena.bindings.observables.ViewObservables.*;
 
 
 /**
@@ -85,7 +87,7 @@ public class Button extends SkinnableControl implements WidgetWithImage {
 	
 	@Override
 	public <M> Binding bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
-		return this.addBinding(new ObservableProperty(propertyName), ViewObservables.observableImage(transformer));
+		return this.addBinding(new ObservableProperty(propertyName), observableImage(transformer));
 	}
 	
 	// ********************************************************
