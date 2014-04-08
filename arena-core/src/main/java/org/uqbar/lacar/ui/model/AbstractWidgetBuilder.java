@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for implementing widget builders.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author npasserini
  */
 public class AbstractWidgetBuilder implements WidgetBuilder {
-	private ArrayList<Action> packActions = new ArrayList<Action>();
+	private List<Action> packActions = new ArrayList<Action>();
 
 	@Override
 	public void pack() {

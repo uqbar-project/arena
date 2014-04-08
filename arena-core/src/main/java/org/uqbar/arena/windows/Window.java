@@ -82,7 +82,6 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		return iconImage;
 	}
 
-
 	public void setIconImage(String iconImage) {
 		this.iconImage = iconImage;
 	}
