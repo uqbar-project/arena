@@ -11,7 +11,7 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
 import org.uqbar.ui.swt.utils.SWTUtils;
 
-public abstract class JFaceSkinnableControlBuilder<T extends Control> extends JFaceControlBuilder<T>  implements SkinnableBuilder{
+public abstract class JFaceSkinnableControlBuilder<T extends Control> extends JFaceControlBuilder<T>  implements SkinnableBuilder {
 
 	public JFaceSkinnableControlBuilder(JFaceContainer container) {
 		super(container);
@@ -21,7 +21,6 @@ public abstract class JFaceSkinnableControlBuilder<T extends Control> extends JF
 		super(container, jfaceWidget);
 	}
 	
-//	@Override
 	public BindingBuilder observeBackground() {
 		return new JFaceBindingBuilder(this, SWTObservables.observeBackground(getWidget()));
 	}

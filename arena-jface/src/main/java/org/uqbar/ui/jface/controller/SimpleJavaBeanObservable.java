@@ -19,6 +19,7 @@ public class SimpleJavaBeanObservable extends JavaBeanObservableValue {
 	protected static PropertyDescriptor getPropertyDescriptor(Class<?> beanClass, String propertyName) {
 		BeanInfo beanInfo;
 		try {
+			//TODO: esto no deberia usar ScalaBeanInfo ?
 			beanInfo = Introspector.getBeanInfo(beanClass);
 		}
 		catch (IntrospectionException e) {

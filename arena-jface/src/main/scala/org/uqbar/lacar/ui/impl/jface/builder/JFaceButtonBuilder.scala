@@ -12,12 +12,13 @@ import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.lacar.ui.model.ButtonBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceWithCaption
+import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageControlBuilder
 
 /**
  * @author jfernandes
  */
 class JFaceButtonBuilder(c: JFaceContainer)
-  extends JFaceSkinnableControlBuilder[Button](c, new Button(c.getJFaceComposite(), SWT.PUSH))
+  extends JFaceSkinnableControlBuilder[Button](c, new Button(c getJFaceComposite, SWT PUSH))
   with ButtonBuilder
   with WithImageControlBuilder[Button]
   with JFaceClickable

@@ -7,6 +7,7 @@ import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.model.LabelBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageControlBuilder
 
 class JFaceLabelBuilder(container:JFaceContainer, label: Label) 
 	extends JFaceSkinnableControlBuilder[Label](container, label)
@@ -17,6 +18,7 @@ class JFaceLabelBuilder(container:JFaceContainer, label: Label)
 
   override def setText(text:String) = { getWidget.setText(text) }
   
+  // Esto no parece tener sentido. Si el label es readonly para qué observar o bindear ? 
   override def observeValue() = new JFaceBindingBuilder(this, observeText(getWidget))
   
 }

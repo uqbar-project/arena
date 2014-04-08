@@ -1,11 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.bindings.observables;
 
-import java.beans.BeanInfo;
-import java.beans.IntrospectionException;
-import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 
-import org.eclipse.core.databinding.BindingException;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -13,7 +9,6 @@ import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.observable.masterdetail.MasterDetailObservables;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.internal.databinding.beans.BeanObservableListDecorator;
-import org.eclipse.core.internal.databinding.beans.JavaBeanObservableList;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 
 /**
@@ -24,6 +19,7 @@ import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
  * 
  * @author jfernandes
  */
+//TODO: creo que falta interceptar los observeSet()
 public class ArenaBeansObservables {
 	
 	public static IObservableList observeList(Realm realm, Object bean, String propertyName, Class elementType) {

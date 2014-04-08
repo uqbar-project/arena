@@ -18,7 +18,7 @@ public class BaseUpdateValueStrategy extends UpdateValueStrategy {
 	protected IStatus doSet(IObservableValue observableValue, Object value) {
 		try {
 			// No se puede llamar a super porque atrapa las excepciones y nosotros queremos poder manejarlas
-			// nosotros (para diferenciar la UserException).
+			// para diferenciar la UserException
 			observableValue.setValue(value);
 			return ValidationStatus.ok();
 		}

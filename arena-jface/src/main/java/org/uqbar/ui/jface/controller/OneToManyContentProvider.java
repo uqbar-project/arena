@@ -31,9 +31,7 @@ public class OneToManyContentProvider implements IStructuredContentProvider {
 	@Override
 	public void inputChanged(final Viewer viewer, Object oldInput, Object newInput) {
 		// Dispose old value observer
-		if (this.observableValue != null) {
-			this.observableValue.dispose();
-		}
+		this.dispose();
 
 		// Create new observer and listen to its changes.
 		if (newInput != null) {

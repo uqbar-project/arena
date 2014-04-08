@@ -10,9 +10,10 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * 
+ * @deprecated Esto no se está usando.Parece que antes se usaba desde JFaceTableBuilder 
  * @author npasserini
  */
+@Deprecated
 public class TableObservableValue extends AbstractObservableValue {
 	private final Table table;
 	private boolean updating = false;

@@ -147,13 +147,11 @@ public class JFaceObservableFactory {
 
 		if (propertyChainParts.size() > 1) {
 			IObservableValue master = observeProperty(bean,	propertyChainParts.subList(0, propertyChainParts.size() - 1));
-
 			return ArenaBeansObservables.observeDetailList(Realm.getDefault(), master, propertyChainParts.get(propertyChainParts.size() - 1), null);
 		}
 		else {
 			// fix for scala collections
 			return ArenaBeansObservables.observeList(Realm.getDefault(), bean, propertyChain, null);
-//			return BeansObservables.observeList(Realm.getDefault(), bean, propertyChain, null);
 		}
 	}
 
@@ -165,7 +163,6 @@ public class JFaceObservableFactory {
 		BeanInfo beanInfo;
 		try {
 			beanInfo = new ScalaBeanInfo(beanClass);
-//			beanInfo = Introspector.getBeanInfo(beanClass);
 		}
 		catch (IntrospectionException e) {
 			return null;
