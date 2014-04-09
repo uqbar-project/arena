@@ -83,7 +83,7 @@ class PureObjectTransactionMonitorWindow(parent: WindowOwner, model: MonitorAppl
 
   override def addActions(actionsPanel: Panel) = {
     var close = new Button(actionsPanel).setCaption("Close")
-//    close.setFontSize(25)//.setWidth(100).setHeigth(50)
+//    close.setFontSize(25)//.setWidth(100).setHeight(50)
     close.onClick(new MessageSend(this, "close"))
   }
 }

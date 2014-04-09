@@ -39,6 +39,6 @@ public interface ControlBuilder extends WidgetBuilder {
 
 	public void setWidth(int preferredSize);
 
-	public void setHeigth(int preferredSize);
+	public void setHeight(int preferredSize);
 	
 }

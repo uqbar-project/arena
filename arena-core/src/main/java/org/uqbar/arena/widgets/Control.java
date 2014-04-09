@@ -157,7 +157,7 @@ public abstract class Control extends Widget {
 		this.configurations.add(new Closure<ControlBuilder>() {
 			@Override
 			public void execute(ControlBuilder builder) {
-				builder.setHeigth(preferredSize);
+				builder.setHeight(preferredSize);
 			}
 		});
 
