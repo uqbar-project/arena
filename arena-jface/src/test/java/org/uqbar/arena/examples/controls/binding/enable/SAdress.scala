@@ -1,9 +1,12 @@
 package org.uqbar.arena.examples.controls.binding.enable
 
 import org.uqbar.commons.utils.TransactionalAndObservable
-
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
+import org.uqbar.commons.utils.Observable
+
+@Observable
+class Country(var name:String)
 
 @TransactionalAndObservable
 class SAdress {
@@ -16,8 +19,6 @@ class SAdress {
       new Country("Cuba"),
       new Country("Iran"),
       new Country("North Korea")).asJava;
- 
-
 }
 
 object SAdress {

@@ -152,8 +152,7 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 
 	@Override
 	public void showMessage(Type type, String message) {
-		MessageBox messageBox = new MessageBox(this.getShell(), SWT.OK
-				| computeStyle(type));
+		MessageBox messageBox = new MessageBox(this.getShell(), SWT.OK	| computeStyle(type));
 		messageBox.setMessage(message);
 		messageBox.setText(this.getShell().getText());
 		messageBox.open();
@@ -161,15 +160,10 @@ public class JFaceWindowBuilder extends AbstractWidgetBuilder implements WindowB
 
 	protected int computeStyle(Type type) {
 		switch (type) {
-		case Information:
-			return SWT.ICON_INFORMATION;
-		case Warning:
-			return SWT.ICON_WARNING;
-		case Error:
-			return SWT.ICON_ERROR;
-		default:
-			throw new UnsupportedOperationException(
-					"Invalid message box style: " + type);
+			case Information: 	return SWT.ICON_INFORMATION;
+			case Warning: 		return SWT.ICON_WARNING;
+			case Error:			return SWT.ICON_ERROR;
+			default:			throw new UnsupportedOperationException("Invalid message box style: " + type);
 		}
 	}
 

@@ -13,6 +13,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder;
+import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder;
 import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
@@ -26,7 +27,7 @@ import com.uqbar.commons.collections.Transformer;
  */
 public abstract class JFaceControlBuilder<T extends Control> extends JFaceWidgetBuilder<T> implements ControlBuilder {
 	private int width = SWT.DEFAULT;
-	private int heigth = SWT.DEFAULT;
+	private int height = SWT.DEFAULT;
 
 	public JFaceControlBuilder(JFaceContainer container) {
 		super(container);
@@ -89,21 +90,18 @@ public abstract class JFaceControlBuilder<T extends Control> extends JFaceWidget
 			GridData layoutData = new GridData(GridData.FILL);
 			layoutData.grabExcessHorizontalSpace = true;
 			layoutData.widthHint = width;
-			layoutData.heightHint = heigth;
+			layoutData.heightHint = height;
 			this.getWidget().setLayoutData(layoutData);
 		}
 		
 		if(this.getWidget().getParent().getLayout() instanceof  RowLayout){
-			RowData layoutData = new RowData(width, heigth);
-			this.getWidget().setLayoutData(layoutData);
+			this.getWidget().setLayoutData(new RowData(width, height));
 		}
-
 	}
 	
 	protected Control getControlLayout(){
 		return getWidget();
 	}
-
 
 	public int getWidth() {
 		return width;
@@ -114,12 +112,12 @@ public abstract class JFaceControlBuilder<T extends Control> extends JFaceWidget
 		this.width = width;
 	}
 
-	public int getHeigth() {
-		return heigth;
+	public int getHeight() {
+		return height;
 	}
 
 	@Override
-	public void setHeigth(int heigth) {
-		this.heigth = heigth;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }

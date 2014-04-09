@@ -18,7 +18,7 @@ class JFaceLinkBuilder(context : JFaceContainer)
 	with JFaceWithCaption {
   
 	// Esto no tiene sentido. Pasar a traits y que no este en e link
-	override def observeValue() = 
+	override def observeValue = 
 	  throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Link, que no tiene dicha propiedad")
 	
 }

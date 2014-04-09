@@ -14,8 +14,6 @@ import org.uqbar.arena.widgets.style.Style
 import org.uqbar.arena.widgets.tree.Tree
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.JFaceFileSelectorBuilder
-import org.uqbar.lacar.ui.impl.jface.JFaceSelectorBuilder
-import org.uqbar.lacar.ui.impl.jface.JFaceStyledTextBuilder
 import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage
@@ -41,7 +39,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
   private var children = new ArrayBuffer[WidgetBuilder]
   
   def this(container:JFaceContainer) = 
-		this(container, new Composite(container.getJFaceComposite(), SWT.NONE))
+		this(container, new Composite(container getJFaceComposite, SWT NONE))
 
   	// ********************************************************
 	// ** Components
@@ -58,14 +56,14 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 	override def addLink(caption:String, action:Action) = new JFaceLinkBuilder(this).setCaption(caption).onClick(action)
 	override def addFileButton(caption:String, title:String, path:String, extensions:Array[String]) = new JFaceFileSelectorBuilder(this, caption, title, path, extensions)
 
-	override def addTable[R](itemType : Class[R]) : TableBuilder[R] = new JFaceTableBuilder[R](this, itemType)
+	override def addTable[R](itemType : Class[R]) = new JFaceTableBuilder[R](this, itemType)
 	
 	override def addTree[T](tree:Tree[T], propertyNode:String) = new JFaceTreeBuilder[T](this, tree, propertyNode)
 
-	override def addSelector[T](nullValue : Boolean) : ListBuilder[T] =  new JFaceSelectorBuilder[T](this)
-	override def addList[T](): ListBuilder[T] = new JFaceListBuilder[T](this)
+	override def addSelector[T](nullValue : Boolean) =  new JFaceSelectorBuilder[T](this)
+	override def addList[T]() = new JFaceListBuilder[T](this)
 	
-	override def addRadioSelector[T]():ListBuilder[T] = new JFaceRadioGroupBuilder[T](this)
+	override def addRadioSelector[T]() = new JFaceRadioGroupBuilder[T](this)
 
 	// ********************************************************
 	// ** Panel
@@ -97,8 +95,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 			new ObservableErrorPanelForegroundColor(getStatus))
 	}
 
-	protected def setLayout(layout:Layout) :Unit = getWidget setLayout layout
-
+	protected def setLayout(layout:Layout) = getWidget setLayout layout
 
 	override def setPreferredWidth(width:Int) = {
 		// TODO Hacer una abstracción más genérica que permita manejar distintos tipos de Layout Data.
@@ -109,15 +106,15 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 	// ** JFaceContainer
 	// ********************************************************
 
-	override def getErrorViewer() = getContainer getErrorViewer
-	override def getStatus() = getContainer getStatus
-	override def getJFaceComposite() = getWidget
+	override def getErrorViewer = container getErrorViewer
+	override def getStatus = container getStatus
+	override def getJFaceComposite = getWidget
 
-	override def pack() = children foreach(_ pack)
+	override def pack = children foreach(_ pack)
 	
 	override def addChild(child: WidgetBuilder) = {
 		children += child
 		this
 	}
-  
+
 }

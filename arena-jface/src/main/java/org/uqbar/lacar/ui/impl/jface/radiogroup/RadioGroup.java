@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.TypedListener;
  * A {@link Composite} control that represents a group of {@link RadioItem} items 
  * from which the user can only make a single-selection. 
  *
- * @author jfernandes
+ * @author
  */
 public class RadioGroup extends Composite {
 	private List<RadioItem> items = new ArrayList<RadioItem>();

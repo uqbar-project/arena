@@ -21,7 +21,7 @@ trait JFaceClickable extends Clickable {
   this : JFaceControlBuilder[_ <: SelectionListening] =>
 	
   override def onClick(action: Action) : this.type = {
-    getWidget.addSelectionListener(new JFaceActionAdapter(getContainer, action))
+    getWidget addSelectionListener(new JFaceActionAdapter(getContainer, action))
     this
   }
 }

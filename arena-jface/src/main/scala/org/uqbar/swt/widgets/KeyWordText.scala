@@ -1,4 +1,4 @@
-package org.uqbar.ui.jface.controller
+package org.uqbar.swt.widgets
 
 import scala.collection.JavaConversions.mapAsScalaMap
 
@@ -12,36 +12,32 @@ import org.uqbar.ui.swt.utils.SWTUtils
 class KeyWordText(parent: Composite, var configuration: java.util.Map[Array[String], Style]) extends StyledText(parent, SWT.MULTI | SWT.BORDER) {
 
   override def setText(text: String) {
-    super.setText(text);
-    this.paintStyle();
+    super.setText(text)
+    paintStyle
   }
 
   def paintStyle() {
-    var currentText = this.getText();
+    var currentText = getText
     configuration.foreach {
-    case (keywords, style) => keywords.foreach{addStyleRange(currentText, style, _)
-     }
+    	case (keywords, style) => keywords foreach{ addStyleRange(currentText, style, _) }
     }
   }
 
   def addStyleRange(currentText: String, style: Style, keyword: String) {
     val regex = keyword.r.pattern.matcher(currentText)
-    while (regex.find()) {
-      val stylerange = new StyleRange();
-      stylerange.start = regex.start()
-      stylerange.length = regex.end() - regex.start()
-      setConfigurationStyle(style, stylerange);
-      this.setStyleRange(stylerange);
+    while (regex find()) {
+      val stylerange = new StyleRange()
+      stylerange.start = regex.start
+      stylerange.length = regex.end - regex.start
+      setConfigurationStyle(style, stylerange)
+      setStyleRange(stylerange)
     }
   }
 
   def setConfigurationStyle(style: Style, stylerange: StyleRange) {
-    if (style.backgound != null)
-      stylerange.background = SWTUtils.getSWTColor(getDisplay(), style.backgound);
-    if (style.foreground != null)
-      stylerange.foreground = SWTUtils.getSWTColor(getDisplay(), style.foreground);
-    if (style.fontStyle != 0)
-      stylerange.fontStyle = style.fontStyle;
+    if (style.backgound != null)  stylerange.background = SWTUtils.getSWTColor(getDisplay(), style.backgound);
+    if (style.foreground != null) stylerange.foreground = SWTUtils.getSWTColor(getDisplay(), style.foreground);
+    if (style.fontStyle != 0) stylerange.fontStyle = style.fontStyle;
     stylerange.underline = style.underline;
   }
 }

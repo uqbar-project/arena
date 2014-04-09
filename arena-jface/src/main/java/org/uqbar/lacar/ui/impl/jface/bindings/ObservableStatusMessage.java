@@ -16,7 +16,6 @@ public class ObservableStatusMessage extends ComputedValue {
 	@Override
 	protected Object calculate() {
 		IStatus currentStatus = (IStatus) this.status.getValue();
-
 		return currentStatus.isOK() ? this.okMessage : currentStatus.getMessage();
 	}
 }

@@ -11,7 +11,7 @@ import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-import org.uqbar.ui.jface.controller.KeyWordText;
+import org.uqbar.swt.widgets.KeyWordText;
 
 /**
  * {@link IObservable} implementation that wraps a {@link Text} widget. The time

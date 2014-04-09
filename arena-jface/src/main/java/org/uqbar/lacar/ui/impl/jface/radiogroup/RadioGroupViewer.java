@@ -10,6 +10,8 @@ import org.uqbar.ui.swt.utils.ArrayUtils;
 /**
  * {@link ListViewer} implementation that uses a {@link RadioGroup} control
  * to represent options an selection.
+ * 
+ * @author jfernandes
  */
 public class RadioGroupViewer extends AbstractListViewer {
 	private RadioGroup group;

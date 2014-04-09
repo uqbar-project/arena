@@ -13,8 +13,6 @@ import org.uqbar.lacar.ui.model.Action;
  */
 public class JFaceActionAdapter implements SelectionListener {
 	private final JFaceContainer context;
-
-	// TODO No está bien referenciar al Arena desde Lacar.
 	private final Action action;
 
 	/**

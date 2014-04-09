@@ -16,7 +16,7 @@ trait WithImageControlBuilder[T <: WidgetWithImage] {
   this : JFaceWidgetBuilder[_ <: WidgetWithImage] =>
   
 	def observeImage[M](transformer : Transformer[M, Image] ) : BindingBuilder = {
-		new JFaceBindingBuilder(this, new ImageObservableValue[M](getWidget, transformer));
+		new JFaceBindingBuilder(this, new ImageObservableValue[M](getWidget(), transformer));
 	}
 
 }
