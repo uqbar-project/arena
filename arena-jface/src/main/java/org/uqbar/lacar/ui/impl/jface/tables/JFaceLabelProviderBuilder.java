@@ -84,6 +84,5 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 		observeBackgounds.put(this.columnIndex-1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
 		this.calculatedBackgroundColumns.put(this.columnIndex-1, (Transformer<Object, ?>) transformer);
 	}
-	
-	
+
 }

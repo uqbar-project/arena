@@ -19,7 +19,7 @@
 		<value>SERIALIZABLE</value>
 	</property>
 	<property name="arena.applicationRunner">
-		<value>org.uqbar.lacar.ui.impl.jface.JFaceApplicationBuilder</value>
+		<value>org.uqbar.arena.jface.app.JFaceApplicationBuilder</value>
 	</property>
 	<property name="apo.adviceConfiguration">
 		<value>org.uqbar.arena.apo.ArenaConfiguration</value>
