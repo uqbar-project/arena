@@ -8,7 +8,9 @@ import org.uqbar.lacar.ui.model.Action;
 /**
  * Sacar esto. Que porque ya existe el bindSelection
  * Lo saco en otro momento.
+ * @deprecated user el implicit conversion de JFaceImplicits
  */
+@Deprecated
 public class SelectionChangeListener implements ISelectionChangedListener {
 	private Action onSelection;
 

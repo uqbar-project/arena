@@ -11,6 +11,7 @@ import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap;
+import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
 import com.uqbar.commons.collections.Transformer;
@@ -38,7 +39,7 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	}
 
 	public IBaseLabelProvider createLabelProvider() {
-		for (JFaceColumnBuilder<R> column : this.table.getColumns()) {
+		for (JFaceColumnBuilder<R> column : this.table.columns()) {
 			List<LabelProvider<R>>  labelProviders = column.getLabelProvider();
 			if (labelProviders.isEmpty()) {
 				throw new RuntimeException("Column without label provider");
@@ -49,7 +50,7 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 			}
 		}
 
-		IObservableMap[] attributeMaps = JFaceObservableFactory.observeMaps(tableContents, this.table.getItemType(),
+		IObservableMap[] attributeMaps = JFaceObservableFactory.observeMaps(tableContents, this.table.itemType(),
 			this.columnPropertyNames.toArray(new String[this.columnPropertyNames.size()]));
 
 		ObservableMapProvider decorated = new ObservableMapProvider(attributeMaps);
@@ -79,7 +80,7 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void observeBackgoundColumn(String propertyName, Transformer<?, ?> transformer) {
-		observeBackgounds.put(this.columnIndex-1, JFaceObservableFactory.observeMap(tableContents, this.table.getItemType(), propertyName));
+		observeBackgounds.put(this.columnIndex-1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
 		this.calculatedBackgroundColumns.put(this.columnIndex-1, (Transformer<Object, ?>) transformer);
 	}
 	

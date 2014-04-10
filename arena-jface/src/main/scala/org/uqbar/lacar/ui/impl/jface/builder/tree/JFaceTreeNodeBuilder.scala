@@ -2,7 +2,6 @@ package org.uqbar.lacar.ui.impl.jface.builder.tree
 
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder
 import org.uqbar.arena.widgets.tree.TreeNodeBuilder
-import org.uqbar.lacar.ui.impl.jface.builder.tree.JFaceTreeBuilder
 import org.eclipse.jface.viewers.TreeViewerColumn
 import org.eclipse.swt.SWT
 import org.uqbar.lacar.ui.model.LabelProvider

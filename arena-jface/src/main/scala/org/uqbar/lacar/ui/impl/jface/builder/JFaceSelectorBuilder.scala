@@ -1,11 +1,11 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
-import org.uqbar.lacar.ui.impl.jface.lists.JFaceAbstractListBuilder
 import org.eclipse.swt.widgets.Combo
 import org.eclipse.jface.viewers.ComboViewer
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Composite
+import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceAbstractListBuilder
 
 class JFaceSelectorBuilder[T](container: JFaceContainer)
   extends JFaceAbstractListBuilder[T, ComboViewer, Combo](container) {

@@ -6,6 +6,7 @@ import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ListViewer;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
+import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceAbstractListBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ItemsBindingBuilder;
 
@@ -18,7 +19,7 @@ public class JFaceListItemsBindingBuilder extends JFaceItemsBindingBuilder imple
 	private IObservableSet itemsObservableSet;
 
 	public JFaceListItemsBindingBuilder(JFaceAbstractListBuilder<?, ?, ?> list) {
-		super(list.getJFaceListViewer());
+		super(list.viewer());
 	}
 
 	@Override

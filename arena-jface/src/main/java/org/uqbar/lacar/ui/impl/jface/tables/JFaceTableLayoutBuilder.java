@@ -6,6 +6,7 @@ import org.eclipse.jface.viewers.ColumnLayoutData;
 import org.eclipse.jface.viewers.ColumnPixelData;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableLayout;
+import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 
 import com.uqbar.commons.collections.CollectionFactory;
 
@@ -56,7 +57,7 @@ public class JFaceTableLayoutBuilder {
 
 	public TableLayout createLayout() {
 		// Primera pasada: recabar la información provista por el usuario.
-		for (JFaceColumnBuilder<?> column : this.tableBuilder.getColumns()) {
+		for (JFaceColumnBuilder<?> column : this.tableBuilder.columns()) {
 			column.getLayoutBuilder().configure(this);
 		}
 

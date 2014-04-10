@@ -10,6 +10,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Control;
 import org.uqbar.arena.widgets.tables.ColumnLayoutBuilder;
+import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
@@ -49,8 +50,7 @@ public class JFaceColumnBuilder<Row> extends AbstractWidgetBuilder implements
 	 */
 	public JFaceColumnBuilder(JFaceTableBuilder<Row> table, List<LabelProvider<Row>> labelProviders) {
 		this.labelProviders = labelProviders;
-		this.tableViewerColumn = new TableViewerColumn(
-				table.getJFaceTableViewer(), SWT.NONE);
+		this.tableViewerColumn = new TableViewerColumn(	table.viewer(), SWT.NONE);
 	}
 
 	// ********************************************************

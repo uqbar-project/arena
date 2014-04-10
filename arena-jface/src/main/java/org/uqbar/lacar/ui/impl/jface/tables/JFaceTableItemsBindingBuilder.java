@@ -3,6 +3,7 @@ package org.uqbar.lacar.ui.impl.jface.tables;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
 import org.eclipse.jface.viewers.TableViewer;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
+import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.impl.jface.lists.JFaceItemsBindingBuilder;
 
 /**
@@ -15,7 +16,7 @@ public class JFaceTableItemsBindingBuilder<Row> extends JFaceItemsBindingBuilder
 	private final JFaceTableBuilder<Row> table;
 
 	public JFaceTableItemsBindingBuilder(JFaceTableBuilder<Row> table) {
-		super(table.getJFaceTableViewer());
+		super(table.viewer());
 		this.table = table;
 	}
 
