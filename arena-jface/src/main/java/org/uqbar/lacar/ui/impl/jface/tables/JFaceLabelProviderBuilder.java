@@ -11,6 +11,7 @@ import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap;
+import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceColumnBuilder;
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
@@ -40,7 +41,7 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 
 	public IBaseLabelProvider createLabelProvider() {
 		for (JFaceColumnBuilder<R> column : this.table.columns()) {
-			List<LabelProvider<R>>  labelProviders = column.getLabelProvider();
+			List<LabelProvider<R>>  labelProviders = column.labelProviders();
 			if (labelProviders.isEmpty()) {
 				throw new RuntimeException("Column without label provider");
 			}
