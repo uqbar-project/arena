@@ -14,10 +14,9 @@ public interface ColumnBuilder<Row> extends WidgetBuilder {
 
 	public void setFixedSize(int pixels);
 
+	// extract to trait
 	void setForeground(Color color);
-
 	void setBackground(Color color);
-
 	void setFontSize(int size);
 	
 }
