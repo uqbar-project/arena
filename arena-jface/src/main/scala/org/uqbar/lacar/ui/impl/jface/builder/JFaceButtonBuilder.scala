@@ -5,7 +5,6 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Button
 import org.uqbar.arena.jface.JFaceImplicits.closureToComputedValue
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
 import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue

@@ -1,6 +1,6 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
-import org.uqbar.lacar.ui.impl.jface.{KeyWordTextObservableValue, JFaceContainer, JFaceSkinnableControlBuilder}
+import org.uqbar.lacar.ui.impl.jface.{KeyWordTextObservableValue, JFaceContainer}
 import org.uqbar.swt.widgets.KeyWordText
 import org.uqbar.arena.widgets.style.Style
 import org.uqbar.lacar.ui.model.BindingBuilder

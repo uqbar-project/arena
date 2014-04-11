@@ -14,6 +14,8 @@ import org.eclipse.jface.viewers.StructuredSelection
 import org.eclipse.jface.viewers.SelectionChangedEvent
 import org.eclipse.core.databinding.observable.value.IValueChangeListener
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent
+import org.eclipse.swt.widgets.Event
+import org.eclipse.swt.widgets.Listener
 
 /**
  * @author jfernandes
@@ -24,6 +26,10 @@ object JFaceImplicits {
     new ComputedValue() {
       override def calculate(): Object = closure()
     }
+  }
+  
+  implicit def closureToListener(closure: (Event) => Unit) = new Listener() {
+    override def handleEvent(e:Event) = closure(e)
   }
 
   implicit def closureToModifyListener(closure: (ModifyEvent) => Unit): ModifyListener = {

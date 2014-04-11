@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
 import scala.collection.mutable.ArrayBuffer
+
 import org.eclipse.jface.databinding.swt.SWTObservables
 import org.eclipse.swt.SWT
 import org.eclipse.swt.layout.RowData
@@ -12,20 +13,17 @@ import org.eclipse.swt.widgets.Layout
 import org.uqbar.arena.widgets.style.Style
 import org.uqbar.arena.widgets.tree.Tree
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.JFaceFileSelectorBuilder
 import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage
-import org.uqbar.lacar.ui.impl.jface.builder.traits.Layoutable
-import org.uqbar.lacar.ui.impl.jface.builder.tree.JFaceTreeBuilder
-import org.uqbar.lacar.ui.model.Action
-import org.uqbar.lacar.ui.model.ListBuilder
-import org.uqbar.lacar.ui.model.PanelBuilder
-import org.uqbar.lacar.ui.model.TableBuilder
-import org.uqbar.lacar.ui.model.WidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceListBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceRadioGroupBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.Layoutable
+import org.uqbar.lacar.ui.impl.jface.builder.tree.JFaceTreeBuilder
+import org.uqbar.lacar.ui.model.Action
+import org.uqbar.lacar.ui.model.PanelBuilder
+import org.uqbar.lacar.ui.model.WidgetBuilder
 
 /**
  * @author jfernandes

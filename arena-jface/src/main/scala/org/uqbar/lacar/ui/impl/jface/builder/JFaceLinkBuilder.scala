@@ -3,7 +3,6 @@ package org.uqbar.lacar.ui.impl.jface.builder
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Link
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.JFaceSkinnableControlBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceWithCaption
 import org.uqbar.lacar.ui.model.builder.LinkBuilder

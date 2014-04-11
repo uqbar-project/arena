@@ -6,7 +6,7 @@ import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.builder.traits.WithCaption
-import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 

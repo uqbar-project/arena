@@ -22,13 +22,14 @@ import org.eclipse.jface.window.ApplicationWindow
 import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Listener
 import org.eclipse.swt.widgets.Event
+import org.uqbar.arena.jface.JFaceImplicits._
 
 //TODO SCALA: 
 //  - se puede usar los lazy para crear los atributos la primera vez?
 
 class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with JFaceContainer {
   var dbc = new DataBindingContext()
-  var window : Window = _
+  lazy val window : Window = createJFaceWindow
   var children : java.util.List[WidgetBuilder] = CollectionFactory.createList()
   var windowDescriptor : ViewDescriptor[PanelBuilder] = _
 	// TODO Para no obligar a definir un ErrorViewer, podríamos tener uno
@@ -52,10 +53,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 	}
 
 	override def open() {
-		val window = this.getJFaceWindow()
-
-		// Esto crea tanto la ventana como sus contenidos (termina llamando a
-		// createWindowContents).
+		// Esto crea tanto la ventana como sus contenidos (termina llamando a createWindowContents).
 		window.create();
 
 		// Esto debe hacerse después del create, en caso contrario no hay shell
@@ -69,9 +67,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 		// Una configuración adicional.
 		window.setBlockOnOpen(true)
 
-		window.getShell().addListener(SWT.Close, new Listener() {
-			override def handleEvent(event:Event) = windowDescriptor close
-		})
+		window.getShell().addListener(SWT.Close, (event:Event) => windowDescriptor close)
 
 		// Al hacer open se podría evitar el create anterior, pero necesito
 		// hacerlo para poder hacer getShell
@@ -103,7 +99,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 	}
 	
 	override def showMessage(msgType:Type, message:String) {
-		val messageBox = new org.eclipse.swt.widgets.MessageBox(getShell, SWT.OK	| computeStyle(msgType));
+		val messageBox = new org.eclipse.swt.widgets.MessageBox(getShell, SWT.OK | computeStyle(msgType));
 		messageBox.setMessage(message)
 		messageBox.setText(getShell getText)
 		messageBox.open
@@ -147,17 +143,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 	override def getJFaceComposite() = getShell
 	
 	// WARNING: Este método falla si no se invocó el #create primero.
-	def getShell() = getJFaceWindow getShell
-	
-	/**
-	 * Este método crea la ventana subyacente si no existe.
-	 */
-	def getJFaceWindow() = {
-		if (window == null) {
-			window = createJFaceWindow
-		}
-		window
-	}
+	def getShell() = window getShell
 	
 	def createJFaceWindow() : Window = {
 		new ApplicationWindow(null) {

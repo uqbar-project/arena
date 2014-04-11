@@ -1,6 +1,6 @@
 package org.uqbar.lacar.ui.impl.jface.builder.tree
 
-import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.eclipse.swt.widgets.Tree
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.arena.widgets.tree.TreeBuilder
@@ -40,7 +40,7 @@ extends JFaceControlBuilder[Tree](container) with TreeBuilder[R] {
 	override def observeContents() = new JFaceTreeItemsBindingBuilder(this)
 	override def observeValue() = new JFaceBindingBuilder(this, ViewersObservables.observeSingleSelection(getJFaceTreeViewer))
 
-	override def getControlLayout() = viewer getControl
+	override def getControlLayout() = viewer getTree
 	def getJFaceTreeViewer() = viewer
 	def getChilds() = childs
 	def getArenaTree() = arenaTree

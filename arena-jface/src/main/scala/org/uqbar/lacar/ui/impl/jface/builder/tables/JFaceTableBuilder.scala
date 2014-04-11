@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Table
 import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.JFaceControlBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.tables.JFaceTableItemsBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.tables.JFaceTableLayoutBuilder

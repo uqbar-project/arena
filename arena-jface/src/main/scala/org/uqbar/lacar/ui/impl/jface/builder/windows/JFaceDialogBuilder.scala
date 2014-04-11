@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Composite
 class JFaceDialogBuilder(var parent:JFaceWindowBuilder) extends JFaceWindowBuilder {
 
 	override def createJFaceWindow() = 
-		new Dialog(this.parent.getJFaceWindow()) {
+		new Dialog(this.parent.window) {
 			override def createContents(window:Composite) = createWindowContents(window)
 		}
 
