@@ -4,7 +4,7 @@ import org.eclipse.core.runtime.IStatus
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Button
 import org.uqbar.arena.jface.JFaceImplicits.closureToComputedValue
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
 import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
@@ -25,15 +25,15 @@ class JFaceButtonBuilder(c: JFaceContainer)
 {
 
   override def setAsDefault() = {
-    getWidget.getShell.setDefaultButton(getWidget)
+    widget.getShell.setDefaultButton(widget)
     this
   }
 
   override def disableOnError() = {
-    new JFaceBindingBuilder(this, observeEnabled(getWidget), () => computeValue()).build
+    new JFaceBindingBuilder(this, observeEnabled(widget), () => computeValue()).build
   }
 
-  def computeValue(): Object = getContainer.getStatus.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
+  def computeValue(): Object = container.getStatus.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
 
   override def observeValue() : BindingBuilder = throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 

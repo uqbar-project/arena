@@ -1,7 +1,6 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
 import scala.collection.mutable.ArrayBuffer
-
 import org.eclipse.jface.databinding.swt.SWTObservables
 import org.eclipse.swt.SWT
 import org.eclipse.swt.layout.RowData
@@ -12,8 +11,6 @@ import org.eclipse.swt.widgets.Label
 import org.eclipse.swt.widgets.Layout
 import org.uqbar.arena.widgets.style.Style
 import org.uqbar.arena.widgets.tree.Tree
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableErrorPanelForegroundColor
 import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage
 import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceListBuilder
@@ -24,6 +21,7 @@ import org.uqbar.lacar.ui.impl.jface.builder.tree.JFaceTreeBuilder
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.PanelBuilder
 import org.uqbar.lacar.ui.model.WidgetBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 
 /**
  * @author jfernandes
@@ -47,7 +45,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 	override def addStyleTextArea(configurationStyle : java.util.Map[Array[String], Style]) = new JFaceStyledTextBuilder(this, configurationStyle)
 	override def addSpinner(minValue:Integer, maxValue:Integer) = new JFaceSpinnerBuilder(this, minValue, maxValue)
 
-	override def addCheckBox() = new JFaceCheckBoxBuilder(new Button(getWidget, SWT.CHECK), this)
+	override def addCheckBox() = new JFaceCheckBoxBuilder(new Button(widget, SWT.CHECK), this)
 
 	override def addButton(caption:String, action:Action) = new JFaceButtonBuilder(this).setCaption(caption).onClick(action)
 	override def addLink(caption:String, action:Action) = new JFaceLinkBuilder(this).setCaption(caption).onClick(action)
@@ -76,11 +74,11 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 
 	override def addErrorPanel(okMessage:String) = {
 		// TODO Usar el framework para configurar el label en lugar de hacerlo manualmente.
-		val errorLabel = new Label(getWidget, SWT.WRAP)
+		val errorLabel = new Label(widget, SWT.WRAP)
 		errorLabel.setLayoutData(new RowData(250, 50))
 
 		// fija el background del label. por default es blanco, al igual que el de eclipse
-		errorLabel.setBackground(getWidget.getDisplay.getSystemColor(SWT.COLOR_WHITE))
+		errorLabel.setBackground(widget.getDisplay.getSystemColor(SWT.COLOR_WHITE))
 
 		val labelBuilder = new JFaceLabelBuilder(this, errorLabel)
 		labelBuilder.bind(//
@@ -92,7 +90,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 			new ObservableErrorPanelForegroundColor(getStatus))
 	}
 
-	protected def setLayout(layout:Layout) = getWidget setLayout layout
+	protected def setLayout(layout:Layout) = widget setLayout layout
 
 	override def setPreferredWidth(width:Int) = {
 		// TODO Hacer una abstracción más genérica que permita manejar distintos tipos de Layout Data.
@@ -105,7 +103,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 
 	override def getErrorViewer = container getErrorViewer
 	override def getStatus = container getStatus
-	override def getJFaceComposite = getWidget
+	override def getJFaceComposite = widget
 
 	override def pack = children foreach(_ pack)
 	

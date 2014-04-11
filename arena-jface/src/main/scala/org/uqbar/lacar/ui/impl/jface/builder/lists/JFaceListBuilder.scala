@@ -2,7 +2,7 @@ package org.uqbar.lacar.ui.impl.jface.builder.lists
 
 import org.eclipse.jface.viewers.ListViewer
 import org.eclipse.swt.widgets.List
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.SWT._
 

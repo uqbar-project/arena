@@ -5,7 +5,7 @@ import org.eclipse.jface.viewers.AbstractListViewer
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Control
 import org.uqbar.arena.jface.JFaceImplicits._
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.lists.JFaceListItemsBindingBuilder

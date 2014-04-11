@@ -1,11 +1,10 @@
-package org.uqbar.lacar.ui.impl.jface;
+package org.uqbar.lacar.ui.impl.jface.builder.traits
 
-import org.eclipse.core.databinding.AggregateValidationStatus;
-import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.swt.widgets.Composite;
-
-import org.uqbar.lacar.ui.model.WidgetBuilder;
-import org.uqbar.ui.view.ErrorViewer;
+import org.eclipse.core.databinding.AggregateValidationStatus
+import org.uqbar.ui.view.ErrorViewer
+import org.eclipse.core.databinding.DataBindingContext
+import org.uqbar.lacar.ui.model.WidgetBuilder
+import org.eclipse.swt.widgets.Composite
 
 /**
  * Es simplemente una agrupación de diferentes elementos que están presentes en toda ventana y son usados por
@@ -15,17 +14,16 @@ import org.uqbar.ui.view.ErrorViewer;
  * si se agrega un elemento nuevo.
  * 
  * @author npasserini
- * 
  */
-public interface JFaceContainer {
+trait JFaceContainer {
+  
+  	def getDataBindingContext() : DataBindingContext
 
-	public DataBindingContext getDataBindingContext();
+	def getErrorViewer() : ErrorViewer
 
-	public ErrorViewer getErrorViewer();
+	def getStatus() : AggregateValidationStatus
 
-	public AggregateValidationStatus getStatus();
-
-	public Composite getJFaceComposite();
+	def getJFaceComposite() : Composite 
 
 	/**
 	 * Agrega un hijo al contenedor. Esto es fundamental para que el contenedor al finalizar su construcción
@@ -33,5 +31,7 @@ public interface JFaceContainer {
 	 * 
 	 * @return Este mismo container, utilidad para anidar mensajes.
 	 */
-	public JFaceContainer addChild(WidgetBuilder child);
+	def addChild(child:WidgetBuilder) : JFaceContainer
+
+
 }

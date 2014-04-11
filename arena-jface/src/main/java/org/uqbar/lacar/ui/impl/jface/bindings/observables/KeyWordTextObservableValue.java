@@ -1,4 +1,4 @@
-package org.uqbar.lacar.ui.impl.jface;
+package org.uqbar.lacar.ui.impl.jface.bindings.observables;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObservable;

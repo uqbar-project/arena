@@ -2,7 +2,7 @@ package org.uqbar.lacar.ui.impl.jface.builder.tree
 
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.eclipse.swt.widgets.Tree
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.arena.widgets.tree.TreeBuilder
 import java.util.ArrayList
 import org.eclipse.swt.widgets.Composite
@@ -19,7 +19,7 @@ extends JFaceControlBuilder[Tree](container) with TreeBuilder[R] {
 	
 	private var arenaTree = _arenaTree
 	private var childs = new ArrayList[JFaceTreeNodeBuilder[R]]() 
-	private var viewer = this.createTree(this.getContainer().getJFaceComposite()) 
+	private var viewer = this.createTree(container.getJFaceComposite) 
 	this.initialize(this.viewer.getTree());	
 
 	def createTree(jFaceComposite:Composite) = {

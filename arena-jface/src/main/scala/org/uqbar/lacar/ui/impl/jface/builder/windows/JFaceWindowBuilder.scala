@@ -2,7 +2,6 @@ package org.uqbar.lacar.ui.impl.jface.builder.windows
 
 import scala.collection.JavaConversions._
 import org.uqbar.lacar.ui.model.AbstractWidgetBuilder
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
 import org.uqbar.lacar.ui.model.WindowBuilder
 import org.eclipse.core.databinding.DataBindingContext
 import org.eclipse.jface.window.Window
@@ -23,6 +22,7 @@ import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Listener
 import org.eclipse.swt.widgets.Event
 import org.uqbar.arena.jface.JFaceImplicits._
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 
 //TODO SCALA: 
 //  - se puede usar los lazy para crear los atributos la primera vez?
@@ -86,7 +86,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 		builder setVerticalLayout;
 		windowDescriptor showOn builder
 		pack
-		builder.getWidget()
+		builder widget
 	}
 	
 	override def getDataBindingContext() = dbc

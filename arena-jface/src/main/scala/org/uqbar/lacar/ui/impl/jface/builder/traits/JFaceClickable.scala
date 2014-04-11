@@ -7,7 +7,7 @@ import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.builder.traits.WithCaption
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
-import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 
 /**
@@ -21,7 +21,7 @@ trait JFaceClickable extends Clickable {
   this : JFaceControlBuilder[_ <: SelectionListening] =>
 	
   override def onClick(action: Action) : this.type = {
-    getWidget addSelectionListener(new JFaceActionAdapter(getContainer, action))
+    widget addSelectionListener(new JFaceActionAdapter(container, action))
     this
   }
 }
@@ -29,10 +29,10 @@ trait JFaceClickable extends Clickable {
 trait JFaceWithCaption extends WithCaption {
   this : JFaceWidgetBuilder[_ <: WithText] =>
     
-  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(getWidget))
+  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(widget))
   
   def setCaption(caption: String) : this.type = {
-    getWidget setText caption
+    widget setText caption
     this
   }
 }

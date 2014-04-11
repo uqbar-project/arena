@@ -10,7 +10,7 @@ import org.eclipse.jface.databinding.viewers.ObservableListTreeContentProvider
 import org.eclipse.jface.databinding.viewers.ViewersObservables
 import org.eclipse.core.databinding.observable.Realm
 
-class JFaceTreeItemsBindingBuilder(list:JFaceTreeBuilder[_]) 
+class JFaceTreeItemsBindingBuilder(list:JFaceTreeBuilder[_])
 	extends JFaceBindingBuilder(list, ViewersObservables.observeInput(list.getJFaceTreeViewer)) 
     with TreeItemsBindingBuilder {
   

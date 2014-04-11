@@ -8,6 +8,7 @@ import java.util.Map;
 import org.eclipse.core.databinding.observable.map.IObservableMap;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
+import org.eclipse.swt.widgets.Widget;
 import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap;
@@ -56,7 +57,8 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 
 		ObservableMapProvider decorated = new ObservableMapProvider(attributeMaps);
 		decorated.initializeBackground(calculatedBackgroundColumns, observeBackgounds);
-		decorated.widget_$eq(table.getWidget());
+		// CASTEO por problemas de interoperabilidad al migrar a scala. Deberia ser innecesario
+		decorated.widget_$eq((Widget) table.widget());
 		this.columnsLabelProvider.initialize(decorated, this.calculatedColumns);
 		return this.columnsLabelProvider;
 		// return new ObservableMapLabelProvider(attributeMaps);

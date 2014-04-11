@@ -2,7 +2,7 @@ package org.uqbar.lacar.ui.impl.jface.builder
 
 import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder
 import org.eclipse.swt.widgets.Control
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.builder.traits.Aesthetic
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.eclipse.jface.databinding.swt.SWTObservables
@@ -18,8 +18,8 @@ abstract class JFaceSkinnableControlBuilder[T <: Control](container:JFaceContain
 		this.initialize(jfaceWidget)
   }
   
-  def getControl() = getWidget
+  def getControl() = widget
   
-  def observeBackground() = new JFaceBindingBuilder(this, SWTObservables.observeBackground(getWidget))
+  def observeBackground() = new JFaceBindingBuilder(this, SWTObservables.observeBackground(widget))
 		
 }

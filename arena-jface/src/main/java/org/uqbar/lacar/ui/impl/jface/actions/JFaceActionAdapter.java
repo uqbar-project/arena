@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.impl.jface.actions;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.uqbar.commons.model.UserException;
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer;
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer;
 import org.uqbar.lacar.ui.model.Action;
 
 /**

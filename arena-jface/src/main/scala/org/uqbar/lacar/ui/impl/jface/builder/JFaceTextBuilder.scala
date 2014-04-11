@@ -9,7 +9,7 @@ import org.uqbar.arena.jface.JFaceImplicits.closureToModifyListener
 import org.uqbar.arena.jface.JFaceImplicits.closureToVerifyListener
 import org.uqbar.arena.jface.JFaceImplicits.verifyEventToTextInputEvent
 import org.uqbar.arena.widgets.TextFilter
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.model.TextControlBuilder
 
@@ -18,14 +18,14 @@ class JFaceTextBuilder(container:JFaceContainer, multiLine:Boolean)
 	with TextControlBuilder {
 
 
-	override def observeValue() = new JFaceBindingBuilder(this, SWTObservables.observeText(getWidget, SWT.Modify))
+	override def observeValue() = new JFaceBindingBuilder(this, SWTObservables.observeText(widget, SWT.Modify))
 	
 	override def selectFinalLine() = {
-	  getWidget addModifyListener((e:ModifyEvent) => getWidget setSelection(getWidget.getText.length))
+	  widget addModifyListener((e:ModifyEvent) => widget setSelection(widget.getText.length))
 	}
 
 	override def addTextFilter(filter:TextFilter) = {
-	  getWidget addVerifyListener((event:VerifyEvent) => event.doit = filter accept(event))
+	  widget addVerifyListener((event:VerifyEvent) => event.doit = filter accept(event))
 	}
   
 }

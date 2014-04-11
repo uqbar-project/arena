@@ -6,7 +6,7 @@ import com.uqbar.commons.collections.Transformer
 import org.uqbar.arena.graphics.Image
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.observables.ImageObservableValue
-import org.uqbar.lacar.ui.impl.jface.JFaceWidgetBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
 
 /**
  * Allows to observe the control's image.
@@ -16,7 +16,7 @@ trait WithImageControlBuilder[T <: WidgetWithImage] {
   this : JFaceWidgetBuilder[_ <: WidgetWithImage] =>
   
 	def observeImage[M](transformer : Transformer[M, Image] ) : BindingBuilder = {
-		new JFaceBindingBuilder(this, new ImageObservableValue[M](getWidget(), transformer));
+		new JFaceBindingBuilder(this, new ImageObservableValue[M](widget, transformer));
 	}
 
 }

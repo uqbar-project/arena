@@ -28,7 +28,7 @@ public class SWTUtils {
 		return (style & flag) != 0;
 	}
 	
-	public static  org.eclipse.swt.graphics.Color getSWTColor(Display display, Color color) {
+	public static org.eclipse.swt.graphics.Color getSWTColor(Display display, Color color) {
 		int blue = color.getBlue();
 		int green = color.getGreen();
 		int red = color.getRed();

@@ -1,7 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
 import org.eclipse.swt.widgets.Spinner
-import org.uqbar.lacar.ui.impl.jface.JFaceContainer
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.eclipse.swt.SWT
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.eclipse.jface.databinding.swt.SWTObservables
