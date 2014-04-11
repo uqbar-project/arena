@@ -18,6 +18,8 @@ Documentation (work in progress)
      
      * Binding Background Colors
      
+     * Binding Enabled / Visible
+     
  * Components
  
      * TextBox
@@ -37,3 +39,5 @@ Documentation (work in progress)
      * StyledText
      
      * Windows and Dialogs
+
+ * Transactions  

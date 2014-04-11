@@ -37,10 +37,7 @@ Uqbar Maven Repositories
 
 Arena Artifacts
 
-
- //TODO:
-
- You UI project must depend on one of the Arena implementations. Currently the stable implementation is based on <<eclipse swt+jface>> and its call
+ Your UI project must depend on one of the Arena implementations. Currently the stable implementation is based on <<eclipse swt+jface>> and its call
  <<arena-jface>>:
 
 +---------------------------------------------+
