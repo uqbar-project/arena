@@ -1,9 +1,9 @@
 package org.uqbar.arena.widgets;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
-import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.NoopWidgetBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
@@ -11,6 +11,7 @@ import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
+import com.uqbar.commons.collections.Closure;
 import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
 import com.uqbar.commons.loggeable.Loggeable;
@@ -22,6 +23,7 @@ import com.uqbar.commons.loggeable.Loggeable;
  */
 public abstract class Widget implements Loggeable {
 	private Collection<Binding<WidgetBuilder>> bindings = CollectionFactory.createCollection();
+	protected List<Closure<WidgetBuilder>> configurations = CollectionFactory.createList();
 	private static final long serialVersionUID = 7034829204374950200L;
 
 	/**
@@ -58,7 +60,7 @@ public abstract class Widget implements Loggeable {
 	 * @param view An observable characteristic of this control.
 	 * @return A {@link Binding} that allows to configure further the creating binding between view and model.
 	 */
-	protected <C extends ControlBuilder> Binding<C> addBinding(Observable model, ViewObservable<C> view) {
+	protected <C extends WidgetBuilder> Binding<C> addBinding(Observable model, ViewObservable<C> view) {
 		model.setContainer(this.getContainer());
 		return this.addBinding(new Binding<C>(model, view));
 	}
@@ -96,9 +98,6 @@ public abstract class Widget implements Loggeable {
 		builder.pack();
 	}
 
-	public void configure(WidgetBuilder builder) {
-	}
-
 	protected WidgetBuilder createBuilder(PanelBuilder container) {
 		return NoopWidgetBuilder.SHARED_INSTANCE;
 	}
@@ -132,4 +131,25 @@ public abstract class Widget implements Loggeable {
 	public void appendYourselfTo(HierarchicalLogger visitor) {
 		visitor.append(this.getClass());
 	}
+	
+	// ********************************************************
+	// ** Configurations
+	// ********************************************************
+	
+	// Para evitar este SupressWarnings habría que poner un self-bound generic type parameter a todos los
+	// widgets y prefiero no hacerlo.
+	@SuppressWarnings("unchecked")
+	public Widget addConfiguration(Closure<? extends WidgetBuilder> configuration) {
+		this.configurations.add((Closure<WidgetBuilder>) configuration);
+		return this;
+	}
+	
+	/**
+	 * Remember to call super if you override this template method.
+	 */
+	public void configure(WidgetBuilder builder) {
+		for (Closure<WidgetBuilder> configuration : this.configurations) {
+			configuration.execute(builder);
+		}
+	}	
 }

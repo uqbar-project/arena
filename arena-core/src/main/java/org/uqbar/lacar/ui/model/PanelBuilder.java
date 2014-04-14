@@ -5,7 +5,7 @@ import java.util.Map;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.arena.widgets.tree.Tree;
 import org.uqbar.lacar.ui.model.builder.LinkBuilder;
-import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.StyledControlBuilder;
 
 /**
  * @author npasserini
@@ -18,8 +18,8 @@ public interface PanelBuilder {
 
 	public LabelBuilder addLabel();
 
-	public SkinnableBuilder addTextBox(boolean multiLine);
-	public SkinnableBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
+	public StyledControlBuilder addTextBox(boolean multiLine);
+	public StyledControlBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);
 

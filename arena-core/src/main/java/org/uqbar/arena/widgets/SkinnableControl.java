@@ -2,7 +2,7 @@ package org.uqbar.arena.widgets;
 
 import java.awt.Color;
 
-import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.StyledWidgetBuilder;
 
 public abstract class SkinnableControl extends Control {
 	private static final long serialVersionUID = 1L;
@@ -34,15 +34,15 @@ public abstract class SkinnableControl extends Control {
 		return this;
 	}
 
-	protected void configureSkineableBuilder(SkinnableBuilder builder){
-		if(foreground != null){
+	protected void configureSkineableBuilder(StyledWidgetBuilder builder){
+		if (foreground != null) {
 			builder.setForeground(foreground);			
 		}
-		if(background != null){
+		if (background != null) {
 			builder.setBackground(background);			
 		}
 		
-		if(fontSize != 0){
+		if (fontSize != 0) {
 			builder.setFontSize(fontSize);			
 		}
 	}

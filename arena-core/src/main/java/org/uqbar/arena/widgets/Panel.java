@@ -8,6 +8,7 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.commons.model.IModel;
 import org.uqbar.commons.model.Model;
 import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 
 import com.uqbar.commons.exceptions.ProgramException;
@@ -24,8 +25,8 @@ import com.uqbar.commons.loggeable.HierarchicalLogger;
  * @author npasserini
  */
 public class Panel extends Widget implements Container {
+	private static final long serialVersionUID = -7775790229491390428L;
 	protected IModel<?> model;
-
 	private int width = 250;
 
 	/**
@@ -48,25 +49,17 @@ public class Panel extends Widget implements Container {
 	}
 
 	public Panel(Container container, IModel<?> model) {
-		this(container);
+		super(container);
 		this.model = model;
 	}
 
 	public Panel(Container container, Object model) {
-		this(container, new Model<Object>(model));
+		this(container, new Model(model));
 	}
 
 	// ********************************************************
 	// ** Binding
 	// ********************************************************
-
-	/**
-	 * @deprecated Use {@link #bindContentsToProperty(String)} instead
-	 */
-	@Deprecated
-	public Panel bindContents(String propertyName) {
-		return bindContentsToProperty(propertyName);
-	}
 
 	/**
 	 * Vincula el contenido de este panel con una propiedad del panel padre.
@@ -75,12 +68,12 @@ public class Panel extends Widget implements Container {
 	 * "vinculados", en caso de modificaciones posteriores al modelo el panel no se entera.
 	 */
 	public Panel bindContentsToProperty(String propertyName) {
-		Object propertyModel = this.getModel().getProperty(propertyName);
+		Object propertyModel = ReflectionUtils.invokeGetter(this.getModel().getSource(), propertyName);
 		if (propertyModel instanceof IModel) {
 			this.model = (IModel<?>) propertyModel;
 		}
 		else {
-			this.model = new Model<Object>(propertyModel);
+			this.model = new Model(propertyModel);
 		}
 		return this;
 	}
@@ -149,6 +142,10 @@ public class Panel extends Widget implements Container {
 		for (Widget child : this.children) {
 			child.showOn(me);
 		}
+	}
+	
+	protected List<Widget> getChildren() {
+		return this.children;
 	}
 
 	/**

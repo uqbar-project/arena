@@ -2,7 +2,6 @@ package org.uqbar.lacar.ui.model.builder.traits;
 
 import org.uqbar.arena.graphics.Image;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.model.ControlBuilder;
 
 import com.uqbar.commons.collections.Transformer;
 
@@ -11,7 +10,7 @@ import com.uqbar.commons.collections.Transformer;
  * 
  * @author jfernandes
  */
-public interface WithImageBuilder extends ControlBuilder {
+public interface WithImageBuilder {
 
 	public <M> BindingBuilder observeImage(Transformer<M, Image> transformer);
 	

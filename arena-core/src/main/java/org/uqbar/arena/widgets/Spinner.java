@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import net.sf.oval.constraint.Max;
 import net.sf.oval.constraint.Min;
 
+import org.uqbar.commons.model.Model;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
@@ -36,7 +37,7 @@ public class Spinner extends Control {
 	
 	@Override
 	public <C extends ControlBuilder> Binding<C> bindValueToProperty(String modelProperty) {
-		Method getter = this.getContainer().getModel().getGetter(modelProperty);
+		Method getter = Model.getPropertyDescriptor(this.getContainer().getModel(), modelProperty).getReadMethod();
 		if (getter.isAnnotationPresent(Min.class)) {
 			this.setMinimumValue((int) getter.getAnnotation(Min.class).value());
 		}

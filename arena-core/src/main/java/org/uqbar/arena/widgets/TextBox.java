@@ -3,7 +3,8 @@ package org.uqbar.arena.widgets;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.TextControlBuilder;
-import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.StyledControlBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.StyledWidgetBuilder;
 
 import com.uqbar.commons.collections.Closure;
 
@@ -22,7 +23,7 @@ public class TextBox extends SkinnableControl {
 
 	@Override
 	protected ControlBuilder createBuilder(PanelBuilder container) {
-		SkinnableBuilder textBox = container.addTextBox(multiLine);
+		StyledControlBuilder textBox = container.addTextBox(multiLine);
 		this.configureSkineableBuilder(textBox);
 		return textBox;
 	}

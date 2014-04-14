@@ -1,13 +1,13 @@
 package org.uqbar.lacar.ui.model;
 
-import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.StyledWidgetBuilder;
 import org.uqbar.lacar.ui.model.builder.traits.WithImageBuilder;
 
 /**
  * 
  * @author jfernandes
  */
-public interface LabelBuilder extends SkinnableBuilder, WithImageBuilder {
+public interface LabelBuilder extends ControlBuilder, StyledWidgetBuilder, WithImageBuilder {
 
 	/**
 	 * Se asigna un valor fijo sin binding.

@@ -39,6 +39,17 @@
 			<version>3.4-SNAPSHOT</version>
 		</dependency>
 		<!-- /UQBAR -->
+		
+		<dependency>
+			<!-- 
+				this is only required for typesafe bindings. Maybe we can have the same proxy
+				functionality through CGLIB or just a core of mockito. 
+			 -->
+	        <groupId>org.mockito</groupId>
+	        <artifactId>mockito-all</artifactId>
+	        <version>1.9.5</version>
+	    </dependency>
+		
 	</dependencies>
 
 	<!-- TODO: move up to parent ! -->

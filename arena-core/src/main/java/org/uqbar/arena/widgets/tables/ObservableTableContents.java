@@ -10,10 +10,10 @@ import org.uqbar.lacar.ui.model.bindings.ViewObservable;
  * 
  * @author npasserini
  */
-public class ObservableTableContents implements ViewObservable<TableBuilder<?>> {
+public class ObservableTableContents<R> implements ViewObservable<TableBuilder<R>> {
 
 	@Override
-	public BindingBuilder createBinding(TableBuilder<?> table) {
+	public BindingBuilder createBinding(TableBuilder<R> table) {
 		return table.observeContents();
 	}
 

@@ -6,7 +6,8 @@ import java.util.Map;
 import org.uqbar.arena.widgets.style.Style;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.builder.traits.SkinnableBuilder;
+import org.uqbar.lacar.ui.model.builder.StyledControlBuilder;
+import org.uqbar.lacar.ui.model.builder.traits.StyledWidgetBuilder;
 
 public class KeyWordTextArea extends TextBox {
 	private Map<String[], Style> configurationStyle = new HashMap<>();
@@ -23,7 +24,7 @@ public class KeyWordTextArea extends TextBox {
 	
 	@Override
 	protected ControlBuilder createBuilder(PanelBuilder container) {
-		SkinnableBuilder textBox = container.addStyleTextArea(configurationStyle);
+		StyledControlBuilder textBox = container.addStyleTextArea(configurationStyle);
 		this.configureSkineableBuilder(textBox);
 		return textBox;
 	}

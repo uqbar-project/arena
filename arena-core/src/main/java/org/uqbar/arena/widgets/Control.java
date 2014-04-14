@@ -1,9 +1,8 @@
 package org.uqbar.arena.widgets;
 
-import java.util.List;
-
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
+import org.uqbar.arena.widgets.traits.Sizeable;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
@@ -13,7 +12,6 @@ import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
 import com.uqbar.commons.collections.Closure;
-import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.collections.Transformer;
 
 /**
@@ -21,24 +19,12 @@ import com.uqbar.commons.collections.Transformer;
  * boxes, selectors, etc.
  * 
  * @author npasserini
+ * @author jfernandes
  */
 public abstract class Control extends Widget {
-	protected List<Closure<ControlBuilder>> configurations = CollectionFactory.createList();
 
 	public Control(Container container) {
 		super(container);
-	}
-
-	// ********************************************************
-	// ** Configurations
-	// ********************************************************
-
-	// Para evitar este SupressWarnings habría que poner un self-bound generic type parameter a todos los
-	// widgets y prefiero no hacerlo.
-	@SuppressWarnings("unchecked")
-	public Control addConfiguration(Closure<? extends ControlBuilder> configuration) {
-		this.configurations.add((Closure<ControlBuilder>) configuration);
-		return this;
 	}
 
 	// ********************************************************
@@ -62,10 +48,10 @@ public abstract class Control extends Widget {
 	 * @param modelObservable an {@link ObservableProperty}
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<C> bindValue(ObservableProperty modelObservable) {
+	public <C extends ControlBuilder> Binding<C> bindValue(Observable modelObservable) {
 		return this.addBinding(modelObservable, new ObservableValue<C>());
 	}
-
+	
 	public <C extends ControlBuilder> Binding<C> bindEnabled(Observable modelObservable) {
 		return this.addBinding(modelObservable, new ViewObservable<C>() {
 			@Override
@@ -99,7 +85,7 @@ public abstract class Control extends Widget {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
 	
-	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroud(String propertyName) {
+	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackground(String propertyName) {
 		ObservableProperty model = new ObservableProperty(propertyName);
 		model.setContainer(this.getContainer());
 		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
@@ -113,7 +99,7 @@ public abstract class Control extends Widget {
 		return binding;
 	}
 	
-	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroudToTransformer(String propertyName, final Transformer<T, U> transformer) {
+	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroundToTransformer(String propertyName, final Transformer<T, U> transformer) {
 		ObservableProperty model = new ObservableProperty(propertyName);
 		model.setContainer(this.getContainer());
 		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
@@ -131,33 +117,22 @@ public abstract class Control extends Widget {
 	// ** Rendering
 	// ********************************************************
 	
-	/**
-	 * Remember to call super if you override this template method.
-	 */
-	@Override
-	public void configure(WidgetBuilder builder) {
-		for (Closure<ControlBuilder> configuration : this.configurations) {
-			//horrible hack to reduce the refactor: trying to move up bindings to all widgets
-			// instead of just Controls.
-			configuration.execute((ControlBuilder) builder);
-		}
-	}
-
 	public Control setWidth(final int preferredSize) {
-		this.configurations.add(new Closure<ControlBuilder>() {
+		this.configurations.add(new Closure<WidgetBuilder>() {
 			@Override
-			public void execute(ControlBuilder builder) {
-				builder.setWidth(preferredSize);
+			public void execute(WidgetBuilder builder) {
+				// cast horrible. Cortando refactor. Necesitamos un generic para el tipo del builder
+				((Sizeable) builder).setWidth(preferredSize);
 			}
 		});
 		return this;
 	}
 
-	public Control setHeigth(final int preferredSize) {
-		this.configurations.add(new Closure<ControlBuilder>() {
+	public Control setHeight(final int preferredSize) {
+		this.configurations.add(new Closure<WidgetBuilder>() {
 			@Override
-			public void execute(ControlBuilder builder) {
-				builder.setHeight(preferredSize);
+			public void execute(WidgetBuilder builder) {
+				((Sizeable) builder).setHeight(preferredSize);
 			}
 		});
 

@@ -11,6 +11,7 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.TableBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
+import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
 /**
  * 
@@ -19,6 +20,7 @@ import org.uqbar.lacar.ui.model.bindings.Observable;
  * @param <R> the type of the object model behind each row of the table.
  */
 public class Table<R> extends Control {
+	private static final long serialVersionUID = 1L;
 	private Class<R> itemType;
 	private List<Column<R>> columns = new ArrayList<Column<R>>();
 
@@ -46,7 +48,7 @@ public class Table<R> extends Control {
 	 *            contenidos de esta tabla
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public Binding<TableBuilder<?>> bindItemsToProperty(String propertyName) {
+	public Binding<TableBuilder<R>> bindItemsToProperty(String propertyName) {
 		return this.bindItems(new ObservableProperty(propertyName));
 	}
 
@@ -57,16 +59,13 @@ public class Table<R> extends Control {
 	 * 
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public Binding<TableBuilder<?>> bindItems(Observable model) {
-		return this.addBinding(model, new ObservableTableContents());
+	// type-safe: should be an Observable<? extends Collection>
+	public Binding<TableBuilder<R>> bindItems(Observable model) {
+		return this.addBinding(model, items());
 	}
-
-	/**
-	 * @deprecated Use {@link #bindSelectionToProperty(String)} instead
-	 */
-	@Deprecated
-	public <C extends ControlBuilder> Binding<C> bindSelection(String selected) {
-		return bindSelectionToProperty(selected);
+	
+	public ViewObservable<TableBuilder<R>> items() {
+		return new ObservableTableContents<R>();
 	}
 
 	/**
@@ -113,29 +112,6 @@ public class Table<R> extends Control {
 		}
 
 		return tableBuilder;
-	}
-
-	// ********************************************************
-	// ** Deprecated
-	// ********************************************************
-
-	/**
-	 * This method is retained only for backwards compatibility and will be removed in a future version.
-	 * @deprecated Use {@link #bindItemsToProperty(String)}
-	 */
-	public Table<R> bindContentsToProperty(String propertyName) {
-		this.bindItemsToProperty(propertyName);
-		return this;
-	}
-
-	/**
-	 * This method is retained only for backwards compatibility and will be removed in a future version.
-	 * 
-	 * @deprecated Use {@link #bindItemsToProperty(String)}
-	 */
-	public Table<R> bindContents(Observable model) {
-		this.bindItems(model);
-		return this;
 	}
 
 }
