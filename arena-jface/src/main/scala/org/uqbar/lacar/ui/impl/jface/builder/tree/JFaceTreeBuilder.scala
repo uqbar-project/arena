@@ -15,18 +15,19 @@ import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.eclipse.jface.databinding.viewers.ViewersObservables
 
 class JFaceTreeBuilder[R](container:JFaceContainer, _arenaTree:org.uqbar.arena.widgets.tree.Tree[R], var propertyNode:String)
-extends JFaceControlBuilder[Tree](container) with TreeBuilder[R] {
+	extends JFaceControlBuilder[Tree](container) 
+	with TreeBuilder[R] {
 	
 	private var arenaTree = _arenaTree
 	private var childs = new ArrayList[JFaceTreeNodeBuilder[R]]() 
 	private var viewer = this.createTree(container.getJFaceComposite) 
-	this.initialize(this.viewer.getTree());	
+	this.initialize(viewer getTree)	
 
 	def createTree(jFaceComposite:Composite) = {
 		val treeViewer = new TreeViewer(jFaceComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		treeViewer.setLabelProvider(new ReflectionLabelProvider(propertyNode));
+		treeViewer setLabelProvider(new ReflectionLabelProvider(propertyNode))
 		if (arenaTree.getOnClickItem() != null) {
-			treeViewer.addSelectionChangedListener(arenaTree.getOnClickItem())
+			treeViewer addSelectionChangedListener(arenaTree getOnClickItem)
 		}
 		treeViewer
 	}
@@ -38,7 +39,7 @@ extends JFaceControlBuilder[Tree](container) with TreeBuilder[R] {
 	}
 
 	override def observeContents() = new JFaceTreeItemsBindingBuilder(this)
-	override def observeValue() = new JFaceBindingBuilder(this, ViewersObservables.observeSingleSelection(getJFaceTreeViewer))
+	override def observeValue() = new JFaceBindingBuilder(this, ViewersObservables.observeSingleSelection(viewer))
 
 	override def getControlLayout() = viewer getTree
 	def getJFaceTreeViewer() = viewer

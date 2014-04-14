@@ -1,6 +1,5 @@
 package org.uqbar.lacar.ui.impl.jface.builder.traits
 
-import org.uqbar.arena.widget.traits.Clickable
 import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
@@ -9,6 +8,7 @@ import org.uqbar.lacar.ui.model.builder.traits.WithCaption
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
+import org.uqbar.lacar.ui.model.builder.traits.Clickable
 
 /**
  * Generic implementation of Clickable interface 
@@ -18,7 +18,7 @@ import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
  * @author jfernandes
  */
 trait JFaceClickable extends Clickable {
-  this : JFaceControlBuilder[_ <: SelectionListening] =>
+  this : JFaceWidgetBuilder[_ <: SelectionListening] =>
 	
   override def onClick(action: Action) : this.type = {
     widget addSelectionListener(new JFaceActionAdapter(container, action))

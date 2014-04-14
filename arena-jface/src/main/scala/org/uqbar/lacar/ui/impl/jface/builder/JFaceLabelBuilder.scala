@@ -5,13 +5,13 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Label
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageControlBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageBuilder
 import org.uqbar.lacar.ui.model.LabelBuilder
 
 class JFaceLabelBuilder(container:JFaceContainer, label: Label) 
 	extends JFaceSkinnableControlBuilder[Label](container, label)
 	with LabelBuilder 
-	with WithImageControlBuilder[Label] {
+	with WithImageBuilder[Label] {
   
   def this(container: JFaceContainer) = this(container, new Label(container.getJFaceComposite, SWT.CENTER))
 

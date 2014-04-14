@@ -12,11 +12,10 @@ import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
  * Allows to observe the control's image.
  * @author jfernandes
  */
-trait WithImageControlBuilder[T <: WidgetWithImage] {
+trait WithImageBuilder[T <: WidgetWithImage] {
   this : JFaceWidgetBuilder[_ <: WidgetWithImage] =>
   
-	def observeImage[M](transformer : Transformer[M, Image] ) : BindingBuilder = {
-		new JFaceBindingBuilder(this, new ImageObservableValue[M](widget, transformer));
-	}
+	def observeImage[M](transformer : Transformer[M, Image] ) =
+		new JFaceBindingBuilder(WithImageBuilder.this, new ImageObservableValue[M](widget, transformer))
 
 }

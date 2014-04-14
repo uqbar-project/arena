@@ -14,16 +14,14 @@ import org.eclipse.swt.graphics.Color
  */
 class ObservableErrorPanelForegroundColorS(val status : AggregateValidationStatus)  extends ComputedValue {
 
-  override def calculate() : Color = {
-		return status.getValue().asInstanceOf[IStatus];
-  }
+  override def calculate() : Color = status.getValue().asInstanceOf[IStatus]
   
-  implicit def istatus_to_color(status : IStatus) : Color = 
-    if (status.isOK()) 
+  implicit def istatusToColor(status : IStatus) : Color = 
+    if (status.isOK) 
       SWT.COLOR_BLACK.asInstanceOf[Integer] 
     else 
       SWT.COLOR_RED.asInstanceOf[Integer]
 
-  implicit def swtintcolor_to_color(colorCode : Integer) : Color = Display.getCurrent().getSystemColor(colorCode)
+  implicit def swtintcolorToColor(colorCode : Integer) : Color = Display.getCurrent.getSystemColor(colorCode)
 
 }

@@ -37,6 +37,6 @@ class JFaceColumnBuilder[Row](table: JFaceTableBuilder[Row], var labelProviders:
     tableViewerColumn.getColumn.pack
   }
   
-  def getControl() = tableViewerColumn.getViewer.getControl
+  def widget = tableViewerColumn.getViewer.getControl
 
 }

@@ -15,6 +15,8 @@ import org.eclipse.swt.layout.GridLayout
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.layout.RowLayout
 import org.eclipse.swt.layout.RowData
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceEnabledDisabled
 
 /**
  * @author npasserini
@@ -22,24 +24,22 @@ import org.eclipse.swt.layout.RowData
  */
 abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
   extends JFaceWidgetBuilder[T](c)
-  with ControlBuilder {
-
-  var width = SWT.DEFAULT
-  var height = SWT.DEFAULT
+  with ControlBuilder
+  with JFaceSizeable
+  with JFaceEnabledDisabled {
 
   def this(container: JFaceContainer, jfaceWidget: T) {
     this(container)
     this.initialize(jfaceWidget)
   }
-
-  override def observeEnabled() = new JFaceBindingBuilder(this, observeEnabled(widget))
+  
   override def observeBackground[M, U](transformer: Transformer[M, U]) = new JFaceBindingBuilder(this, new ControlObservableValue[M, U](widget, SWTProperties.BACKGROUND, transformer))
   override def observeVisible() = new JFaceBindingBuilder(this, observeVis(widget))
 
   def observeEnabled(t: T) = if (t.isInstanceOf[Text]) observeEditable(t) else observeEnab(t)
 
   /**
-   * Utilizad para simplificar la construcción bindings de bajo nivel en forma manual.
+   * Utilizado para simplificar la construcción bindings de bajo nivel en forma manual.
    *
    * ATENCIÓN: Esto debe usarse sólo en casos que realmente ameriten la programación a bajo nivel, la forma
    * preferida de agregar un binding es utilizando los métodos <code>#observeXXX</code> que se encuentran en
@@ -49,31 +49,7 @@ abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
    * @param model
    * @param view
    */
-  def bind(model: IObservableValue, view: IObservableValue) {
-    new JFaceBindingBuilder(this, view, model).build
-  }
-
-  override def pack() {
-    configureLayoutData
-    super.pack
-  }
-
-  def configureLayoutData() {
-    if (widget.getParent.getLayout.isInstanceOf[GridLayout]) {
-      val layoutData = new GridData(GridData.FILL)
-      layoutData.grabExcessHorizontalSpace = true
-      layoutData.widthHint = width
-      layoutData.heightHint = height
-      widget.setLayoutData(layoutData)
-    }
-
-    if (widget.getParent.getLayout.isInstanceOf[RowLayout]) {
-      widget.setLayoutData(new RowData(width, height))
-    }
-  }
-
-  override def setWidth(preferredSize: Int) { width = preferredSize }
-  override def setHeight(preferredSize: Int) { height = preferredSize }
+  def bind(model: IObservableValue, view: IObservableValue) = new JFaceBindingBuilder(this, view, model).build
 
   def getControlLayout(): Control = widget
 

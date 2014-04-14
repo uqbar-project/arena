@@ -11,17 +11,25 @@ import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.lacar.ui.model.ButtonBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceWithCaption
-import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageControlBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageBuilder
+import org.eclipse.jface.databinding.swt.SWTObservables
+import org.uqbar.lacar.ui.impl.jface.builder.traits.Aesthetic
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceEnabledDisabled
 
 /**
  * @author jfernandes
  */
 class JFaceButtonBuilder(c: JFaceContainer)
   extends JFaceSkinnableControlBuilder[Button](c, new Button(c getJFaceComposite, SWT PUSH))
+//	extends JFaceWidgetBuilder[Button](c, new Button(c getJFaceComposite, SWT PUSH))
   with ButtonBuilder
-  with WithImageControlBuilder[Button]
+  with WithImageBuilder[Button]
   with JFaceClickable
   with JFaceWithCaption
+  with Aesthetic
+  with JFaceSizeable
+  with JFaceEnabledDisabled
 {
 
   override def setAsDefault() = {
@@ -30,7 +38,7 @@ class JFaceButtonBuilder(c: JFaceContainer)
   }
 
   override def disableOnError() = {
-    new JFaceBindingBuilder(this, observeEnabled(widget), () => computeValue()).build
+    new JFaceBindingBuilder(this, SWTObservables.observeEnabled(widget), computeValue _).build
   }
 
   def computeValue(): Object = container.getStatus.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
