@@ -13,7 +13,7 @@ import org.uqbar.arena.widgets.Control
 import org.uqbar.arena.widgets.Control
 import org.uqbar.arena.bindings.ObservableProperty
 import scala.collection.mutable.ArrayBuffer
-import org.uqbar.arena.widget.traits.BindingMockHandler
+import org.uqbar.arena.bindings.typesafe.BindingMockHandler
 
 /**
  * Contiene implicits utiles para usar arena desde scala

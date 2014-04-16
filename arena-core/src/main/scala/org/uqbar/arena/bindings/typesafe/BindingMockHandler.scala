@@ -1,9 +1,10 @@
-package org.uqbar.arena.widget.traits
+package org.uqbar.arena.bindings.typesafe
 
 import scala.collection.mutable.ArrayBuffer
 import org.mockito.internal.InternalMockHandler
 import org.mockito.invocation.Invocation
 import org.uqbar.arena.scala.ArenaScalaImplicits
+import java.lang.reflect.Modifier
 
 /**
  * MockHandler implementation for arena type-safe bindings.
@@ -14,18 +15,23 @@ import org.uqbar.arena.scala.ArenaScalaImplicits
  */
 //TODO: move to other package
 class BindingMockHandler extends InternalMockHandler[Object] {
-  var invocationChains = new ArrayBuffer[Invocation]
+  var invocationChain = new ArrayBuffer[Invocation]
 
   override def handle(invocation: Invocation) = {
     val m = invocation.getMethod
     if (m.getName != "getClass") {
-      this.invocationChains += invocation
+      invocationChain += invocation
     }
-    ArenaScalaImplicits.createMockFor(m.getReturnType, this).asInstanceOf[Object]
+    if (mockResult(invocation)) 
+      ArenaScalaImplicits.createMockFor(m.getReturnType, this).asInstanceOf[Object]
+   	else 
+   	  null
   }
   
+  def mockResult(invocation:Invocation) = !Modifier.isFinal(invocation.getMethod().getReturnType().getModifiers())
+  
   def buildPropertyExpression() = {
-    invocationChains.tail.foldLeft(toPropertyName(invocationChains head)) { (r, i) => r + "." + toPropertyName(i)} 
+    invocationChain.tail.foldLeft(toPropertyName(invocationChain head)) { (r, i) => r + "." + toPropertyName(i)} 
   }
   
   def toPropertyName(invocation:Invocation) : String = toPropertyName(invocation.getMethod.getName)

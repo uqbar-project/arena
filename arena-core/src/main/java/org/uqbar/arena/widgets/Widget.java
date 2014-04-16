@@ -21,7 +21,7 @@ import com.uqbar.commons.loggeable.Loggeable;
  * 
  * @author npasserini
  */
-public abstract class Widget implements Loggeable {
+public class Widget implements Loggeable {
 	private Collection<Binding<WidgetBuilder>> bindings = CollectionFactory.createCollection();
 	protected List<Closure<WidgetBuilder>> configurations = CollectionFactory.createList();
 	private static final long serialVersionUID = 7034829204374950200L;
