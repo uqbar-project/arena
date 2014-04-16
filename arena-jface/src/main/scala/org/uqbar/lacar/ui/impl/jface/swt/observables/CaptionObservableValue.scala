@@ -23,14 +23,14 @@ class CaptionObservableValue(component:WithText) extends AbstractSWTObservableVa
 		val oldValue = component.getText
 		val newValue = if (value == null)  "" else value.toString
 		component.setText(newValue)
-		component.pack
+		component pack
 		
 		if (!newValue.equals(oldValue)) {
 			fireValueChange(Diffs.createValueDiff(oldValue, newValue))
 		}
 	}
 
-	def doGetValue() = component.getText
+	def doGetValue() = component getText
 
 	def getValueType() = classOf[String]
 
