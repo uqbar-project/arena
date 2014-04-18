@@ -103,11 +103,18 @@ public class Column<R> {
 	// ** Binding
 	// ********************************************************
 
-	public Column<R> bindContentsToProperty(String propertyName) {
-		this.labelProvider.add(new PropertyLabelProvider<R>(propertyName));
-		return this;
+	public PropertyLabelProvider<R> bindContentsToProperty(String propertyName) {
+		PropertyLabelProvider<R> label = new PropertyLabelProvider<R>(propertyName);
+		this.labelProvider.add(label);
+		return label;
 	}
 
+	/**
+	 * @deprecated usar {@link #bindContentsToProperty(String)} y luego llamar a setTransformer
+	 * sobre el objeto que devuelve. De esa forma no se pierde el binding a la property.
+	 * Claro que ese transformer solo se puede usar para transformar el valor de la propiedad.
+	 * No recibe por parámetro al objeto modelo de la fila, sino el valor de la property.
+	 */
 	public <U> Column<R> bindContentsToTransformer(Transformer<R, U> transformer) {
 		this.labelProvider.add(new TransformerLabelProvider<R, U>(transformer));
 		return this;

@@ -4,8 +4,11 @@ import com.uqbar.commons.collections.Transformer;
 
 import org.uqbar.lacar.ui.model.LabelProvider;
 
+/**
+ * 
+ * @author nnydejesus
+ */
 public class BackgoundProvider<Model, From, To> implements LabelProvider<Model> {
-
 	private final Transformer<From, To> transformer;
 	private final String propertyName;
 
@@ -15,7 +18,7 @@ public class BackgoundProvider<Model, From, To> implements LabelProvider<Model> 
 	}
 
 	@Override
-	public void configure(LabelProviderBuilder<Model> configurator) {
-		configurator.observeBackgoundColumn(propertyName, transformer);
+	public void configure(LabelProviderBuilder<Model> labelProviderBuilder) {
+		labelProviderBuilder.observeBackgoundColumn(propertyName, transformer);
 	}
 }
