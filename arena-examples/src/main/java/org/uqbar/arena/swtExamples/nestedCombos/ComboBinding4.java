@@ -177,8 +177,7 @@ public class ComboBinding4 extends ApplicationWindow {
 
 		HashSet<Country> countries = new HashSet<Country>(model.getPossibleCountries());
 		System.out.println(countries);
-		IObservableMap attributeMap = BeansObservables.observeMap(Observables.staticObservableSet(countries),
-			Country.class, "name");
+		IObservableMap attributeMap = BeansObservables.observeMap(Observables.staticObservableSet(countries), Country.class, "name");
 		lstPartNumbers.setContentProvider(new ArrayContentProvider());
 		lstPartNumbers.setLabelProvider(new ObservableMapLabelProvider(attributeMap));
 

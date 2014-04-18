@@ -40,7 +40,7 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 		
 		val table = new Table[Estudent](mainPanel, classOf[Estudent])
 		table.setWidth(200)
-		table.setHeigth(200)
+		table.setHeight(200)
 		table.bindItemsToProperty("students")
 		table.bindValueToProperty("currentEstudent")
 		
@@ -53,8 +53,11 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 	     }
 		
 		val nameColumn = new Column[Estudent](table)
-		nameColumn.setTitle("Name").bindContentsToProperty("name")
-		nameColumn.bindBackground("status", statusTransomer)
+		nameColumn setTitle("Name")	bindContentsToProperty("name") setTransformer(new Transformer[String,String]() {
+		  override def transform(name:String) = name.toUpperCase()
+		})
+		
+		nameColumn bindBackground("status", statusTransomer)
 		
 		val departmentColumn = new Column[Estudent](table)
 		departmentColumn.setTitle("Department").bindContentsToProperty("department.name")
@@ -66,10 +69,10 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 		new Label(formPanel).setText("Nombre")
 		val nameTextbox = new TextBox(formPanel)
 		nameTextbox.bindValueToProperty("currentEstudent.name")
-		nameTextbox.bindBackgroud("currentEstudent.status")
+		
+		nameTextbox.bindBackground("currentEstudent.status")
 			.when(EstudenStatus.EXPELLED, Color.RED)
 			.when(EstudenStatus.FREE, Color.ORANGE)
-			.when(EstudenStatus.REGULAR, Color.BLUE)
 			
 		new Label(formPanel).setText("Status")
 		val provinces = new Selector[EstudenStatus.Status](formPanel)
