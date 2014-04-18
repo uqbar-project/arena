@@ -60,14 +60,31 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 		// CASTEO por problemas de interoperabilidad al migrar a scala. Deberia ser innecesario
 		decorated.widget_$eq((Widget) table.widget());
 		this.columnsLabelProvider.initialize(decorated, this.calculatedColumns);
+		
 		return this.columnsLabelProvider;
-		// return new ObservableMapLabelProvider(attributeMaps);
 	}
 
 	// ********************************************************
 	// ** Configuration
 	// ********************************************************
 
+	/**
+	 * A column that's bound to a property but also transforms the value of that property.
+	 */
+	@Override
+	public <P> void addPropertyMappedColumn(String propertyName, final Transformer<P, String> transformer) {
+		this.columnPropertyNames.add(propertyName);
+		final int index = this.delegatedColumnIndex++;
+		final Transformer<R, Object> propertyTransformer = this.columnsLabelProvider.getDelegatingTransformer(index);
+		Transformer<R,String> t = new Transformer<R,String>() {
+			@Override
+			public String transform(R element) {
+				return transformer.transform((P) propertyTransformer.transform(element));
+			}
+		};
+		this.addCalculatedColumn(t);
+	}
+	
 	@Override
 	public void addPropertyMappedColumn(String propertyName) {
 		this.columnPropertyNames.add(propertyName);
@@ -83,8 +100,8 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void observeBackgoundColumn(String propertyName, Transformer<?, ?> transformer) {
-		observeBackgounds.put(this.columnIndex-1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
-		this.calculatedBackgroundColumns.put(this.columnIndex-1, (Transformer<Object, ?>) transformer);
+		observeBackgounds.put(this.columnIndex - 1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
+		this.calculatedBackgroundColumns.put(this.columnIndex - 1, (Transformer<Object, ?>) transformer);
 	}
 
 }

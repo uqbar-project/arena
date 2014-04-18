@@ -22,7 +22,6 @@ import org.uqbar.ui.swt.utils.SWTUtils
  * 
  */
 class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider with ITableColorProvider{
-
 	var attributeLabelMaps = List[IObservableMap]()
 	var attributeBackgroudMaps =  Map[Integer, JavaBeanTransacionalObservableMap]()
 	var backgroundTransformers = Map[Integer, Transformer[Any, _]]()
@@ -31,7 +30,7 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 	val mapChangeListener = new IMapChangeListener() {
 		def handleMapChange(event:MapChangeEvent) {
 			val affectedElements = event.diff.getChangedKeys()
-			val newEvent = new LabelProviderChangedEvent( ObservableMapProvider.this, affectedElements.toArray())
+			val newEvent = new LabelProviderChangedEvent(ObservableMapProvider.this, affectedElements.toArray())
 			fireLabelProviderChanged(newEvent)
 		}
 	};
@@ -57,7 +56,7 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 
 	override def dispose() {
 	  attributeLabelMaps.foreach(_.removeMapChangeListener(mapChangeListener))
-		super.dispose()
+	  super.dispose()
 	}
 
 	override def getText(element:Object)  = getColumnText(element, 0)
@@ -72,16 +71,17 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 		return null;
 	}
 	
-	def getForeground(element:Object, columnIndex:Int):org.eclipse.swt.graphics.Color = null
+	def getForeground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = null
 	
-	def getBackground(element:Object, columnIndex:Int):org.eclipse.swt.graphics.Color = {
-		if(backgroundTransformers.contains(columnIndex)){
+	def getBackground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = {
+		if (backgroundTransformers.contains(columnIndex)) {
 			val modelValue = attributeBackgroudMaps(columnIndex).getValue(element)
-			if(modelValue != null){
+			if (modelValue != null) {
 				val color = backgroundTransformers(columnIndex).transform(modelValue).asInstanceOf[Color]
 				return SWTUtils.getSWTColor(widget.getDisplay(), color)
 			}
 		}
 		null
 	}
+
 }

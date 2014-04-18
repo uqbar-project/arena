@@ -45,11 +45,10 @@ class JFaceTableBuilder[R](container:JFaceContainer, var itemType:Class[R])
 
 	override def getControlLayout = viewer getControl
 
-
 	override def pack() = {
-		viewer.getTable.setLayout(new JFaceTableLayoutBuilder(this).createLayout)
-		columns.foreach(_ pack)
-		super.pack();
+		viewer. getTable.setLayout(new JFaceTableLayoutBuilder(this).createLayout)
+		columns foreach(_ pack)
+		super.pack()
 	}
 
 }

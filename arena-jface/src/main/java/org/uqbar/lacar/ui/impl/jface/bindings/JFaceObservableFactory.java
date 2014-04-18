@@ -122,10 +122,6 @@ public class JFaceObservableFactory {
 	public static JavaBeanTransacionalObservableMap observeMap(IObservableSet domain, Class<?> beanClass, String propertyChain) {
 		List<String> propertyChainParts = getChainParts(propertyChain);
 		return  new JavaBeanTransacionalObservableMap(domain, getPropertyDescriptor(beanClass, propertyChainParts.get(0)), propertyChainParts); 
-//		 if (propertyChainParts.size() > 1) {
-//		 }else{
-//			 return  new JavaBeanTransacionalObservableMap(domain, getPropertyDescriptor(beanClass, propertyChain));
-//		 }
 	}
 	
 	public static JavaBeanTransacionalObservableMap observeDetailMap(IObservableSet domain, String propertyChain) {
