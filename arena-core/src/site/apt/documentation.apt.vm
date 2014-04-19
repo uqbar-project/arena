@@ -26,11 +26,11 @@ Documentation (work in progress)
      
      * Label
      
-     * Selectors (Selector, List and RadioSelectors)
+     * {{{./selector.html}Selectors}} (Selector, List and RadioSelectors)
      
      * Table
      
-     * Panel
+     * Panel (and Group)
 
      * Tree
      

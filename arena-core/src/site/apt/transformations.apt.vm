@@ -8,7 +8,7 @@ Transformations
 
  When you bind two properties usually a transformation is needed to adapt them.
  This is achieved using a Transformer. 
- This is allways the case if you bind properties of different types, 
+ This is always the case if you bind properties of different types, 
  but also you can use a Transformer in order to adapt two different formats of Strings.
 
 * Built-in transformations
@@ -81,3 +81,39 @@ class BigDecimalTransformer implements Transformer<BigDecimal, String> {
 	}
 }
 +-----------------------------------------------------------------------------+ 
+
+
+* Transformations on Table Columns
+
+ Currently there's a special case of transformations for Table column bindings.
+ First thing you'll notice is that there's no Binding object as return value for the bindContentsToProperty method.
+ But anyway you can call setAdapter on the returned object to transform the property's value.
+ 
+ Here's a sample code in Scala:
+ 
++-----------------------------------------------------------------------------+
+		val nameColumn = new Column[Student](table)
+		nameColumn.setTitle("Name")
+		val binding = nameColumn.bindContentsToProperty("name") 
+		binding.setTransformer(new Transformer[String,String]() {
+		  override def transform(name:String) = {
+		  		name.toUpperCase()
+		  }
+		})
++-----------------------------------------------------------------------------+
+
+ It could be even better if you use ArenaScalaImplicits
+ 
++-----------------------------------------------------------------------------+
+
+	nameColumn setTitle("Name") bindContentsToProperty("name") setTransformer{ name:String => name toUpperCase }
+	
++-----------------------------------------------------------------------------+
+
+ As you can see here this Transformer interface is not the same one we already so in the previous section.
+ As the first one was a "two-way" transformer, this one just transform a value in one direction. That's
+ MODEL -> VIEW.
+ This is because currently Tables don't edit values, they just show contente (read-only).
+
+ Also note that there's a *bindContentsToTransformer(Transformer)* that is deprecated. Avoid it since it lacks
+ binding (therefore it won't update the UI upon changes on the model).

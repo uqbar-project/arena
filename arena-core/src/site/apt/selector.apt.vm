@@ -1,0 +1,83 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Selectors
+
+ A <<org.uqbar.arena.widgets.Selector[T]>> is a control that displays a list of options and let the user
+ choose (select) one of them.
+ 
+ Tipically it will look like what we commonly know as a ComboBox.
+ 
+[./images/selector.png]
+
+* Bindings
+
+ A selector has two main properties that one must bind:
+ 
+ * <<value:>> meaning the selected element
+ 
+ * <<items:>> the list of options that it displays.
+ 
+ Through both "bind" methods you are able to connect this properties to the underlying model. This
+ way it will automatically update the view upon chances in the model.
+ 
+ Here's a sample in Java from the previous screenshot
+ 
++-----------------------------------------------------------------------------+
+	Selector<Country> selector = new Selector<Country>(mainPanel);
+	selector.allowNull(false)
+	selector.bindValueToProperty("country");
+	selector.bindItemsToProperty("countries")
++-----------------------------------------------------------------------------+
+
+ This expects an underlying model object with two properties: a "country" with type Country
+ and "countries" as a list/collection of Country objects.
+ 
+ Here is the sample model in Scala
+
++-----------------------------------------------------------------------------+ 
+	@Observable
+ 	class Country(var name:String)
+
+ 	@Observable
+ 	class Address {
+   	  var country: Country = _
+   	  var state: String = _
+   	  var street: String = _
+  
+  	  def getCountries() =  List(
+        new Country("Argentina"),
+        new Country("Uruguay"),
+        new Country("Bolivia"),
+        new Country("North Korea")).asJava;
+ 	}
++-----------------------------------------------------------------------------+
+
+* Generic type
+ 
+ Note that Selector[T] is a parametric type. Meaning that it has a generic parameter.
+ This type must be the type of options or, what is the same, the type of element it allows
+ you to select.
+ 
+ In our example we show a list of Country and select one of them. Therefore it is a Select<Country>
+
+* List
+
+ The subclass <<org.uqbar.arena.widgets.List[T]>> has the same behavior as Selector but it shows up
+ as a list, displaying all the values at the same time.
+ 
+[./images/list.png]
+
+* RadioSelector
+
+ Same as List, this shows up as a group of mutex radio buttons.
+ 
+[./images/radioSelector.png]
+
+* Selection on Tables
+
+ Tables also allows you (not force you) to bind a single selection to a model's property.
+ See Tables section for that.

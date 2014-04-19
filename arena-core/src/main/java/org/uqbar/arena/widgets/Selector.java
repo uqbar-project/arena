@@ -20,13 +20,13 @@ public class Selector<T> extends Control {
 		super(container);
 	}
 
+	/**
+	 * @deprecated You should probably be binding items to a property
+	 * instead of just hardcoding a list.
+	 */
 	public Selector<T> setContents(final java.util.List<T> options, String descriptionProperty) {
 		Object valueObject = new ValueHolder<java.util.List<T>>(options);
-
-		this.bindItems(new ObservableProperty(valueObject, ValueHolder.VALUE)) //
-			//.setAdapter(new PropertyAdapter(null, descriptionProperty))
-		;
-
+		this.bindItems(new ObservableProperty(valueObject, ValueHolder.VALUE));
 		return this;
 	}
 

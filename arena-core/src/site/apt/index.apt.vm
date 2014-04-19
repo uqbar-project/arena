@@ -21,6 +21,11 @@ Introduction
 Usage
 
  Check the {{{./usage.html}Usage}} page for configuration and understanding of the different implementations and *flavors* of Arena.
+ 
+Documentation
+
+ Then check {{{./documentation.html}Documentation}} to get started with some code examples and a reference guide to the different
+ components and concepts in Arena.
 
 Development
   
