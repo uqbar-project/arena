@@ -41,7 +41,7 @@ class JFaceButtonBuilder(c: JFaceContainer)
     new JFaceBindingBuilder(this, SWTObservables.observeEnabled(widget), computeValue _).build
   }
 
-  def computeValue(): Object = container.getStatus.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
+  def computeValue(): Object = container.status.getValue.asInstanceOf[IStatus].isOK.asInstanceOf[Object]
 
   override def observeValue() : BindingBuilder = throw new UnsupportedOperationException("Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 

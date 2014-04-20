@@ -21,7 +21,7 @@ trait JFaceContainer {
 
 	def getErrorViewer() : ErrorViewer
 
-	def getStatus() : AggregateValidationStatus
+	def status : AggregateValidationStatus
 
 	def getJFaceComposite() : Composite 
 

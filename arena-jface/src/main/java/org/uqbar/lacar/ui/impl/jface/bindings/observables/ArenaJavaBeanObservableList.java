@@ -20,6 +20,8 @@ import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.core.internal.databinding.beans.ListenerSupport;
 import org.uqbar.lacar.ui.impl.jface.bindings.ScalaJavaConverter;
 import org.uqbar.lacar.ui.impl.jface.bindings.ScalaJavaListConverter;
+import org.uqbar.lacar.ui.model.bindings.collections.ChangeListener;
+import org.uqbar.lacar.ui.model.bindings.collections.ObservableContainer;
 
 /**
  * CLASE COPIADA DE JFACE PORQUE LOS INFELICES HACEN TODO PRIVADO/PACKAGE.
@@ -63,26 +65,44 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 
 		if (attachListeners) {
 			PropertyChangeListener listener = new PropertyChangeListener() {
-				public void propertyChange(java.beans.PropertyChangeEvent event) {
+				public void propertyChange(final java.beans.PropertyChangeEvent event) {
 					if (!updating) {
 						getRealm().exec(new Runnable() {
 							public void run() {
-								updateWrappedList(new ArrayList(Arrays
-										.asList(getValues())));
+								listChanged(event.getOldValue(), event.getNewValue());
+								updateWrappedList(new ArrayList(Arrays.asList(getValues())));
 							}
 						});
 					}
 				}
 			};
-			this.listenerSupport = new ListenerSupport(listener,
-					descriptor.getName());
+			listenerSupport = new ListenerSupport(listener,descriptor.getName());
 			listenerSupport.hookListener(this.object);
 		}
 
 		// initialize list without firing events
 		wrappedList.addAll(Arrays.asList(getValues()));
+		// empezar a observar (hackeada)
+		listChanged(null, realPrimitiveGetValues());
 	}
 
+	// si la coleccion es observable la escucha a su vez (por cambios internos)
+	private ChangeListener collectionListener = new ChangeListener() {
+		@Override
+		public void handleChange() {
+			updateWrappedList(new ArrayList(Arrays.asList(getValues())));
+		}
+	};
+
+	protected void listChanged(Object oldValue, Object newValue) {
+		if (oldValue != null && oldValue instanceof ObservableContainer) {
+			((ObservableContainer) oldValue).removeChangeListener(this.collectionListener);
+		}
+		if (newValue != null && newValue instanceof ObservableContainer) {
+			((ObservableContainer) newValue).addChangeListener(this.collectionListener);
+		}
+	}
+	
 	public void dispose() {
 		if (listenerSupport != null) {
 			listenerSupport.dispose();
@@ -90,24 +110,22 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 		}
 		super.dispose();
 	}
-
 	
 	private Object primGetValues() {
-		Exception ex = null;
+		return converter.convertScalaCollectionToJavaIfNeeded(realPrimitiveGetValues());
+	}
+	
+	protected Object realPrimitiveGetValues() {
 		try {
 			Method readMethod = descriptor.getReadMethod();
 			if (!readMethod.isAccessible()) {
 				readMethod.setAccessible(true);
 			}
-			return converter.convertScalaCollectionToJavaIfNeeded(readMethod.invoke(object, new Object[0]));
-		} catch (IllegalArgumentException e) {
-			ex = e;
-		} catch (IllegalAccessException e) {
-			ex = e;
-		} catch (InvocationTargetException e) {
-			ex = e;
+			return readMethod.invoke(object, new Object[0]);
+		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+			throw new BindingException("Could not read collection values", e); //$NON-NLS-1$
 		}
-		throw new BindingException("Could not read collection values", ex); //$NON-NLS-1$
+		
 	}
 
 	private Object[] getValues() {
@@ -151,22 +169,15 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 	}
 
 	private void primSetValues(Object newValue) {
-		Exception ex = null;
 		try {
 			Method writeMethod = descriptor.getWriteMethod();
 			if (!writeMethod.isAccessible()) {
 				writeMethod.setAccessible(true);
 			}
 			writeMethod.invoke(object, new Object[] { newValue });
-			return;
-		} catch (IllegalArgumentException e) {
-			ex = e;
-		} catch (IllegalAccessException e) {
-			ex = e;
-		} catch (InvocationTargetException e) {
-			ex = e;
+		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+			throw new BindingException("Could not write collection values", e);
 		}
-		throw new BindingException("Could not write collection values", ex); //$NON-NLS-1$
 	}
 
 	public Object set(int index, Object element) {
@@ -215,8 +226,7 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 		try {
 			Object oldElement = wrappedList.remove(index);
 			setValues();
-			fireListChange(Diffs.createListDiff(Diffs.createListDiffEntry(
-					index, false, oldElement)));
+			fireListChange(Diffs.createListDiff(Diffs.createListDiffEntry(index, false, oldElement)));
 			return oldElement;
 		} finally {
 			updating = false;
@@ -322,15 +332,13 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 				if (index != -1) {
 					changed = true;
 					Object oldElement = wrappedList.remove(index);
-					diffEntries.add(Diffs.createListDiffEntry(index, false,
-							oldElement));
+					diffEntries.add(Diffs.createListDiffEntry(index, false, oldElement));
 				}
 			}
 			if (changed) {
 				setValues();
 				fireListChange(Diffs
-						.createListDiff((ListDiffEntry[]) diffEntries
-								.toArray(new ListDiffEntry[diffEntries.size()])));
+						.createListDiff((ListDiffEntry[]) diffEntries.toArray(new ListDiffEntry[diffEntries.size()])));
 			}
 			return changed;
 		} finally {

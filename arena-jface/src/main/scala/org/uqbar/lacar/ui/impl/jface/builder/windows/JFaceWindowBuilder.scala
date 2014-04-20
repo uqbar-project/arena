@@ -28,7 +28,7 @@ import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 //  - se puede usar los lazy para crear los atributos la primera vez?
 
 class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with JFaceContainer {
-  var dbc = new DataBindingContext()
+  var dbc = new DataBindingContext
   lazy val window : Window = createJFaceWindow
   var children : java.util.List[WidgetBuilder] = CollectionFactory.createList()
   var windowDescriptor : ViewDescriptor[PanelBuilder] = _
@@ -37,7 +37,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 	// consola o algo así.
 	var errorViewer:ErrorViewer = _
 	var title:String = _
-	var status : AggregateValidationStatus = _
+	lazy val status : AggregateValidationStatus = new AggregateValidationStatus(dbc, AggregateValidationStatus.MAX_SEVERITY)
 	var iconImage:String = _
 
 	override def setTitle(title:String) {
@@ -67,17 +67,16 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 		// Una configuración adicional.
 		window.setBlockOnOpen(true)
 
-		window.getShell().addListener(SWT.Close, (event:Event) => windowDescriptor close)
+		window.getShell.addListener(SWT.Close, (event:Event) => windowDescriptor close)
 
-		// Al hacer open se podría evitar el create anterior, pero necesito
-		// hacerlo para poder hacer getShell
+		// Al hacer open se podría evitar el create anterior, pero necesito hacerlo para poder hacer getShell
 		// entre ambos.
 		window open
 	}
 
 	override def pack() {
 		super.pack
-		children.foreach(_ pack)
+		children foreach(_ pack)
 	}
 	
 	def createWindowContents(window:Composite) = {
@@ -121,13 +120,6 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 	}
 	
 	// manejo de errores
-	
-	override def getStatus() = {
-		if (status == null) {
-			status = new AggregateValidationStatus(dbc, AggregateValidationStatus.MAX_SEVERITY)
-		}
-		status;
-	}
 	
 	override def getErrorViewer() = {
 		if (errorViewer == null) {

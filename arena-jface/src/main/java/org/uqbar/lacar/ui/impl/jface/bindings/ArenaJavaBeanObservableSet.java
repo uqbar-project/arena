@@ -19,6 +19,8 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.set.ObservableSet;
 import org.eclipse.core.internal.databinding.beans.ListenerSupport;
 import org.eclipse.core.runtime.Assert;
+import org.uqbar.arena.ArenaException;
+import org.uqbar.lacar.ui.model.bindings.collections.ObservableContainer;
 
 /**
  * 
@@ -26,18 +28,16 @@ import org.eclipse.core.runtime.Assert;
  * Necesitamos interceptar el acceso a la property para convertir entre
  * colecciones de scala y java, pero los malditos hicieron todo private.
  * 
+ * Ademas le agregamos soporte para {@link ObservableContainer}
+ * 
  * @author jfernandes
  */
 public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanObservable {
 	// agregado
 	private ScalaJavaConverter converter = new ScalaJavaListConverter();
-	
 	private final Object object;
-
 	private boolean updating = false;
-
 	private PropertyDescriptor descriptor;
-
 	private ListenerSupport listenerSupport;
 
 	/**
@@ -70,8 +70,7 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 					if (!updating) {
 						getRealm().exec(new Runnable() {
 							public void run() {
-								Set newElements = new HashSet(Arrays
-										.asList(getValues()));
+								Set newElements = new HashSet(Arrays.asList(getValues()));
 								Set addedElements = new HashSet(newElements);
 								Set removedElements = new HashSet(wrappedSet);
 								// remove all new elements from old elements to
@@ -80,15 +79,13 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 								removedElements.removeAll(newElements);
 								addedElements.removeAll(wrappedSet);
 								wrappedSet = newElements;
-								fireSetChange(Diffs.createSetDiff(
-										addedElements, removedElements));
+								fireSetChange(Diffs.createSetDiff(addedElements, removedElements));
 							}
 						});
 					}
 				}
 			};
-			this.listenerSupport = new ListenerSupport(listener, descriptor
-					.getName());
+			this.listenerSupport = new ListenerSupport(listener, descriptor.getName());
 			listenerSupport.hookListener(this.object);
 		}
 
@@ -103,13 +100,13 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 			}
 			// agregado
 			return converter.convertScalaCollectionToJavaIfNeeded(readMethod.invoke(object, new Object[0]));
-//			return readMethod.invoke(object, new Object[0]);
 		} catch (IllegalArgumentException e) {
+			throw new ArenaException("Error while accessing property '" + descriptor + "'", e);
 		} catch (IllegalAccessException e) {
+			throw new ArenaException("Error while accessing property '" + descriptor + "'", e);
 		} catch (InvocationTargetException e) {
+			throw new ArenaException("Error while accessing property '" + descriptor + "'", e);
 		}
-		Assert.isTrue(false, "Could not read collection values"); //$NON-NLS-1$
-		return null;
 	}
 
 	private Object[] getValues() {

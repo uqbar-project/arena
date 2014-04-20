@@ -16,8 +16,7 @@ import org.uqbar.lacar.ui.model.TextControlBuilder
 class JFaceTextBuilder(container:JFaceContainer, multiLine:Boolean) 
 	extends JFaceSkinnableControlBuilder[Text](container, new Text(container.getJFaceComposite(), if (multiLine) SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP else SWT.SINGLE | SWT.BORDER)) 
 	with TextControlBuilder {
-
-
+  
 	override def observeValue() = new JFaceBindingBuilder(this, SWTObservables.observeText(widget, SWT.Modify))
 	
 	override def selectFinalLine() = {

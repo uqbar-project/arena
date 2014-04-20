@@ -16,6 +16,8 @@ import org.eclipse.core.databinding.observable.value.IValueChangeListener
 import org.eclipse.core.databinding.observable.value.ValueChangeEvent
 import org.eclipse.swt.widgets.Event
 import org.eclipse.swt.widgets.Listener
+import org.eclipse.swt.events.DisposeListener
+import org.eclipse.swt.events.DisposeEvent
 
 /**
  * @author jfernandes
@@ -37,6 +39,13 @@ object JFaceImplicits {
       override def modifyText(e: ModifyEvent) {
         closure(e)
       }
+    }
+  }
+  
+  implicit def closureToDisposeListener(closure : ()=>Unit) : DisposeListener = closureToDisposeListener { d:DisposeEvent => closure() }
+  implicit def closureToDisposeListener(closure : (DisposeEvent) => Unit) = new DisposeListener() {
+    override def widgetDisposed(e:DisposeEvent) {
+      closure(e)
     }
   }
 

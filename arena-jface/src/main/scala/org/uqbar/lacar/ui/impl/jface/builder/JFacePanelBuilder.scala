@@ -78,16 +78,16 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 		errorLabel.setLayoutData(new RowData(250, 50))
 
 		// fija el background del label. por default es blanco, al igual que el de eclipse
-		errorLabel.setBackground(widget.getDisplay.getSystemColor(SWT.COLOR_WHITE))
+		errorLabel.setBackground(widget.getDisplay.getSystemColor(SWT COLOR_WHITE))
 
 		val labelBuilder = new JFaceLabelBuilder(this, errorLabel)
 		labelBuilder.bind(//
-			new ObservableStatusMessage(getStatus, okMessage), //
+			new ObservableStatusMessage(status, okMessage), //
 			SWTObservables.observeText(errorLabel))
 
 		labelBuilder.bind(//
 			SWTObservables.observeForeground(errorLabel),//
-			new ObservableErrorPanelForegroundColor(getStatus))
+			new ObservableErrorPanelForegroundColor(status))
 	}
 
 	protected def setLayout(layout:Layout) = widget setLayout layout
@@ -102,7 +102,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 	// ********************************************************
 
 	override def getErrorViewer = container getErrorViewer
-	override def getStatus = container getStatus
+	override def status = container status
 	override def getJFaceComposite = widget
 
 	override def pack = children foreach(_ pack)
