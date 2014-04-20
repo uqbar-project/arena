@@ -53,8 +53,6 @@ public class ObservableProperty implements Observable {
 	public ObservableProperty setModel(IModel<?> model) {
 		// Validar que el contenedor tiene la propiedad que nos interesa.
 		// model.getGetter(this.propertyName);
-
-		// Una vez validado se guarda el modelo recibido, es el modelo contra el que vamos a bindear.
 		this.model = model;
 		return this;
 	}
