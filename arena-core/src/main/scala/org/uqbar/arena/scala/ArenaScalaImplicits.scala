@@ -14,6 +14,7 @@ import org.uqbar.arena.widgets.Control
 import org.uqbar.arena.bindings.ObservableProperty
 import scala.collection.mutable.ArrayBuffer
 import org.uqbar.arena.bindings.typesafe.BindingMockHandler
+import org.uqbar.arena.actions.AsyncActionDecorator
 
 /**
  * Contiene implicits utiles para usar arena desde scala
@@ -32,10 +33,10 @@ object ArenaScalaImplicits {
     }
   }
 
-  implicit def closureToAction[I, O](closure: () => Unit): Action = new Action {
+  implicit def closureToAction[I, O](closure: () => Unit) = new Action {
     override def execute() = closure()
   }
-
+  
   implicit def modelType(control: Control) = control.getContainerModelObject().getClass
 
   /**
@@ -45,6 +46,10 @@ object ArenaScalaImplicits {
     def bindValueTo[A: ClassTag, R](propertyBinder: A => R): Unit = {
       control.bindValue(propertyBinder)
     }
+  }
+  
+  implicit class ExtendedAction(var action:Action) {
+    def async() = new AsyncActionDecorator(action)
   }
 
   implicit def closureToObservable[A: ClassTag, R](propertyBinder: A => R): ObservableProperty = {
@@ -60,10 +65,10 @@ object ArenaScalaImplicits {
     new ObservableProperty(handler buildPropertyExpression)
   }
 
-  def createInvocationHandler() = new BindingMockHandler()
+  def createInvocationHandler() = new BindingMockHandler
 
   def createMockFor[T](tipe: Class[T], handler: MockHandler): T = {
-    ClassPathLoader.getMockMaker().createMock(createMockCreationSettings(tipe), handler)
+    ClassPathLoader.getMockMaker.createMock(createMockCreationSettings(tipe), handler)
   }
 
   def createMockCreationSettings[T](typeToMock: Class[T]) = {
@@ -73,5 +78,3 @@ object ArenaScalaImplicits {
   }
 
 }
-
-
