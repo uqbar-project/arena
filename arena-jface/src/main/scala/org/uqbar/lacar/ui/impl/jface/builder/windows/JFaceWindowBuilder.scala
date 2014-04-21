@@ -24,9 +24,6 @@ import org.eclipse.swt.widgets.Event
 import org.uqbar.arena.jface.JFaceImplicits._
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 
-//TODO SCALA: 
-//  - se puede usar los lazy para crear los atributos la primera vez?
-
 class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with JFaceContainer {
   var dbc = new DataBindingContext
   lazy val window : Window = createJFaceWindow
