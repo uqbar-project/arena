@@ -10,30 +10,28 @@ import org.eclipse.swt.widgets.Control;
 
 import scala.actors.threadpool.Arrays;
 
-import com.uqbar.commons.collections.Transformer;
-
 /**
  * Inspired by: org.eclipse.jface.internal.databinding.swt.ControlObservableValue
- *
  */
-public class ControlObservableValue<T, U> extends AbstractSWTObservableValue {
+// esta clase podria no tener demasiado sentido luego de que le saqué el transformer.
+// la unica diferencia con la de jface es que trabajar con Colors de awt en lugar de swt.
+// si esa conversion se hace un paso previo a este objeto, podriamos usar el de jface y listo.
+public class ControlObservableValue extends AbstractSWTObservableValue {
 	private final Control control;
 	private final String attribute;
 	
 	@SuppressWarnings("unchecked")
 	private static final List<String> SUPPORTED_ATTRIBUTES = Arrays.asList( new String[]{
 				SWTProperties.FOREGROUND, SWTProperties.BACKGROUND, SWTProperties.FONT});
-	private final Transformer<T, U> transformer;
 	
 	/**
 	 * @param control
 	 * @param attribute
 	 */
-	public ControlObservableValue(Control control, String attribute, Transformer<T, U> transformer) {
+	public ControlObservableValue(Control control, String attribute) {
 		super(control);
 		this.control = control;
 		this.attribute = attribute;
-		this.transformer = transformer;
 		if (!SUPPORTED_ATTRIBUTES.contains(attribute)) {
 			throw new IllegalArgumentException();
 		}
@@ -42,17 +40,16 @@ public class ControlObservableValue<T, U> extends AbstractSWTObservableValue {
 	@SuppressWarnings("unchecked")
 	public void doSetValue(Object modelValue) {
 		Object oldValue = doGetValue();
-		Object value = transformer.transform((T) modelValue);
-		if(value== null)
+		if(modelValue== null)
 			return;
 		if (attribute.equals(SWTProperties.FOREGROUND)) {
-			control.setForeground(getSWTColor((Color) value));
+			control.setForeground(getSWTColor((Color) modelValue));
 		} else if (attribute.equals(SWTProperties.BACKGROUND)) {
-			control.setBackground(getSWTColor((Color) value));
+			control.setBackground(getSWTColor((Color) modelValue));
 		} else if (attribute.equals(SWTProperties.FONT)) {
-			control.setFont((Font) value);
+			control.setFont((Font) modelValue);
 		}
-		fireValueChange(Diffs.createValueDiff(oldValue, value));
+		fireValueChange(Diffs.createValueDiff(oldValue, modelValue));
 	}
 
 	public Object doGetValue() {

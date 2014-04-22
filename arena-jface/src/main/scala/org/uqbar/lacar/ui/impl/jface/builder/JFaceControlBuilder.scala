@@ -33,7 +33,7 @@ abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
     this.initialize(jfaceWidget)
   }
   
-  override def observeBackground[M, U](transformer: Transformer[M, U]) = new JFaceBindingBuilder(this, new ControlObservableValue[M, U](widget, SWTProperties.BACKGROUND, transformer))
+  override def observeBackground() = new JFaceBindingBuilder(this, new ControlObservableValue(widget, SWTProperties.BACKGROUND))
   override def observeVisible() = new JFaceBindingBuilder(this, observeVis(widget))
 
   def observeEnabled(t: T) = if (t.isInstanceOf[Text]) observeEditable(t) else observeEnab(t)

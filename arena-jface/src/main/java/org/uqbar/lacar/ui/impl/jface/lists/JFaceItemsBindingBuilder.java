@@ -31,6 +31,16 @@ public class JFaceItemsBindingBuilder implements BindingBuilder {
 	public <M, V> BindingBuilder adaptWith(Transformer<M, V> transformer) {
 		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
 	}
+	
+	@Override
+	public <M, V> BindingBuilder modelToView(com.uqbar.commons.collections.Transformer<M, V> transformer) {
+		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
+	}
+	
+	@Override
+	public <M, V> BindingBuilder viewToModel(com.uqbar.commons.collections.Transformer<V, M> transformer) {
+		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
+	}
 
 	@Override
 	public void observeProperty(Object modelObject, String propertyName) {

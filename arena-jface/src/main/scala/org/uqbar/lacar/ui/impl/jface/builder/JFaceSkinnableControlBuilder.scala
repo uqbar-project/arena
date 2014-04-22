@@ -20,7 +20,5 @@ abstract class JFaceSkinnableControlBuilder[T <: Control](container:JFaceContain
   }
   
   def getControl() = widget
-  
-  def observeBackground() = new JFaceBindingBuilder(this, SWTObservables.observeBackground(widget))
 		
 }
