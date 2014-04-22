@@ -22,7 +22,7 @@ public interface ControlBuilder extends WidgetBuilder, Sizeable, DisableEnable {
 	 */
 	public BindingBuilder observeValue();
 
-	public <T, U> BindingBuilder observeBackground(Transformer<T, U> transform);
+	public BindingBuilder observeBackground();
 	
 	/**
 	 * Used to create a binding associated to the "visible" property of this control.

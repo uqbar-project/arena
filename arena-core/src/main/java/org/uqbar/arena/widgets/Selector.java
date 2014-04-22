@@ -10,6 +10,8 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
 /**
+ * A control that allows to choose a single value from a list of objects.
+ * 
  * @author npasserini
  */
 public class Selector<T> extends Control {
@@ -51,9 +53,11 @@ public class Selector<T> extends Control {
 	 * @return A {@link Binding} object that allows to further configure this binding.
 	 */
 	public Binding<ListBuilder<T>> bindItems(ObservableProperty modelObservable) {
-		modelObservable.setContainer(this.getContainer());
+		return this.addBinding(modelObservable, items());
+	}
 
-		return this.addBinding(new Binding<ListBuilder<T>>(modelObservable, new ObservableItems<T, ListBuilder<T>>()));
+	public ObservableItems<T, ListBuilder<T>> items() {
+		return new ObservableItems<T, ListBuilder<T>>();
 	}
 
 	// ********************************************************

@@ -7,12 +7,10 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
-import org.uqbar.lacar.ui.model.bindings.ControlBinding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
 import com.uqbar.commons.collections.Closure;
-import com.uqbar.commons.collections.Transformer;
 
 /**
  * A {@link Widget} that allows to edit a single value. Superclass for all of the most common widgets: text
@@ -49,17 +47,43 @@ public abstract class Control extends Widget {
 	 * @return this
 	 */
 	public <C extends ControlBuilder> Binding<C> bindValue(Observable modelObservable) {
-		return this.addBinding(modelObservable, new ObservableValue<C>());
+		return this.addBinding(modelObservable, this.<C>value());
 	}
 	
 	public <C extends ControlBuilder> Binding<C> bindEnabled(Observable modelObservable) {
-		return this.addBinding(modelObservable, new ViewObservable<C>() {
+		return this.addBinding(modelObservable, this.<C>enabled());
+	}
+	
+	// ***************************
+	// ** observable properties
+	// ***************************
+	
+	public <C extends ControlBuilder> ObservableValue<C> value() {
+		return new ObservableValue<C>();
+	}
+
+	public <C extends ControlBuilder> ViewObservable<C> enabled() {
+		return new ViewObservable<C>() {
 			@Override
 			public BindingBuilder createBinding(C builder) {
 				return builder.observeEnabled();
 			}
-		});
+		};
 	}
+	
+	public <C extends ControlBuilder> ViewObservable<C> visible() {
+		return new ViewObservable<C>() {
+			@Override
+			public BindingBuilder createBinding(C builder) {
+				return builder.observeVisible();
+			}
+		};
+	}
+	
+	// ***************************
+	// ** bind * To *
+	// ***************************
+	
 
 	/**
 	 * Binds the "enabled" property of this control to a property of the model of the container. Shortcut to
@@ -73,44 +97,24 @@ public abstract class Control extends Widget {
 	}
 
 	public <C extends ControlBuilder> Binding<C> bindVisible(Observable modelObservable) {
-		return this.addBinding(modelObservable, new ViewObservable<C>() {
-			@Override
-			public BindingBuilder createBinding(C builder) {
-				return builder.observeVisible();
-			}
-		});
+		return this.addBinding(modelObservable, this.<C>visible());
 	}
 	
 	public <C extends ControlBuilder> Binding<C> bindVisibleToProperty(String propertyName) {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
 	
-	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackground(String propertyName) {
-		ObservableProperty model = new ObservableProperty(propertyName);
-		model.setContainer(this.getContainer());
-		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
-		binding.setView(new ViewObservable<C>() {
-			@Override
-			public BindingBuilder createBinding(C builder) {
-				return builder.observeBackground(binding.buildTransformer());
-			}
-		});
-		this.addBinding(binding);
-		return binding;
+	public <C extends ControlBuilder, T, U> Binding<C> bindBackground(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), this.<C>background());
 	}
 	
-	public <C extends ControlBuilder, T, U> ControlBinding <C, T, U> bindBackgroundToTransformer(String propertyName, final Transformer<T, U> transformer) {
-		ObservableProperty model = new ObservableProperty(propertyName);
-		model.setContainer(this.getContainer());
-		final ControlBinding<C, T, U> binding = new ControlBinding<C, T, U>(model);
-		binding.setView(new ViewObservable<C>() {
+	public <C extends ControlBuilder> ViewObservable<C> background() {
+		return new ViewObservable<C>() {
 			@Override
 			public BindingBuilder createBinding(C builder) {
-				return builder.observeBackground(transformer);
+				return builder.observeBackground();
 			}
-		});
-		this.addBinding(binding);
-		return binding;
+		};
 	}
 
 	// ********************************************************

@@ -10,6 +10,14 @@ import com.uqbar.commons.StringUtils;
  */
 public interface TextFilter {
 	
+	/**
+	 * Returns false if you want to forbid the user's action.
+	 */
+	public boolean accept(TextInputEvent event);
+	
+	
+	// innerclases - common filter implementations to reuse
+	
 	public final static TextFilter NUMERIC_TEXT_FILTER = new TextFilter() {
 		@Override
 		public boolean accept(TextInputEvent event) {
@@ -23,10 +31,5 @@ public interface TextFilter {
 			return StringUtils.isBlank(event.getPotentialTextResult());
 		}
 	};
-	
-	/**
-	 * Returns false if you want to forbid the user's action.
-	 */
-	public boolean accept(TextInputEvent event);
 
 }

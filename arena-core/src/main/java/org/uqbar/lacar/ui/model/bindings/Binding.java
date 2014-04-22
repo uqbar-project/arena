@@ -59,6 +59,24 @@ public class Binding<C extends WidgetBuilder> {
 			}
 		});
 	}
+	
+	public Binding<C> setModelToView(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
+		return this.setAdapter(new Adapter() {
+			@Override
+			public void configure(BindingBuilder binder) {
+				binder.modelToView(transformer);
+			}
+		});
+	}
+	
+	public Binding<C> setViewToModel(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
+		return this.setAdapter(new Adapter() {
+			@Override
+			public void configure(BindingBuilder binder) {
+				binder.viewToModel(transformer);
+			}
+		});
+	}
 
 	/**
 	 * This is the most general way to set the strategy that adapts the values in the model to the values in
