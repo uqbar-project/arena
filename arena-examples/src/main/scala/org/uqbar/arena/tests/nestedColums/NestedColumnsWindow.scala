@@ -1,6 +1,5 @@
 package org.uqbar.arena.tests.nestedColums
 
-
 import java.awt.Color
 import java.util.HashMap
 import java.util.Map
@@ -24,6 +23,8 @@ import org.uqbar.arena.layout.ColumnLayout
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import org.uqbar.arena.test.scala.collections.binding.TableWithScalaListWindow
+import org.uqbar.arena.scala.ArenaScalaImplicits._
+import org.uqbar.lacar.ui.model.bindings.CaseTransformer
 
 
 /**
@@ -44,19 +45,16 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 		table.bindItemsToProperty("students")
 		table.bindValueToProperty("currentEstudent")
 		
-		val statusTransomer = new Transformer[EstudenStatus.Status, Color](){
-		          def transform(status:EstudenStatus.Status) =  status match{
-		            case EstudenStatus.EXPELLED => Color.RED
-		            case EstudenStatus.FREE => Color.ORANGE
-		            case EstudenStatus.REGULAR => Color.BLUE
-		          }
+		val statusTransomer = new Transformer[EstudenStatus.Status, Color]() {
+			def transform(status:EstudenStatus.Status) =  status match {
+		        case EstudenStatus.EXPELLED => Color.RED
+		        case EstudenStatus.FREE => Color.ORANGE
+		        case EstudenStatus.REGULAR => Color.BLUE
+		    }
 	     }
 		
 		val nameColumn = new Column[Estudent](table)
-		nameColumn setTitle("Name")	bindContentsToProperty("name") setTransformer(new Transformer[String,String]() {
-		  override def transform(name:String) = name.toUpperCase()
-		})
-		
+		nameColumn setTitle("Name")	bindContentsToProperty("name") setTransformer { name:String => name toUpperCase }
 		nameColumn bindBackground("status", statusTransomer)
 		
 		val departmentColumn = new Column[Estudent](table)
@@ -70,9 +68,7 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 		val nameTextbox = new TextBox(formPanel)
 		nameTextbox.bindValueToProperty("currentEstudent.name")
 		
-		nameTextbox.bindBackground("currentEstudent.status")
-			.when(EstudenStatus.EXPELLED, Color.RED)
-			.when(EstudenStatus.FREE, Color.ORANGE)
+		nameTextbox.bindBackground("currentEstudent.status").setModelToView(statusTransomer)
 			
 		new Label(formPanel).setText("Status")
 		val provinces = new Selector[EstudenStatus.Status](formPanel)
