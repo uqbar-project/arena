@@ -37,18 +37,17 @@ import org.uqbar.arena.windows.MainWindow
  *
  */
 
-object NestedColumnsWindow extends MainWindow[University](University.university) with App{
+object BindingExampleWindow extends MainWindow[University](University.university) with App {
 	startApplication()
 	
 	override def createContents(mainPanel:Panel) {
-		
 		mainPanel.setLayout(new VerticalLayout())
 		
 		val table = new Table[Estudent](mainPanel, classOf[Estudent])
-		table.setWidth(200)
-		table.setHeight(200)
-		table.bindItemsToProperty("students")
-		table.bindValueToProperty("currentEstudent")
+		table setWidth(200)
+		table setHeight(200)
+		table.items() <=> getModelObject()@@{ _ students }
+		table.value() <=> getModelObject()@@{ _ currentEstudent }
 		
 		val statusTransomer = new Transformer[EstudenStatus.Status, Color]() {
 			def transform(status:EstudenStatus.Status) =  status match {
@@ -69,17 +68,66 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 		val formPanel = new Panel(mainPanel)
 		formPanel.setLayout(new ColumnLayout(2))
 		
-		new Label(formPanel).setText("Nombre")
+		new Label(formPanel) setText("Nombre")
 		val nameTextbox = new TextBox(formPanel)
-		nameTextbox.bindValueToProperty("currentEstudent.name")
+		nameTextbox.value() <=> getModelObject@@{ _.currentEstudent.name }
+		(nameTextbox.background() <=> {u:University => u.currentEstudent.status })
+		   .setModelToView { (e : EstudenStatus.Status) => e match {
+		      case EstudenStatus.EXPELLED => Color.RED
+		      case EstudenStatus.FREE => Color.ORANGE
+		      case EstudenStatus.REGULAR => Color.BLUE
+			}
+		};
+		
 
 		
-		new Label(formPanel).setText("Status")
+		new Label(formPanel) setText("Status")
 		val provinces = new Selector[EstudenStatus.Status](formPanel)
 		provinces.setContents(EstudenStatus.values.toList, "name")
+
+		// Different kinds of bindings
 		provinces.bindValueToProperty("currentEstudent.status")
-	
+		provinces.bindValueTo { u: University => u.currentEstudent.status }
+		provinces.bind(provinces.value(), { u: University => u.currentEstudent.status })
+		provinces.value() <=> getModelObject@@{ _.currentEstudent.status }
+		
 	}
+		
+	
+	// OTRAS FORMAS de binding (work-in-progress)
+	
+//		nameTextbox.bindBackground("currentEstudent.status").setModelToView(statusTransomer)
+		
+//		(nameTextbox.background() <=> {u:University => u.currentEstudent.status })
+//		   .setModelToView { (e : EstudenStatus.Status) => e match {  // no debería necesitar el tipo del modelo
+//		      case EstudenStatus.EXPELLED => Color.RED
+//		      case EstudenStatus.FREE => Color.ORANGE
+//		      case EstudenStatus.REGULAR => Color.BLUE
+//			}
+//		};
+		
+		// MAP sobre el observable del model (en lugar de sobre el binding)
+	    // requiere algebra o combinators sobre Observables
+//		(nameTextbox.background() <=> {u:University => u.currentEstudent.status } 
+//											.map{ 
+//		        								case EstudenStatus.EXPELLED => Color.RED
+//		        								case EstudenStatus.FREE => Color.ORANGE
+//		        								case EstudenStatus.REGULAR => Color.BLUE
+//											}
+//
+//		)
+	
+		// otra sintaxis de lo anterior (<= en lugar de .map)
+	
+//		(nameTextbox.background() <=> {u:University => u.currentEstudent.status } 
+//											<= { 
+//		        								case EstudenStatus.EXPELLED => Color.RED
+//		        								case EstudenStatus.FREE => Color.ORANGE
+//		        								case EstudenStatus.REGULAR => Color.BLUE
+//											}
+//
+//		)
+	
 	
 
 }
