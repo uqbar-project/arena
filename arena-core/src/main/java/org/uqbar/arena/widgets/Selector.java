@@ -42,7 +42,7 @@ public class Selector<T> extends Control {
 	 * @param modelProperty The name of the property to bind.
 	 * @return A {@link Binding} object that allows to further configure this binding.
 	 */
-	public Binding<ListBuilder<T>> bindItemsToProperty(String modelProperty) {
+	public Binding<Selector<T>,ListBuilder<T>> bindItemsToProperty(String modelProperty) {
 		return this.bindItems(new ObservableProperty(modelProperty));
 	}
 
@@ -52,12 +52,12 @@ public class Selector<T> extends Control {
 	 * @param modelObservable An {@link ObservableProperty} to bind.
 	 * @return A {@link Binding} object that allows to further configure this binding.
 	 */
-	public Binding<ListBuilder<T>> bindItems(ObservableProperty modelObservable) {
+	public Binding<Selector<T>, ListBuilder<T>> bindItems(ObservableProperty modelObservable) {
 		return this.addBinding(modelObservable, items());
 	}
 
-	public ObservableItems<T, ListBuilder<T>> items() {
-		return new ObservableItems<T, ListBuilder<T>>();
+	public ObservableItems<Selector<T>,T, ListBuilder<T>> items() {
+		return new ObservableItems<Selector<T>,T, ListBuilder<T>>(this);
 	}
 
 	// ********************************************************

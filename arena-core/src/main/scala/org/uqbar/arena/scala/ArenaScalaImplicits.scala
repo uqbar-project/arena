@@ -15,6 +15,14 @@ import org.uqbar.arena.bindings.ObservableProperty
 import scala.collection.mutable.ArrayBuffer
 import org.uqbar.arena.bindings.typesafe.BindingMockHandler
 import org.uqbar.arena.actions.AsyncActionDecorator
+import org.uqbar.lacar.ui.model.bindings.Observable
+import org.uqbar.lacar.ui.model.bindings.ViewObservable
+import org.uqbar.lacar.ui.model.bindings.Binding
+import org.uqbar.lacar.ui.model.ControlBuilder
+import org.uqbar.lacar.ui.model.WidgetBuilder
+import org.uqbar.lacar.ui.model.BindingBuilder
+import org.uqbar.arena.widgets.Container
+import org.uqbar.arena.widgets.Widget
 
 /**
  * Contiene implicits utiles para usar arena desde scala
@@ -37,26 +45,42 @@ object ArenaScalaImplicits {
     override def execute() = closure()
   }
   
+  implicit class ExtendedAction(var action:Action) {
+    def async() = new AsyncActionDecorator(action)
+  }
+  
   implicit def modelType(control: Control) = control.getContainerModelObject().getClass
 
+  // *************************************
+  // ** bindings
+  // *************************************
+  
   /**
-   * Used to add bindValue as "extension methods"
+   * Used to add bind as "extension methods"
    */
   implicit class Bindeable(control: Control) {
+    
+    // Este no deberia existir luego. Es algo especifico (value) 
     def bindValueTo[A: ClassTag, R](propertyBinder: A => R): Unit = {
       control.bindValue(propertyBinder)
     }
+    
+    def bind[A:ClassTag,R,C <: WidgetBuilder, V <:Widget](view:ViewObservable[V,_<:C], propertyBinder: A => R) : Binding[V,_<:C] = {
+      control.addBinding(closureToObservable(propertyBinder), view)
+    }
+    
   }
   
-  implicit class ExtendedAction(var action:Action) {
-    def async() = new AsyncActionDecorator(action)
+  implicit class ObservableIdiomatic[A:ClassTag](var obj: A) {
+    def @@[R](propertyBinder: A => R) = closureToObservable(propertyBinder)
   }
 
   implicit def closureToObservable[A: ClassTag, R](propertyBinder: A => R): ObservableProperty = {
     // createMock
     val concreteModelType = implicitly[ClassTag[A]].runtimeClass.asInstanceOf[Class[A]]
+    
     val handler = createInvocationHandler()
-    val mock: A = createMockFor(concreteModelType, handler)
+    val mock = createMockFor(concreteModelType, handler)
 
     // call closure
     propertyBinder.apply(mock)
@@ -64,7 +88,13 @@ object ArenaScalaImplicits {
     //TODO: inspect mock for getter calls, register binding.
     new ObservableProperty(handler buildPropertyExpression)
   }
-
+  
+  implicit class ViewObservableCombinators[V <: Control, C <: WidgetBuilder](var viewObservable: ViewObservable[V, C]) {
+    def <=>[A](obj:Observable[A]) : Binding[V,C] = {
+      viewObservable.getView().addBinding(obj, viewObservable)
+    }
+  }
+  
   def createInvocationHandler() = new BindingMockHandler
 
   def createMockFor[T](tipe: Class[T], handler: MockHandler): T = {

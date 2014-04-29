@@ -61,7 +61,6 @@ public class Column<R> {
 				builder.setFixedSize(pixels);
 			}
 		});
-		
 		return this;
 	}
 	
@@ -72,7 +71,6 @@ public class Column<R> {
 				builder.setBackground(color);
 			}
 		});
-		
 		return this;
 	}
 	
@@ -83,7 +81,6 @@ public class Column<R> {
 				builder.setForeground(color);
 			}
 		});
-		
 		return this;
 	}
 	
@@ -120,6 +117,7 @@ public class Column<R> {
 		return this;
 	}
 	
+	//TODO: Que no reciba el transformer, que haya que setearlo sobre el retorno.
 	public <U> Column<R> bindBackground(final String propertyName, Transformer<U, Color> transformer) {
 		this.labelProvider.add(new BackgoundProvider<R, U, Color>(propertyName, transformer));
 		return this;

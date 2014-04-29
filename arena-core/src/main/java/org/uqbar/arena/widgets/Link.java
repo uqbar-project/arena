@@ -49,8 +49,8 @@ public class Link extends SkinnableControl {
 		return this;
 	}
 
-	public Binding<ButtonBuilder> bindCaptionToProperty(String propertyName) {
-		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
+	public Binding<Link, ButtonBuilder> bindCaptionToProperty(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption(this));
 	}
 	
 	

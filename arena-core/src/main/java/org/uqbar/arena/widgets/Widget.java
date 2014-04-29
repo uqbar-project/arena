@@ -22,7 +22,7 @@ import com.uqbar.commons.loggeable.Loggeable;
  * @author npasserini
  */
 public class Widget implements Loggeable {
-	private Collection<Binding<WidgetBuilder>> bindings = CollectionFactory.createCollection();
+	private Collection<Binding<Widget, WidgetBuilder>> bindings = CollectionFactory.createCollection();
 	protected List<Closure<WidgetBuilder>> configurations = CollectionFactory.createList();
 	private static final long serialVersionUID = 7034829204374950200L;
 
@@ -60,14 +60,14 @@ public class Widget implements Loggeable {
 	 * @param view An observable characteristic of this control.
 	 * @return A {@link Binding} that allows to configure further the creating binding between view and model.
 	 */
-	protected <C extends WidgetBuilder> Binding<C> addBinding(Observable model, ViewObservable<C> view) {
+	public <V extends Widget, C extends WidgetBuilder> Binding<V,C> addBinding(Observable model, ViewObservable<V,C> view) {
 		model.setContainer(this.getContainer());
-		return this.addBinding(new Binding<C>(model, view));
+		return this.addBinding(new Binding<V,C>(model, view));
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <C extends WidgetBuilder> Binding<C> addBinding(Binding<C> binding) {
-		this.bindings.add((Binding<WidgetBuilder>) binding);
+	public <V extends Widget,C extends WidgetBuilder> Binding<V,C> addBinding(Binding<V,C> binding) {
+		this.bindings.add((Binding<Widget,WidgetBuilder>) binding);
 		return binding;
 	}
 
@@ -91,7 +91,7 @@ public class Widget implements Loggeable {
 
 		this.configure(builder);
 
-		for (Binding<WidgetBuilder> binding : this.bindings) {
+		for (Binding<Widget, WidgetBuilder> binding : this.bindings) {
 			binding.execute(builder);
 		}
 

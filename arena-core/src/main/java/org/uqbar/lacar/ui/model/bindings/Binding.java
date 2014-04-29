@@ -2,6 +2,7 @@ package org.uqbar.lacar.ui.model.bindings;
 
 import org.uqbar.arena.bindings.Adapter;
 import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.widgets.Widget;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.adapter.NotEmptyTransformer;
@@ -15,7 +16,7 @@ import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
  * @param<A> Adapter type
  * @author npasserini
  */
-public class Binding<C extends WidgetBuilder> {
+public class Binding<V extends Widget, C extends WidgetBuilder> {
 	/**
 	 * Referencia a una característica observable del modelo.
 	 */
@@ -24,19 +25,19 @@ public class Binding<C extends WidgetBuilder> {
 	/**
 	 * Referencia a una característica observable de la vista.
 	 */
-	private ViewObservable<C> view;
+	private ViewObservable<V, C> view;
 
 	private Adapter adapter;
 
 	/**
 	 * Constructor con un adapter por default.
 	 */
-	public Binding(Observable model, ViewObservable<C> view) {
+	public Binding(Observable model, ViewObservable<V,C> view) {
 		this.model = model;
 		this.view = view;
 	}
 	
-	public Binding<C> setView(ViewObservable<C> view){
+	public Binding<V,C> setView(ViewObservable<V,C> view){
 		this.view = view;
 		return this;
 	}
@@ -51,7 +52,7 @@ public class Binding<C extends WidgetBuilder> {
 	 * @param adapter Un {@link Transformer}
 	 * @return Este mismo {@link BindingBuilder}, para encadenar mensajes.
 	 */
-	public Binding<C> setTransformer(final Transformer<?, ?> transformer) {
+	public Binding<V,C> setTransformer(final Transformer<?, ?> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {
@@ -60,7 +61,7 @@ public class Binding<C extends WidgetBuilder> {
 		});
 	}
 	
-	public Binding<C> setModelToView(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
+	public Binding<V,C> setModelToView(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {
@@ -69,7 +70,7 @@ public class Binding<C extends WidgetBuilder> {
 		});
 	}
 	
-	public Binding<C> setViewToModel(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
+	public Binding<V,C> setViewToModel(final com.uqbar.commons.collections.Transformer<?,?> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {
@@ -86,7 +87,7 @@ public class Binding<C extends WidgetBuilder> {
 	 * 
 	 * @param adapter
 	 */
-	public Binding<C> setAdapter(Adapter adapter) {
+	public Binding<V,C> setAdapter(Adapter adapter) {
 		this.adapter = adapter;
 		return this;
 	}
@@ -106,11 +107,11 @@ public class Binding<C extends WidgetBuilder> {
 	 * Specifies that the output of this binding will be a boolean telling if the string input value is not
 	 * null or empty.
 	 */
-	public Binding<C> notEmpty() {
+	public Binding<V,C> notEmpty() {
 		return this.setTransformer(new NotEmptyTransformer());
 	}
 
-	public Binding<C> notNull() {
+	public Binding<V,C> notNull() {
 		return this.setTransformer(new NotNullTransformer());
 	}
 

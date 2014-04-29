@@ -24,7 +24,7 @@ class BindingMockHandler extends InternalMockHandler[Object] {
     }
     if (mockResult(invocation)) 
       ArenaScalaImplicits.createMockFor(m.getReturnType, this).asInstanceOf[Object]
-   	else 
+   	else
    	  null
   }
   
@@ -41,8 +41,11 @@ class BindingMockHandler extends InternalMockHandler[Object] {
     if (methodName.startsWith("get")) {
       val propName = methodName.substring(3)
       Character.toLowerCase(propName.charAt(0)) + propName.substring(1)
-    } else methodName
+    } 
+    else methodName
   }
+  
+  // no soportados
 
   override def getInvocationContainer() = {
     throw new UnsupportedOperationException("TODO: auto-generated method stub")

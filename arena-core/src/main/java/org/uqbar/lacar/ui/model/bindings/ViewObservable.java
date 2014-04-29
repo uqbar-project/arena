@@ -1,5 +1,6 @@
 package org.uqbar.lacar.ui.model.bindings;
 
+import org.uqbar.arena.widgets.Widget;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
 
@@ -19,7 +20,7 @@ import org.uqbar.lacar.ui.model.WidgetBuilder;
  * 
  * @author npasserini
  */
-public interface ViewObservable<C extends WidgetBuilder> {
+public interface ViewObservable<V extends Widget, C extends WidgetBuilder> {
 
 	/**
 	 * Executes the actual binding between widget and model.
@@ -27,5 +28,14 @@ public interface ViewObservable<C extends WidgetBuilder> {
 	 * @param control
 	 */
 	public BindingBuilder createBinding(C control);
+	
+	/**
+	 * Returns the owner of the view observable.
+	 * Ex:
+	 * 	textBox.value().getView() == textBox
+	 * 
+	 * @return
+	 */
+	public V getView();
 
 }

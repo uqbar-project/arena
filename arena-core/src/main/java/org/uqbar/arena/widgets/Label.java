@@ -54,7 +54,7 @@ public class Label extends SkinnableControl implements WidgetWithImage {
 
 	@Override
 	public <M> Binding bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
-		return this.addBinding(new ObservableProperty(propertyName), ViewObservables.observableImage(transformer));
+		return this.addBinding(new ObservableProperty(propertyName), ViewObservables.observableImage(this, transformer));
 	}
 
 }

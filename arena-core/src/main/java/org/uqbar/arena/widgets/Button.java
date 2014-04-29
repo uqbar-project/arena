@@ -81,13 +81,13 @@ public class Button extends SkinnableControl implements WidgetWithImage {
 	// ** Binding
 	// ********************************************************
 	
-	public Binding bindCaptionToProperty(String propertyName) {
-		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption());
+	public Binding<Button, ButtonBuilder> bindCaptionToProperty(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption(this));
 	}
 	
 	@Override
 	public <M> Binding bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
-		return this.addBinding(new ObservableProperty(propertyName), observableImage(transformer));
+		return this.addBinding(new ObservableProperty(propertyName), observableImage(this, transformer));
 	}
 	
 	// ********************************************************

@@ -6,6 +6,7 @@ import org.uqbar.arena.widgets.traits.Sizeable;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
+import org.uqbar.lacar.ui.model.bindings.AbstractViewObservable;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
@@ -36,7 +37,7 @@ public abstract class Control extends Widget {
 	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<C> bindValueToProperty(String modelProperty) {
+	public <C extends ControlBuilder> Binding<Control, C> bindValueToProperty(String modelProperty) {
 		return this.bindValue(new ObservableProperty(modelProperty));
 	}
 
@@ -46,11 +47,11 @@ public abstract class Control extends Widget {
 	 * @param modelObservable an {@link ObservableProperty}
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<C> bindValue(Observable modelObservable) {
+	public <C extends ControlBuilder> Binding<Control,C> bindValue(Observable modelObservable) {
 		return this.addBinding(modelObservable, this.<C>value());
 	}
 	
-	public <C extends ControlBuilder> Binding<C> bindEnabled(Observable modelObservable) {
+	public <C extends ControlBuilder> Binding<Control,C> bindEnabled(Observable modelObservable) {
 		return this.addBinding(modelObservable, this.<C>enabled());
 	}
 	
@@ -58,12 +59,12 @@ public abstract class Control extends Widget {
 	// ** observable properties
 	// ***************************
 	
-	public <C extends ControlBuilder> ObservableValue<C> value() {
-		return new ObservableValue<C>();
+	public <C extends ControlBuilder> ObservableValue<Control,C> value() {
+		return new ObservableValue<Control,C>(this);
 	}
 
-	public <C extends ControlBuilder> ViewObservable<C> enabled() {
-		return new ViewObservable<C>() {
+	public <C extends ControlBuilder> ViewObservable<Control,C> enabled() {
+		return new AbstractViewObservable<Control, C>(this) {
 			@Override
 			public BindingBuilder createBinding(C builder) {
 				return builder.observeEnabled();
@@ -71,8 +72,8 @@ public abstract class Control extends Widget {
 		};
 	}
 	
-	public <C extends ControlBuilder> ViewObservable<C> visible() {
-		return new ViewObservable<C>() {
+	public <C extends ControlBuilder> ViewObservable<Control, C> visible() {
+		return new AbstractViewObservable<Control, C>(this) {
 			@Override
 			public BindingBuilder createBinding(C builder) {
 				return builder.observeVisible();
@@ -92,24 +93,24 @@ public abstract class Control extends Widget {
 	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<C> bindEnabledToProperty(String propertyName) {
+	public <C extends ControlBuilder> Binding<Control, C> bindEnabledToProperty(String propertyName) {
 		return this.bindEnabled(new ObservableProperty(propertyName));
 	}
 
-	public <C extends ControlBuilder> Binding<C> bindVisible(Observable modelObservable) {
+	public <C extends ControlBuilder> Binding<Control, C> bindVisible(Observable modelObservable) {
 		return this.addBinding(modelObservable, this.<C>visible());
 	}
 	
-	public <C extends ControlBuilder> Binding<C> bindVisibleToProperty(String propertyName) {
+	public <C extends ControlBuilder> Binding<Control, C> bindVisibleToProperty(String propertyName) {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
 	
-	public <C extends ControlBuilder, T, U> Binding<C> bindBackground(String propertyName) {
+	public <C extends ControlBuilder, T, U> Binding<Control, C> bindBackground(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), this.<C>background());
 	}
 	
-	public <C extends ControlBuilder> ViewObservable<C> background() {
-		return new ViewObservable<C>() {
+	public <C extends ControlBuilder> ViewObservable<Control, C> background() {
+		return new AbstractViewObservable<Control, C>(this) {
 			@Override
 			public BindingBuilder createBinding(C builder) {
 				return builder.observeBackground();

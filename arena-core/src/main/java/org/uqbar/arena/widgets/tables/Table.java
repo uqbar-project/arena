@@ -48,7 +48,7 @@ public class Table<R> extends Control {
 	 *            contenidos de esta tabla
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public Binding<TableBuilder<R>> bindItemsToProperty(String propertyName) {
+	public Binding<Table<R>, TableBuilder<R>> bindItemsToProperty(String propertyName) {
 		return this.bindItems(new ObservableProperty(propertyName));
 	}
 
@@ -60,12 +60,12 @@ public class Table<R> extends Control {
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
 	// type-safe: should be an Observable<? extends Collection>
-	public Binding<TableBuilder<R>> bindItems(Observable model) {
+	public Binding<Table<R>, TableBuilder<R>> bindItems(Observable model) {
 		return this.addBinding(model, items());
 	}
 	
-	public ViewObservable<TableBuilder<R>> items() {
-		return new ObservableTableContents<R>();
+	public ViewObservable<Table<R>, TableBuilder<R>> items() {
+		return new ObservableTableContents<R>(this);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Table<R> extends Control {
 	 * 
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public <C extends ControlBuilder> Binding<C> bindSelectionToProperty(String selected) {
+	public <C extends ControlBuilder> Binding<Control, C> bindSelectionToProperty(String selected) {
 		return this.bindValueToProperty(selected);
 	}
 	
