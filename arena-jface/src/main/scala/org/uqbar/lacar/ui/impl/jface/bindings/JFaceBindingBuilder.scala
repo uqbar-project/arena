@@ -49,7 +49,7 @@ class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValu
     this
   }
   
-  override def viewToModel[M,V](transformer : com.uqbar.commons.collections.Transformer[V,M]) = {
+  override def viewToModel[M,V](transformer : com.uqbar.commons.collections.Transformer[V,M]) : this.type = {
     setConverter(viewToModel, new IConverter() {
       override def convert(value:Object) = transformer.transform(value.asInstanceOf[V]).asInstanceOf[Object];
       //TODO: is this really needed ?
@@ -59,7 +59,7 @@ class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValu
     this
   }
   
-  override def modelToView[M,V](transformer : com.uqbar.commons.collections.Transformer[M,V]) = {
+  override def modelToView[M,V](transformer : com.uqbar.commons.collections.Transformer[M,V]) : this.type = {
     setConverter(modelToView, new IConverter() {
       override def convert(value:Object) = transformer.transform(value.asInstanceOf[M]).asInstanceOf[Object];
       //TODO: is this really needed ?
