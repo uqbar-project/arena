@@ -1,9 +1,11 @@
 package org.uqbar.arena.widgets.tables;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.uqbar.arena.bindings.ObservableProperty;
+import org.uqbar.arena.bindings.ObservableValue;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Control;
 import org.uqbar.lacar.ui.model.ControlBuilder;
@@ -48,7 +50,7 @@ public class Table<R> extends Control {
 	 *            contenidos de esta tabla
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public Binding<Table<R>, TableBuilder<R>> bindItemsToProperty(String propertyName) {
+	public Binding<Collection<R>,Table<R>, TableBuilder<R>> bindItemsToProperty(String propertyName) {
 		return this.bindItems(new ObservableProperty(propertyName));
 	}
 
@@ -60,8 +62,9 @@ public class Table<R> extends Control {
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
 	// type-safe: should be an Observable<? extends Collection>
-	public Binding<Table<R>, TableBuilder<R>> bindItems(Observable model) {
-		return this.addBinding(model, items());
+//	M debería ser +M con covariante (?)
+	public <M> Binding<Collection<R>, Table<R>, TableBuilder<R>> bindItems(Observable<M> model) {
+		return (Binding<Collection<R>, Table<R>, TableBuilder<R>>) this.addBinding(model, items());
 	}
 	
 	public ViewObservable<Table<R>, TableBuilder<R>> items() {
@@ -78,8 +81,12 @@ public class Table<R> extends Control {
 	 * 
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
-	public <C extends ControlBuilder> Binding<Control, C> bindSelectionToProperty(String selected) {
+	public <C extends ControlBuilder> Binding<R, Control, C> bindSelectionToProperty(String selected) {
 		return this.bindValueToProperty(selected);
+	}
+	
+	public ObservableValue<Control, ControlBuilder> selection() {
+		return this.value();
 	}
 	
 

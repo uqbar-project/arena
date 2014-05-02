@@ -37,7 +37,7 @@ public abstract class Control extends Widget {
 	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<Control, C> bindValueToProperty(String modelProperty) {
+	public <M,C extends ControlBuilder> Binding<M,Control, C> bindValueToProperty(String modelProperty) {
 		return this.bindValue(new ObservableProperty(modelProperty));
 	}
 
@@ -47,11 +47,11 @@ public abstract class Control extends Widget {
 	 * @param modelObservable an {@link ObservableProperty}
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<Control,C> bindValue(Observable modelObservable) {
+	public <M,C extends ControlBuilder> Binding<M,Control,C> bindValue(Observable<M> modelObservable) {
 		return this.addBinding(modelObservable, this.<C>value());
 	}
 	
-	public <C extends ControlBuilder> Binding<Control,C> bindEnabled(Observable modelObservable) {
+	public <M,C extends ControlBuilder> Binding<M,Control,C> bindEnabled(Observable<M> modelObservable) {
 		return this.addBinding(modelObservable, this.<C>enabled());
 	}
 	
@@ -93,19 +93,19 @@ public abstract class Control extends Widget {
 	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
 	 */
-	public <C extends ControlBuilder> Binding<Control, C> bindEnabledToProperty(String propertyName) {
+	public <C extends ControlBuilder> Binding<?,Control, C> bindEnabledToProperty(String propertyName) {
 		return this.bindEnabled(new ObservableProperty(propertyName));
 	}
 
-	public <C extends ControlBuilder> Binding<Control, C> bindVisible(Observable modelObservable) {
+	public <C extends ControlBuilder> Binding<?,Control, C> bindVisible(Observable modelObservable) {
 		return this.addBinding(modelObservable, this.<C>visible());
 	}
 	
-	public <C extends ControlBuilder> Binding<Control, C> bindVisibleToProperty(String propertyName) {
+	public <C extends ControlBuilder> Binding<?,Control, C> bindVisibleToProperty(String propertyName) {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
 	
-	public <C extends ControlBuilder, T, U> Binding<Control, C> bindBackground(String propertyName) {
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindBackground(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), this.<C>background());
 	}
 	

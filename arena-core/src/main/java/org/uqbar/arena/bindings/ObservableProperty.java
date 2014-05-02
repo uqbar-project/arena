@@ -11,7 +11,7 @@ import org.uqbar.lacar.ui.model.bindings.Observable;
  * 
  * @author npasserini
  */
-public class ObservableProperty implements Observable {
+public class ObservableProperty<T> implements Observable<T> {
 	private IModel<?> model;
 	protected final String propertyName;
 

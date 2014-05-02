@@ -7,6 +7,7 @@ import org.uqbar.arena.graphics.Image;
 import org.uqbar.arena.widgets.traits.WidgetWithImage;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ButtonBuilder;
+import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
@@ -81,12 +82,12 @@ public class Button extends SkinnableControl implements WidgetWithImage {
 	// ** Binding
 	// ********************************************************
 	
-	public Binding<Button, ButtonBuilder> bindCaptionToProperty(String propertyName) {
+	public Binding<?,Button, ButtonBuilder> bindCaptionToProperty(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption(this));
 	}
 	
 	@Override
-	public <M> Binding bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
+	public <M> Binding<M,Button,ButtonBuilder> bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
 		return this.addBinding(new ObservableProperty(propertyName), observableImage(this, transformer));
 	}
 	

@@ -31,7 +31,7 @@ import org.uqbar.arena.widgets.Widget
  * @author jfernandes
  */
 object ArenaScalaImplicits {
-
+  
   /** Convierte una funcion en un transformer   */
   implicit def closureToTransformer[I, O](closure: (I) => O): Transformer[I, O] = {
     new Transformer[I, O] {
@@ -41,12 +41,15 @@ object ArenaScalaImplicits {
     }
   }
 
+  /** Convierte una funcion en un Action */
   implicit def closureToAction[I, O](closure: () => Unit) = new Action {
     override def execute() = closure()
   }
   
+  /** Extension methods para Actions */
   implicit class ExtendedAction(var action:Action) {
     def async() = new AsyncActionDecorator(action)
+    def +(other:Action) = new CompositeAction(action, other);
   }
   
   implicit def modelType(control: Control) = control.getContainerModelObject().getClass
@@ -65,7 +68,7 @@ object ArenaScalaImplicits {
       control.bindValue(propertyBinder)
     }
     
-    def bind[A:ClassTag,R,C <: WidgetBuilder, V <:Widget](view:ViewObservable[V,_<:C], propertyBinder: A => R) : Binding[V,_<:C] = {
+    def bind[A:ClassTag,R,C <: WidgetBuilder, V <:Widget](view:ViewObservable[V,_<:C], propertyBinder: A => R) : Binding[R,V,_<:C] = {
       control.addBinding(closureToObservable(propertyBinder), view)
     }
     
@@ -75,7 +78,7 @@ object ArenaScalaImplicits {
     def @@[R](propertyBinder: A => R) = closureToObservable(propertyBinder)
   }
 
-  implicit def closureToObservable[A: ClassTag, R](propertyBinder: A => R): ObservableProperty = {
+  implicit def closureToObservable[A:ClassTag, R](propertyBinder: A => R): ObservableProperty[R] = {
     // createMock
     val concreteModelType = implicitly[ClassTag[A]].runtimeClass.asInstanceOf[Class[A]]
     
@@ -86,11 +89,11 @@ object ArenaScalaImplicits {
     propertyBinder.apply(mock)
 
     //TODO: inspect mock for getter calls, register binding.
-    new ObservableProperty(handler buildPropertyExpression)
+    new ObservableProperty[R](handler buildPropertyExpression)
   }
   
   implicit class ViewObservableCombinators[V <: Control, C <: WidgetBuilder](var viewObservable: ViewObservable[V, C]) {
-    def <=>[A](obj:Observable[A]) : Binding[V,C] = {
+    def <=>[M](obj:Observable[M]) : Binding[M,V,C] = {
       viewObservable.getView().addBinding(obj, viewObservable)
     }
   }
@@ -103,7 +106,7 @@ object ArenaScalaImplicits {
 
   def createMockCreationSettings[T](typeToMock: Class[T]) = {
     val settings = new CreationSettings[T]()
-    settings.setTypeToMock(typeToMock)
+    settings setTypeToMock(typeToMock)
     settings
   }
 

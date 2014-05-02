@@ -41,11 +41,11 @@ public class Tree<T>  extends Control implements Node<T>{
 	 * 
 	 * @return Este mismo Árbol, para enviar mensajes anidados
 	 */
-	public Binding<Tree, TreeBuilder<?>> bindContents(Observable model) {
+	public Binding<?,Tree, TreeBuilder<?>> bindContents(Observable model) {
 		return this.addBinding(model, new ObservableTreeContents(this));
 	}
 	
-	public Binding<Tree,TreeBuilder<?>> bindContentsToProperty(String parentPropertyName, String childrenPropertyName) {
+	public Binding<?,Tree,TreeBuilder<?>> bindContentsToProperty(String parentPropertyName, String childrenPropertyName) {
 		return this.bindContents(new ObservableTwoProperty(parentPropertyName, childrenPropertyName));
 	}
 	
