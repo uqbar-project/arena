@@ -11,7 +11,7 @@ class ObservableFieldInterceptor extends FieldInterceptor {
   propertyKey = "ObservableFieldAccessInterceptor";
 
   write((statement, fieldAccess) => {
-    if (!Modifier.isTransient(fieldAccess.getField().getModifiers())) {
+    if (!Modifier.isTransient(fieldAccess.getField().getModifiers()) && !fieldAccess.where().getMethodInfo().toString().startsWith("<init>")) {
       var newStatement =
         """
 		  $fieldTypeName oldValue = $oldValue;
