@@ -10,6 +10,7 @@ import javassist.CtMethod
 import javassist.Modifier
 import com.uqbar.apo.parser.APOParser
 import javassist.bytecode.Descriptor
+import javassist.expr.ConstructorCall
 
 abstract class PointCut {
   def evaluate(ctClass: CtClass): Boolean
@@ -38,7 +39,7 @@ trait InterceptMatchPointCut[T] extends PointCut{
 
   override def hasIntercept(any: Any): Boolean = {
     any match {
-      case t: T => pointcuts(t)
+      case t: T => if(pointcuts == null) true else pointcuts(t)
       case _ => false;
     }
   }
@@ -50,11 +51,12 @@ trait InterceptMatchPointCut[T] extends PointCut{
 }
 
 trait FieldPointCut extends InterceptMatchPointCut[FieldAccess] {
-  filter((field) => { !field.isStatic() && !field.where().getMethodInfo().toString().startsWith("<init>") })
+  filter((field) => { !field.isStatic() && !field.where().getMethodInfo().toString().startsWith("$lessinit")})
 
   def fieldName(fun: (String) => Boolean) = filter(field => fun(field.getFieldName()))
   def field(fun: (FieldAccess) => Boolean) = filter(field => fun(field))
   def fieldType[T: Manifest] = filter(_.getField().getType().getName() == manifest[T].erasure.getName())
+  def constructor() = filter(field=> { field.where().getMethodInfo().toString().startsWith("<init>") })
 }
 
 trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
@@ -69,6 +71,13 @@ trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
 
 }
 
+trait MethodCallPointCut extends InterceptMatchPointCut[MethodCall] {
+}
+
+trait ConstructorCallPointCut extends InterceptMatchPointCut[ConstructorCall] {
+}
+
+
 trait MatchPointCut extends PointCut {
   var filters: FClass = _
 
@@ -78,7 +87,7 @@ trait MatchPointCut extends PointCut {
 
   protected def matchs(fun: (CtClass) => Boolean) = if(filters == null) {filters = FClass(fun, this); filters} else FClass(fun, this)
 
-  override def evaluate(ctClass: CtClass) = filters(ctClass)
+  override def evaluate(ctClass: CtClass) = if(filters!= null) filters(ctClass) else false
 }
 
 trait ClassPointCut extends MatchPointCut {
@@ -97,7 +106,7 @@ trait ClassPointCut extends MatchPointCut {
 }
 
 trait AnnotationPointCut extends MatchPointCut {
-  def hasAnnotation(annotation: String): Unit = matchs((ctClass) => hasAnnotation(ctClass, annotation))
+  def hasAnnotation(annotation: String): FClass = matchs((ctClass) => hasAnnotation(ctClass, annotation))
 
   protected def hasAnnotation(clazz: CtClass, annotation: String): Boolean = {
     !clazz.isAnnotation() && clazz.getAvailableAnnotations().exists(annotationProxy => {
@@ -110,14 +119,6 @@ trait AnnotationPointCut extends MatchPointCut {
   }
 
 }
-
-//class OrPointCut extends PointCut {
-//  var components = List[PointCut]();
-//
-//  def this(predicate: PointCut*) {
-//    this()
-//    this.components = predicate.toList
-//  }
 //
 //  override def evaluate(ctClass: CtClass) = this.components.foldLeft(false)((c, point) => c || point.evaluate(ctClass))
 //}

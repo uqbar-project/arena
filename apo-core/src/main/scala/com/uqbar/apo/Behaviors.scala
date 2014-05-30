@@ -25,5 +25,5 @@ class Around[E](edit: (StringBuffer, E) => Unit) extends Behavior[E](null) {
   def proceed(statement: StringBuffer, e: E) = edit(statement, e)
 }
 
-case class ReadField(f: (StringBuffer, FieldAccess) => Unit) extends Around[FieldAccess](f)
-case class WriteField(f: (StringBuffer, FieldAccess) => Unit) extends Around[FieldAccess](f)
+case class Read[T](f: (StringBuffer, T) => Unit) extends Around[T](f)
+case class Write[T](f: (StringBuffer, T) => Unit) extends Around[T](f)

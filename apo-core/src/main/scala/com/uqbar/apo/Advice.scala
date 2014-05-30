@@ -2,7 +2,6 @@ package com.uqbar.apo
 
 import scala.collection.mutable.Buffer
 import scala.reflect.Manifest
-
 import com.uqbar.apo.parser.$originalAsigment
 import com.uqbar.apo.parser.$originalReader
 import com.uqbar.apo.parser.APOParser
@@ -11,13 +10,15 @@ import javassist.expr.ExprEditor
 import javassist.expr.FieldAccess
 import javassist.CtMethod
 import javassist.CtClass
+import javassist.expr.ConstructorCall
+import javassist.CtConstructor
 
 /**
  * Intruduce bytecode para que se pueda interceptar todos los fields del objeto.
  *
  */
 
-class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEditor {
+class Advice(var pointCut: PointCut, interceptor: Interceptor[_]*) extends ExprEditor {
   /**
    * Lista con FieldAccessInterceptors, para armar el codigo que se va a agregar a los accesors.
    */
@@ -37,6 +38,10 @@ class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEd
       statement.append($originalReader().name)
     }
 
+    if (fieldAccess.where().getMethodInfo().toString().startsWith("<init>")) {
+      print("")
+    }
+
     val isEdit = edit[FieldAccess](fieldAccess, statement, classOf[FieldAccess])
     if (isEdit)
       fieldAccess.replace(APOParser.parse(fieldAccess, statement.toString()))
@@ -47,6 +52,11 @@ class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEd
     edit[CtMethod](method, statement, classOf[CtMethod])
   }
 
+  override def edit(method: ConstructorCall) {
+    var statement = new StringBuffer(method.getSignature())
+    edit[CtConstructor](method.getConstructor(), statement, classOf[CtConstructor])
+  }
+
   /**
    * @param fieldAccess
    * @param name Name of the field being processed
@@ -55,7 +65,8 @@ class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEd
     var edit = false;
     if (aopEnabled) {
       try {
-        filterInterceptor[T]().foreach(interceptor => {
+        val f = filterInterceptor[T]()
+        f.foreach(interceptor => {
           if (pointCut.hasIntercept(expr)) {
             interceptor.intercept(statement, expr)
             edit = true;
@@ -81,8 +92,7 @@ class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEd
    * </ul>
    */
   def mustWeave(fieldAcces: FieldAccess): Boolean = {
-    return !fieldAcces.isStatic() && //
-      !fieldAcces.where().getMethodInfo().toString().startsWith("<init>") && this.aopEnabled;
+    return !fieldAcces.isStatic() && this.aopEnabled;
   }
 
   // ***************************
@@ -90,7 +100,7 @@ class Advice(var pointCut: PointCut, interceptor:Interceptor[_]*) extends ExprEd
   // ***************************
 
   def filterInterceptor[T: Manifest](): Buffer[Interceptor[T]] = {
-    this.interceptors.filter(interceptor => interceptor.getType.equals(manifest[T].erasure)).asInstanceOf[Buffer[Interceptor[T]]]
+    this.interceptors.filter(_.getType.contains((manifest[T].erasure))).asInstanceOf[Buffer[Interceptor[T]]]
   }
 
   def getVerbosedException[T](ex: Exception, javaStatement: String, expr: T): RuntimeException = {

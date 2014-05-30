@@ -21,9 +21,6 @@ class MethodTestConfiguration extends Configuration{
 
     className(_ == "TestObjectt") && packageName(_ contains "com.uqbar.aop.entities")
 
-    (modifiers(Modifier PUBLIC) && methodName(_ contains "update")	&& arguments(classOf[String] )
-        )|| constructor
-    			
   }
 
   def inteceptor = method
