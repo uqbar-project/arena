@@ -38,11 +38,11 @@ public class ObjectTransactionManager {
     public static void begin(TaskOwner owner) {
     	ObjectTransactionImpl transaction = (ObjectTransactionImpl) getTransaction();
     	transaction = owner.isTransactional() ? createObjectTransaction(owner, transaction) : createObjectNullTransaction(owner, transaction);
-    	transaction.getLogger().debug("Starting Transaction id=[" + transaction.getId() + "]...");
+    	transaction.logger().debug("Starting Transaction id=[" + transaction.getId() + "]...");
     	setTransaction(transaction);
     	registerTransaction(transaction);
-    	transaction.setState(ObjectTransactionImpl.STATE_STARTED);
-    	transaction.getLogger().debug("Transaction STARTED id=[" + transaction.getId() + "] !");
+    	transaction.setState(ObjectTransactionImpl.STATE_STARTED());
+    	transaction.logger().debug("Transaction STARTED id=[" + transaction.getId() + "] !");
     }
 
     /**
@@ -54,11 +54,11 @@ public class ObjectTransactionManager {
     	assertOwnership(owner);
     	
     	ObjectTransactionImpl transaction = (ObjectTransactionImpl) getTransaction();
-    	transaction.getLogger().debug("Performing COMMIT on transaction id=[" + transaction.getId() + "]...");
-    	setTransaction(transaction.getParent());
+    	transaction.logger().debug("Performing COMMIT on transaction id=[" + transaction.getId() + "]...");
+    	setTransaction(transaction.parent());
 		transaction.commit();
     	unregisterTransaction(transaction);
-    	transaction.getLogger().debug("Transaction COMMITED id=[" + transaction.getId() + "] next transaction is id=[" + transaction.getId() + "]");
+    	transaction.logger().debug("Transaction COMMITED id=[" + transaction.getId() + "] next transaction is id=[" + transaction.getId() + "]");
     }
 
     /**
@@ -69,13 +69,13 @@ public class ObjectTransactionManager {
     	assertOwnership(owner);
     	
     	ObjectTransactionImpl transaction = (ObjectTransactionImpl) getTransaction();
-    	transaction.getLogger().debug("Performing ROLLBACK on transaction id=[" + transaction.getId() + "]...");
+    	transaction.logger().debug("Performing ROLLBACK on transaction id=[" + transaction.getId() + "]...");
     	
     	ObjectTransaction nextTransaction = transaction.rollback();
     	unregisterTransaction(getTransaction());
     	setTransaction(nextTransaction);
     	
-    	transaction.getLogger().debug("Transaction ROLLBACKED id=[" + transaction.getId() + "] next transaction is id=[" + transaction.getId() + "]");
+    	transaction.logger().debug("Transaction ROLLBACKED id=[" + transaction.getId() + "] next transaction is id=[" + transaction.getId() + "]");
     }
 
     /**
@@ -104,7 +104,7 @@ public class ObjectTransactionManager {
     	assertNotUnderTransaction();
     	ObjectTransactionImpl transaction = createObjectNullTransaction(owner, null);
     	setTransaction(transaction);
-    	transaction.getLogger().debug("Starting " + transaction.getClass().getSimpleName() + " id=[" + transaction.getId() + "]");
+    	transaction.logger().debug("Starting " + transaction.getClass().getSimpleName() + " id=[" + transaction.getId() + "]");
 		registerTransaction(transaction);
     }
 
@@ -148,7 +148,7 @@ public class ObjectTransactionManager {
     	ObjectTransactionImpl transaction = (ObjectTransactionImpl) getTransaction();
     	setTransaction(null);
     	if (transaction != null) {
-    		transaction.getLogger()
+    		transaction.logger()
     			.debug("Suspending " + transaction.getClass().getSimpleName() + " id=[" + transaction.getId() + "]");
     	}
     	return transaction;
@@ -163,7 +163,7 @@ public class ObjectTransactionManager {
     	assertNotUnderTransaction();
     	ObjectTransactionImpl transactionImpl = (ObjectTransactionImpl) transaction;
     	setTransaction(transaction);
-    	transactionImpl.getLogger()
+    	transactionImpl.logger()
     		.debug("Resuming " + transaction.getClass().getSimpleName() + "id=[" + transactionImpl.getId() + "]");
     }
 

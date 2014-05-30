@@ -3,6 +3,8 @@ package com.uqbar.common.transaction.Collection
 import org.uqbar.commons.utils.TransactionalAndObservable
 import org.uqbar.commons.utils.When
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.ObservableUtils
+import org.uqbar.commons.utils.ReflectionUtils
 
 @Observable
 abstract class TransactionalData[D](owner:Any, fieldName:String) {
@@ -20,13 +22,12 @@ abstract class TransactionalData[D](owner:Any, fieldName:String) {
   }
 
   protected def updateData[T](action: (D) => T): T = {
-    val data2 = data
-    data = null.asInstanceOf[D]
-    var act = action(data2)
-    data = data2;
+    var act = action(data)
+    ReflectionUtils.invokeSetter(owner, fieldName, this)
     act
-    
   }
 
   protected def defauldValue: D
+  
+  override def toString() = data.toString
 }

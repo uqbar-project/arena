@@ -12,10 +12,10 @@ class TransactionFieldInterceptor extends FieldInterceptor {
   propertyKey = "TransactionFieldAccessInterceptor"
 
   write((statement, field) => {
-    if (!Modifier.isTransient(field.getField().getModifiers())) {
+        if (!Modifier.isTransient(field.getField().getModifiers()) && !field.where().getMethodInfo().toString().startsWith("<init>")) {
       var newExpresion =
         """
-		  $defaultField = ($fieldTypeName) $interceptor.fieldWrite($this, $S$fieldName$S, ($fieldTypeName)$argument1, ($fieldTypeName)$this.$fieldName);
+    		  $defaultField = ($fieldTypeName) $interceptor.fieldWrite($this, $S$fieldName$S, ($fieldTypeName)$argument1, ($fieldTypeName)$this.$fieldName);
 		"""
       var reemplaze = $originalAsigment().name;
       statement.replace(reemplaze, newExpresion);
