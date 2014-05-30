@@ -26,18 +26,20 @@ class ObjectTransactionImplObservable(var objectTransaction:ObjectTransactionImp
 
 	def setObjectTransaction(objectTransaction:ObjectTransactionImpl ) = this.objectTransaction = objectTransaction
 	
-	def getIdentityWrapper() = this.objectTransaction.getAttributeMap().keySet().toList
+	def getIdentityWrapper() = this.objectTransaction.attributeMap.keySet.toList
 
 	def getChildren():java.util.List[ObjectTransactionImplObservable] = {
-		if(objectTransaction != null) convertToModel(objectTransaction.getChildren()) else List()
+		if(objectTransaction != null) convertToModel(objectTransaction.children) else List()
 	}
 	
 	def getId() = objectTransaction.getId()
 	
-	def getParent() = new ObjectTransactionImplObservable(objectTransaction.getParent())
+	def getParent() = new ObjectTransactionImplObservable(objectTransaction.parent)
 	
 	def getTransactions()  = this.transactions
 	def setTransactions(list:java.util.List[ObjectTransactionImplObservable]) = this.transactions = list
 	
 	def convertToModel(list:java.util.List[ObjectTransactionImpl]) = list.map(o => new ObjectTransactionImplObservable(o))
+	
+	override def toString() = s"ObjectTransaction: ${objectTransaction.getId}"
 }

@@ -39,7 +39,7 @@ class MonitorApplicationModel {
     }
   }
 
-  def attributeMap = transaction.objectTransaction.getAttributeMap()
+  def attributeMap = transaction.objectTransaction.attributeMap
   def getTableResult() = tableResult.asJava
   def setTableResult(tableResult: Buffer[Entry]) = this.tableResult = tableResult
   def getListResult() = listResult

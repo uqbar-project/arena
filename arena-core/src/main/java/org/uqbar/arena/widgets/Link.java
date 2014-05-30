@@ -19,10 +19,8 @@ public class Link extends SkinnableControl {
 		super(container);
 	}
 
-	//TODO: no deberiamos automaticamente agregar el <a> a todo el texto </a> ?
-	// Es horrible la estrategia de swt de que tengas que poner el html dentro del string.
 	public Link setCaption(String caption) {
-		this.caption = caption;
+		this.caption = "<"+caption+">";
 		return this;
 	}
 

@@ -10,7 +10,7 @@
 		<value>true</value>
 	</property>
 	<property name="apo.poo.changeSupport">
-		<value>POOPropertyChangeSupport</value>
+		<value>com.uqbar.poo.aop.POOPropertyChangeSupport</value>
 	</property>
 	<property name="apo.poo.propertyListener">
 		<value>java.beans.PropertyChangeListener</value>
@@ -18,7 +18,17 @@
 	<property name="apo.poo.isolationLevel">
 		<value>SERIALIZABLE</value>
 	</property>
+	<property name="arena.applicationRunner">
+		<value>org.uqbar.arena.jface.app.JFaceApplicationBuilder</value>
+	</property>
 	<property name="apo.adviceConfiguration">
 		<value>org.uqbar.arena.apo.ArenaConfiguration</value>
+		<value>org.uqbar.arena.jface.apo.JFaceConfiguration</value>
+	</property>
+	<property name="apo.exclude.package">
+		<value>groovy.lang</value>
+		<value>org.codehaus.groovy</value>
+		<value>scala</value>
+		<value>javassist</value>
 	</property>
 </Config>

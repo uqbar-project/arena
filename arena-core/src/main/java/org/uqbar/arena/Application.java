@@ -7,6 +7,7 @@ import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.ApplicationRunner;
 import org.uqbar.lacar.ui.model.WindowFactory;
 
+import com.uqbar.aop.transaction.ObjectTransactionManager;
 import com.uqbar.apo.APOClassLoader;
 import com.uqbar.apo.APOConfig;
 
@@ -71,6 +72,7 @@ public abstract class Application implements WindowOwner, Runnable {
 	 */
 	@Override
 	public void run() {
+		ObjectTransactionManager.getTransaction();
 		this.createMainWindow().open();
 	}
 
