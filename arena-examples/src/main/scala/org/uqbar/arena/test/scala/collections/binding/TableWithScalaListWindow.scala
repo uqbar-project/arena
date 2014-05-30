@@ -28,6 +28,7 @@ object TableWithScalaListWindow extends MainWindow(ProgramacionFox) with App {
     	
     // personajes
     val tablePersonajes = new Table(p, classOf[Personaje])
+    tablePersonajes.setHeight(100)
     tablePersonajes.bindItemsToProperty("programaSeleccionado.personajes")
    	val nombrePersonaje = new Column(tablePersonajes)
     	nombrePersonaje.setTitle("Nombre")
@@ -36,6 +37,7 @@ object TableWithScalaListWindow extends MainWindow(ProgramacionFox) with App {
     println("programas " + getModelObject.programas)
     
     val listaDias = new Lista(p)
+    listaDias.setHeight(100)
     listaDias.bindItemsToProperty("programaSeleccionado.dias")
   }
 
