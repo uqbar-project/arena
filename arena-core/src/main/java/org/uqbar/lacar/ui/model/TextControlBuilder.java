@@ -7,7 +7,7 @@ import org.uqbar.arena.widgets.TextFilter;
  * 
  * @author jfernandes
  */
-public interface TextControlBuilder extends ControlBuilder {
+public interface TextControlBuilder extends ControlBuilder{
 
 	public void addTextFilter(TextFilter filter);
 	public void selectFinalLine();

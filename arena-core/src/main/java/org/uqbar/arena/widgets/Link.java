@@ -20,7 +20,7 @@ public class Link extends SkinnableControl {
 	}
 
 	public Link setCaption(String caption) {
-		this.caption = "<"+caption+">";
+		this.caption = "<a>"+caption+"</a>";
 		return this;
 	}
 
