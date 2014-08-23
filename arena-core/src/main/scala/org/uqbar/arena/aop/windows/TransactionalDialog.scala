@@ -43,7 +43,11 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
     if (this.inTransaction) this.rollback()
   }
 
-  override def accept(): Unit = doTransactionally(super.accept)
+  override def accept(): Unit = {
+    doTransactionally(super.executeTask)
+    commit
+    close
+  }
 
   def execute(target: Object, methodName: String): MessageSend =
     new MessageSend(target, methodName) {
