@@ -2,7 +2,6 @@ package com.uqbar.aop.entities
 import scala.collection.mutable.Buffer
 
 class TestObjectt {
-
   var name:String =_
   var fatherName:String =_
   
@@ -11,6 +10,7 @@ class TestObjectt {
     name = aName
     fatherName = aFatherName
   }
+
   var listeners = Buffer[Listener]()
 
 	def dispatch(event:String){

@@ -81,7 +81,6 @@ trait ConstructorCallPointCut extends InterceptMatchPointCut[ConstructorCall] {
 trait MatchPointCut extends PointCut {
   var filters: FClass = _
 
-
   def &&(func: FClass):FClass = {val f = filters; filters  = FClass((t: CtClass) => { f(t) && func(t) }, this); filters }
   def ||(func: FClass):FClass = {val f = filters; filters  = FClass((t: CtClass) => { f(t) || func(t) }, this); filters }
 

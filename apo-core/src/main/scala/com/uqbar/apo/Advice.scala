@@ -104,7 +104,7 @@ class Advice(var pointCut: PointCut, interceptor: Interceptor[_]*) extends ExprE
   }
 
   def getVerbosedException[T](ex: Exception, javaStatement: String, expr: T): RuntimeException = {
-    return new RuntimeException(javaStatement, ex);
+    return new APOException(javaStatement, ex);
   }
 
   def addInterceptor[A](interceptor: Interceptor[A]): Advice = {
