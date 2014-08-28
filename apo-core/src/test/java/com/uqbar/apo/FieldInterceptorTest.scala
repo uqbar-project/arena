@@ -14,13 +14,15 @@ import com.uqbar.aop.entities.TestObjectt
 import org.scalatest.GivenWhenThen
 import APODSL._
 
+
+
 class FieldTestConfiguration extends Configuration {
 
   override def createAdvices() = List(new Advice(testPoincut, interceptor))
 
   def testPoincut = new PointCut with ClassPointCut with FieldPointCut {
     fieldType[String]
-    className(_ == "TestObjectt") && packageName(_ contains "com.uqbar.aop.entities")
+    className(_ == "TestObjectt") && packageName(_ contains "com.uqbar.aop.entities") 
   }
   def interceptor = field.write((statement, fieldAccess) => statement.append("$this.dispatch(String.valueOf($argument1));"))
 }

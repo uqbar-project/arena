@@ -10,16 +10,16 @@ import org.scalatest.FunSpec
 
 import com.uqbar.aop.entities.Listener;
 import com.uqbar.aop.entities.TestObject
-import com.uqbar.aop.entities.TestObjectt
 import APODSL._
+
 
 class MethodTestConfiguration extends Configuration{
 
   override def createAdvices() = List(new Advice(testPoincut, inteceptor))
 
   def testPoincut = new PointCut with ClassPointCut with MethodPointCut {
-
-    className(_ == "TestObjectt") && packageName(_ contains "com.uqbar.aop.entities")
+	  methodName(_ contains "update" )
+    className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
 
   }
 
@@ -39,7 +39,7 @@ class MethodInterceptorTest extends FunSpec with GivenWhenThen with Listener {
     it("") {
 
       Given("un objeto de prueba")
-      val testObject = new TestObjectt("Pepe", "pp@p.p")
+      val testObject = new TestObject("Pepe", "pp@p.p")
       testObject.addListener(this)
 
       When("Cuando se invoca un metodo updateName")
