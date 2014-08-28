@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<Config>
+	<property name="apo.classloader.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.pot.TransactionFieldAccessInterceptor.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.poo.isolationLevel">
+		<value>SERIALIZABLE</value>
+	</property>
+	<property name="apo.adviceConfiguration">
+		<value>com.uqbar.pot.aop.TransactionalConfigurationImpl</value>
+	</property>
+	<property name="apo.exclude.package">
+		<value>groovy.lang</value>
+		<value>org.codehaus.groovy</value>
+		<value>scala</value>
+		<value>javassist</value>
+	</property>
+</Config>

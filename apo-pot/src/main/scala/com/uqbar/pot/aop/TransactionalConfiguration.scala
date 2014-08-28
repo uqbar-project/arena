@@ -1,16 +1,12 @@
 package com.uqbar.pot.aop
 
-import com.uqbar.apo.pointcut.AnnotationPointCut
-import com.uqbar.apo.pointcut.FieldPointCut
-import javassist.CtClass
-import com.uqbar.apo.pointcut.PointCut
+import org.uqbar.commons.utils.Transactional
+
 import com.uqbar.apo.Advice
 import com.uqbar.apo.Configuration
-import org.uqbar.commons.utils.Transactional
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.apo.pointcut.MethodPointCut
-import com.uqbar.apo.pointcut.ClassPointCut
-import com.uqbar.apo.APODSL._
+import com.uqbar.apo.pointcut.AnnotationPointCut
+import com.uqbar.apo.pointcut.FieldPointCut
+import com.uqbar.apo.pointcut.PointCut
 
 /**
  *
