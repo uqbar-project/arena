@@ -3,15 +3,22 @@
 	<property name="apo.classloader.enable">
 		<value>true</value>
 	</property>
-	<property name="apo.adviceConfiguration">
-		<value>com.uqbar.apo.FieldTestConfiguration</value>
-		<value>com.uqbar.apo.MethodTestConfiguration</value>
+	<property name="apo.poo.ObservableFieldAccessInterceptor.enable">
+		<value>true</value>
 	</property>
-		<property name="apo.exclude.package">
+	<property name="apo.poo.changeSupport">
+		<value>com.uqbar.poo.aop.POOPropertyChangeSupport</value>
+	</property>
+	<property name="apo.poo.propertyListener">
+		<value>java.beans.PropertyChangeListener</value>
+	</property>
+	<property name="apo.adviceConfiguration">
+		<value>com.uqbar.poo.aop.ObservableConfigurationImpl</value>
+	</property>
+	<property name="apo.exclude.package">
 		<value>groovy.lang</value>
 		<value>org.codehaus.groovy</value>
 		<value>scala</value>
 		<value>javassist</value>
 	</property>
-	
 </Config>
