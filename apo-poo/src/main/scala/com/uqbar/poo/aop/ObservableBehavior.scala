@@ -1,6 +1,12 @@
 package com.uqbar.poo.aop;
 
-import java.lang.Object
+import java.lang.reflect.Field
+
+import org.uqbar.commons.utils.ReflectionUtils
+
+import com.uqbar.apo.APOConfig
+import com.uqbar.apo.builder.CtMethodBuilder
+
 import javassist.CtClass
 import javassist.CtField
 import javassist.CtMethod
@@ -8,10 +14,6 @@ import javassist.Modifier
 import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.annotation.Annotation
-import java.lang.reflect.Field
-import org.uqbar.commons.utils.ReflectionUtils
-import com.uqbar.apo.builder.CtMethodBuilder
-import com.uqbar.apo.APOConfig
 
 /**
  * @author nnydjesus

@@ -1,11 +1,12 @@
 package com.uqbar.poo.aop
+
 import org.uqbar.commons.utils.Observable
-import org.scalatest.BeforeAndAfter
-import org.scalatest.GivenWhenThen
-import org.scalatest.FeatureSpec
-import org.uqbar.commons.utils.ReflectionUtils
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
+import org.scalatest.FeatureSpec
+import org.scalatest.BeforeAndAfter
+import org.scalatest.GivenWhenThen
+import com.uqbar.commons.ReflectionUtils
 
 @Observable
 case class Bean(var name:String){
