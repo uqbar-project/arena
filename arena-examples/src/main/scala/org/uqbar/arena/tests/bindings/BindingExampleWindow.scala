@@ -33,10 +33,9 @@ import org.uqbar.arena.windows.MainWindow
 
 
 /**
- * Se testea las dos formas de bindear el background y tambien el binding anidado en las columnas
+ * Demuestra distintas formas de binding tipado en scala.
  *
  */
-
 object BindingExampleWindow extends MainWindow[University](University.university) with App {
 	startApplication()
 	
@@ -71,7 +70,7 @@ object BindingExampleWindow extends MainWindow[University](University.university
 		new Label(formPanel) setText("Nombre")
 		val nameTextbox = new TextBox(formPanel)
 		nameTextbox.value() <=> getModelObject@@{ _.currentEstudent.name }
-		(nameTextbox.background() <=> {u:University => u.currentEstudent.status })
+		(nameTextbox.background() <=> {u:University => u.currentEstudent.status } )
 		   .setModelToView { (e : EstudenStatus.Status) => e match {
 		      case EstudenStatus.EXPELLED => Color.RED
 		      case EstudenStatus.FREE => Color.ORANGE
@@ -90,7 +89,6 @@ object BindingExampleWindow extends MainWindow[University](University.university
 		provinces.bindValueTo { u: University => u.currentEstudent.status }
 		provinces.bind(provinces.value(), { u: University => u.currentEstudent.status })
 		provinces.value() <=> getModelObject@@{ _.currentEstudent.status }
-		
 	}
 		
 	
