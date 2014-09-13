@@ -18,13 +18,14 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.scala.ArenaScalaImplicits._
 import org.uqbar.arena.bindings.PropertyAdapter
 
-@TransactionalAndObservable class File(var path:String)
-@TransactionalAndObservable class FileContainer(){
-  var files:java.util.List[File] = new ArrayList[File]()
+@TransactionalAndObservable class File(var path:String){
+}
+@TransactionalAndObservable class FileContainer(var files:java.util.List[File] = new ArrayList[File]()){
   def addFile(file:File) = files.append(file)
 }
 
 @Observable class FileContainerAppModel(var fileContainer:FileContainer=new FileContainer(), var currentFile:String=""){
+  var fileSelected:File=_
   def addFile() = {
     fileContainer.addFile(new File(currentFile))
     currentFile = ""
@@ -59,6 +60,8 @@ object FileSelectorExampleWindow extends MainWindow(new FileContainerAppModel())
     list.setHeight(100)
     list.bindItemsToProperty("fileContainer.files")
     	.setAdapter(new PropertyAdapter(classOf[File], "path"))
+    list.bindValueToProperty("fileSelected")
+	new TextBox(p).bindValueToProperty("fileSelected.path")
 
       
   }
