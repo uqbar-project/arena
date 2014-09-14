@@ -24,6 +24,7 @@ abstract class TransactionalData[D](owner:Any, fieldName:String) {
   protected def updateData[T](action: (D) => T): T = {
     var act = action(data)
     ReflectionUtils.invokeSetter(owner, fieldName, this)
+    ObservableUtils.firePropertyChanged(owner, fieldName, this)
     act
   }
 

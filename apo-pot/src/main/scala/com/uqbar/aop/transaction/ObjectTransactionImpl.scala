@@ -1,24 +1,25 @@
 package com.uqbar.aop.transaction;
 
-import scala.collection.JavaConversions._
-import scala.collection.JavaConversions._
+import java.lang.reflect.Modifier
+
+import scala.collection.JavaConversions.asScalaBuffer
+import scala.collection.JavaConversions.bufferAsJavaList
+import scala.collection.JavaConversions.mutableMapAsJavaMap
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.Map
+
 import org.apache.commons.logging.LogFactory
+import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.utils.ReflectionUtils
 import org.uqbar.commons.utils.Transactional
+
 import com.uqbar.common.transaction.Collection.TransacionalList
+import com.uqbar.common.transaction.Collection.TransactionalData
 import com.uqbar.common.transaction.Collection.TransactionalMap
 import com.uqbar.common.transaction.Collection.TransactionalSet
 import com.uqbar.common.transaction.ObjectTransaction
 import com.uqbar.common.transaction.TaskOwner
 import com.uqbar.commons.exceptions.ProgramException
-import scala.collection.mutable.BufferLike
-import scala.collection.mutable.ArrayBuffer
-import org.uqbar.commons.model.ScalaBeanInfo
-import scala.collection.Seq
-import com.uqbar.common.transaction.Collection.TransactionalData
-import java.lang.reflect.Modifier
 
 /**
  * {@link ObjectTransaction} default implementation.
