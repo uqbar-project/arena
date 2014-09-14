@@ -19,8 +19,12 @@ import org.uqbar.arena.widgets.Control
 class ArenaTypeSafeBindingExtensions {
 
 	def <M,R> bindValue(Control control, Function1<M,R> propertyBinder) {
-		// createMock
-		val Class<M> concreteModelType = control.containerModelObject.class as Class<M>
+		val modelObservableAsString = calculateObservable(control.containerModelObject, propertyBinder)
+		control.bindValueToProperty(modelObservableAsString)
+	}
+	
+	def static <M,R> calculateObservable(Object model, Function1<M, R> propertyBinder) {
+		val Class<M> concreteModelType = model.class as Class<M>
 		val handler = createInvocationHandler()
 		val M mock = createMockFor(concreteModelType, handler) 
 		
@@ -28,21 +32,19 @@ class ArenaTypeSafeBindingExtensions {
 		propertyBinder.apply(mock)
 		
 		//TODO: inspect mock for getter calls, register binding.
-		control.bindValueToProperty(handler.getPropertyName)
+		handler.getPropertyName
 	}
 	
-	def protected createInvocationHandler() {
-		new ArenaMockHandler
+	def static createInvocationHandler() { new ArenaMockHandler }
+	
+	def static <T> T createMockFor(Class<T> type, MockHandler handler) {
+		ClassPathLoader.getMockMaker().createMock(createMockCreationSettings(type), handler)
 	}
 	
-	def protected <T> T createMockFor(Class<T> type, MockHandler handler) {
-		return ClassPathLoader.getMockMaker().createMock(createMockCreationSettings(type), handler)
-	}
-	
-	def protected <T> createMockCreationSettings(Class<T> typeToMock) {
-		val CreationSettings<T> settings = new CreationSettings<T>();
-        settings.setTypeToMock(typeToMock);
-        return settings;
+	def static <T> createMockCreationSettings(Class<T> typeToMock) {
+		new CreationSettings<T> => [
+			setTypeToMock(typeToMock)
+		]
 	}
 	
 }
@@ -60,7 +62,6 @@ class ArenaMockHandler implements InternalMockHandler<Object> {
 		val m = invocation.getMethod()
 		var propName = m.name.substring(3)
 		this.propertyName = Character.toLowerCase(propName.charAt(0)) + propName.substring(1)
-		
 		return null
 	}
 	
