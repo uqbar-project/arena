@@ -3,12 +3,13 @@ package org.uqbar.arena.examples.conversor.xtend.typesafe
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.xtend.ArenaXTendFactory
 
 /**
  * miles -> kilometers converter.
  */
 class TypeSafeDistanceConverterWindow extends MainWindow<DistanceConverter> {
-	extension ArenaTypeSafeBindingExtensions = new ArenaTypeSafeBindingExtensions
+	extension ArenaXTendFactory = new ArenaXTendFactory
 	
 	new() {
 		super(new DistanceConverter)
@@ -19,9 +20,13 @@ class TypeSafeDistanceConverterWindow extends MainWindow<DistanceConverter> {
 		mainPanel.layout = new VerticalLayout
 		
 		"Input in miles".asLabel(mainPanel);
-		this.binding[ miles ].asTextBoxIn(mainPanel)
+		
+		binding[ miles ].asTextBoxIn(mainPanel)
+		
 		("Convert" -> [ | this.modelObject.convert ]).asButtonIn(mainPanel)
-		this.binding[ kilometers ].asLabelIn(mainPanel)
+		
+		binding[ kilometers ].asLabelIn(mainPanel)
+		
 		" km".asLabel(mainPanel)
 		
 		// FORMA "VIEJA"
