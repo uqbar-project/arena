@@ -123,6 +123,12 @@ public class Column<R> {
 		return label;
 	}
 	
+	public <U> ForegroundProvider<R, U, Color> bindForeground(final String propertyName) {
+		ForegroundProvider<R, U, Color> label = new ForegroundProvider<R, U, Color>(propertyName);
+		this.labelProvider.add(label);
+		return label;
+	}
+
 	// ********************************************************
 	// ** Rendering
 	// ********************************************************

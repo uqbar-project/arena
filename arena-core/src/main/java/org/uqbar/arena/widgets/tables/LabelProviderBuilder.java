@@ -19,5 +19,7 @@ public interface LabelProviderBuilder<R> {
 	public void addCalculatedColumn(Transformer<R, ?> transformer);
 	
 	public void observeBackgoundColumn(String propertyName, Transformer<?, ?> transformer);
+	
+	public void observeForegroundColumn(String propertyName, Transformer<?, ?> transformer);
 
 }
