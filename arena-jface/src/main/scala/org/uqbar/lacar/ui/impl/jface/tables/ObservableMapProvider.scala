@@ -24,7 +24,9 @@ import org.uqbar.ui.swt.utils.SWTUtils
 class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider with ITableColorProvider{
 	var attributeLabelMaps = List[IObservableMap]()
 	var attributeBackgroudMaps =  Map[Integer, JavaBeanTransacionalObservableMap]()
+	var attributeForegroundMaps =  Map[Integer, JavaBeanTransacionalObservableMap]()
 	var backgroundTransformers = Map[Integer, Transformer[Any, _]]()
+	var foregroundTransformers = Map[Integer, Transformer[Any, _]]()
 	var widget:Widget=_
 
 	val mapChangeListener = new IMapChangeListener() {
@@ -52,7 +54,15 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 	  attributeBackgroudMaps.values.foreach(_.addMapChangeListener(mapChangeListener))
 	}
 	
+	def initializeForeground(maps:java.util.Map[Integer, Transformer[Any, _]], foregroundMaps:java.util.Map[Integer, JavaBeanTransacionalObservableMap] ){
+	  foregroundTransformers = maps.toMap
+	  attributeForegroundMaps = foregroundMaps.toMap
+	  attributeForegroundMaps.values.foreach(_.addMapChangeListener(mapChangeListener))
+	}
+	
 	override def getBackground(element:Object):org.eclipse.swt.graphics.Color =  getBackground(element, 0)
+	
+	override def getForeground(element:Object):org.eclipse.swt.graphics.Color =  getForeground(element, 0)
 
 	override def dispose() {
 	  attributeLabelMaps.foreach(_.removeMapChangeListener(mapChangeListener))
@@ -71,7 +81,16 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 		return null;
 	}
 	
-	def getForeground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = null
+	def getForeground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = {
+		if (foregroundTransformers.contains(columnIndex)) {
+			val modelValue = attributeForegroundMaps(columnIndex).getValue(element)
+			if (modelValue != null) {
+				val color = foregroundTransformers(columnIndex).transform(modelValue).asInstanceOf[Color]
+				return SWTUtils.getSWTColor(widget.getDisplay(), color)
+			}
+		}
+		null
+	}
 	
 	def getBackground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = {
 		if (backgroundTransformers.contains(columnIndex)) {
