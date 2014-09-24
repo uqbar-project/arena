@@ -1,12 +1,9 @@
 package com.uqbar.poo.aop;
 
 import java.lang.reflect.Field
-
 import org.uqbar.commons.utils.ReflectionUtils
-
 import com.uqbar.apo.APOConfig
 import com.uqbar.apo.builder.CtMethodBuilder
-
 import javassist.CtClass
 import javassist.CtField
 import javassist.CtMethod
@@ -14,12 +11,13 @@ import javassist.Modifier
 import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.annotation.Annotation
+import org.uqbar.commons.utils.Observable
 
 /**
  * @author nnydjesus
  *
  */
-class ObservableBehavior {
+class ObservableBehavior extends InitializerBehavior {
 
   val eventListenerClass = java.lang.Class.forName(APOConfig.getProperty("apo.poo.propertyListener").value)
 
@@ -29,6 +27,7 @@ class ObservableBehavior {
     addFirePropertyChangeMethod(ctClass);
     addAddPropertyChangeListenerMethod(ctClass);
     addRemovePropertyChangeListenerMethod(ctClass);
+    addDependenciesInitializer(ctClass);
   }
 
   /**
@@ -154,7 +153,7 @@ class ObservableBehavior {
     addMethod(ctClassOwner, method);
 
   }
-
+  
   //HELPPERS
 
   protected def addMethod(owner: CtClass, method: CtMethod) {
