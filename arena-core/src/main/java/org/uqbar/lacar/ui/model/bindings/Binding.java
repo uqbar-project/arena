@@ -99,7 +99,7 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 		if (this.adapter != null) {
 			this.adapter.configure(binder);
 		}
-
+		
 		binder.build();
 	}
 
