@@ -1,4 +1,4 @@
-package org.uqbar.arena.tests.nestedColums
+package org.uqbar.arena.tests.bindings
 
 import java.awt.Color
 import java.util.HashMap
@@ -30,6 +30,9 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
+import org.uqbar.arena.tests.nestedColums.Estudent
+import org.uqbar.arena.tests.nestedColums.EstudenStatus
+import org.uqbar.arena.tests.nestedColums.University
 
 
 /**
