@@ -5,6 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>arena-examples</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<description>Ejemplos básicos y tests del framework Arena</description>
 
 	<parent>

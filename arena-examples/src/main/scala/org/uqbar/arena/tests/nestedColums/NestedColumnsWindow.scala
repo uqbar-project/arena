@@ -46,12 +46,19 @@ object NestedColumnsWindow extends MainWindow[University](University.university)
 	     }
 		
 		val nameColumn = new Column[Estudent](table)
-		nameColumn setTitle("Name")	bindContentsToProperty("name") setTransformer { name:String => name toUpperCase }
-		nameColumn bindBackground("status", statusTransomer)
+		nameColumn setTitle "Name" bindContentsToProperty "name" setTransformer { name:String => name toUpperCase }
+		nameColumn bindForeground "status" setTransformer statusTransomer
 		
 		val departmentColumn = new Column[Estudent](table)
-		departmentColumn.setTitle("Department").bindContentsToProperty("department.name")
-		departmentColumn.bindBackground("status", statusTransomer)
+		departmentColumn setTitle "Department" bindContentsToProperty("department.name")
+		departmentColumn bindForeground "department.name" setTransformer { dept : String =>
+      dept match {
+        case "Sociales" => Color.RED
+        case "Cyt" => Color.GRAY
+        case "Economia" => Color.BLUE
+        case _ => Color.BLACK
+      }
+    }
 		
 		val formPanel = new Panel(mainPanel)
 		formPanel.setLayout(new ColumnLayout(2))

@@ -61,11 +61,12 @@ object BindingExampleWindow extends MainWindow[University](University.university
 		
 		val nameColumn = new Column[Estudent](table)
 		nameColumn setTitle("Name")	bindContentsToProperty("name") setTransformer { name:String => name toUpperCase }
-		nameColumn bindBackground("status", statusTransomer)
-		
+		val b = nameColumn bindBackground("status")
+		b.setTransformer(statusTransomer)
+    
 		val departmentColumn = new Column[Estudent](table)
 		departmentColumn.setTitle("Department").bindContentsToProperty("department.name")
-		departmentColumn.bindBackground("status", statusTransomer)
+		departmentColumn.bindBackground("status").setTransformer(statusTransomer)
 		
 		val formPanel = new Panel(mainPanel)
 		formPanel.setLayout(new ColumnLayout(2))
