@@ -1,8 +1,8 @@
 package org.uqbar.arena.widgets.tree;
 
 import org.uqbar.arena.widgets.Node;
-import org.uqbar.arena.widgets.tables.PropertyLabelProvider;
-import org.uqbar.arena.widgets.tables.TransformerLabelProvider;
+import org.uqbar.arena.widgets.tables.labelprovider.PropertyLabelProvider;
+import org.uqbar.arena.widgets.tables.labelprovider.TransformerLabelProvider;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
 import com.uqbar.commons.collections.Transformer;
