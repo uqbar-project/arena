@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>uqbar-scala-parent</artifactId>
-		<version>1.1-SNAPSHOT</version>
+		<version>1.2-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -185,16 +185,13 @@
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <version>2.9</version>
+			    <version>2.10.1</version>
 			    <executions>
 			        <execution>
 			            <id>attach-javadocs</id>
 			            <goals>
 			                <goal>jar</goal>
 			            </goals>
-			            <configuration>
-			                <additionalparam>-Xdoclint:none</additionalparam>
-			            </configuration>
 			        </execution>
 			    </executions>
 			</plugin>
