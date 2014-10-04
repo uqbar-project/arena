@@ -1,34 +1,86 @@
 # Arena Developer Guide #
 
+## How to start  in Arena.
 
-### Cloning Repos ###
+
+#####arena-core
+Whole Arena api
+```
+hg clone https://bitbucket.org/uqbar-project/arena-core
+```
+
+#####arena-jface
+Implementation of Arena over the framework jface
+```
+hg clone https://bitbucket.org/uqbar-project/arena-jface
+```
+
+#####Arena Examples
+```
+hg clone https://bitbucket.org/uqbar-project/arena-examples
+```
+
+####Aditional utilities
+
+#####uqbar-domain
+Utility to modelate domains. Allows anotate objects as observables. 
+``` 
+hg clone https://bitbucket.org/uqbar-project/uqbar-domain
+```
+
+#####arena-xtend
+Extension to use arena with [xtend](http://www.eclipse.org/xtend/)
+```
+hg clone https://bitbucket.org/uqbar-project/arena-xtend
+```
+
+## Development Environment (If you are going to develop Arena)
+
+### Cloning Repos 
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
 
-* mkdir arena
-* cd arena
+```
+mkdir arena
+cd arena
+```
 
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
-* hg clone https://bitbucket.org/uqbar-project/apo-core
-* hg clone https://bitbucket.org/uqbar-project/apo-poo
-* hg clone https://bitbucket.org/uqbar-project/apo-pot
-* hg clone https://bitbucket.org/uqbar-project/apo-parent
+#####apo-core
 
-Then all **Arena projects**:
+Small framework of aspects buildt on to javassists and made in scala.
+This model the idea of point cut , joint point , and stuff
 
-* hg clone https://bitbucket.org/uqbar-project/uqbar-domain
-* hg clone https://bitbucket.org/uqbar-project/arena-core
-* hg clone https://bitbucket.org/uqbar-project/arena-jface
-* hg clone https://bitbucket.org/uqbar-project/arena-examples
-* hg clone https://bitbucket.org/uqbar-project/arena-xtend
+```
+hg clone https://bitbucket.org/uqbar-project/apo-core
+```
 
+#####apo-poo
+Over apo-core implements transparent observability over aspects
+
+```
+ hg clone https://bitbucket.org/uqbar-project/apo-poo
+```
+ 
+#####apo-pot
+Implements transacsionality aspects over objects. (Transactional objects)
+
+``` 
+hg clone https://bitbucket.org/uqbar-project/apo-pot
+```
+
+#####apo-parent
+
+Aditional configuration for apo-core, apo-poo, apo-pot
+ 
+```
+hg clone https://bitbucket.org/uqbar-project/apo-parent
+``` 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
 * hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
-
-### Development Environment ###
 
 The proven environment is based on Eclipse Kepler version.
 
@@ -52,7 +104,6 @@ You need to **configure your maven settings** in order to connect to Uqbar's rep
 (if .m2 folder is not already created, then create it)
 
 And put this:
-
 
 ```
 #!xml
