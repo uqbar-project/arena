@@ -20,6 +20,7 @@ Then all **Arena projects**:
 * hg clone https://bitbucket.org/uqbar-project/uqbar-domain
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
+* hg clone https://bitbucket.org/uqbar-project/arena-examples
 
 
 ### Development Environment ###
