@@ -1,7 +1,13 @@
 # Arena Developer Guide #
 
-## How to start  in Arena.
+## Checkout Projects/Repos.
 
+It's useful to create a folder to hold all the repos (projects), but well, optional:
+
+```
+mkdir arena
+cd arena
+```
 
 #####arena-core
 Whole Arena api
@@ -34,16 +40,8 @@ Extension to use arena with [xtend](http://www.eclipse.org/xtend/)
 hg clone https://bitbucket.org/uqbar-project/arena-xtend
 ```
 
-## Development Environment (If you are going to develop Arena)
+## Foundational Components for Observability / Transactional Aspects (not needed unless you'll change this foundations)
 
-### Cloning Repos 
-
-It's useful to create a folder to hold all the repos (projects), but well, optional:
-
-```
-mkdir arena
-cd arena
-```
 
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
