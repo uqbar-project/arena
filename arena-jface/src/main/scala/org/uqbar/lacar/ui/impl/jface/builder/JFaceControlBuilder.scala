@@ -8,7 +8,7 @@ import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue
 import org.eclipse.jface.internal.databinding.swt.SWTProperties
 import org.eclipse.swt.widgets.Text
-import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis, observeEditable, observeEnabled => observeEnab }
+import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis, observeEditable, observeEnabled => observeEnab, observeTooltipText }
 import com.uqbar.commons.collections.Transformer
 import org.eclipse.core.databinding.observable.value.IObservableValue
 import org.eclipse.swt.layout.GridLayout
@@ -35,6 +35,8 @@ abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
   
   override def observeBackground() = new JFaceBindingBuilder(this, new ControlObservableValue(widget, SWTProperties.BACKGROUND))
   override def observeVisible() = new JFaceBindingBuilder(this, observeVis(widget))
+  override def observeTooltip() = new JFaceBindingBuilder(this, observeTooltipText(widget))
+
 
   def observeEnabled(t: T) = if (t.isInstanceOf[Text]) observeEditable(t) else observeEnab(t)
 
