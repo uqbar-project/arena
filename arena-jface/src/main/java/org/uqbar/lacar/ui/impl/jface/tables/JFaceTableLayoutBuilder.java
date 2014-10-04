@@ -68,9 +68,10 @@ public class JFaceTableLayoutBuilder {
 
 		TableLayout tableLayout = new TableLayout();
 		for (ColumnLayoutData column : this.userDefinedLayouts) {
-			tableLayout.addColumnData(column != null ? column : defaultColumnLayout);
+			ColumnLayoutData toUse = column != null ? column : defaultColumnLayout;
+			tableLayout.addColumnData(toUse);
 		}
-
+		
 		return tableLayout;
 	}
 
