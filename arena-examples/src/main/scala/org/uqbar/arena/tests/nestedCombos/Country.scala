@@ -15,5 +15,4 @@ class Country(var name: String) {
   def addProvince(p:String) = provinces.add(new Province(provinceName))
   def addProvince():Unit = provinces.add(new Province(provinceName))
   def removeProvince() = provinces.-=(provinceSelected);provinceSelected=null
-  def aaadsds = "asfdasdf"
 }
