@@ -1,4 +1,4 @@
-# Arena Developer Guid #
+# Arena Developer Guide #
 
 ### Development Environment ###
 
@@ -11,5 +11,4 @@
 * cd arena
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
-* 
-
+*
