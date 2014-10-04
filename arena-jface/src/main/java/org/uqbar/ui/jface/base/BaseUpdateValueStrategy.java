@@ -5,7 +5,9 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.ValidationStatus;
 import org.eclipse.core.internal.databinding.BindingMessages;
 import org.eclipse.core.runtime.IStatus;
-
+import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.uqbar.commons.model.UserException;
 
 /**
@@ -20,6 +22,20 @@ public class BaseUpdateValueStrategy extends UpdateValueStrategy {
 			// No se puede llamar a super porque atrapa las excepciones y nosotros queremos poder manejarlas
 			// para diferenciar la UserException
 			observableValue.setValue(value);
+			
+			if(observableValue instanceof AbstractSWTObservableValue){
+				AbstractSWTObservableValue ov = (AbstractSWTObservableValue) observableValue;
+				
+                if(ov.getWidget() instanceof Control){
+                    Control c = (Control) ov.getWidget();
+				    Composite p = c.getParent();
+				    while(p!=null){
+					    p.layout();
+					    p = p.getParent();
+				    }
+                }
+			}
+			
 			return ValidationStatus.ok();
 		}
 		catch (UnsupportedOperationException ex) {
