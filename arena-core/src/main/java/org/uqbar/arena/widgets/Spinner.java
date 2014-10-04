@@ -37,7 +37,7 @@ public class Spinner extends Control {
 	
 	@Override
 	public <M,C extends ControlBuilder> Binding<M,Control, C> bindValueToProperty(String modelProperty) {
-		Method getter = Model.getPropertyDescriptor(this.getContainer().getModel(), modelProperty).getReadMethod();
+		Method getter = Model.getPropertyDescriptor(this.getContainer().getModel().getSource(), modelProperty).getReadMethod();
 		if (getter.isAnnotationPresent(Min.class)) {
 			this.setMinimumValue((int) getter.getAnnotation(Min.class).value());
 		}

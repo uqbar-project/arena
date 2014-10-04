@@ -44,7 +44,7 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
   }
 
   override def accept(): Unit = {
-    doTransactionally(super.executeTask)
+    doTransactionally(executeTask)
     commit
     close
   }
