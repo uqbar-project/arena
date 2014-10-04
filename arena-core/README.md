@@ -4,10 +4,10 @@
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
 
-´´´ 
+```
    mkdir arena
   cd arena
-´´´
+```
 
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
@@ -16,9 +16,9 @@ Then If you'll work on the transactional or observability aspects behind Arena, 
 Small framework of aspects buildt on to javassists and made in scala.
 This model the idea of point cut , joint point , and stuff
 
-´´´ 
+```
 hg clone https://bitbucket.org/uqbar-project/apo-core
-´´´ 
+```
 
 Arriba de apo core, implementa objetos observerbilidad en forma transparente a traves de aspectos.
 ´´´ 
