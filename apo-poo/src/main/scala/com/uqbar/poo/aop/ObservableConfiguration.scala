@@ -10,6 +10,7 @@ import org.uqbar.commons.utils.Observable
 import javassist.Modifier
 import com.uqbar.apo.pointcut.ClassPointCut
 import com.uqbar.apo.pointcut.MethodPointCut
+import org.uqbar.commons.utils.ReflectionUtils
 
 /**
  *
