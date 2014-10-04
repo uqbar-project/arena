@@ -88,6 +88,10 @@ public class ColumnsLabelProvider<R> extends ColumnLabelProvider implements ITab
 	public Color getBackground(Object element) {
 		return this.decorated.getBackground(element);
 	}
+	
+	public Color getForeground(Object element) {
+		return this.decorated.getForeground(element);
+	}
 
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
