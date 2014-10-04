@@ -41,7 +41,6 @@ class CollectionsNotifyWhenSelfModify(owner: WindowOwner) extends TransactionalD
 
   }
 
-  override def visibleMonitor() = true
 }
 
 object CollectionsNotifyWhenSelfModifyRunner extends Application with App {
