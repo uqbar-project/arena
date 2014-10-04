@@ -44,6 +44,7 @@
 	<build>
 		<plugins>
 			<plugin>
+			<!--  We have to disable surefire-plugin because is using scalatest -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.7</version>
@@ -53,7 +54,6 @@
 			</plugin>
 			<!-- enable scalatest -->
 			
-			<!--  TODO: comentado porque no anda una goma. Ver con Ronny
 			<plugin>
 				<groupId>org.scalatest</groupId>
 				<artifactId>scalatest-maven-plugin</artifactId>
@@ -73,9 +73,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			-->
-			<!-- /enable scalatest -->
 		</plugins>
 	</build>
 
