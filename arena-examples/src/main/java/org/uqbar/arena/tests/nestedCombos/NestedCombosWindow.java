@@ -94,7 +94,7 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		provincesList.bindItemsToProperty("possibleProvinces") //
 			.setAdapter(new PropertyAdapter(Province.class, "name"));
 		provincesList.bindValueToProperty("province");
-		provincesList.setHeigth(100);
+		provincesList.setHeight(100);
 		provincesList.setWidth(100);
 		provincesList.onSelection(changedAction);
 
@@ -106,7 +106,7 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		Selector<Province> provincesRadioSelector = new RadioSelector<Province>(mainPanel);
 		provincesRadioSelector.bindItemsToProperty("possibleProvinces").setAdapter(new PropertyAdapter(Province.class, "name"));
 		provincesRadioSelector.bindValueToProperty("province");
-		provincesRadioSelector.setHeigth(30);
+		provincesRadioSelector.setHeight(30);
 		provincesRadioSelector.onSelection(changedAction);
 
 		Label times = new Label(mainPanel);
@@ -124,7 +124,7 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 
 		Table<Province> table = new Table<Province>(mainPanel, Province.class);
 		table.setWidth(200);
-		table.setHeigth(200);
+		table.setHeight(200);
 		table.bindItemsToProperty("possibleProvinces");
 		table.bindValueToProperty("province");
 
