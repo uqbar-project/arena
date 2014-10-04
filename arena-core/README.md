@@ -28,9 +28,10 @@ The proven environment is based on Eclipse Kepler version.
 
 #### Based on Eclipse Kepler ####
 
-// TODO
+// TODO: someone needs to write this down
 
 #### Based on latest Eclipse Version (LUNA) #####
 
 * Install eclipse Luna
-* Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x
+* **Scalaide**:
+** Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x
