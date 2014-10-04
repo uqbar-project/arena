@@ -59,6 +59,8 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	 */
 	private boolean contentsReady;
 
+	private int minHeight;
+
 	@SuppressWarnings("unchecked")
 	public Window(WindowOwner owner, T model) {
 		if (model == null ){
@@ -143,6 +145,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		delegate.setTitle(this.title);
 		delegate.setContents(this);
 		delegate.setIcon(this.iconImage);
+		delegate.setMinHeight(this.minHeight);
 		delegate.open();
 	}
 
@@ -217,4 +220,9 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	public String getTitle() {
 		return this.title;
 	}
+	
+	public void setMinHeight(int minPreferedSize) {
+		this.minHeight = minPreferedSize;
+	}
+
 }

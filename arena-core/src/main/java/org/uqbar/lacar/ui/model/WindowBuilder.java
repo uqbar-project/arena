@@ -41,4 +41,6 @@ public interface WindowBuilder extends WindowFactory, WidgetBuilder {
 
 	public void close();
 
+	public void setMinHeight(int minHeight);
+
 }
