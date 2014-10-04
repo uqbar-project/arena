@@ -126,6 +126,19 @@ public abstract class Control extends Widget {
 			}
 		};
 	}
+	
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindForeground(String propertyName) {
+		return this.addBinding(new ObservableProperty(propertyName), this.<C>foreground());
+	}
+	
+	public <C extends ControlBuilder> ViewObservable<Control, C> foreground() {
+		return new AbstractViewObservable<Control, C>(this) {
+			@Override
+			public BindingBuilder createBinding(C builder) {
+				return builder.observeForeground();
+			}
+		};
+	}
 
 	// ********************************************************
 	// ** Rendering

@@ -117,10 +117,16 @@ public class Column<R> {
 		return this;
 	}
 	
-	//TODO: Que no reciba el transformer, que haya que setearlo sobre el retorno.
-	public <U> Column<R> bindBackground(final String propertyName, Transformer<U, Color> transformer) {
-		this.labelProvider.add(new BackgoundProvider<R, U, Color>(propertyName, transformer));
-		return this;
+	public <U> BackgoundProvider<R, U, Color> bindBackground(final String propertyName) {
+		BackgoundProvider<R, U, Color> label = new BackgoundProvider<R, U, Color>(propertyName);
+		this.labelProvider.add(label);
+		return label;
+	}
+	
+	public <U> ForegroundProvider<R, U, Color> bindForeground(final String propertyName) {
+		ForegroundProvider<R, U, Color> label = new ForegroundProvider<R, U, Color>(propertyName);
+		this.labelProvider.add(label);
+		return label;
 	}
 
 	// ********************************************************
