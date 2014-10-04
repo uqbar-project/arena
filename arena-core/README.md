@@ -34,4 +34,5 @@ The proven environment is based on Eclipse Kepler version.
 
 * Install eclipse Luna
 * **Scalaide**:
-+ Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x
+* + Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x
+* + Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
