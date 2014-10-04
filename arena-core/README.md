@@ -54,6 +54,24 @@ And put this:
  <settings xmlns="http://maven.apache.org/POM/4.0.0"  
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+   <servers>
+                <server>
+                    <id>uqbar-releases</id>
+                    <username>mvn@uqbar-wiki.org</username>
+                    <password>PASSWORD_HERE</password>
+                </server>
+                <server>
+                    <id>uqbar-snapshots</id>
+                    <username>mvn@uqbar-wiki.org</username>
+                    <password>repomaven88</password>
+                </server>
+                <server>
+                    <id>sites-uqbar-project.org</id>
+                    <username>sites@uqbar-wiki.org</username>
+                    <password>PASSWORD_HERE</password>
+                </server>
+    </servers>
    <profiles>
      <profile>
        <id>uqbar-wiki</id>
@@ -77,3 +95,6 @@ And put this:
    </activeProfiles>
  </settings>
 ```
+
+**NOTE THAT YOU MUST ASK SOME UQBAR MEMBER FOR THE PASSWORD AND REPLACE THERE THE "PASSWORD_HERE".
+**
