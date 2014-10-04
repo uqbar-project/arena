@@ -28,6 +28,12 @@ public interface ViewObservable<V extends Widget, C extends WidgetBuilder> {
 	 */
 	public <M> Binding<M, V, C> bindTo(Observable<M> observable);
 	
+	/** 
+	 * Shortcut method.
+	 * Binds this observable against an observable model's property.
+	 */
+	public <M> Binding<M, V, C> bindToProperty(String propertyName);
+	
 	/**
 	 * Executes the actual binding between widget and model.
 	 * 
