@@ -3,8 +3,6 @@ package org.uqbar.lacar.ui.model;
 import org.uqbar.arena.widgets.traits.Sizeable;
 import org.uqbar.lacar.ui.model.builder.traits.DisableEnable;
 
-import com.uqbar.commons.collections.Transformer;
-
 /**
  * @author npasserini
  */
@@ -30,5 +28,9 @@ public interface ControlBuilder extends WidgetBuilder, Sizeable, DisableEnable {
 	 */
 	//TODO: move up to widget
 	public BindingBuilder observeVisible();
+	
+	//TODO: comment me
+	public BindingBuilder observeTooltip();
+	
 
 }

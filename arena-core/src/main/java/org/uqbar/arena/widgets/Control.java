@@ -81,6 +81,15 @@ public abstract class Control extends Widget {
 		};
 	}
 	
+	public <C extends ControlBuilder> ViewObservable<Control, C> tooltip() {
+		return new AbstractViewObservable<Control, C>(this) {
+			@Override
+			public BindingBuilder createBinding(C builder) {
+				return builder.observeTooltip();
+			}
+		};
+	}
+	
 	// ***************************
 	// ** bind * To *
 	// ***************************
