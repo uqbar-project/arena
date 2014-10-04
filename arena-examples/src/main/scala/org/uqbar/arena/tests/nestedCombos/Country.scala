@@ -12,7 +12,7 @@ class Country(var name: String) {
   var provinces: java.util.List[Province] = Buffer[Province]()
   var provinceSelected:Province=_
   
-  def addProvince(p:String) = provinces.add(new Province(provinceName))
+  def addProvince(p:String) = provinces.add(new Province(p))
   def addProvince():Unit = provinces.add(new Province(provinceName))
   def removeProvince() = provinces.-=(provinceSelected);provinceSelected=null
 }
