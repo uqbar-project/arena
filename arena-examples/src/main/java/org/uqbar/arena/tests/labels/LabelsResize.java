@@ -1,5 +1,6 @@
 package org.uqbar.arena.tests.labels;
 
+import org.uqbar.arena.tests.ObjectWithProperty;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
