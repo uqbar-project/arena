@@ -23,6 +23,12 @@ import org.uqbar.lacar.ui.model.WidgetBuilder;
 public interface ViewObservable<V extends Widget, C extends WidgetBuilder> {
 
 	/**
+	 * The most important method from a user point-of-view.
+	 * Once you have one of this object you can bind it to another Observable object.
+	 */
+	public <M> Binding<M, V, C> bindTo(Observable<M> observable);
+	
+	/**
 	 * Executes the actual binding between widget and model.
 	 * 
 	 * @param control

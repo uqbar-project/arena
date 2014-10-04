@@ -19,5 +19,9 @@ public abstract class AbstractViewObservable<V extends Widget,C extends WidgetBu
 	public V getView() {
 		return this.view;
 	}
+	
+	public <M> Binding<M, V, C> bindTo(Observable<M> observable) {
+		return this.getView().addBinding(observable, this);
+	}
 
 }
