@@ -15,5 +15,8 @@ It's useful to create a folder to hold all the repos (projects), but well, optio
 Then
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-domain
+* hg clone https://bitbucket.org/uqbar-project/apo-core
+* hg clone https://bitbucket.org/uqbar-project/apo-poo
+* hg clone https://bitbucket.org/uqbar-project/apo-pot
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
