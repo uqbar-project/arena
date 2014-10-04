@@ -18,11 +18,4 @@ public interface ButtonBuilder extends WithCaption, StyledWidgetBuilder, WithIma
 	 */
 	public abstract ButtonBuilder setAsDefault();
 
-	/**
-	 * Binds this button to the status of the underlying task, disabling it when the validation status is not
-	 * correct.
-	 */
-	// TODO Esto podría estar en la superclase ya que todos los controles pueden deshabilitarse.
-	public abstract void disableOnError();
-
 }

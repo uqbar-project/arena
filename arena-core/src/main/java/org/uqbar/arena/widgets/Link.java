@@ -1,5 +1,6 @@
 package org.uqbar.arena.widgets;
 
+import org.uqbar.arena.bindings.NoErrorsObservable;
 import org.uqbar.arena.bindings.ObservableCaption;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.lacar.ui.model.Action;
@@ -8,8 +9,6 @@ import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.builder.LinkBuilder;
-
-import com.uqbar.commons.collections.Closure;
 
 public class Link extends SkinnableControl {
 	protected String caption = this.nextCaption();
@@ -38,12 +37,7 @@ public class Link extends SkinnableControl {
 	// ********************************************************
 	
 	public Link disableOnError() {
-		this.addConfiguration(new Closure<ButtonBuilder>() {
-			@Override
-			public void execute(ButtonBuilder builder) {
-				builder.disableOnError();
-			}
-		});
+		this.enabled().bindTo(new NoErrorsObservable());
 		return this;
 	}
 

@@ -136,9 +136,6 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	public void open() {
 		this.createContents();
 
-		// TODO Reemplazar esto por un log, o pensar un diseño.
-		System.out.println(this.toString());
-
 		WindowBuilder delegate = this.getDelegate();
 		delegate.setTitle(this.title);
 		delegate.setContents(this);

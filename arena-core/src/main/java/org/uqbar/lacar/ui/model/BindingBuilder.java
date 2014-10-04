@@ -23,6 +23,11 @@ public interface BindingBuilder {
 	public void observeProperty(Object model, String propertyName);
 
 	/**
+	 * Observers the container, analysing if any control in this container has an error.
+	 */
+	public void observeErrors();
+	
+	/**
 	 * Sets an adapter strategy based on a {@link Transformer}. As the transformer is bidirectional, it can
 	 * transform the values from the model to the value needed in the view and viceversa.
 	 * 
