@@ -24,5 +24,13 @@ Then all Arena projects:
 
 ### Development Environment ###
 
-* // TODO
-* [sample link](https://bitbucket.org/tutorials/markdowndemo)
+The proven environment is based on Eclipse Kepler version.
+
+#### Based on Eclipse Kepler ####
+
+// TODO
+
+#### Based on latest Eclipse Version (LUNA) #####
+
+* Install eclipse Luna
+* Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-4.0.x-210x
