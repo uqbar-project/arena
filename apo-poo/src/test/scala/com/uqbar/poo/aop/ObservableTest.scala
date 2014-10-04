@@ -24,7 +24,7 @@ class ObservableTest extends FeatureSpec with GivenWhenThen with BeforeAndAfter 
       val bean = Bean("Pepe") 
  
       when("cuando se invoca pop en el stack")
-  		val support = ReflectionUtils.invokeMethod(bean, "getChangeSupport");
+  		val support:PropertySupport = ReflectionUtils.invokeMethod(bean, "getChangeSupport");
  
       then("Deberia retornar el ultimo elemento pusheado")
       assert(support != null)
