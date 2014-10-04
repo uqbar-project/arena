@@ -29,10 +29,12 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	private int delegatedColumnIndex = 0;
 	private Map<Integer, Transformer<R, ?>> calculatedColumns = new HashMap<Integer, Transformer<R, ?>>();
 	private Map<Integer, Transformer<Object, ?>> calculatedBackgroundColumns = new HashMap<>();
+	private Map<Integer, Transformer<Object, ?>> calculatedForegroundColumns = new HashMap<>();
 	private final JFaceTableBuilder<R> table;
 	private ColumnsLabelProvider<R> columnsLabelProvider;
 	private final IObservableSet tableContents;
 	private Map<Integer, JavaBeanTransacionalObservableMap> observeBackgounds = new HashMap<>();
+	private Map<Integer, JavaBeanTransacionalObservableMap> observeForegrounds = new HashMap<>();
 
 	public JFaceLabelProviderBuilder(JFaceTableBuilder<R> table, IObservableSet tableContents) {
 		this.table = table;
@@ -57,6 +59,7 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 
 		ObservableMapProvider decorated = new ObservableMapProvider(attributeMaps);
 		decorated.initializeBackground(calculatedBackgroundColumns, observeBackgounds);
+		decorated.initializeForeground(calculatedForegroundColumns, observeForegrounds);
 		// CASTEO por problemas de interoperabilidad al migrar a scala. Deberia ser innecesario
 		decorated.widget_$eq((Widget) table.widget());
 		this.columnsLabelProvider.initialize(decorated, this.calculatedColumns);
@@ -102,6 +105,13 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 	public void observeBackgoundColumn(String propertyName, Transformer<?, ?> transformer) {
 		observeBackgounds.put(this.columnIndex - 1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
 		this.calculatedBackgroundColumns.put(this.columnIndex - 1, (Transformer<Object, ?>) transformer);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void observeForegroundColumn(String propertyName, Transformer<?, ?> transformer) {
+		observeForegrounds.put(this.columnIndex - 1, JFaceObservableFactory.observeMap(tableContents, this.table.itemType(), propertyName));
+		this.calculatedForegroundColumns.put(this.columnIndex - 1, (Transformer<Object, ?>) transformer);
 	}
 
 }
