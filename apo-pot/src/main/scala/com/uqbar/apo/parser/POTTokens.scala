@@ -1,6 +1,6 @@
 package com.uqbar.apo.parser
 
-case class $interceptor extends Token[Any] {
+case class $interceptor() extends Token[Any] {
   def apply(t: Any) = $interceptor(t)
 }
 object $interceptor {
