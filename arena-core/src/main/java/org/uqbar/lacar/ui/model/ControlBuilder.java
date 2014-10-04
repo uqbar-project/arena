@@ -22,6 +22,8 @@ public interface ControlBuilder extends WidgetBuilder, Sizeable, DisableEnable {
 
 	public BindingBuilder observeBackground();
 	
+	public BindingBuilder observeForeground();
+	
 	/**
 	 * Used to create a binding associated to the "visible" property of this control.
 	 * Usually you'll need this to show/hide a control based on some other condition (binding).

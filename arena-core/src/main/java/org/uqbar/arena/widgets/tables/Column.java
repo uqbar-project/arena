@@ -3,6 +3,10 @@ package org.uqbar.arena.widgets.tables;
 import java.awt.Color;
 import java.util.List;
 
+import org.uqbar.arena.widgets.tables.labelprovider.BackgroundProvider;
+import org.uqbar.arena.widgets.tables.labelprovider.ForegroundProvider;
+import org.uqbar.arena.widgets.tables.labelprovider.PropertyLabelProvider;
+import org.uqbar.arena.widgets.tables.labelprovider.TransformerLabelProvider;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 import org.uqbar.lacar.ui.model.TableBuilder;
@@ -117,10 +121,16 @@ public class Column<R> {
 		return this;
 	}
 	
-	//TODO: Que no reciba el transformer, que haya que setearlo sobre el retorno.
-	public <U> Column<R> bindBackground(final String propertyName, Transformer<U, Color> transformer) {
-		this.labelProvider.add(new BackgoundProvider<R, U, Color>(propertyName, transformer));
-		return this;
+	public BackgroundProvider<R, Color> bindBackground(final String propertyName) {
+		BackgroundProvider<R, Color> label = new BackgroundProvider<R,  Color>(propertyName);
+		this.labelProvider.add(label);
+		return label;
+	}
+	
+	public ForegroundProvider<R, Color> bindForeground(final String propertyName) {
+		ForegroundProvider<R, Color> label = new ForegroundProvider<R, Color>(propertyName);
+		this.labelProvider.add(label);
+		return label;
 	}
 
 	// ********************************************************

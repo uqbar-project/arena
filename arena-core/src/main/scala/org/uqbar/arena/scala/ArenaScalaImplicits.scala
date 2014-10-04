@@ -94,7 +94,7 @@ object ArenaScalaImplicits {
   
   implicit class ViewObservableCombinators[V <: Control, C <: WidgetBuilder](var viewObservable: ViewObservable[V, C]) {
     def <=>[M](obj:Observable[M]) : Binding[M,V,C] = {
-      viewObservable.getView().addBinding(obj, viewObservable)
+      viewObservable.bindTo(obj)
     }
   }
   
