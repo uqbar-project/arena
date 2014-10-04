@@ -1,34 +1,70 @@
 # Arena Developer Guide #
 
-
-### Cloning Repos ###
+## Cloning Repos 
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
 
-* mkdir arena
-* cd arena
+´´´ 
+   mkdir arena
+  cd arena
+´´´
 
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
-* hg clone https://bitbucket.org/uqbar-project/apo-core
-* hg clone https://bitbucket.org/uqbar-project/apo-poo
-* hg clone https://bitbucket.org/uqbar-project/apo-pot
-* hg clone https://bitbucket.org/uqbar-project/apo-parent
+#####apo-core
+
+Small framework of aspects buildt on to javassists and made in scala.
+This model the idea of point cut , joint point , and stuff
+
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/apo-core
+´´´ 
+
+Arriba de apo core, implementa objetos observerbilidad en forma transparente a traves de aspectos.
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/apo-poo
+´´´ 
+
+Implementa aspecto de transaccionalidad sobre objetos. (objetos transacionales)
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/apo-pot
+´´´ 
+puedo obviar los anteriores.
+
+
+configuracion comun para los 3 proyectos anteriores.
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/apo-parent
+´´´ 
 
 Then all **Arena projects**:
 
-* hg clone https://bitbucket.org/uqbar-project/uqbar-domain
-* hg clone https://bitbucket.org/uqbar-project/arena-core
-* hg clone https://bitbucket.org/uqbar-project/arena-jface
-* hg clone https://bitbucket.org/uqbar-project/arena-examples
-* hg clone https://bitbucket.org/uqbar-project/arena-xtend
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/uqbar-domain
+´´´ 
+
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/arena-core
+´´´ 
+
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/arena-jface
+´´´ 
+
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/arena-examples
+´´´ 
+
+´´´ 
+hg clone https://bitbucket.org/uqbar-project/arena-xtend
+´´´ 
 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
 * hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
 
-### Development Environment ###
+## Development Environment (If you are going to develop Arena)
 
 The proven environment is based on Eclipse Kepler version.
 
@@ -52,7 +88,6 @@ You need to **configure your maven settings** in order to connect to Uqbar's rep
 (if .m2 folder is not already created, then create it)
 
 And put this:
-
 
 ```
 #!xml
