@@ -8,18 +8,26 @@ import org.eclipse.core.databinding.conversion.IConverter
 import org.eclipse.core.databinding.UpdateValueStrategy
 import org.uqbar.arena.bindings.Transformer
 import org.uqbar.ui.jface.base.BaseUpdateValueStrategy
+import org.eclipse.core.runtime.IStatus
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
+import org.eclipse.core.databinding.observable.value.IObservableValue
+import org.eclipse.core.runtime.IStatus
+import org.uqbar.arena.jface.JFaceImplicits.closureToComputedValue
+import org.uqbar.lacar.ui.model.BindingBuilder
 
 /**
  *
  * @author npasserini
  * @author jfernandes
  */
-class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValue, var model: IObservableValue) extends BindingBuilder {
+class JFaceBindingBuilder(val dbc: DataBindingContext, val container: JFaceContainer, var view: IObservableValue, var model: IObservableValue) 
+	extends BindingBuilder {
+  
   private var viewToModel = new BaseUpdateValueStrategy()
   private var modelToView = new BaseUpdateValueStrategy()
 
   def this(widget: JFaceWidgetBuilder[_], view: IObservableValue, model: IObservableValue) {
-    this(widget.getDataBindingContext, view, model);
+    this(widget.getDataBindingContext, widget.container , view, model)
   }
   
   def this(widget: JFaceWidgetBuilder[_], view: IObservableValue) {
@@ -28,6 +36,10 @@ class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValu
 
   override def observeProperty(model: Object, propertyName: String) {
     this.model = JFaceObservableFactory observeProperty(model, propertyName)
+  }
+
+  override def observeErrors() = {
+    model = () => container.status.getValue.asInstanceOf[IStatus].isOK
   }
 
   protected def setConverter(viewToModel: UpdateValueStrategy, converter: IConverter) {

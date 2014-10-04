@@ -11,8 +11,9 @@ import org.eclipse.swt.widgets.Text
  * jface implementation of the trait disabled/enabled.
  */
 trait JFaceEnabledDisabled extends DisableEnable {
-  this : JFaceWidgetBuilder[_ <: Control] =>
-  
-  override def observeEnabled() = new JFaceBindingBuilder(this, if (widget.isInstanceOf[Text]) observeEditable(widget) else observeEnab(widget))
+  this: JFaceWidgetBuilder[_ <: Control] =>
+
+  override def observeEnabled() = new JFaceBindingBuilder(this, 
+      if (widget.isInstanceOf[Text]) observeEditable(widget) else observeEnab(widget))
 
 }

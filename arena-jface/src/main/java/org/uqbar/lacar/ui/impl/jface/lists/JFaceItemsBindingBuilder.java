@@ -48,6 +48,11 @@ public class JFaceItemsBindingBuilder implements BindingBuilder {
 		this.viewer.setContentProvider(new ObservableListContentProvider());
 	}
 
+	@Override
+	public void observeErrors() {
+		throw new UnsupportedOperationException("Binding errors to item bindings is not implemented.");
+	}
+
 	// ********************************************************
 	// ** Building
 	// ********************************************************

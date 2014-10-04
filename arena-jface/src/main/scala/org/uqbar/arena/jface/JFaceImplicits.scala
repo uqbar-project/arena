@@ -21,12 +21,13 @@ import org.eclipse.swt.events.DisposeEvent
 
 /**
  * @author jfernandes
+ * @author npasserini
  */
 object JFaceImplicits {
 
-  implicit def closureToComputedValue(closure: () => Object): ComputedValue = {
+  implicit def closureToComputedValue[T](closure: () => T): ComputedValue = {
     new ComputedValue() {
-      override def calculate(): Object = closure()
+      override def calculate(): Object = closure().asInstanceOf[Object]
     }
   }
   
