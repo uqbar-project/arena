@@ -21,6 +21,7 @@ Then all **Arena projects**:
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
 * hg clone https://bitbucket.org/uqbar-project/arena-examples
+* hg clone https://bitbucket.org/uqbar-project/arena-xtend
 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
