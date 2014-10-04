@@ -15,7 +15,7 @@ Then If you'll work on the transactional or observability aspects behind Arena, 
 * hg clone https://bitbucket.org/uqbar-project/apo-pot
 * hg clone https://bitbucket.org/uqbar-project/apo-parent
 
-Then all Arena projects:
+Then all **Arena projects**:
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-domain
 * hg clone https://bitbucket.org/uqbar-project/arena-core
@@ -39,7 +39,7 @@ The proven environment is based on Eclipse Kepler version.
 
 #### Maven configuration ####
 
-You need to configure your maven settings in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
+You need to **configure your maven settings** in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
 
 * vi ~/.m2/settings.xml
 
@@ -56,21 +56,21 @@ And put this:
            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
    <servers>
-                <server>
-                    <id>uqbar-releases</id>
-                    <username>mvn@uqbar-wiki.org</username>
-                    <password>PASSWORD_HERE</password>
-                </server>
-                <server>
-                    <id>uqbar-snapshots</id>
-                    <username>mvn@uqbar-wiki.org</username>
-                    <password>repomaven88</password>
-                </server>
-                <server>
-                    <id>sites-uqbar-project.org</id>
-                    <username>sites@uqbar-wiki.org</username>
-                    <password>PASSWORD_HERE</password>
-                </server>
+            <server>
+                <id>uqbar-releases</id>
+                <username>mvn@uqbar-wiki.org</username>
+                <password>PASSWORD_HERE</password>
+            </server>
+            <server>
+                <id>uqbar-snapshots</id>
+                <username>mvn@uqbar-wiki.org</username>
+                <password>repomaven88</password>
+            </server>
+            <server>
+                <id>sites-uqbar-project.org</id>
+                <username>sites@uqbar-wiki.org</username>
+                <password>PASSWORD_HERE</password>
+            </server>
     </servers>
    <profiles>
      <profile>
