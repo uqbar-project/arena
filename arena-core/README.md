@@ -17,10 +17,10 @@ Then If you'll work on the transactional or observability aspects behind Arena, 
 * hg clone https://bitbucket.org/uqbar-project/apo-core
 * hg clone https://bitbucket.org/uqbar-project/apo-poo
 * hg clone https://bitbucket.org/uqbar-project/apo-pot
+* hg clone https://bitbucket.org/uqbar-project/apo-parent
 
 Then all Arena projects:
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-domain
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
-
