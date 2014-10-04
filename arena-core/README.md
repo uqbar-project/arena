@@ -22,6 +22,10 @@ Then all **Arena projects**:
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
 * hg clone https://bitbucket.org/uqbar-project/arena-examples
 
+In addition optionally you can checkout some **parent projects** if you need to change them:
+
+* hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
+* hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
 
 ### Development Environment ###
 
