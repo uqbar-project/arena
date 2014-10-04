@@ -18,8 +18,8 @@ public class PanelWithoutLayoutWindow extends MainWindow<PanelWithoutLayoutDomai
 	public void createContents(Panel mainPanel) {
 		GroupPanel innerPanel = new GroupPanel(mainPanel);
 		innerPanel.setTitle("Buttons");
-		
 		innerPanel.setLayout(new HorizontalLayout());
+		
 		Button b = new Button(innerPanel);
 		Button b2 = new Button(innerPanel);
 
