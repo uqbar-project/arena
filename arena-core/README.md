@@ -1,9 +1,5 @@
 # Arena Developer Guide #
 
-### Development Environment ###
-
-* // TODO
-* [sample link](https://bitbucket.org/tutorials/markdowndemo)
 
 ### Cloning Repos ###
 
@@ -24,3 +20,9 @@ Then all Arena projects:
 * hg clone https://bitbucket.org/uqbar-project/uqbar-domain
 * hg clone https://bitbucket.org/uqbar-project/arena-core
 * hg clone https://bitbucket.org/uqbar-project/arena-jface
+
+
+### Development Environment ###
+
+* // TODO
+* [sample link](https://bitbucket.org/tutorials/markdowndemo)
