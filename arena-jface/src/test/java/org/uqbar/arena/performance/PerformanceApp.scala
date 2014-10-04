@@ -88,7 +88,7 @@ class Conversor {
 }
 
 @TransactionalAndObservable
-case class ConversorTransaccional extends Conversor
+case class ConversorTransaccional() extends Conversor
 
 
 
