@@ -1,8 +1,45 @@
 # Arena Developer Guide #
 
-## Cloning Repos 
+## How to start  in Arena.
+
+
+#####arena-core
+Whole Arena api
+```
+hg clone https://bitbucket.org/uqbar-project/arena-core
+```
+
+#####arena-jface
+Implementation of Arena over the framework jface
+```
+hg clone https://bitbucket.org/uqbar-project/arena-jface
+```
+
+#####Arena Examples
+```
+hg clone https://bitbucket.org/uqbar-project/arena-examples
+```
+
+####Aditional utilities
+
+#####uqbar-domain
+Utility to modelate domains. Allows anotate objects as observables. 
+``` 
+hg clone https://bitbucket.org/uqbar-project/uqbar-domain
+```
+
+#####arena-xtend
+Extension to use arena with [xtend](http://www.eclipse.org/xtend/)
+```
+hg clone https://bitbucket.org/uqbar-project/arena-xtend
+```
+
+## Development Environment (If you are going to develop Arena)
+
+### Cloning Repos 
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
+
 ```
 mkdir arena
 cd arena
@@ -19,51 +56,31 @@ This model the idea of point cut , joint point , and stuff
 hg clone https://bitbucket.org/uqbar-project/apo-core
 ```
 
-Arriba de apo core, implementa objetos observerbilidad en forma transparente a traves de aspectos.
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/apo-poo
-´´´ 
+#####apo-poo
+Over apo-core implements transparent observability over aspects
 
-Implementa aspecto de transaccionalidad sobre objetos. (objetos transacionales)
-´´´ 
+```
+ hg clone https://bitbucket.org/uqbar-project/apo-poo
+```
+ 
+#####apo-pot
+Implements transacsionality aspects over objects. (Transactional objects)
+
+``` 
 hg clone https://bitbucket.org/uqbar-project/apo-pot
-´´´ 
-puedo obviar los anteriores.
+```
 
+#####apo-parent
 
-configuracion comun para los 3 proyectos anteriores.
-´´´ 
+Aditional configuration for apo-core, apo-poo, apo-pot
+ 
+```
 hg clone https://bitbucket.org/uqbar-project/apo-parent
-´´´ 
-
-Then all **Arena projects**:
-
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/uqbar-domain
-´´´ 
-
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/arena-core
-´´´ 
-
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/arena-jface
-´´´ 
-
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/arena-examples
-´´´ 
-
-´´´ 
-hg clone https://bitbucket.org/uqbar-project/arena-xtend
-´´´ 
-
+``` 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
 * hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
-
-## Development Environment (If you are going to develop Arena)
 
 The proven environment is based on Eclipse Kepler version.
 
