@@ -1,14 +1,17 @@
 package org.uqbar.lacar.ui.impl.jface.bindings
 
 import java.beans.PropertyDescriptor
+
+import org.eclipse.core.databinding.observable.Realm
 import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue
 import org.eclipse.core.databinding.observable.value.IObservableValue
 import org.eclipse.core.databinding.observable.value.ValueDiff
-import org.eclipse.core.databinding.observable.Realm
-import org.eclipse.core.internal.databinding.beans.JavaBeanObservableValue
+import org.eclipse.core.internal.databinding.beans.BeanValueProperty
 import org.eclipse.core.internal.databinding.observable.masterdetail.DetailObservableValue
+import org.eclipse.core.internal.databinding.property.value.SimplePropertyObservableValue
 import org.uqbar.arena.isolation.IsolationLevelEvents
+
 import com.uqbar.aop.transaction.ObjectTransactionManager
 import com.uqbar.apo.APOConfig
 
@@ -32,5 +35,5 @@ class DetailTransacionalObservableValue(outerObservableValue: IObservableValue, 
   extends DetailObservableValue(outerObservableValue, factory, detailType) with TransactionalObservableValue
 
 class JavaBeanTransacionalObservableValue(realm: Realm, any: Any, descriptor: PropertyDescriptor)
-  extends JavaBeanObservableValue(realm, any, descriptor) with TransactionalObservableValue
+  extends SimplePropertyObservableValue(realm, any, new BeanValueProperty(descriptor, descriptor.getPropertyType)) with TransactionalObservableValue
 

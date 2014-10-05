@@ -17,7 +17,7 @@ import org.eclipse.core.databinding.beans.IBeanObservable;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.set.ObservableSet;
-import org.eclipse.core.internal.databinding.beans.ListenerSupport;
+import org.eclipse.core.internal.databinding.beans.BeanPropertyListenerSupport;
 import org.eclipse.core.runtime.Assert;
 import org.uqbar.arena.ArenaException;
 import org.uqbar.lacar.ui.model.bindings.collections.ObservableContainer;
@@ -38,7 +38,7 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 	private final Object object;
 	private boolean updating = false;
 	private PropertyDescriptor descriptor;
-	private ListenerSupport listenerSupport;
+	private PropertyChangeListener listener;
 
 	/**
 	 * @param realm
@@ -65,7 +65,7 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 		this.object = object;
 		this.descriptor = descriptor;
 		if (attachListeners) {
-			PropertyChangeListener listener = new PropertyChangeListener() {
+			listener = new PropertyChangeListener() {
 				public void propertyChange(java.beans.PropertyChangeEvent event) {
 					if (!updating) {
 						getRealm().exec(new Runnable() {
@@ -85,8 +85,7 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 					}
 				}
 			};
-			this.listenerSupport = new ListenerSupport(listener, descriptor.getName());
-			listenerSupport.hookListener(this.object);
+			BeanPropertyListenerSupport.hookListener(this.object, descriptor.getName(), listener);
 		}
 
 		wrappedSet.addAll(Arrays.asList(getValues()));
@@ -284,9 +283,9 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 	}
 
 	public synchronized void dispose() {
-		if (listenerSupport != null) {
-			listenerSupport.dispose();
-			listenerSupport = null;
+		if (listener != null) {
+			BeanPropertyListenerSupport.unhookListener(this.object, descriptor.getName(), listener);
+			listener = null;
 		}
 
 		super.dispose();

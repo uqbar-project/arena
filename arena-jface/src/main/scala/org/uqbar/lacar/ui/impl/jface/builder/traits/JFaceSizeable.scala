@@ -24,7 +24,7 @@ trait JFaceSizeable extends Sizeable with WidgetBuilder {
   def widget : Control
   
   abstract override def pack() {
-	configureLayoutData
+	  configureLayoutData
     super.pack
   }
   

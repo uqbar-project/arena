@@ -23,7 +23,7 @@ class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValu
   }
   
   def this(widget: JFaceWidgetBuilder[_], view: IObservableValue) {
-	this(widget, view, null);
+	  this(widget, view, null);
   }
 
   override def observeProperty(model: Object, propertyName: String) {
@@ -31,7 +31,7 @@ class JFaceBindingBuilder(var dbc: DataBindingContext, var view: IObservableValu
   }
 
   protected def setConverter(viewToModel: UpdateValueStrategy, converter: IConverter) {
-    viewToModel setConverter(converter)
+    viewToModel setConverter converter
   }
 
   override def adaptWith[M, V](transformer: Transformer[M, V]) = {

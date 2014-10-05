@@ -1,20 +1,21 @@
 package org.uqbar.ui.jface.controller;
 
 import java.beans.BeanInfo;
-
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 
 import org.eclipse.core.databinding.BindingException;
 import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.internal.databinding.beans.JavaBeanObservableValue;
+import org.eclipse.core.internal.databinding.beans.BeanValueProperty;
+import org.eclipse.core.internal.databinding.property.value.SimplePropertyObservableValue;
 
 /**
  * 
  * @author npasserini
  */
-public class SimpleJavaBeanObservable extends JavaBeanObservableValue {
+//jfernandes: esta clase no tiene sentido. Solo tiene un método estatic !
+public class SimpleJavaBeanObservable extends SimplePropertyObservableValue {
 
 	protected static PropertyDescriptor getPropertyDescriptor(Class<?> beanClass, String propertyName) {
 		BeanInfo beanInfo;
@@ -37,11 +38,8 @@ public class SimpleJavaBeanObservable extends JavaBeanObservableValue {
 	}
 
 	public SimpleJavaBeanObservable(Realm realm, Object object, PropertyDescriptor descriptor) {
-		super(realm, object, descriptor);
+		super(realm, object, new BeanValueProperty(descriptor, descriptor.getPropertyType()));
 	}
-
-	public SimpleJavaBeanObservable(Realm realm, Object object, PropertyDescriptor descriptor, boolean attachListeners) {
-		super(realm, object, descriptor, attachListeners);
-	}
-
+	
 }
+	

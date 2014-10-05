@@ -10,7 +10,7 @@ import org.eclipse.swt.SWT
  */
 trait Layoutable {
   
-  	def setHorizontalLayout() = setLayout(new RowLayout(SWT.HORIZONTAL))
+  def setHorizontalLayout() = setLayout(new RowLayout(SWT.HORIZONTAL))
 	def setLayoutInColumns(columnCount:Int) = setLayout(new GridLayout(columnCount, false))
 
 	def setVerticalLayout() = {

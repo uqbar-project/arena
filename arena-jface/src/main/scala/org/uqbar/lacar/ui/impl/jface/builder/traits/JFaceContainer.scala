@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Composite
  */
 trait JFaceContainer {
   
-  	def getDataBindingContext() : DataBindingContext
+  def getDataBindingContext() : DataBindingContext
 
 	def getErrorViewer() : ErrorViewer
 
@@ -32,6 +32,5 @@ trait JFaceContainer {
 	 * @return Este mismo container, utilidad para anidar mensajes.
 	 */
 	def addChild(child:WidgetBuilder) : JFaceContainer
-
 
 }
