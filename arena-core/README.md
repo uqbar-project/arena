@@ -5,6 +5,10 @@
 * **JDK 1.7**: currently it doesn't work out-of-the-box with Java8
 * **Scala 2.11**  <<<< recently migrated from 2.10 on Oct 4 2014.
 
+**Note:** *We are currently working on it, but we still don't have a C.I. in order to deploy new versions of artifacts every time someone pushes a change to master.
+So, this means that, every time you push something, you'll also need to manually deploy it with "mvn deploy".
+This also means that, probably, for now, if you want to have it all working straight right after checkout, then, go ahead and check out ALL projects listed below, instead of just picking some of them.*
+
 ## Checkout Projects/Repos.
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
@@ -13,35 +17,27 @@ It's useful to create a folder to hold all the repos (projects), but well, optio
 mkdir arena
 cd arena
 ```
+##### Main Arena Projects
 
-##### Arena (core)
-Whole Arena api
+* **arena-core:** contains all the components and Arena API for arena users. Although it doesn't have any implementation, so you need to use an implementation for this. Currently we only have one: arena-jface. 
+* **arena-jface:** Implementation of Arena on top of SWT, JFace, and JFace Databindings.
+* **arena-examples:** Contains some examples small apps for internal manual testing.
+
+In order to check them out:
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-core
-```
-
-##### Arena JFace
-Implementation of Arena over the framework jface
-```
 hg clone https://bitbucket.org/uqbar-project/arena-jface
-```
-
-##### Arena Examples
-```
 hg clone https://bitbucket.org/uqbar-project/arena-examples
 ```
 
 #### Additional Utilities
 
-##### Uqbar Domain
-Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation. 
+* **Uqbar Domain:** Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation. 
+* **Arena-xtend:** Extensions to use arena with [xtend](http://www.eclipse.org/xtend/). Provides kind of an internal DSL for building bindings easily and in a declarative way.
+
+Check-out:
 ``` 
 hg clone https://bitbucket.org/uqbar-project/uqbar-domain
-```
-
-##### Arena-xtend
-Extensions to use arena with [xtend](http://www.eclipse.org/xtend/). Provides kind of an internal DSL for building bindings easily and in a declarative way.
-```
 hg clone https://bitbucket.org/uqbar-project/arena-xtend
 ```
 
@@ -49,41 +45,25 @@ hg clone https://bitbucket.org/uqbar-project/arena-xtend
 
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
-##### apo-core
+* **apo-core: (Aspects for Pure Objects):** Small AOP framework on top of [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/). It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
+* **apo-poo (Pure Observable Objects):** implements transparent objects observability over AOP. Based on apo-core.
+* **apo-pot (Pure Objects Transactions):** Implements a transparent transactions mechanism for objects through AOP. (Transactional objects).
+* **apo-parent:** Additional configuration for apo-core, apo-poo, apo-pot
 
-**Aspects for Pure Objects:** Small AOP framework on top of [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/). It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
-
+Checkout:
 ```
 hg clone https://bitbucket.org/uqbar-project/apo-core
-```
-
-#####apo-poo
-
-Pure Observable Objects: implements transparent objects observability over AOP. Based on apo-core.
-
-```
- hg clone https://bitbucket.org/uqbar-project/apo-poo
-```
- 
-#####apo-pot
-Implements a transparent transactions mechanism for objects through AOP. (Transactional objects)
-
-``` 
+hg clone https://bitbucket.org/uqbar-project/apo-poo
 hg clone https://bitbucket.org/uqbar-project/apo-pot
-```
-
-#####apo-parent
-
-Aditional configuration for apo-core, apo-poo, apo-pot
- 
-```
 hg clone https://bitbucket.org/uqbar-project/apo-parent
-``` 
+```
+
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
-* hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
-* hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
-
+```
+hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
+hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
+```
 
 ### IDE ###
 
