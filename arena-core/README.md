@@ -14,13 +14,13 @@ mkdir arena
 cd arena
 ```
 
-##### arena-core
+##### Arena (core)
 Whole Arena api
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-core
 ```
 
-##### arena-jface
+##### Arena JFace
 Implementation of Arena over the framework jface
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-jface
@@ -31,43 +31,42 @@ hg clone https://bitbucket.org/uqbar-project/arena-jface
 hg clone https://bitbucket.org/uqbar-project/arena-examples
 ```
 
-####Aditional utilities
+#### Additional Utilities
 
-#####uqbar-domain
-Utility to modelate domains. Allows anotate objects as observables. 
+##### Uqbar Domain
+Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation. 
 ``` 
 hg clone https://bitbucket.org/uqbar-project/uqbar-domain
 ```
 
-#####arena-xtend
-Extension to use arena with [xtend](http://www.eclipse.org/xtend/)
+##### Arena-xtend
+Extensions to use arena with [xtend](http://www.eclipse.org/xtend/). Provides kind of an internal DSL for building bindings easily and in a declarative way.
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-xtend
 ```
 
 ## Foundational Components for Observability / Transactional Aspects (not needed unless you'll change this foundations)
 
-
 Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
-#####apo-core
+##### apo-core
 
-Small framework of aspects buildt on to javassists and made in scala.
-This model the idea of point cut , joint point , and stuff
+**Aspects for Pure Objects:** Small AOP framework on top of [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/). It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
 
 ```
 hg clone https://bitbucket.org/uqbar-project/apo-core
 ```
 
 #####apo-poo
-Over apo-core implements transparent observability over aspects
+
+Pure Observable Objects: implements transparent objects observability over AOP. Based on apo-core.
 
 ```
  hg clone https://bitbucket.org/uqbar-project/apo-poo
 ```
  
 #####apo-pot
-Implements transacsionality aspects over objects. (Transactional objects)
+Implements a transparent transactions mechanism for objects through AOP. (Transactional objects)
 
 ``` 
 hg clone https://bitbucket.org/uqbar-project/apo-pot
@@ -85,11 +84,18 @@ In addition optionally you can checkout some **parent projects** if you need to 
 * hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
 * hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
 
+
+### IDE ###
+
+As we use maven, you can use whatever IDE you want.
+Although, we can suggest some proven Environment:
+
+* Eclipse Kepler with ScalaIDE
+* Eclipse Luna with ScalaIDE
+* IntelliJIDEA with Scala plugin
+
 The proven environment is based on Eclipse Kepler version.
-
-#### Based on Eclipse Kepler ####
-
-// TODO: someone needs to write this down
+Here's a sample environment
 
 #### Based on latest Eclipse Version (LUNA) #####
 
@@ -116,21 +122,21 @@ And put this:
            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
    <servers>
-            <server>
-                <id>uqbar-releases</id>
-                <username>mvn@uqbar-wiki.org</username>
-                <password>PASSWORD_HERE</password>
-            </server>
-            <server>
-                <id>uqbar-snapshots</id>
-                <username>mvn@uqbar-wiki.org</username>
-                <password>repomaven88</password>
-            </server>
-            <server>
-                <id>sites-uqbar-project.org</id>
-                <username>sites@uqbar-wiki.org</username>
-                <password>PASSWORD_HERE</password>
-            </server>
+        <server>
+            <id>uqbar-releases</id>
+            <username>mvn@uqbar-wiki.org</username>
+            <password>PASSWORD_HERE</password>
+        </server>
+        <server>
+            <id>uqbar-snapshots</id>
+            <username>mvn@uqbar-wiki.org</username>
+            <password>repomaven88</password>
+        </server>
+        <server>
+            <id>sites-uqbar-project.org</id>
+            <username>sites@uqbar-wiki.org</username>
+            <password>PASSWORD_HERE</password>
+        </server>
     </servers>
    <profiles>
      <profile>
