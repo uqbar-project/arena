@@ -1,5 +1,10 @@
 # Arena Developer Guide #
 
+## Requirements and General Notes ##
+
+* **JDK 1.7**: currently it doesn't work out-of-the-box with Java8
+* **Scala 2.11**  <<<< recently migrated from 2.10 on Oct 4 2014.
+
 ## Checkout Projects/Repos.
 
 It's useful to create a folder to hold all the repos (projects), but well, optional:
@@ -9,19 +14,19 @@ mkdir arena
 cd arena
 ```
 
-#####arena-core
+##### arena-core
 Whole Arena api
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-core
 ```
 
-#####arena-jface
+##### arena-jface
 Implementation of Arena over the framework jface
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-jface
 ```
 
-#####Arena Examples
+##### Arena Examples
 ```
 hg clone https://bitbucket.org/uqbar-project/arena-examples
 ```
