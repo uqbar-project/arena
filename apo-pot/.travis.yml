@@ -1,0 +1,7 @@
+language: java
+nafter_success:
+- mvn deploy
+before_install:
+- openssl aes-256-cbc -K $encrypted_91aaa5700425_key -iv $encrypted_91aaa5700425_iv
+  -in settings.xml.enc -out settings.xml -d
+- mv settings.xml ~/.m2/settings.xml
