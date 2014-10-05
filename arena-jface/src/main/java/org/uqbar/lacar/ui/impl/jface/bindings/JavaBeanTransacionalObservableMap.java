@@ -8,7 +8,8 @@ import java.util.List;
 
 import org.eclipse.core.databinding.observable.map.MapDiff;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
-import org.eclipse.core.internal.databinding.beans.JavaBeanObservableMap;
+import org.eclipse.core.internal.databinding.beans.BeanValueProperty;
+import org.eclipse.core.internal.databinding.property.value.SetSimpleValueObservableMap;
 import org.uqbar.arena.isolation.IsolationLevelEvents;
 import org.uqbar.commons.utils.ReflectionUtils;
 
@@ -20,7 +21,7 @@ import com.uqbar.common.transaction.ObjectTransaction;
  * 
  * @author npasserini
  */
-public class JavaBeanTransacionalObservableMap extends JavaBeanObservableMap {
+public class JavaBeanTransacionalObservableMap extends SetSimpleValueObservableMap {
 	private final String isolationKey = "apo.poo.isolationLevel";
 	private ObjectTransaction objectTransactionImpl = ObjectTransactionManager.getTransaction();
 	private IsolationLevelEvents isolationLevelEvents = IsolationLevelEvents.valueOf(APOConfig.getProperty(isolationKey).value());
@@ -28,7 +29,7 @@ public class JavaBeanTransacionalObservableMap extends JavaBeanObservableMap {
 
 	
 	public JavaBeanTransacionalObservableMap(IObservableSet domain, PropertyDescriptor propertyDescriptor, List<String> propertyChain) {
-		  super(domain, propertyDescriptor);
+		  super(domain, new BeanValueProperty(propertyDescriptor, propertyDescriptor.getPropertyType()));
 		this.propertyChain = propertyChain;
 	}
 	
@@ -64,13 +65,22 @@ public class JavaBeanTransacionalObservableMap extends JavaBeanObservableMap {
 				currentProperty = propertyChain.get(i);
 			}
 			currentProperty = propertyChain.get(propertyChain.size()-1);
-			Field propertyDescriptorField = ReflectionUtils.getField(this.getClass(), "propertyDescriptor");
-			propertyDescriptorField.setAccessible(true);
-			propertyDescriptorField.set(this, JFaceObservableFactory.getPropertyDescriptor(currentModel.getClass(), currentProperty));
+			
+			PropertyDescriptor newPropertyDescriptor = JFaceObservableFactory.getPropertyDescriptor(currentModel.getClass(), currentProperty);
+			hackPropertyDescriptor(newPropertyDescriptor);
+			
 			return currentModel;
 		} catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	protected void hackPropertyDescriptor(
+			PropertyDescriptor newPropertyDescriptor)
+			throws IllegalAccessException {
+		Field propertyDescriptorField = ReflectionUtils.getField(BeanValueProperty.class, "propertyDescriptor");
+		propertyDescriptorField.setAccessible(true);
+		propertyDescriptorField.set(this.getProperty(), newPropertyDescriptor);
 	}
 	
 }

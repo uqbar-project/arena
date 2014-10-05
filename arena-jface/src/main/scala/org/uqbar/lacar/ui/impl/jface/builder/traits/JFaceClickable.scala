@@ -2,13 +2,13 @@ package org.uqbar.lacar.ui.impl.jface.builder.traits
 
 import org.uqbar.lacar.ui.impl.jface.actions.JFaceActionAdapter
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.builder.traits.WithCaption
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceControlBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 import org.uqbar.lacar.ui.model.builder.traits.Clickable
+import org.eclipse.jface.databinding.swt.SWTObservables
 
 /**
  * Generic implementation of Clickable interface 
@@ -29,7 +29,10 @@ trait JFaceClickable extends Clickable {
 trait JFaceWithCaption extends WithCaption {
   this : JFaceWidgetBuilder[_ <: WithText] =>
     
-  override def observeCaption() = new JFaceBindingBuilder(this, new CaptionObservableValue(widget))
+  override def observeCaption() = new JFaceBindingBuilder(this, 
+//      new CaptionObservableValue(widget)
+      SWTObservables.observeText(widget)
+   )
   
   def setCaption(caption: String) : this.type = {
     widget setText caption
