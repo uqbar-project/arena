@@ -34,7 +34,7 @@ Binding Images
 
   Here's a screenshot:
   
-[./images/bindImageToLabel.png]
+[../images/bindImageToLabel.png]
 
   Note that here we are using a scala implicit conversion so we just wrote the transformer as a closure.
   More on this matter in the next section
@@ -82,4 +82,4 @@ Binding Images
   Button can also have images. It's actually the same bind method.
   It will look like this.
   
-[./images/bindImageToButton.png]
+[../images/bindImageToButton.png]
