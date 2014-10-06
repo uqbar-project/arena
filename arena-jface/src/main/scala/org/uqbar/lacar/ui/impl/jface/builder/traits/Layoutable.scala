@@ -9,16 +9,25 @@ import org.eclipse.swt.SWT
  * trait for builders that can organize inner components through layouts.
  */
 trait Layoutable {
-  
-  	def setHorizontalLayout() = setLayout(new RowLayout(SWT.HORIZONTAL))
-	def setLayoutInColumns(columnCount:Int) = setLayout(new GridLayout(columnCount, false))
 
-	def setVerticalLayout() = {
-		val layout = new RowLayout(SWT.VERTICAL)
-		layout.fill = true
-		setLayout(layout)
-	}
-  	
-  	protected def setLayout(layout:Layout) :Unit 
+  def setHorizontalLayout() = {
+    val layout = new RowLayout(SWT.HORIZONTAL)
+    layout.pack = true
+    layout.wrap = true
+    setLayout(layout)
+
+  }
+
+  def setLayoutInColumns(columnCount: Int) = setLayout(new GridLayout(columnCount, false))
+
+  def setVerticalLayout() = {
+    val layout = new RowLayout(SWT.VERTICAL)
+    layout.fill = true
+    layout.pack = true
+    layout.wrap = true
+    setLayout(layout)
+  }
+
+  protected def setLayout(layout: Layout): Unit
 
 }
