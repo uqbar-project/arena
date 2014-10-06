@@ -7,6 +7,7 @@
 	<artifactId>arena-examples</artifactId>
 	
 	<name>Arena Examples</name>
+
 	<description>Ejemplos básicos y tests del framework Arena</description>
 
 	<parent>

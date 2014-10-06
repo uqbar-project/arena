@@ -32,7 +32,7 @@ public class SimpleApplication extends Application {
 		try {
 			Constructor constructor = ConstructorUtils.getAccessibleConstructor(classOfWindow, WindowOwner.class);
 			return (Window<?>) constructor.newInstance(this);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (Exception e) {
 			throw new ArenaException("La clase de la ventana debe tener un constructor con un unico parametro de tipo 'WindowOwner'", e);
 		}
 	}
