@@ -11,9 +11,12 @@ import org.uqbar.arena.widgets.Control;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.TableBuilder;
+import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
+
+import com.uqbar.commons.collections.Closure;
 
 /**
  * 
@@ -50,6 +53,7 @@ public class Table<R> extends Control {
 	 *            contenidos de esta tabla
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Binding<Collection<R>,Table<R>, TableBuilder<R>> bindItemsToProperty(String propertyName) {
 		return this.bindItems(new ObservableProperty(propertyName));
 	}
@@ -63,6 +67,7 @@ public class Table<R> extends Control {
 	 */
 	// type-safe: should be an Observable<? extends Collection>
 //	M debería ser +M con covariante (?)
+	@SuppressWarnings("unchecked")
 	public <M> Binding<Collection<R>, Table<R>, TableBuilder<R>> bindItems(Observable<M> model) {
 		return (Binding<Collection<R>, Table<R>, TableBuilder<R>>) this.addBinding(model, items());
 	}
@@ -121,4 +126,15 @@ public class Table<R> extends Control {
 		return tableBuilder;
 	}
 
+	public Table<R> setNumberVisibleRows(final int numberVisibleRows) {
+		this.configurations.add(new Closure<WidgetBuilder>() {
+			@SuppressWarnings("rawtypes")
+			@Override
+			public void execute(WidgetBuilder builder) {
+				((TableBuilder)builder).setNumberVisibleRows(numberVisibleRows);
+			}
+		});
+		return this;
+	}
+	
 }
