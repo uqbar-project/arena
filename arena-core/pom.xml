@@ -39,17 +39,17 @@
 			<version>3.4-SNAPSHOT</version>
 		</dependency>
 		<!-- /UQBAR -->
-		
+
 		<dependency>
-			<!-- 
+			<!--
 				this is only required for typesafe bindings. Maybe we can have the same proxy
-				functionality through CGLIB or just a core of mockito. 
+				functionality through CGLIB or just a core of mockito.
 			 -->
 	        <groupId>org.mockito</groupId>
 	        <artifactId>mockito-all</artifactId>
 	        <version>1.9.5</version>
 	    </dependency>
-		
+
 	</dependencies>
 
 	<!-- TODO: move up to parent ! -->
@@ -79,7 +79,7 @@
 					<version>3.3</version>
 
 					<dependencies>
-						<!-- additional dependencies required by "source-class" implementations 
+						<!-- additional dependencies required by "source-class" implementations
 							are added here -->
 						<dependency>
 							<groupId>org.tinyjee.dim</groupId>
@@ -116,11 +116,12 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
+
 	<developers>
 		<developer><id>npasserini</id><name>Nicol&aacute;s Passerini</name><email>npasserini@gmail.com</email></developer>
 		<developer><id>jfernandes</id><name>Javier Fernandes</name><email>javier.fernandes@gmail.com</email></developer>
 		<developer><id>nnydjesus</id><name>Ronny De Jesus</name><email>nnydjesus@gmail.com</email></developer>
+    <developer><id>faloi</id><name>Federico Aloi</name><email>federico.aloi@gmail.com</email></developer>
 	</developers>
 
 </project>
