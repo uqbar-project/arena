@@ -2,7 +2,6 @@ package com.uqbar.poo.aop
 
 import org.apache.commons.lang.StringUtils
 import com.uqbar.commons.ReflectionUtils
-import com.uqbar.poo.aop.Dependency
 import javassist.CtClass
 import javassist.CtMethod
 import org.uqbar.commons.utils.Dependencies
