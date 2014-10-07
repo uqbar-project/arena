@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/faloi/arena-core-mirror.svg)](https://travis-ci.org/faloi/arena-core-mirror)
 # Arena Developer Guide #
 
 ## Requirements and General Notes ##
