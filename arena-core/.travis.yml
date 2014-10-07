@@ -2,4 +2,5 @@ language: java
 after_success:
   - mvn deploy
   - mvn site:site site:deploy
-- mv settings.xml ~/.m2/settings.xml
+before_install:
+  - mv settings.xml ~/.m2/settings.xml
