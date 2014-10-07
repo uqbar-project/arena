@@ -5,3 +5,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_15af97d3b3e4_key -iv $encrypted_15af97d3b3e4_iv
   -in settings.xml.enc -out settings.xml -d
 - mv settings.xml ~/.m2/settings.xml
+notifications:
+  email:
+    - arena-uqbar@googlegroups.com
+
