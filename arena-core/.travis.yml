@@ -1,5 +1,8 @@
 language: java
 nafter_success:
-  - mvn deploy
-  - mvn site:site site:deploy
+- mvn deploy
+- mvn site:site site:deploy
+before_install:
+- openssl aes-256-cbc -K $encrypted_1f3e44281e96_key -iv $encrypted_1f3e44281e96_iv
+  -in settings.xml.enc -out settings.xml -d
 - mv settings.xml ~/.m2/settings.xml
