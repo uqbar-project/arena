@@ -9,6 +9,12 @@
 	
 	<packaging>pom</packaging>
 
+	<parent>
+		<artifactId>uqbar-parent-project</artifactId>
+		<version>1.8-SNAPSHOT</version>
+		<groupId>org.uqbar-project</groupId>
+	</parent>
+
 	<modules>
 		<module>arena-apo</module>
 		<module>arena-poo</module>
