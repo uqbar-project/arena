@@ -15,7 +15,6 @@ case class Bean(var name:String){
 }
 
 
-@RunWith(classOf[JUnitRunner])
 class ObservableTest extends FeatureSpec with GivenWhenThen with BeforeAndAfter {
   
     scenario("se invoca el metodo pop en un stack no vacio") {

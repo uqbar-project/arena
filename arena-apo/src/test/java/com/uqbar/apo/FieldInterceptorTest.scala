@@ -27,7 +27,6 @@ class FieldTestConfiguration extends Configuration {
   def interceptor = field.write((statement, fieldAccess) => statement.append("$this.dispatch(String.valueOf($argument1));"))
 }
 
-@RunWith(classOf[JUnitRunner])
 class FieldInterceptorTest extends FunSpec with GivenWhenThen with Listener {
 
   var eventDispatch: String = _

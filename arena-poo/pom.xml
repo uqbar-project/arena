@@ -29,4 +29,16 @@
 			<version>3.5-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest-maven-plugin</artifactId>
+				<configuration>
+					<argLine>-Djava.system.class.loader=com.uqbar.apo.APOClassLoader</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

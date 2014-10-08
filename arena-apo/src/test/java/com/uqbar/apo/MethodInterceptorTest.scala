@@ -28,8 +28,9 @@ class MethodTestConfiguration extends Configuration{
     .before(method => "System.out.println(\"" + method.getName + "\");")
 }
 
-@RunWith(classOf[JUnitRunner])
 class MethodInterceptorTest extends FunSpec with GivenWhenThen with Listener {
+
+
 
   var eventDispatch: String = _
 
