@@ -32,6 +32,19 @@
 		<developer><id>tesonep</id><name>Pablo Tesone</name><email>tesonep@gmail.com</email></developer>
 	</developers>
 
+	<distributionManagement>
+		<site>
+			<id>sites-uqbar-project.org</id>
+			<url>ftp://uqbar-project.org/arena/</url>
+		</site>
+	</distributionManagement>
+
+	<scm>
+		<connection>scm:hg:${scm.hgServer}/arena-parent</connection>
+		<developerConnection>scm:hg:${scm.hgServer}/arena-parent</developerConnection>
+		<url>scm:hg:${scm.hgServer}/arena-parent</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
