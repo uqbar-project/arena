@@ -8,3 +8,6 @@ before_install:
 notifications:
   email:
   - arena-uqbar@googlegroups.com
+cache:
+  directories:
+  - $HOME/.m2
