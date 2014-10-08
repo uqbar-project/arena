@@ -7,6 +7,8 @@
 	
 	<name>Arena Parent</name>
 	
+	<url>http://arena.uqbar-project.org</url>
+
 	<packaging>pom</packaging>
 
 	<parent>
@@ -24,8 +26,16 @@
 		<module>arena-jface</module>
 	</modules>	
 
+	<licenses>
+		<license>
+			<name>GNU Library or Lesser General Public License (LGPL) 3.0</name>
+			<url>http://www.opensource.org/licenses/lgpl-3.0.html</url>
+		</license>
+	</licenses>
+
 	<properties>
 		<scala.version>2.11.2</scala.version>
+		<scm.gitServer>https://github.com/uqbar-project</scm.gitServer>
 	</properties>
 
 	<developers>
@@ -45,10 +55,11 @@
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:hg:${scm.hgServer}/arena-parent</connection>
-		<developerConnection>scm:hg:${scm.hgServer}/arena-parent</developerConnection>
-		<url>scm:hg:${scm.hgServer}/arena-parent</url>
+		<connection>scm:git:${scm.gitServer}/arena</connection>
+		<developerConnection>scm:git:${scm.gitServer}/arena</developerConnection>
+		<url>scm:git:${scm.gitServer}/arena</url>
 	</scm>
+
 
 	<dependencies>
 		<dependency>

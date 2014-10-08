@@ -15,12 +15,6 @@
 		<version>3.5-SNAPSHOT</version>
 	</parent>
 
-	<scm>
-		<connection>scm:hg:${scm.hgServer}/${project.artifactId}</connection>
-		<developerConnection>scm:hg:${scm.hgServer}/${project.artifactId}</developerConnection>
-		<url>scm:hg:${scm.hgServer}/${project.artifactId}</url>
-	</scm>
-
 	<dependencies>
 		<!-- UQBAR DEPENDENCIES -->
 		<dependency>
