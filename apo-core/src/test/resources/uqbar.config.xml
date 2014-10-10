@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<Config>
+	<property name="apo.classloader.enable">
+		<value>true</value>
+	</property>
+	<property name="apo.adviceConfiguration">
+		<value>com.uqbar.apo.FieldTestConfiguration</value>
+		<value>com.uqbar.apo.MethodTestConfiguration</value>
+	</property>
+		<property name="apo.exclude.package">
+		<value>groovy.lang</value>
+		<value>org.codehaus.groovy</value>
+		<value>scala</value>
+		<value>javassist</value>
+	</property>
+	
+</Config>
