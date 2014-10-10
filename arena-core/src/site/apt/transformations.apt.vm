@@ -1,0 +1,119 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Transformations
+
+ When you bind two properties usually a transformation is needed to adapt them.
+ This is achieved using a Transformer. 
+ This is always the case if you bind properties of different types, 
+ but also you can use a Transformer in order to adapt two different formats of Strings.
+
+* Built-in transformations
+
+  Arena automatically provides some built in transformations. 
+  Also these transformations are inferred from the type of the properties, 
+  so they are automatically inserted into your bindings.
+
+  The built-in transformations are:
+~~ Esta info sale de org.eclipse.core.databinding.UpdateStrategy.getConverterMap()
+ * Any primitive Java type (boolean, byte, short, char, int, long, float, double)
+   to its corresponding wrapper object
+   (Boolean, Byte, Short, Character, Integer, Long, Float, Double). 
+   For example, primitive int's are transformed into java.lang.Integer's
+   
+ * String's to both primitive types and their corresponding wrapper objects.
+   For example, a String can be transformed both to an int or to a Integer
+   
+ * Between different integer number types, including 
+   primitive types (also char), 
+   wrappers (also Character) 
+   and java.math.BigInteger 
+ 
+ * Between different floating point types, including
+   primitive types, wrappers and java.math.BigDecimal 
+   
+ * Between java.util.Date and java.lang.String
+ * Between java.math.BigInteger and java.lang.String
+ 
+ * Any Object can be transformed into to a String using its toString() method.
+ 
+ * A bit more specific: org.eclipse.core.runtime.IStatus objects 
+   can be transformed to Strings
+ 
+* Writing custom transformers
+  
+  Besides the built-in transformations there are cases where you need to customize this in order to work with your own domain objects (mostly value objects).
+  That can be done extending Arena by implementing the Transformer interface.
+
+%{include|source=org.uqbar.arena.bindings.Transformer}
+
+  Here is an example Transformer for BigDecimal objects, written in XTend. 
+  
+  []  
+
++-----------------------------------------------------------------------------+
+class BigDecimalTransformer implements Transformer<BigDecimal, String> {
+
+	override getModelType() {
+		BigDecimal
+	}
+
+	override getViewType() {
+		String
+	}
+
+	override modelToView(BigDecimal valueFromModel) {
+		valueFromModel.toString
+	}
+
+	override viewToModel(String valueFromView) {
+		if (valueFromView == "")
+			null
+		else
+			try
+				new BigDecimal(valueFromView)
+			catch (NumberFormatException e)
+				throw new UserException("El valor ingresado debe ser un número", e)
+
+	}
+}
++-----------------------------------------------------------------------------+ 
+
+
+* Transformations on Table Columns
+
+ Currently there's a special case of transformations for Table column bindings.
+ First thing you'll notice is that there's no Binding object as return value for the bindContentsToProperty method.
+ But anyway you can call setAdapter on the returned object to transform the property's value.
+ 
+ Here's a sample code in Scala:
+ 
++-----------------------------------------------------------------------------+
+		val nameColumn = new Column[Student](table)
+		nameColumn.setTitle("Name")
+		val binding = nameColumn.bindContentsToProperty("name") 
+		binding.setTransformer(new Transformer[String,String]() {
+		  override def transform(name:String) = {
+		  		name.toUpperCase()
+		  }
+		})
++-----------------------------------------------------------------------------+
+
+ It could be even better if you use ArenaScalaImplicits
+ 
++-----------------------------------------------------------------------------+
+
+	nameColumn setTitle("Name") bindContentsToProperty("name") setTransformer{ name:String => name toUpperCase }
+	
++-----------------------------------------------------------------------------+
+
+ As you can see here this Transformer interface is not the same one we already so in the previous section.
+ As the first one was a "two-way" transformer, this one just transform a value in one direction. That's
+ MODEL -> VIEW.
+ This is because currently Tables don't edit values, they just show contente (read-only).
+
+ Also note that there's a *bindContentsToTransformer(Transformer)* that is deprecated. Avoid it since it lacks
+ binding (therefore it won't update the UI upon changes on the model).

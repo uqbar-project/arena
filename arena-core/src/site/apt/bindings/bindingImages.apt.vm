@@ -1,0 +1,85 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+ 
+Binding Images
+ 
+  Some components might have an associated image. That's a trait that can be present on 
+  components classes from different hierarchies. You can search for all implementors of 
+  <<org.uqbar.arena.widgets.traits.WidgetWithImage>>:
+  
+%{include|source=org.uqbar.arena.widgets.traits.WidgetWithImage}
+  
+  As you can see images are bound to a model's property. As you won't probably have an Image object
+  in your model (since it's a view class), you need to specify a <<Transformer>> (see {{{./transformations.html}Transformations}})
+  which will be responsible for translating the property value (a model object) <<into an org.uqbar.arena.graphics.Image>> type.
+  
+* Images on Labels
+ 
+  Here's a sample code that creates a label and binds its image to a property ("on") which is a SocialNetwork object.
+  It then creates different images for each social network based on the concrete social network value.
+  
++-----------------------------------------------------------------------------+
+ val imageLabel = new Label(p)
+ imageLabel.bindImageToProperty("on", { (s:SocialNetwork) => s match {
+          case Facebook => new Image("facebook.png")
+          case GooglePlus => new Image("googleplus.png")
+          case Twitter => new Image("twitter.png")
+    	}
+      }
+    )
++-----------------------------------------------------------------------------+ 
+
+  Here's a screenshot:
+  
+[../images/bindImageToLabel.png]
+
+  Note that here we are using a scala implicit conversion so we just wrote the transformer as a closure.
+  More on this matter in the next section
+  
+* Different forms of Transformers
+ 
+  Depending on the language you are using you'll be able to write the transformer with more or less code.
+  In java, you can either create a separated java class or an anonymous class:
+  
++-----------------------------------------------------------------------------+
+  imageLabel.bindImageToProperty("on", new Transformer<SocialNetwork, Image>() {
+			@Override
+			public Image transform(SocialNetwork network) {
+				  if (network == Facebook.getInstance()) return new Image("facebook.png");
+				  if (network == GooglePlus.getInstance()) return new Image("googleplus.png");
+				  if (network == Twitter.getInstance()) return new Image("twitter.png");
+				  throw new UnsupportedOperationException("Unknown social network");
+			}
+		});
++-----------------------------------------------------------------------------+
+
+  The same can be done in Scala
+  
++-----------------------------------------------------------------------------+
+    imageLabel.bindImageToProperty("on", new Transformer[SocialNetwork, Image] {
+      override def transform(s: SocialNetwork) = {
+        s match {
+          case Facebook => new Image("facebook.png")
+          case GooglePlus => new Image("googleplus.png")
+          case Twitter => new Image("twitter.png")
+        }
+      }
+    })
++-----------------------------------------------------------------------------+
+
+  But if you import our implicits you can just write a scala literal function (closure)
+  as we have seen in the first snippet.
+  
++-----------------------------------------------------------------------------+  
+ import org.uqbar.arena.scala.ArenaScalaImplicits._
++-----------------------------------------------------------------------------+
+
+* Images on Buttons
+ 
+  Button can also have images. It's actually the same bind method.
+  It will look like this.
+  
+[../images/bindImageToButton.png]

@@ -1,0 +1,32 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Introduction
+
+ <<Arena is an MVVM UI framework>> that strongly encourages the separation between model and ui classes. Although
+ based on automatic bidirectional bindings and small <single-responsability> reusable controllers.
+ Through this it clearly shape the core concepts of object design applied to UI-development.
+
+ It also implements a transparent AOP-based mechanism for object-level transactions and observability (object properties). This makes
+ extremely easy the developer tasks in order to bind UI components with domain, by reducing repeatable domain code such as triggering events
+ or handling transactions.
+
+ Arena is being used now since 2010 in several Argentinean Public Universities in order to teach the core concepts of object-oriented
+ user interfaces.
+
+
+Usage
+
+ Check the {{{./usage.html}Usage}} page for configuration and understanding of the different implementations and *flavors* of Arena.
+ 
+Documentation
+
+ Then check {{{./documentation.html}Documentation}} to get started with some code examples and a reference guide to the different
+ components and concepts in Arena.
+
+Development
+  
+ If you want to collaborate with Arena's development then take a look at {{{./development.html}this page}}.
