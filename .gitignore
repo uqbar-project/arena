@@ -1,0 +1,10 @@
+**/target/**
+**/.metadata/**
+**/.settings/**
+**/.project
+**/.classpath
+**/.cache
+**/.hgignore
+**/.hg/**
+**/bin/**
+**/*.orig
