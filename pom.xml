@@ -1,0 +1,140 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.uqbar-project</groupId>
+	<artifactId>arena-parent</artifactId>
+	<version>3.5-SNAPSHOT</version>
+	
+	<name>Arena Parent</name>
+	
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>arena-apo</module>
+		<module>arena-poo</module>
+		<module>arena-pot</module>
+		<module>arena-core</module>
+		<module>arena-examples</module>
+		<module>arena-jface</module>
+	</modules>	
+
+	<properties>
+		<scala.version>2.11.2</scala.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scalatest</groupId>
+			<artifactId>scalatest_2.11</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.scala-lang.modules</groupId>
+				<artifactId>scala-xml_2.11</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-library</artifactId>
+				<version>${scala.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest_2.11</artifactId>
+				<version>2.1.7</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.scala-lang</groupId>
+						<artifactId>scala-library</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- <groupId>org.scala-tools</groupId> <artifactId>maven-scala-plugin</artifactId> -->
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.1.5</version>
+				<executions>
+					<execution>
+						<id>scala-compile-first</id>
+						<phase>process-resources</phase>
+						<configuration>
+							<scalaVersion>${scala.version}</scalaVersion>
+						</configuration>
+						<goals>
+							<goal>add-source</goal>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>scala-test-compile-first</id>
+						<phase>process-test-resources</phase>
+						<configuration>
+							<scalaVersion>${scala.version}</scalaVersion>
+						</configuration>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<useFile>false</useFile>
+					<includes>
+						<include>**/*Test.*</include>
+						<include>**/*Suite.*</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

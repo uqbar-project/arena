@@ -1,181 +1,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>arena</artifactId>
-  <version>3.4-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>Arena</name>
-  <url>http://arena.uqbar-project.org</url>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.uqbar-project</groupId>
-    <artifactId>uqbar-scala-parent</artifactId>
-    <version>1.2-SNAPSHOT</version>
-  </parent>
+	<name>Arena Core</name>
+	<artifactId>arena-core</artifactId>
+	
+	<packaging>jar</packaging>
+	
+	<url>http://arena.uqbar-project.org</url>
 
-  <profiles>
-    <profile>
-      <id>doclint-java8-disable</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <additionalparam>-Xdoclint:none</additionalparam>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.3</version>
-            <configuration>
-              <reportPlugins>
-                <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-javadoc-plugin</artifactId>
-                  <configuration>
-                    <additionalparam>-Xdoclint:none</additionalparam>
-                  </configuration>
-                </plugin>
-              </reportPlugins>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+	<parent>
+		<groupId>org.uqbar-project</groupId>
+		<artifactId>arena-parent</artifactId>
+		<version>3.5-SNAPSHOT</version>
+	</parent>
 
-  <scm>
-    <connection>scm:hg:${scm.hgServer}/arena-core</connection>
-    <developerConnection>scm:hg:${scm.hgServer}/arena-core</developerConnection>
-    <url>scm:hg:${scm.hgServer}/arena-core</url>
-  </scm>
+	<scm>
+		<connection>scm:hg:${scm.hgServer}/arena-core</connection>
+		<developerConnection>scm:hg:${scm.hgServer}/arena-core</developerConnection>
+		<url>scm:hg:${scm.hgServer}/arena-core</url>
+	</scm>
 
-  <licenses>
-    <license>
-      <name>GNU Library or Lesser General Public License (LGPL) 3.0</name>
-      <url>http://www.opensource.org/licenses/lgpl-3.0.html</url>
-    </license>
-  </licenses>
+	<licenses>
+		<license>
+			<name>GNU Library or Lesser General Public License (LGPL) 3.0</name>
+			<url>http://www.opensource.org/licenses/lgpl-3.0.html</url>
+		</license>
+	</licenses>
 
-  <dependencies>
-    <!-- UQBAR -->
-    <dependency>
-      <groupId>org.uqbar-project</groupId>
-      <artifactId>pot</artifactId>
-      <version>3.4-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.uqbar-project</groupId>
-      <artifactId>poo</artifactId>
-      <version>3.4-SNAPSHOT</version>
-    </dependency>
-    <!-- /UQBAR -->
-
-    <dependency>
-      <!--
-        this is only required for typesafe bindings. Maybe we can have the same proxy
-        functionality through CGLIB or just a core of mockito.
-       -->
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.9.5</version>
-    </dependency>
-
-  </dependencies>
-
-  <!-- TODO: move up to parent ! -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.3</version>
-
-          <dependencies>
-            <!-- additional dependencies required by "source-class" implementations
-              are added here -->
-            <dependency>
-              <groupId>org.tinyjee.dim</groupId>
-              <artifactId>doxia-include-macro</artifactId>
-              <version>1.1</version>
-            </dependency>
-          </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>2.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-
-  <distributionManagement>
-    <site>
-      <id>sites-uqbar-project.org</id>
-      <url>ftp://uqbar-project.org/arena/</url>
-    </site>
-  </distributionManagement>
-
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.9.1</version>
-        <configuration>
-          <failOnError>false</failOnError>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
-
-  <developers>
-    <developer>
-      <id>npasserini</id>
-      <name>Nicol&aacute;s Passerini</name>
-      <email>npasserini@gmail.com</email>
-    </developer>
-    <developer>
-      <id>jfernandes</id>
-      <name>Javier Fernandes</name>
-      <email>javier.fernandes@gmail.com</email>
-    </developer>
-    <developer>
-      <id>nnydjesus</id>
-      <name>Ronny De Jesus</name>
-      <email>nnydjesus@gmail.com</email>
-    </developer>
-    <developer>
-      <id>faloi</id>
-      <name>Federico Aloi</name>
-      <email>federico.aloi@gmail.com</email>
-    </developer>
-    <developer>
-      <id>tesonep</id>
-      <name>Pablo Tesone</name>
-      <email>tesonep@gmail.com</email>
-    </developer>
-  </developers>
-
+	<dependencies>
+		<!-- UQBAR -->
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>arena-pot</artifactId>
+			<version>3.5-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>arena-poo</artifactId>
+			<version>3.5-SNAPSHOT</version>
+		</dependency>
+		<!-- /UQBAR -->
+		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+		
+	</dependencies>
 </project>

@@ -1,16 +1,18 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>apo-core</artifactId>
-	<version>3.4-SNAPSHOT</version>
-	<name>Aspect for Pure Objects</name>
-	<packaging>jar</packaging>
 
+	<groupId>org.uqbar-project</groupId>
+	<artifactId>arena-apo</artifactId>
+
+	<name>Arena APO - Aspect for Pure Objects</name>
+	<packaging>jar</packaging>
 
 	<parent>
 		<groupId>org.uqbar-project</groupId>
-		<artifactId>uqbar-scala-parent</artifactId>
-		<version>1.2-SNAPSHOT</version>
+		<artifactId>arena-parent</artifactId>
+		<version>3.5-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -45,12 +47,6 @@
 			<version>3.16.1-GA</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-reflect</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-
 		<!-- ADDED TO FIX DEPENDENCIES ISSUES -->
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -73,41 +69,4 @@
 			<version>0.9.8</version>
 		</dependency>
 	</dependencies>
-
-	<build>
-	    <sourceDirectory>src/main/scala</sourceDirectory>
-		<plugins>
-			<!-- disable surefire -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<skipTests>true</skipTests>
-				</configuration>
-			</plugin>
-			<!-- /disable surefire -->
-			<!-- enable scalatest -->
-			<plugin>
-				<groupId>org.scalatest</groupId>
-				<artifactId>scalatest-maven-plugin</artifactId>
-				<version>1.0-M4-SNAP1</version>
-				<configuration>
-					<argLine>-Djava.system.class.loader=com.uqbar.apo.APOClassLoader</argLine>
-					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-					<junitxml>.</junitxml>
-					<filereports>WDF TestSuite.txt</filereports>
-				</configuration>
-				<executions>
-					<execution>
-						<id>test</id>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- /enable scalatest -->
-		</plugins>
-	</build>
 </project>
