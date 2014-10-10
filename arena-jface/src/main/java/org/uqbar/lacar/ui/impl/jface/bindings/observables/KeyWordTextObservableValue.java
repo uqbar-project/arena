@@ -3,8 +3,8 @@ package org.uqbar.lacar.ui.impl.jface.bindings.observables;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.value.AbstractVetoableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
-import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTVetoableValue;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
@@ -36,7 +36,7 @@ import org.uqbar.swt.widgets.KeyWordText;
  * Hay que hacer nuestros propios VetoableValues???
  * Capas hay que diseñarlo mejor, y empezar a utilizar esos y no los que te provee SWT
  */
-public class KeyWordTextObservableValue extends AbstractSWTVetoableValue {
+public class KeyWordTextObservableValue extends AbstractVetoableValue {
 
 	/**
 	 * {@link Text} widget that this is being observed.
@@ -108,7 +108,7 @@ public class KeyWordTextObservableValue extends AbstractSWTVetoableValue {
 	 * @param updateEventType
 	 */
 	public KeyWordTextObservableValue(final Realm realm, KeyWordText text, int updateEventType) {
-		super(realm, text);
+		super(realm);
 		
 		boolean eventValid = false;
 		for (int i = 0; !eventValid && i < validUpdateEventTypes.length; i++) {

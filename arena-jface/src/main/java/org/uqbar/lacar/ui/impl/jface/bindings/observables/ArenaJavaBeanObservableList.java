@@ -17,7 +17,7 @@ import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.list.ObservableList;
-import org.eclipse.core.internal.databinding.beans.ListenerSupport;
+import org.eclipse.core.internal.databinding.beans.BeanPropertyListenerSupport;
 import org.uqbar.lacar.ui.impl.jface.bindings.ScalaJavaConverter;
 import org.uqbar.lacar.ui.impl.jface.bindings.ScalaJavaListConverter;
 import org.uqbar.lacar.ui.model.bindings.collections.ChangeListener;
@@ -34,7 +34,6 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 	private final Object object;
 	private boolean updating = false;
 	private PropertyDescriptor descriptor;
-	private ListenerSupport listenerSupport;
 	private ScalaJavaConverter converter = new ScalaJavaListConverter();
 
 	/**
@@ -64,7 +63,7 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 		this.descriptor = descriptor;
 
 		if (attachListeners) {
-			PropertyChangeListener listener = new PropertyChangeListener() {
+			listener = new PropertyChangeListener() {
 				public void propertyChange(final java.beans.PropertyChangeEvent event) {
 					if (!updating) {
 						getRealm().exec(new Runnable() {
@@ -76,8 +75,7 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 					}
 				}
 			};
-			listenerSupport = new ListenerSupport(listener,descriptor.getName());
-			listenerSupport.hookListener(this.object);
+			BeanPropertyListenerSupport.hookListener(this.object, descriptor.getName(), listener);
 		}
 
 		// initialize list without firing events
@@ -93,6 +91,7 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 			updateWrappedList(new ArrayList(Arrays.asList(getValues())));
 		}
 	};
+	private PropertyChangeListener listener;
 
 	protected void listChanged(Object oldValue, Object newValue) {
 		if (oldValue != null && oldValue instanceof ObservableContainer) {
@@ -104,9 +103,9 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 	}
 	
 	public void dispose() {
-		if (listenerSupport != null) {
-			listenerSupport.dispose();
-			listenerSupport = null;
+		if (listener != null) {
+			BeanPropertyListenerSupport.unhookListener(object, descriptor.getName(), listener);
+			listener = null;
 		}
 		super.dispose();
 	}

@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Button
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceClickable
-import org.uqbar.lacar.ui.impl.jface.swt.observables.CaptionObservableValue
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.lacar.ui.model.ButtonBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceWithCaption

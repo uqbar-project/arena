@@ -5,8 +5,6 @@ import org.eclipse.swt.widgets.Control
 import org.eclipse.swt.SWT
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue
-import org.eclipse.jface.internal.databinding.swt.SWTProperties
 import org.eclipse.swt.widgets.Text
 import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis, observeEditable, observeEnabled => observeEnab, observeTooltipText }
 import com.uqbar.commons.collections.Transformer
@@ -17,6 +15,7 @@ import org.eclipse.swt.layout.RowLayout
 import org.eclipse.swt.layout.RowData
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceEnabledDisabled
+import org.eclipse.jface.databinding.swt.SWTObservables
 
 /**
  * @author npasserini
@@ -33,8 +32,14 @@ abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
     this.initialize(jfaceWidget)
   }
   
-  override def observeBackground() = new JFaceBindingBuilder(this, new ControlObservableValue(widget, SWTProperties.BACKGROUND))
-  override def observeForeground() = new JFaceBindingBuilder(this, new ControlObservableValue(widget, SWTProperties.FOREGROUND))
+  override def observeBackground() = new JFaceBindingBuilder(this,
+      SWTObservables.observeBackground(widget)
+//      new ControlObservableValue(widget, SWTProperties.BACKGROUND)
+  )
+  override def observeForeground() = new JFaceBindingBuilder(this,
+        SWTObservables.observeForeground(widget)
+//      new ControlObservableValue(widget, SWTProperties.FOREGROUND)
+   )
   override def observeVisible() = new JFaceBindingBuilder(this, observeVis(widget))
   override def observeTooltip() = new JFaceBindingBuilder(this, observeTooltipText(widget))
 

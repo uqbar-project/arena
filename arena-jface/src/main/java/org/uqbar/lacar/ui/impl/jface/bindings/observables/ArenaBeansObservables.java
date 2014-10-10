@@ -48,7 +48,7 @@ public class ArenaBeansObservables {
 	// se crea un observable nuestro que entiende scala.
 	public static IObservableList observeDetailList(Realm realm, IObservableValue master, String propertyName, Class propertyType) {
 		IObservableList observableList = MasterDetailObservables.detailList(master, listFactory(realm, propertyName, propertyType), propertyType);
-		BeanObservableListDecorator decorator = new BeanObservableListDecorator(observableList, master, getValueTypePropertyDescriptor(master, propertyName));
+		BeanObservableListDecorator decorator = new BeanObservableListDecorator(observableList, getValueTypePropertyDescriptor(master, propertyName));
 		return decorator;
 	}
 	

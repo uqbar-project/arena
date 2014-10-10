@@ -18,12 +18,12 @@ trait Aesthetic extends StyledWidgetBuilder {
 
   override def setForeground(color: Color) {
     val swtColor = SWTUtils.getSWTColor(widget getDisplay, color)
-    widget setForeground (swtColor)
+    widget setForeground swtColor
   }
 
   override def setBackground(color: Color) {
     val swtColor = SWTUtils.getSWTColor(widget getDisplay, color)
-    widget setBackground (swtColor)
+    widget setBackground swtColor
   }
 
   override def setFontSize(size: Int) {
