@@ -5,7 +5,6 @@ import com.uqbar.commons.collections.Transformer;
 /**
  * 
  * @author npasserini
- * @param <R>
  */
 public interface LabelProviderBuilder<R> {
 
@@ -14,7 +13,6 @@ public interface LabelProviderBuilder<R> {
 	
 	/**
 	 * @deprecated should use {@link #addPropertyMappedColumn(String, Transformer)}
-	 * @param transformer
 	 */
 	public void addCalculatedColumn(Transformer<R, ?> transformer);
 	

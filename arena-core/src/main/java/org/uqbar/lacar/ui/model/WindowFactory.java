@@ -12,8 +12,8 @@ package org.uqbar.lacar.ui.model;
 public interface WindowFactory {
 	
 	/**
-	 * Crea la ventana
-	 * @return
+	 * Creates the window
+	 * @return the new window
 	 */
 	public WindowBuilder createWindow();
 

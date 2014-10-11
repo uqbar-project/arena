@@ -7,11 +7,12 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 /**
  * Representa una propiedad de un modelo o vista que puede ser utilizada dentro de un binding.
  * 
- * @param T observable value type. For example a UI control's background type could be Observable<Color>
- * A Person's name Observable<String>, etc.
- * 
  * @author npasserini
  * @author jfernandes
+
+ * @param <T> observable value type. For example a UI control's background type could be {@code Observable<Color>}
+ * A Person's name {@code Observable<String>}, etc.
+ * 
  */
 public interface Observable<T> {
 
@@ -27,8 +28,6 @@ public interface Observable<T> {
 
 	/**
 	 * Executes the actual binding between widget and model.
-	 * 
-	 * @param widget
 	 */
 	public void configure(BindingBuilder binder);
 

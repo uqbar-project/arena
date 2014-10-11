@@ -13,7 +13,6 @@ import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
  * completa con un {@link Transformer} que permite ajustar las diferencias entre los valores manejados por
  * modelo y vista.
  * 
- * @param<A> Adapter type
  * @author npasserini
  */
 public class Binding<M, V extends Widget, C extends WidgetBuilder> {
@@ -49,7 +48,7 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 	 * This modifies the adapter of this binding. You should use only one of {@link #setAdapter(Adapter)} and
 	 * {@link #setTransformer(Transformer)}.
 	 * 
-	 * @param adapter Un {@link Transformer}
+	 * @param transformer Un {@link Transformer}
 	 * @return Este mismo {@link BindingBuilder}, para encadenar mensajes.
 	 */
 	public Binding<M,V,C> setTransformer(final Transformer<?, ?> transformer) {
@@ -85,7 +84,7 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 	 * 
 	 * Only one adapter is supported, if this method is called twice, the first adapter will be discarded.
 	 * 
-	 * @param adapter
+	 * @param adapter the adapter to set
 	 */
 	public Binding<M,V,C> setAdapter(Adapter adapter) {
 		this.adapter = adapter;

@@ -36,8 +36,6 @@ public interface ViewObservable<V extends Widget, C extends WidgetBuilder> {
 	
 	/**
 	 * Executes the actual binding between widget and model.
-	 * 
-	 * @param control
 	 */
 	public BindingBuilder createBinding(C control);
 	
@@ -45,8 +43,6 @@ public interface ViewObservable<V extends Widget, C extends WidgetBuilder> {
 	 * Returns the owner of the view observable.
 	 * Ex:
 	 * 	textBox.value().getView() == textBox
-	 * 
-	 * @return
 	 */
 	public V getView();
 

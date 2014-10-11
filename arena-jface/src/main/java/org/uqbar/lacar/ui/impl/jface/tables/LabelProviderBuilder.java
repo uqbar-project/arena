@@ -5,7 +5,6 @@ import com.uqbar.commons.collections.Transformer;
 /**
  * 
  * @author npasserini
- * @param <R>
  */
 public interface LabelProviderBuilder<R> {
 

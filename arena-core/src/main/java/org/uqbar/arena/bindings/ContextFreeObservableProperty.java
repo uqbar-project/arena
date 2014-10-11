@@ -4,7 +4,7 @@ import org.uqbar.lacar.ui.model.BindingBuilder;
 
 /**
  * This observable property has no reference to the model. Therefore, it can be used in places where the model
- * can change, for example in a label provider for a {@link List} or {@link Combo}.
+ * can change.
  * 
  * @author npasserini
  */

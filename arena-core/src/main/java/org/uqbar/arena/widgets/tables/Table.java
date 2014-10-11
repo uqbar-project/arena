@@ -49,7 +49,7 @@ public class Table<R> extends Control {
 	/**
 	 * Asigna el contenido de esta tabla.
 	 * 
-	 * @param selected Nombre de la propiedad del modelo del contenedor desde la cuál se obtendrán los
+	 * @param propertyName Nombre de la propiedad del modelo del contenedor desde la cuál se obtendrán los
 	 *            contenidos de esta tabla
 	 * @return Esta misma tabla, para enviar mensajes anidados
 	 */

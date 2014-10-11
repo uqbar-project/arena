@@ -81,9 +81,6 @@ public class JFaceObservableFactory {
 	 * <code>MasterDetailObservables.detailSet(master, setFactory(realm,
 	 propertyName), propertyType)</code>
 	 * 
-	 * @param realm
-	 * @param master
-	 * @param propertyName
 	 * @param propertyType
 	 *            can be <code>null</code>
 	 * @return an observable set that tracks the named property for the current
@@ -187,8 +184,6 @@ public class JFaceObservableFactory {
 	}
 	
 	/**
-	 * @param realm
-	 * @param propertyName
 	 * @param elementType
 	 *            can be <code>null</code>
 	 * @return an observable set factory for creating observable sets
@@ -203,8 +198,8 @@ public class JFaceObservableFactory {
 	}
 	
 	/**
-	 * @param observable
-	 * @param propertyName
+	 * @param observable the observable object owner of the property
+	 * @param propertyName the name of the property
 	 * @return property descriptor or <code>null</code>
 	 */
 	protected static PropertyDescriptor getValueTypePropertyDescriptor(

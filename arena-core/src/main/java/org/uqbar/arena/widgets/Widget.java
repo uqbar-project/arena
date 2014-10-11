@@ -83,7 +83,7 @@ public class Widget implements Loggeable {
 	 * Agrega este {@link Widget} al contenedor donde será dibujado. Una vez invocado a este método no se
 	 * pueden hacer más modificaciones al {@link Widget}.
 	 * 
-	 * @param contenedor El {@link PanelBuilder} que interpretará la descripción de este Widget traduciéndolas
+	 * @param container El {@link PanelBuilder} que interpretará la descripción de este Widget traduciéndolas
 	 *            a las instrucciones necsarias para implementarlas en la tecnología subyacente.
 	 */
 	public void showOn(PanelBuilder container) {
