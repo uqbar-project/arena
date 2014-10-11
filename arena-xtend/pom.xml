@@ -2,28 +2,51 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-xtend</artifactId>
-	<version>3.4-SNAPSHOT</version>
+	<version>3.5-SNAPSHOT</version>
 
-	<name>arena-xtend</name>
+	<name>Arena XTend</name>
 	<description>Arena's API extension for xtend language.</description>
 
-	<parent>
-		<groupId>org.uqbar-project</groupId>
-		<artifactId>uqbar-xtend-parent</artifactId>
-		<version>2.6.2</version>
-	</parent>
+
+	<properties>
+		<xtend.version>2.6.2</xtend.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>${xtend.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>${xtend.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
-			<version>${version}</version>
+			<version>3.5-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
-  			<artifactId>mockito-all</artifactId>
-  			<version>1.9.5</version>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -22,6 +22,7 @@
 		<module>arena-poo</module>
 		<module>arena-pot</module>
 		<module>arena-core</module>
+		<module>arena-xtend</module>
 		<module>arena-examples</module>
 		<module>arena-jface</module>
 	</modules>	
