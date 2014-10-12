@@ -26,8 +26,6 @@ public class Label extends SkinnableControl implements WidgetWithImage {
 
 	/**
 	 * Configura el texto que debe mostrar este {@link Label}
-	 * 
-	 * @param text
 	 */
 	public Label setText(String text) {
 		this.text = text;

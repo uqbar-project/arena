@@ -6,7 +6,7 @@ import org.uqbar.commons.model.IModel;
  * Interfaz que implementan todos los elementos visuales que pueden contener {@link Widget}s.
  * 
  * El contenedor que implementa esta interfaz se compromete a forwardear a todos sus hijos el mensaje
- * {@link Widget#showOn(org.uqbar.lacar.ui.model.PanelBuilder))} a cada uno de sus hijos, de esta manera
+ * {@link Widget#showOn(org.uqbar.lacar.ui.model.PanelBuilder)} a cada uno de sus hijos, de esta manera
  * permita que sean incluidos en la traducción final.
  * 
  * @author npasserini

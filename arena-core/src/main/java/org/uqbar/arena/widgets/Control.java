@@ -32,7 +32,7 @@ public abstract class Control extends Widget {
 
 	/**
 	 * Binds the value hold by this control with a property of the model of the container. Shortcut to
-	 * {@link #bindValue(ObservableProperty)}.
+	 * {@link #bindValue(Observable)}.
 	 * 
 	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
@@ -97,9 +97,9 @@ public abstract class Control extends Widget {
 
 	/**
 	 * Binds the "enabled" property of this control to a property of the model of the container. Shortcut to
-	 * {@link #bindEnabled(ObservableProperty)}.
+	 * {@link #bindEnabled(Observable)}.
 	 * 
-	 * @param modelProperty The name of a bindable property (getter/setter) in the model of the container.
+	 * @param propertyName The name of a bindable property (getter/setter) in the model of the container.
 	 * @return this
 	 */
 	public <C extends ControlBuilder> Binding<?,Control, C> bindEnabledToProperty(String propertyName) {

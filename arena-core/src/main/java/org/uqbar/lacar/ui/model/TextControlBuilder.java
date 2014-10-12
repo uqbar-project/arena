@@ -1,5 +1,6 @@
 package org.uqbar.lacar.ui.model;
 
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.TextFilter;
 
 /**

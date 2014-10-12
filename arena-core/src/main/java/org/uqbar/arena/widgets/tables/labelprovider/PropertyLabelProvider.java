@@ -5,7 +5,6 @@ import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 /**
  * 
  * @author npasserini
- * @param <T>
  */
 public class PropertyLabelProvider<T> extends AbstractPropertyLabelProvider<T, String> {
 

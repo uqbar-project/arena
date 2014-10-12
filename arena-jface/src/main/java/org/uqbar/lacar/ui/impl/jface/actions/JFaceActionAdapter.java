@@ -20,9 +20,6 @@ public class JFaceActionAdapter implements SelectionListener {
 	 *            Where to show errors
 	 * @param delegate
 	 *            The real listener which will execute the actual task.
-	 * @param actionName
-	 *            The name of the action, could be used for detailed error
-	 *            messages.
 	 */
 	public JFaceActionAdapter(JFaceContainer context, Action delegate) {
 		this.action = delegate;

@@ -21,7 +21,7 @@ public class ColumnsLabelProvider<R> extends ColumnLabelProvider implements ITab
 
 	/**
 	 * Crea un {@link ColumnsLabelProvider} sin inicializar, debe llamarse a
-	 * {@link #initialize(ObservableMapLabelProvider, Map)} antes de utilizarlo, en caso contrario se obtendrá
+	 * {@link #initialize(ObservableMapProvider, Map)} antes de utilizarlo, en caso contrario se obtendrá
 	 * una {@link NullPointerException}.
 	 */
 	public ColumnsLabelProvider() {

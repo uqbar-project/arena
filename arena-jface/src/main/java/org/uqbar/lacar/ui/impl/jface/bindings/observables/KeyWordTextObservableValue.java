@@ -88,7 +88,6 @@ public class KeyWordTextObservableValue extends AbstractSWTVetoableValue {
 	 * and configured to fire change events to its listeners at the time of the
 	 * <code>updateEventType</code>.
 	 * 
-	 * @param text
 	 * @param updateEventType
 	 *            SWT event constant as to what SWT event to update the model in
 	 *            response to. Appropriate values are: <code>SWT.Modify</code>,
@@ -104,8 +103,6 @@ public class KeyWordTextObservableValue extends AbstractSWTVetoableValue {
 	 * Constructs a new instance.
 	 * 
 	 * @param realm can not be <code>null</code>
-	 * @param text
-	 * @param updateEventType
 	 */
 	public KeyWordTextObservableValue(final Realm realm, KeyWordText text, int updateEventType) {
 		super(realm, text);

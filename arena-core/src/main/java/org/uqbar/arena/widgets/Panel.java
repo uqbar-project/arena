@@ -41,8 +41,6 @@ public class Panel extends Widget implements Container {
 
 	/**
 	 * Creates a panel which by default inherits the model from its container.
-	 * 
-	 * @param container
 	 */
 	public Panel(Container container) {
 		super(container);

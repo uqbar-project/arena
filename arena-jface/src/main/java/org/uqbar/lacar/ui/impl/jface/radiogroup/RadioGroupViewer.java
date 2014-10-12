@@ -79,10 +79,10 @@ public class RadioGroupViewer extends AbstractListViewer {
 	}
 
 	/**
-	 * @noreference Methods declared by AbstractListViewer should not be used by
-	 *              clients. This class will be modified to extend ItemViewer at
-	 *              some point in the future which will break references to
-	 *              AbstractListViewer API.
+	 *  Methods declared by AbstractListViewer should not be used by
+	 *  clients. This class will be modified to extend ItemViewer at
+	 *  some point in the future which will break references to
+	 *  AbstractListViewer API.
 	 */
 	protected void listSetItems(String[] labels) {
 		this.group.removeAll();

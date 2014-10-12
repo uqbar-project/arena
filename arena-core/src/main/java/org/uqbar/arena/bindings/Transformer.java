@@ -6,8 +6,8 @@ import org.uqbar.commons.model.UserException;
  * Converts and validates values coming from the view to the type and/or format needed in the model, and
  * viceversa.
  * 
- * @param M El tipo de los valores que maneja el modelo.
- * @param V El tipo de los valores que maneja la vista.
+ * @param <M> El tipo de los valores que maneja el modelo.
+ * @param <V> El tipo de los valores que maneja la vista.
  * 
  * @author npasserini
  */
@@ -21,7 +21,7 @@ public interface Transformer<M, V> {
 	 * @return The (validated) value to be sent to the model
 	 * 
 	 * @throws UserException Si hay un error que se debe mostrar al usuario.
-	 * @throws Exception Si hay cualquier otro tipo de error, interno al programa.
+	 * @throws RuntimeException Si hay cualquier otro tipo de error, interno al programa.
 	 */
 	public M viewToModel(V valueFromView);
 
@@ -32,7 +32,7 @@ public interface Transformer<M, V> {
 	 * @return The value to be sent to the view.
 	 * 
 	 * @throws UserException Si hay un error que se debe mostrar al usuario.
-	 * @throws Exception Si hay cualquier otro tipo de error, interno al programa.
+	 * @throws RuntimeException Si hay cualquier otro tipo de error, interno al programa.
 	 */
 	public V modelToView(M valueFromModel);
 

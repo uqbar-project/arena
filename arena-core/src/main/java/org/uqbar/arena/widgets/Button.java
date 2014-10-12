@@ -20,7 +20,7 @@ import static org.uqbar.arena.bindings.observables.ViewObservables.*;
 /**
  * No hay mucho para decir, es un {@link Control} de tipo "boton"
  * Tiene un texto {@link #caption}.
- * Lo interesante es que utiliza el patrón <<strategy>>
+ * Lo interesante es que utiliza el patrón <em>strategy</em>
  * Cuando el usuario presiona el botón, éste, delega el evento
  * a un objeto de tipo {@link Action} que el desarrollador debe/puede
  * configurar.

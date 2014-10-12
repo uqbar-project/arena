@@ -8,7 +8,6 @@ import com.uqbar.commons.collections.Transformer;
  * Base class for reusing code.
  * 
  * @author jfernandes
- * @param <T>
  */
 public abstract class AbstractPropertyLabelProvider<M, T> implements LabelProvider<M> {
 	protected final String propertyName;

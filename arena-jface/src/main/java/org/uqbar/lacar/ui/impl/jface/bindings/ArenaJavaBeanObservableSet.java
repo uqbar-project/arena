@@ -40,24 +40,11 @@ public class ArenaJavaBeanObservableSet extends ObservableSet implements IBeanOb
 	private PropertyDescriptor descriptor;
 	private ListenerSupport listenerSupport;
 
-	/**
-	 * @param realm
-	 * @param object
-	 * @param descriptor
-	 * @param elementType
-	 */
 	public ArenaJavaBeanObservableSet(Realm realm, Object object,
 			PropertyDescriptor descriptor, Class elementType) {
 		this(realm, object, descriptor, elementType, true);
 	}
 
-	/**
-	 * @param realm
-	 * @param object
-	 * @param descriptor
-	 * @param elementType
-	 * @param attachListeners
-	 */
 	public ArenaJavaBeanObservableSet(Realm realm, Object object,
 			PropertyDescriptor descriptor, Class elementType,
 			boolean attachListeners) {

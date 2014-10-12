@@ -37,24 +37,11 @@ public class ArenaJavaBeanObservableList extends ObservableList implements IBean
 	private ListenerSupport listenerSupport;
 	private ScalaJavaConverter converter = new ScalaJavaListConverter();
 
-	/**
-	 * @param realm
-	 * @param object
-	 * @param descriptor
-	 * @param elementType
-	 */
 	public ArenaJavaBeanObservableList(Realm realm, Object object,
 			PropertyDescriptor descriptor, Class elementType) {
 		this(realm, object, descriptor, elementType, true);
 	}
 
-	/**
-	 * @param realm
-	 * @param object
-	 * @param descriptor
-	 * @param elementType
-	 * @param attachListeners
-	 */
 	public ArenaJavaBeanObservableList(Realm realm, Object object,
 			PropertyDescriptor descriptor, Class elementType,
 			boolean attachListeners) {

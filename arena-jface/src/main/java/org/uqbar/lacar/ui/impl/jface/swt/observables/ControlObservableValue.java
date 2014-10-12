@@ -24,10 +24,6 @@ public class ControlObservableValue extends AbstractSWTObservableValue {
 	private static final List<String> SUPPORTED_ATTRIBUTES = Arrays.asList( new String[]{
 				SWTProperties.FOREGROUND, SWTProperties.BACKGROUND, SWTProperties.FONT});
 	
-	/**
-	 * @param control
-	 * @param attribute
-	 */
 	public ControlObservableValue(Control control, String attribute) {
 		super(control);
 		this.control = control;

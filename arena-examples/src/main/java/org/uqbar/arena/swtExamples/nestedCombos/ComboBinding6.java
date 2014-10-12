@@ -34,7 +34,8 @@ import org.uqbar.arena.tests.nestedCombos.NestedCombosDomain;
 import org.uqbar.arena.tests.nestedCombos.Province;
 
 /**
- * Combo binding using ComboViewer without binding input => Does not work
+ * Combo binding using ComboViewer without binding input
+ * FIXME Does not work
  * 
  * @author npasserini
  */

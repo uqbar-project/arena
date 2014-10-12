@@ -5,7 +5,6 @@ import org.uqbar.arena.bindings.Transformer;
 /**
  * Colabora en la construcción de un binding.
  * 
- * @param<A> Adapter type
  * @author npasserini
  */
 public interface BindingBuilder {
@@ -43,16 +42,14 @@ public interface BindingBuilder {
 	/**
 	 * Configures the given "one-way" transformer to transform values coming from the VIEW
 	 * that will be set into the model.
-	 * @param transformer
-	 * @return
+	 * @return the builder
 	 */
 	public <M, V> BindingBuilder viewToModel(com.uqbar.commons.collections.Transformer<V, M> transformer);
 	
 	/**
 	 * Configures the given "one-way" transformer to transform values coming from the MODEL
 	 * that will be set into the VIEW.
-	 * @param transformer
-	 * @return
+	 * @return the builder
 	 */
 	public <M, V> BindingBuilder modelToView(com.uqbar.commons.collections.Transformer<M, V> transformer);
 
