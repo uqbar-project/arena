@@ -21,7 +21,7 @@ class DateAdapterSpec extends UnitSpec {
     result should be (null)
   }
   
-  it should "throw UserException if una fecha es inválida" in {
+  "Una fecha es inválida" should "throw UserException" in {
     a [UserException] should be thrownBy {
     	dateAdapter.viewToModel(fechaInvalida)
     }
