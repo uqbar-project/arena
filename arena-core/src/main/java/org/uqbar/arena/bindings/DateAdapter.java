@@ -29,6 +29,9 @@ public final class DateAdapter implements Transformer<Date, String> {
 
 	@Override
 	public String modelToView(Date valueFromModel) {
+		if (valueFromModel == null) {
+			return null;
+		}
 		return new SimpleDateFormat(pattern).format(valueFromModel);
 	}
 	
