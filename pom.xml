@@ -13,7 +13,7 @@
 
 	<parent>
 		<artifactId>uqbar-parent-project</artifactId>
-		<version>1.8-SNAPSHOT</version>
+		<version>1.9-alpha-1</version>
 		<groupId>org.uqbar-project</groupId>
 	</parent>
 
