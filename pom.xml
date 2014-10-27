@@ -39,18 +39,6 @@
 		<scm.gitServer>https://github.com/uqbar-project</scm.gitServer>
 	</properties>
 
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-
 	<developers>
 		<developer><id>npasserini</id><name>Nicolás Passerini</name><email>npasserini@gmail.com</email></developer>
 		<developer><id>jfernandes</id><name>Javier Fernandes</name><email>javier.fernandes@gmail.com</email></developer>
