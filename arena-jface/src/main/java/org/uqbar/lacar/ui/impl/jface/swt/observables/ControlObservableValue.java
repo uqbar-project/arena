@@ -1,14 +1,13 @@
 package org.uqbar.lacar.ui.impl.jface.swt.observables;
 import java.awt.Color;
 import java.util.List;
+import java.util.Arrays;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue;
 import org.eclipse.jface.internal.databinding.swt.SWTProperties;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Control;
-
-import scala.actors.threadpool.Arrays;
 
 /**
  * Inspired by: org.eclipse.jface.internal.databinding.swt.ControlObservableValue

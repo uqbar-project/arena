@@ -7,7 +7,6 @@ import org.eclipse.jface.viewers.ColumnLabelProvider
 import org.eclipse.jface.viewers.ITableLabelProvider
 import org.eclipse.jface.viewers.LabelProviderChangedEvent
 import org.eclipse.swt.graphics.Image
-import scala.actors.threadpool.Arrays
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import org.eclipse.jface.viewers.ITableColorProvider

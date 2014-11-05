@@ -4,6 +4,7 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.util.List;
+import java.util.Arrays;
 
 import org.eclipse.core.databinding.BindingException;
 import org.eclipse.core.databinding.beans.BeansObservables;
@@ -22,8 +23,6 @@ import org.eclipse.core.internal.databinding.beans.JavaBeanPropertyObservableMap
 import org.eclipse.core.internal.databinding.observable.masterdetail.DetailObservableMap;
 import org.uqbar.commons.model.ScalaBeanInfo;
 import org.uqbar.lacar.ui.impl.jface.bindings.observables.ArenaBeansObservables;
-
-import scala.actors.threadpool.Arrays;
 
 /**
  * 
