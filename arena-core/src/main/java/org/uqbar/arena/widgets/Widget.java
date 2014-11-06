@@ -1,6 +1,8 @@
 package org.uqbar.arena.widgets;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +12,8 @@ import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
+import org.apache.commons.collections15.Closure;
 
-import com.uqbar.commons.collections.Closure;
-import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
 import com.uqbar.commons.loggeable.Loggeable;
 
@@ -22,15 +23,15 @@ import com.uqbar.commons.loggeable.Loggeable;
  * @author npasserini
  */
 public class Widget implements Loggeable {
-	private Collection<Binding<?, Widget, WidgetBuilder>> bindings = CollectionFactory.createCollection();
-	protected List<Closure<WidgetBuilder>> configurations = CollectionFactory.createList();
+	private Collection<Binding<?, Widget, WidgetBuilder>> bindings = new ArrayList<>();
+	protected List<Closure<WidgetBuilder>> configurations = new ArrayList<>();
 	private static final long serialVersionUID = 7034829204374950200L;
 
 	/**
 	 * Map of generated indices, allows to generate default captions for labels, buttons and other widgets.
 	 * For each type of widget it contains the next index to be used.
 	 */
-	private static Map<Class<?>, Integer> indices = CollectionFactory.createMap();
+	private static Map<Class<?>, Integer> indices = new HashMap<>();
 
 	private final Container container;
 

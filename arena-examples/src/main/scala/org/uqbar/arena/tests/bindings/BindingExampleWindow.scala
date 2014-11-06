@@ -18,7 +18,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.lacar.ui.model.Action
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 import org.uqbar.arena.layout.ColumnLayout
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._

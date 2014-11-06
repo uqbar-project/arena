@@ -6,7 +6,7 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.FeatureSpec
 import org.scalatest.BeforeAndAfter
 import org.scalatest.GivenWhenThen
-import com.uqbar.commons.ReflectionUtils
+import org.uqbar.commons.utils.ReflectionUtils
 
 @Observable
 case class Bean(var name:String){
@@ -23,7 +23,7 @@ class ObservableTest extends FeatureSpec with GivenWhenThen with BeforeAndAfter 
       val bean = Bean("Pepe") 
  
       when("cuando se invoca pop en el stack")
-  		val support:PropertySupport = ReflectionUtils.invokeMethod(bean, "getChangeSupport");
+  		val support:PropertySupport = ReflectionUtils.invokeMethod(bean, "getChangeSupport").asInstanceOf[PropertySupport];
  
       then("Deberia retornar el ultimo elemento pusheado")
       assert(support != null)

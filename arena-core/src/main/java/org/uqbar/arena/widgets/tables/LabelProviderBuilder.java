@@ -1,6 +1,6 @@
 package org.uqbar.arena.widgets.tables;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * 

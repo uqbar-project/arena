@@ -16,7 +16,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.lacar.ui.model.Action;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * Examples on various {@link Selector} features.<br>

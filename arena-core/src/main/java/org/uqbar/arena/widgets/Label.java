@@ -9,7 +9,7 @@ import org.uqbar.lacar.ui.model.LabelBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * Representa una porción texto que se muestra dentro de un {@link Panel} y que no puede ser modificado por el

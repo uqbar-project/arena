@@ -1,12 +1,11 @@
 package org.uqbar.arena.windows;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.lacar.ui.model.Action;
-
-import com.uqbar.commons.collections.CollectionFactory;
 
 /**
  * Ventana (SimpleWindow) especial que implementa la interface {@link TaskWindow}.
@@ -28,8 +27,8 @@ import com.uqbar.commons.collections.CollectionFactory;
 public abstract class Dialog<T> extends SimpleWindow<T> implements TaskWindow {
 	public static final String ACCEPT = "accept";
 	public static final String CANCEL = "cancel";
-	private List<Action> acceptActions = CollectionFactory.createList();
-	private List<Action> cancelActions = CollectionFactory.createList();
+	private List<Action> acceptActions = new ArrayList<>();
+	private List<Action> cancelActions = new ArrayList<>();
 	protected DialogState state;
 
 	public Dialog(WindowOwner owner, T model) {

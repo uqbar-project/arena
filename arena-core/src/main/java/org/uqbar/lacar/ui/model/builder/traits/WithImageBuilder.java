@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.model.builder.traits;
 import org.uqbar.arena.graphics.Image;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * A trait for builders which can have an observable image.

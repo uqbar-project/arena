@@ -3,11 +3,10 @@ package org.uqbar.lacar.ui.model.bindings.collections;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.collections.iterators.AbstractIteratorDecorator;
 import org.apache.commons.collections15.collection.AbstractCollectionDecorator;
-
-import com.uqbar.commons.collections.CollectionFactory;
 
 /**
  * Decora una coleccion haciéndola observable
@@ -17,7 +16,7 @@ import com.uqbar.commons.collections.CollectionFactory;
  * @author jfernandes
  */
 public class ObservableCollectionDecorator<E> extends AbstractCollectionDecorator<E> implements ObservableContainer {
-	private Set<ChangeListener> listeners = CollectionFactory.createOrderedSet();
+	private Set<ChangeListener> listeners = new TreeSet<>();
 
 	public ObservableCollectionDecorator(Collection<E> decoratee) {
 		super(decoratee);

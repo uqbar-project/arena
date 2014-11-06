@@ -5,7 +5,7 @@ import org.uqbar.arena.widgets.tables.labelprovider.PropertyLabelProvider;
 import org.uqbar.arena.widgets.tables.labelprovider.TransformerLabelProvider;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 public class TreeNode<T> implements Node<T> {
 

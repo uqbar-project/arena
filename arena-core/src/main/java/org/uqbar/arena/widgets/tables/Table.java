@@ -16,7 +16,7 @@ import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 
-import com.uqbar.commons.collections.Closure;
+import org.apache.commons.collections15.Closure;
 
 /**
  * 

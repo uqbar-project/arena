@@ -1,12 +1,11 @@
 package com.uqbar.common.transaction;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.uqbar.commons.collections.CollectionFactory;
 
 /**
  * Encapsula el contexto correspondiente a un proceso que debe ejecutarse. Este contexto no se pasa por
@@ -177,7 +176,7 @@ public class Context implements ContextConstants {
 	 * Constructor protegido.
 	 */
 	protected Context(Object owner) {
-		this.parameters = CollectionFactory.createMap();
+		this.parameters = new HashMap<>();
 		this.setParameter(CONTEXT_OWNER, owner);
 	}
 

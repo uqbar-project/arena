@@ -8,7 +8,6 @@ import org.eclipse.jface.window.Window
 import org.eclipse.core.databinding.AggregateValidationStatus
 import org.uqbar.ui.view.ErrorViewer
 import org.uqbar.lacar.ui.model.WidgetBuilder
-import com.uqbar.commons.collections.CollectionFactory
 import org.uqbar.lacar.ui.model.ViewDescriptor
 import org.uqbar.lacar.ui.model.PanelBuilder
 import org.apache.commons.lang.StringUtils
@@ -23,11 +22,12 @@ import org.eclipse.swt.widgets.Listener
 import org.eclipse.swt.widgets.Event
 import org.uqbar.arena.jface.JFaceImplicits._
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
+import java.util.ArrayList
 
 class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with JFaceContainer {
   var dbc = new DataBindingContext
   lazy val window: Window = createJFaceWindow
-  var children: java.util.List[WidgetBuilder] = CollectionFactory.createList()
+  var children: java.util.List[WidgetBuilder] = new ArrayList()
   var windowDescriptor: ViewDescriptor[PanelBuilder] = _
   // TODO Para no obligar a definir un ErrorViewer, podríamos tener uno
   // default que tira los errores por
