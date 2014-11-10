@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Composite
 import org.uqbar.lacar.ui.impl.jface.builder.JFacePanelBuilder
 import org.uqbar.arena.windows.MessageBox._
 import org.eclipse.swt.SWT
-import com.uqbar.commons.exceptions.ProgramException
 import org.eclipse.jface.window.ApplicationWindow
 import org.eclipse.swt.graphics.Image
 import org.eclipse.swt.widgets.Listener
@@ -23,6 +22,7 @@ import org.eclipse.swt.widgets.Event
 import org.uqbar.arena.jface.JFaceImplicits._
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import java.util.ArrayList
+import org.uqbar.arena.ArenaException
 
 class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with JFaceContainer {
   var dbc = new DataBindingContext
@@ -126,7 +126,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
 
   override def getErrorViewer() = {
     if (errorViewer == null) {
-      throw new ProgramException("Esta ventana no tiene capacidad de mostrar errores por no habérsele configurado un ErrorViewer");
+      throw new ArenaException("Esta ventana no tiene capacidad de mostrar errores por no habérsele configurado un ErrorViewer");
     }
     errorViewer;
   }

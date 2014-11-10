@@ -19,7 +19,6 @@ import com.uqbar.common.transaction.Collection.TransactionalMap
 import com.uqbar.common.transaction.Collection.TransactionalSet
 import com.uqbar.common.transaction.ObjectTransaction
 import com.uqbar.common.transaction.TaskOwner
-import com.uqbar.commons.exceptions.ProgramException
 
 /**
  * {@link ObjectTransaction} default implementation.
@@ -206,10 +205,8 @@ class ObjectTransactionImpl(var parent: ObjectTransactionImpl, var owner: TaskOw
             try {
               ReflectionUtils.invokeSetter(keyWrapper.getKey(), k, v);
             } catch {
-              case e: RuntimeException => throw new ProgramException(e) //
-                .addInfo("Object", keyWrapper.getKey()) //
-                .addInfo("Field", k) //
-                .addInfo("Value", v);
+              case e: RuntimeException =>
+                throw new RuntimeException(s"Exception while try to set property $k of object ${keyWrapper.getKey} with value $v", e)
             }
         }
       }

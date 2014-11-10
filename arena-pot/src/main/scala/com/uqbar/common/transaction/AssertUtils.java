@@ -1,6 +1,5 @@
 package com.uqbar.common.transaction;
 
-import com.uqbar.commons.exceptions.ProgramException;
 
 /**
  * 
@@ -18,7 +17,7 @@ public class AssertUtils {
 
 	public static void assertTrue(String message, boolean condition) {
 		if (!condition) {
-			throw new ProgramException(message);			
+			throw new RuntimeException(message);			
 		}
 	}
 
