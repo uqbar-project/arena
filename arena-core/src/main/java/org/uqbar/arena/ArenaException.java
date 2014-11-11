@@ -1,13 +1,13 @@
 package org.uqbar.arena;
 
-import com.uqbar.commons.exceptions.ProgramException;
-
 /**
  * Base class for all arena exceptions
  * 
  * @author jfernandes
  */
-public class ArenaException extends ProgramException {
+public class ArenaException extends RuntimeException {
+
+	private static final long serialVersionUID = -2612636878670001518L;
 
 	public ArenaException(Exception cause) {
 		super(cause);

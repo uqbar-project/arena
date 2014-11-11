@@ -3,7 +3,7 @@ package org.uqbar.arena.widgets;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-import com.uqbar.commons.exceptions.ProgramException;
+import org.uqbar.arena.ArenaException;
 
 /**
  * An event object that represents the action performed by the user on a {@link TextBox} control
@@ -46,11 +46,11 @@ public class TextInputEvent {
 		try {
 			return this.currentText.call();
 		} catch (InterruptedException e) {
-			throw new ProgramException("Error while getting the current text", e);
+			throw new ArenaException("Error while getting the current text", e);
 		} catch (ExecutionException e) {
-			throw new ProgramException("Error while getting the current text", e);	
+			throw new ArenaException("Error while getting the current text", e);
 		} catch (Exception e) {
-			throw new ProgramException("Error while getting the current text", e);
+			throw new ArenaException("Error while getting the current text", e);
 		}
 	}
 	
