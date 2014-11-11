@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.arena.ArenaException;
+import org.uqbar.arena.hierarchiallogger.HierarchicalLogger;
 import org.uqbar.arena.layout.Layout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.commons.model.IModel;
@@ -11,8 +12,6 @@ import org.uqbar.commons.model.Model;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-
-import com.uqbar.commons.loggeable.HierarchicalLogger;
 
 /**
  * A generic container widget.

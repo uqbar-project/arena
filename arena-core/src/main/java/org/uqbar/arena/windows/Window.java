@@ -3,6 +3,8 @@ package org.uqbar.arena.windows;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.arena.hierarchiallogger.HierarchicalLoggeable;
+import org.uqbar.arena.hierarchiallogger.HierarchicalLogger;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Widget;
@@ -12,9 +14,6 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;
 import org.uqbar.lacar.ui.model.WindowBuilder;
-
-import com.uqbar.commons.loggeable.HierarchicalLogger;
-import com.uqbar.commons.loggeable.HierarchicalLoggeable;
 
 /**
  * Superclase de todas las ventanas.

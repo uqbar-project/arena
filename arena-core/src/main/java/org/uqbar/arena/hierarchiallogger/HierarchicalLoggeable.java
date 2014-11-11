@@ -1,10 +1,11 @@
-package com.uqbar.commons.loggeable;
+package org.uqbar.arena.hierarchiallogger;
 
 import java.io.Serializable;
 
 /**
  * DOCME:
  * @author npasserini
+ * @since 3.5
  */
 public interface HierarchicalLoggeable extends Serializable {
 	

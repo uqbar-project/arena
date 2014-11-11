@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.uqbar.arena.hierarchiallogger.HierarchicalLoggeable;
+import org.uqbar.arena.hierarchiallogger.HierarchicalLogger;
 import org.uqbar.lacar.ui.model.NoopWidgetBuilder;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
@@ -13,9 +15,6 @@ import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 import org.apache.commons.collections15.Closure;
-
-import com.uqbar.commons.loggeable.HierarchicalLogger;
-import com.uqbar.commons.loggeable.HierarchicalLoggeable;
 
 /**
  * Clase abstracta de la que heredan todos los demás componentes visuales.

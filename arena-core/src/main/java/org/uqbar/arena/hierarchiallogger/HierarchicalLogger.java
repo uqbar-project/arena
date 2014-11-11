@@ -1,4 +1,4 @@
-package com.uqbar.commons.loggeable;
+package org.uqbar.arena.hierarchiallogger;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,6 +10,7 @@ import java.util.Map;
  * 
  * @author npasserini
  * @author jfernandes
+ * @since 3.5
  */
 public class HierarchicalLogger {
 	protected StringBuffer buffer = new StringBuffer();
