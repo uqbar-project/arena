@@ -17,7 +17,7 @@ public class AssertUtils {
 
 	public static void assertTrue(String message, boolean condition) {
 		if (!condition) {
-			throw new RuntimeException(message);			
+			throw new ObjectTransactionException(message);
 		}
 	}
 

@@ -1,24 +1,22 @@
 package com.uqbar.aop.transaction;
 
 import java.lang.reflect.Modifier
-
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.bufferAsJavaList
 import scala.collection.JavaConversions.mutableMapAsJavaMap
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.Map
-
 import org.apache.commons.logging.LogFactory
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.utils.ReflectionUtils
 import org.uqbar.commons.utils.Transactional
-
 import com.uqbar.common.transaction.Collection.TransacionalList
 import com.uqbar.common.transaction.Collection.TransactionalData
 import com.uqbar.common.transaction.Collection.TransactionalMap
 import com.uqbar.common.transaction.Collection.TransactionalSet
 import com.uqbar.common.transaction.ObjectTransaction
 import com.uqbar.common.transaction.TaskOwner
+import com.uqbar.common.transaction.ObjectTransactionException
 
 /**
  * {@link ObjectTransaction} default implementation.
@@ -206,7 +204,7 @@ class ObjectTransactionImpl(var parent: ObjectTransactionImpl, var owner: TaskOw
               ReflectionUtils.invokeSetter(keyWrapper.getKey(), k, v);
             } catch {
               case e: RuntimeException =>
-                throw new RuntimeException(s"Exception while try to set property $k of object ${keyWrapper.getKey} with value $v", e)
+                throw new ObjectTransactionException(s"Exception while try to set property $k of object ${keyWrapper.getKey} with value $v", e)
             }
         }
       }
