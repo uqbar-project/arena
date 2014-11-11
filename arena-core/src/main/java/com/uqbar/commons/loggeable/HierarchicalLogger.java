@@ -15,7 +15,7 @@ public class HierarchicalLogger {
 	protected StringBuffer buffer = new StringBuffer();
 	private int currentIndentLevel = 0;
 
-	public static String hierarchicalToString(Loggeable loggeable) {
+	public static String hierarchicalToString(HierarchicalLoggeable loggeable) {
 		HierarchicalLogger visitor = new HierarchicalLogger();
 		loggeable.appendYourselfTo(visitor);
 
@@ -53,7 +53,7 @@ public class HierarchicalLogger {
 	/**
 	 * Appends the loggeable object to this info.
 	 */
-	public void append(Loggeable loggeable) {
+	public void append(HierarchicalLoggeable loggeable) {
 		loggeable.appendYourselfTo(this);
 	}
 
@@ -113,8 +113,8 @@ public class HierarchicalLogger {
 			if (objectToAppend == null) {
 				this.append("null");
 			}
-			else if (objectToAppend instanceof Loggeable) {
-				Loggeable hierarchicalToStringEnabled = (Loggeable) objectToAppend;
+			else if (objectToAppend instanceof HierarchicalLoggeable) {
+				HierarchicalLoggeable hierarchicalToStringEnabled = (HierarchicalLoggeable) objectToAppend;
 				this.append(hierarchicalToStringEnabled);
 			}
 			else if (objectToAppend instanceof Collection) {

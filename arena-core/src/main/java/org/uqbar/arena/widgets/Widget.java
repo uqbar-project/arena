@@ -15,14 +15,14 @@ import org.uqbar.lacar.ui.model.bindings.ViewObservable;
 import org.apache.commons.collections15.Closure;
 
 import com.uqbar.commons.loggeable.HierarchicalLogger;
-import com.uqbar.commons.loggeable.Loggeable;
+import com.uqbar.commons.loggeable.HierarchicalLoggeable;
 
 /**
  * Clase abstracta de la que heredan todos los demás componentes visuales.
  * 
  * @author npasserini
  */
-public class Widget implements Loggeable {
+public class Widget implements HierarchicalLoggeable {
 	private Collection<Binding<?, Widget, WidgetBuilder>> bindings = new ArrayList<>();
 	protected List<Closure<WidgetBuilder>> configurations = new ArrayList<>();
 	private static final long serialVersionUID = 7034829204374950200L;
