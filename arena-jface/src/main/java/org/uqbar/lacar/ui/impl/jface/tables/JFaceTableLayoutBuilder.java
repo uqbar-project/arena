@@ -1,5 +1,6 @@
 package org.uqbar.lacar.ui.impl.jface.tables;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ColumnLayoutData;
@@ -8,8 +9,6 @@ import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableLayout;
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceColumnBuilder;
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
-
-import com.uqbar.commons.collections.CollectionFactory;
 
 /**
  * Toma las columnas de la tabla y traduce su información de Layout a las necesidades de JFace, asignando
@@ -33,7 +32,7 @@ public class JFaceTableLayoutBuilder {
 	 * Esta lista tiene <code>null</code>s en las posiciones de las columnas en las que el usuario no definió
 	 * nada.
 	 */
-	private List<ColumnLayoutData> userDefinedLayouts = CollectionFactory.createList();
+	private List<ColumnLayoutData> userDefinedLayouts = new ArrayList<>();
 
 	/**
 	 * El total de peso asignado en todos los layouts por peso. Se asume un total de peso de 100; la

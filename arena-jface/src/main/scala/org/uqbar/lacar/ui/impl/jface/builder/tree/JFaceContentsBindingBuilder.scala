@@ -16,10 +16,10 @@ class JFaceContentsBindingBuilder(list:JFaceTreeBuilder[_]) extends BindingBuild
 	override def adaptWith[M,V](transformer:Transformer[M, V]) = 
 		throw new UnsupportedOperationException("No está preparado para tener adapters.")
 	
-	override def modelToView[M,V](transformer : com.uqbar.commons.collections.Transformer[M,V]) =
+	override def modelToView[M,V](transformer : org.apache.commons.collections15.Transformer[M,V]) =
 	  throw new UnsupportedOperationException("No está preparado para tener transformers.")
 	
-	override def viewToModel[M,V](transformer : com.uqbar.commons.collections.Transformer[V,M]) = {
+	override def viewToModel[M,V](transformer : org.apache.commons.collections15.Transformer[V,M]) = {
 	  throw new UnsupportedOperationException("No está preparado para tener transformers.")
 	}
 

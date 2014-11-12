@@ -11,8 +11,8 @@ import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import com.uqbar.commons.collections.Closure;
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Closure;
+import org.apache.commons.collections15.Transformer;
 
 import static org.uqbar.arena.bindings.observables.ViewObservables.*;
 

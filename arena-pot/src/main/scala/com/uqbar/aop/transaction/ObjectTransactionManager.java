@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.uqbar.aop.transaction.utils.BasicTaskOwner;
+import com.uqbar.common.transaction.AssertUtils;
 import com.uqbar.common.transaction.Context;
 import com.uqbar.common.transaction.ObjectTransaction;
 import com.uqbar.common.transaction.TaskOwner;
-import com.uqbar.commons.exceptions.ProgramException;
 
 /**
  * Manages the life-cycle of all {@link ObjectTransaction} objects.
@@ -84,7 +84,7 @@ public class ObjectTransactionManager {
      */
     public static void rollbackChild(TaskOwner owner) {
     	//assertUnderTransaction();
-    	ProgramException.assertNotNull(owner.getTransaction(), "The TaskOwner doesn't have an associated transaction!");
+    	AssertUtils.assertNotNull("The TaskOwner doesn't have an associated transaction!", owner.getTransaction());
     	//assertOwnership(owner);
     	((ObjectTransactionImpl) owner.getTransaction()).rollback();
     	unregisterTransaction(owner.getTransaction());

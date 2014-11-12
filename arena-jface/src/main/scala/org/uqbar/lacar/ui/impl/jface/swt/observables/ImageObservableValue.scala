@@ -6,7 +6,7 @@ import org.eclipse.jface.resource.ImageDescriptor
 import org.uqbar.arena.graphics.Image
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes.WidgetWithImage
 import org.uqbar.arena.jface.JFaceImplicits._
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 import org.eclipse.jface.resource.ImageRegistry
 /**
  * @author jfernandes

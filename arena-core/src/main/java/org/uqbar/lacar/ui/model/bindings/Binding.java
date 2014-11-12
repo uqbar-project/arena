@@ -60,7 +60,7 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 		});
 	}
 	
-	public Binding<M,V,C> setModelToView(final com.uqbar.commons.collections.Transformer<M,?> transformer) {
+	public Binding<M,V,C> setModelToView(final org.apache.commons.collections15.Transformer<M,?> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {
@@ -69,7 +69,7 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 		});
 	}
 	
-	public Binding<M,V,C> setViewToModel(final com.uqbar.commons.collections.Transformer<?,M> transformer) {
+	public Binding<M,V,C> setViewToModel(final org.apache.commons.collections15.Transformer<?,M> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {

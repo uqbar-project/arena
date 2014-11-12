@@ -7,7 +7,6 @@ import org.mockito.invocation.Invocation
 import org.mockito.invocation.MockHandler
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.lacar.ui.model.Action
-import com.uqbar.commons.collections.Transformer
 import scala.reflect.ClassTag
 import org.uqbar.arena.widgets.Control
 import org.uqbar.arena.widgets.Control
@@ -23,6 +22,7 @@ import org.uqbar.lacar.ui.model.WidgetBuilder
 import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.arena.widgets.Container
 import org.uqbar.arena.widgets.Widget
+import org.apache.commons.collections15.Transformer
 
 /**
  * Contiene implicits utiles para usar arena desde scala

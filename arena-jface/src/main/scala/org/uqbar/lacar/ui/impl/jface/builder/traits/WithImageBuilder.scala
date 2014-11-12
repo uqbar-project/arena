@@ -2,7 +2,7 @@ package org.uqbar.lacar.ui.impl.jface.builder.traits
 
 import org.uqbar.lacar.ui.impl.jface.swt.SwtTypes._
 import org.uqbar.lacar.ui.model.BindingBuilder
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 import org.uqbar.arena.graphics.Image
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.swt.observables.ImageObservableValue

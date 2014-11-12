@@ -33,12 +33,12 @@ public class JFaceItemsBindingBuilder implements BindingBuilder {
 	}
 	
 	@Override
-	public <M, V> BindingBuilder modelToView(com.uqbar.commons.collections.Transformer<M, V> transformer) {
+	public <M, V> BindingBuilder modelToView(org.apache.commons.collections15.Transformer<M, V> transformer) {
 		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
 	}
 	
 	@Override
-	public <M, V> BindingBuilder viewToModel(com.uqbar.commons.collections.Transformer<V, M> transformer) {
+	public <M, V> BindingBuilder viewToModel(org.apache.commons.collections15.Transformer<V, M> transformer) {
 		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
 	}
 

@@ -2,7 +2,7 @@ package org.uqbar.arena.widgets.tables.labelprovider;
 
 import org.uqbar.lacar.ui.model.LabelProvider;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * Base class for reusing code.

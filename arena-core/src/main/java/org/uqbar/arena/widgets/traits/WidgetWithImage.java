@@ -3,7 +3,7 @@ package org.uqbar.arena.widgets.traits;
 import org.uqbar.arena.graphics.Image;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * @author jfernandes

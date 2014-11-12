@@ -3,6 +3,7 @@ package org.uqbar.arena.widgets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.uqbar.arena.ArenaException;
 import org.uqbar.arena.layout.Layout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.commons.model.IModel;
@@ -11,7 +12,6 @@ import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 
-import com.uqbar.commons.exceptions.ProgramException;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
 
 /**
@@ -130,7 +130,7 @@ public class Panel extends Widget implements Container {
 	public void showOn(PanelBuilder container) {
 		this.createContents();
 		if (this.layout == null) {
-			throw new ProgramException("No se especificó un layout para el Panel");
+			throw new ArenaException("No se especificó un layout para el Panel");
 		}
 
 		PanelBuilder me = createPanel(container);

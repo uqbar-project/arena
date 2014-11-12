@@ -4,9 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
 import org.uqbar.commons.model.UserException;
-
-import com.uqbar.commons.StringUtils;
 
 /**
  * Convierte a Date los Strings en formato dd/MM/yyy. Acepta valores nulos.

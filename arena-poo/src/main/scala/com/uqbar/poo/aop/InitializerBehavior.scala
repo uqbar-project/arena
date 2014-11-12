@@ -1,10 +1,10 @@
 package com.uqbar.poo.aop
 
 import org.apache.commons.lang.StringUtils
-import com.uqbar.commons.ReflectionUtils
 import javassist.CtClass
 import javassist.CtMethod
 import org.uqbar.commons.utils.Dependencies
+import org.uqbar.commons.utils.ReflectionUtils
 
 trait InitializerBehavior {
 

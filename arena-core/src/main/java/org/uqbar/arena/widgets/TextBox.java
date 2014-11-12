@@ -5,7 +5,7 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.TextControlBuilder;
 import org.uqbar.lacar.ui.model.builder.StyledControlBuilder;
 
-import com.uqbar.commons.collections.Closure;
+import org.apache.commons.collections15.Closure;
 
 /**
  * Control que permite editar texto simple.

@@ -15,7 +15,7 @@ import org.uqbar.arena.windows.MainWindow
 import org.uqbar.commons.utils.Observable
 import org.uqbar.lacar.ui.impl.jface.builder.JFacePanelBuilder
 
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 
 
 @Observable

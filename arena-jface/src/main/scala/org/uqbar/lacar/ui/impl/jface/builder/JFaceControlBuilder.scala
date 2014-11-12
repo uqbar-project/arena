@@ -9,7 +9,7 @@ import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue
 import org.eclipse.jface.internal.databinding.swt.SWTProperties
 import org.eclipse.swt.widgets.Text
 import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis, observeEditable, observeEnabled => observeEnab, observeTooltipText }
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 import org.eclipse.core.databinding.observable.value.IObservableValue
 import org.eclipse.swt.layout.GridLayout
 import org.eclipse.swt.layout.GridData

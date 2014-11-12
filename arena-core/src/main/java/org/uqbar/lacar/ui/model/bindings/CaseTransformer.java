@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.model.bindings;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * A transformer that has a set of values associated with keys.

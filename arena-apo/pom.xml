@@ -21,16 +21,6 @@
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>uqbar-domain</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.uqbar</groupId>
-			<artifactId>uqbar-commons-collections</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.uqbar</groupId>
-			<artifactId>uqbar-commons-exceptions</artifactId>
-			<version>1.5-SNAPSHOT</version>
-		</dependency>
 
 		<!-- /UQBAR DEPENDENCIES -->
 

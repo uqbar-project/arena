@@ -16,7 +16,7 @@ import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceColumnBuilder;
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * @param <R> El tipo de las columnas de la tabla a configurar.

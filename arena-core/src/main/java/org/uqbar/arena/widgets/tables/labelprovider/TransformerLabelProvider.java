@@ -1,6 +1,6 @@
 package org.uqbar.arena.widgets.tables.labelprovider;
 
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 import org.uqbar.arena.widgets.tables.LabelProviderBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;

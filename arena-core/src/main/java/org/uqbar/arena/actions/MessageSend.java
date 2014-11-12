@@ -1,7 +1,6 @@
 package org.uqbar.arena.actions;
 
-import com.uqbar.commons.ReflectionUtils;
-
+import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.Action;
 
 /**

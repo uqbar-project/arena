@@ -10,7 +10,7 @@ import org.eclipse.swt.graphics.Image
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import org.eclipse.jface.viewers.ITableColorProvider
-import com.uqbar.commons.collections.Transformer
+import org.apache.commons.collections15.Transformer
 import java.awt.Color
 import org.eclipse.swt.widgets.Widget
 import org.uqbar.lacar.ui.impl.jface.bindings.JavaBeanTransacionalObservableMap

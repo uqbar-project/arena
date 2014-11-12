@@ -1,6 +1,7 @@
 package org.uqbar.arena.widgets.tables;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.arena.widgets.tables.labelprovider.BackgroundProvider;
@@ -10,10 +11,9 @@ import org.uqbar.arena.widgets.tables.labelprovider.TransformerLabelProvider;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 import org.uqbar.lacar.ui.model.TableBuilder;
+import org.apache.commons.collections15.Closure;
 
-import com.uqbar.commons.collections.Closure;
-import com.uqbar.commons.collections.CollectionFactory;
-import com.uqbar.commons.collections.Transformer;
+import org.apache.commons.collections15.Transformer;
 
 /**
  * Una columna de una tabla.
@@ -27,8 +27,8 @@ import com.uqbar.commons.collections.Transformer;
  * @author npasserini
  */
 public class Column<R> {
-	private List<LabelProvider<R>> labelProvider = CollectionFactory.createList();
-	private List<Closure<ColumnBuilder<R>>> configurations = CollectionFactory.createList();
+	private List<LabelProvider<R>> labelProvider = new ArrayList<>();
+	private List<Closure<ColumnBuilder<R>>> configurations = new ArrayList<>();
 
 	public Column(Table<R> table) {
 		table.addColumn(this);

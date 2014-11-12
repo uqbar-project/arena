@@ -1,5 +1,6 @@
 package org.uqbar.arena.windows;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.arena.widgets.Container;
@@ -12,7 +13,6 @@ import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;
 import org.uqbar.lacar.ui.model.WindowBuilder;
 
-import com.uqbar.commons.collections.CollectionFactory;
 import com.uqbar.commons.loggeable.HierarchicalLogger;
 import com.uqbar.commons.loggeable.Loggeable;
 
@@ -44,7 +44,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	 * consiste únicamente de un {@link Panel}.
 	 */
 	// TODO Debería haber una jerarquía de componentes que admiten hijos.
-	private List<Widget> children = CollectionFactory.createList();
+	private List<Widget> children = new ArrayList<>();
 
 	private String title = "";
 	
