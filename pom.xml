@@ -64,6 +64,10 @@
 			<artifactId>scala-library</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.scala-lang.modules</groupId>
+			<artifactId>scala-xml_${scala.version.major}</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.scalatest</groupId>
 			<artifactId>scalatest_${scala.version.major}</artifactId>
 			<scope>test</scope>
