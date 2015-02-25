@@ -1,0 +1,27 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Windows and Dialogs
+
+ * <<Window>> is the main abstract class of all views in Arena  
+
+ 	* <<MainWindow>> is a special kind of window used for very small applications (just one single page)
+ 
+ 	* <<SimpleWindow>> adds an error viewer panel
+
+ 		* <<Dialog>> is a Window used to perform a task. Until you "accept" or "cancel" this task, flow control is suspended.   
+ 
+    []
+     
+[../../images/arena-windows-hierarchy2.png]
+
+
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

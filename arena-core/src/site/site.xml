@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project>
 	<bannerLeft>
 		<name>Uqbar Project</name>
 		<src>images/logo.png</src>
 	</bannerLeft>
 	<bannerRight>
-		<name>${project.name}</name>
+		<src>images/uqbar-arena-logo.png</src>
 	</bannerRight>
 
 	<publishDate position="right"/>
@@ -20,11 +20,24 @@
 	<body>
 		<menu name="Overview">
 			<item name="Introduction" href="index.html"/>
-			<item name="Documentation" href="documentation.html"/>
+			<item name="Usage" href="usage.html"/>
+			<item name="Documentation" href="documentation.html">
+				<item name="Components" href="documentation/components.html"/>
+				<item name="Binding" href="documentation/bindings.html"/>
+				<item name="Layout" href="documentation/layout.html"/>
+				<item name="Navigation" href="documentation/navigation.html"/>
+				<item name="State" href="documentation/state.html"/>
+				<item name="Architecture">
+					<item name="Repositories/Homes" href="documentation/homes.html"/>
+					<item name="ApplicationContext" href="documentation/applicationContext.html"/>
+					<item name="Transactions" href="documentation/transactions.html"/>
+				</item>
+				<item name="Troubleshooting" href="documentation/troubleshooting.html"/>
+			</item>
 			<item name="Development" href="development.html"/>
 		</menu>
 
-		<menu ref="reports"/>
+		<!--  menu ref="reports"/-->
 
 	</body>
 </project>

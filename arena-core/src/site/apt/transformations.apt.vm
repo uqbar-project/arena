@@ -48,7 +48,7 @@ Transformations
   Besides the built-in transformations there are cases where you need to customize this in order to work with your own domain objects (mostly value objects).
   That can be done extending Arena by implementing the Transformer interface.
 
-%{include|source=org.uqbar.arena.bindings.Transformer}
+ %{include|source=org.uqbar.arena.bindings.Transformer}
 
   Here is an example Transformer for BigDecimal objects, written in XTend. 
   

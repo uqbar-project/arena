@@ -4,36 +4,10 @@
  ${project.name}
  -----
 
-Uqbar Maven Repositories
- 
- In order to use use Arena you need to configure Uqbar's repositories in your maven's settings file.
+Maven Repositories
 
-+--------------------------------------------+
+ Arena is released in Maven Central, so you don't have to configure any repository in your maven's settings file.  
 
-  <profiles>
-        <profile>
-              <id>uqbar-wiki</id>
-              <repositories>
-                    <repository>
-                        <id>uqbar-wiki.org-releases</id>
-                        <name>uqbar-wiki.org-releases</name>
-                        <url>http://uqbar-wiki.org/mvn/releases</url>
-                    </repository>
-                    <repository>
-                        <snapshots/>
-                        <id>uqbar-wiki.org-snapshots</id>
-                        <name>uqbar-wiki.org-snapshots</name>
-                        <url>http://uqbar-wiki.org/mvn/snapshots</url>
-                   </repository>
-              </repositories>
-        </profile>
-  </profiles>
-
-  <activeProfiles>
-       <activeProfile>uqbar-wiki</activeProfile>
-  </activeProfiles>
-
-+--------------------------------------------+
 
 Arena Artifacts
 
@@ -56,9 +30,22 @@ Arena Artifacts
 <dependency>
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>uqbar-domain</artifactId>
-	<version>3.3</version>
+	<version>uqbar-domain-version</version>
 </dependency>
 +---------------------------------------------+
 
- If you have a single project which contains the ui along with the domain, then you just need to include the dependency to <<arena-jface>> only. Although this is not the recommended way to do it since you'll be coupling model with UI in terms of artifact.
+ You can check {{{http://search.maven.org}here}} available versions of these components.
+ 
+ If you have a single project which contains the ui along with the domain, then you just need to include the dependency to <<arena-jface>> only. 
+ 
+ This is not the recommended way to do it since you'll be coupling model with UI in terms of artifacts.
 
+Launcher configuration
+
+ You must define a launcher configuration to run Arena applications.
+ 
+ Run > Run Configurations... > Java Application > New launch configuration, Arguments tab... and fill VM Arguments with 
+
++--   
+-Djava.system.class.loader=com.uqbar.apo.APOClassLoader
++--

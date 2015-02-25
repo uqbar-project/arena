@@ -1,0 +1,84 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+
+Binders
+
+* ObservableProperty[T] (default)
+
+ This default implementation is a listener: whenever a property of a model changes, a notification is sent to this object.    
+  
+** Example 
+
+ Setting manually an ObservableProperty to a Player Selector:
+ 
++-- 
+new Selector(editorPanel) => [
+   allowNull = false
+   bindItems(new ObservableProperty(this, "players"))
+]
++--
+
+ ObservableProperty constructor takes 2 parameters:
+ 
+ * the first one is the model (so you can change the default model of your view)
+ 
+ * the second one is a String declaring a property, a getter and optional setter pair. In the above example you need to define a getPlayers method in your model class.
+ 
+ []
+ 
+
+ There's also an ObservableProperty constructor with 1 parameter:
+ 
++-- 
+new Selector(editorPanel) => [
+   allowNull = false
+   bindItems(new ObservableProperty("players"))
+]
++--
+ 
+ Or, directly:
+ 
++-- 
+new Selector(editorPanel) => [
+   allowNull = false
+   bindItemsToProperty("players")
+]
++--
+  
+ In general bindXXX expects an ObservableProperty, while bindXXXToProperty expects a String (a property of the default model).  
+ 
+ In the latter case model is acquired from the container of the visual component: if selector is in a container and container is in a Window that has an object Game as a model, then ObservableProperty will take this object as its model.
+ 
+
+
+* NotNullObservable
+
+ This implementation is also a listener of changes in a model property but it handles a Boolean value for the UI (to match a <visible> or <enabled> property).
+ 
+ * If property has a value, NotNullObservable is mapped with a <true> value
+ 
+ * Otherwise, it is mapped with a <false> value
+ 
+ []
+ 
+ 
+** Example
+
++--
+// Disable "Remove" and "Edit" buttons if there is no element selected in grid 
+var elementSelected = new NotNullObservable("selectedCustomer")
+remove.bindEnabled(elementSelected)
+edit.bindEnabled(elementSelected)
++--
+
+Advanced bindings examples
+
+     * {{{./bindingImages.html}Binding Images}}
+     
+     * Binding Background Colors
+     
+     []

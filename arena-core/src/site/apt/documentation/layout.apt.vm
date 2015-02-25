@@ -1,0 +1,131 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+  
+Layout
+
+ The layout defines how controls are arranged as they are created. 
+ 
+ Arena has 3 types of layout:
+
+ * VerticalLayout (default)
+
+ * HorizontalLayout
+ 
+ * ColumnLayout
+ 
+ []
+ 
+
+Vertical Layout  
+ 
+ In vertical layout every new control is located one below the other. 
+
+[../images/layouts/VerticalLayout.png]
+
+
+ All subclasses and implementations of SimpleWindow use this layout by default.
+
+ <<Useful for:>> side panels, simple windows, etc. 
+
+
+* Example
+
++--
+var aPanel = new Panel(parentPanel)
+aPanel.layout = new VerticalLayout // no need to do this, it's the default
++--
+
+ Or in Java syntax:
+ 
++--
+Panel aPanel = new Panel(parentPanel);
+aPanel.setLayout(new VerticalLayout()); // no need to do this, it's the default
++--
+      
+Horizontal Layout
+
+ In vertical layout every new control is located next to the other.
+
+[../images/layouts/HorizontalLayout.png]
+
+  
+
+ <<Useful for:>> button groups, windows with columns of different size, etc. 
+
+
+* Example
+
++--
+def void createGridActions(Panel mainPanel) {
+    var actionsPanel = new Panel(mainPanel)  // mainPanel is the parent panel / container
+    actionsPanel.layout = new HorizontalLayout
+    var edit = new Button(actionsPanel)
+    // ... etc.
++--
+
+
+Column Layout
+
+ In Column Layout you must specify column size. Every time you create a control,
+ it is located next to the other until the row is complete, and a new row is created.
+ See example below:
+ 
+[../images/layouts/ColumnLayout.png]
+
+ <<Useful for:>> form panels. Columns are equally sized.
+
+ 
+* Example
+  
++--
+override def void createFormPanel(Panel mainPanel) {
+    var searchFormPanel = new Panel(mainPanel)
+    searchFormPanel.setLayout(new ColumnLayout(2))
+    var labelNumber = new Label(searchFormPanel)
+    // etc.
++--
+    
+Mixing layouts
+
+ When working with a complex form, one layout is not quite enough. Let's see this kind of view:
+
+[../images/layouts/CombinacionLayouts.png]
+
+    
+
+ * it seems to be two columns of different size in the main window, so we can handle it with a Horizontal Layout
+ 
+   * in the first column we have a List and a New Button. We must create a new container and put this controls inside this new container, because they need a Vertical Layout.
+ 
+   * second column has three sections, we can use another container with a Vertical Layout. Inside this container
+ 
+     * we have a form with two columns equally sized. So, let's create a container 2-Column Layout.
+ 
+     * then a grid control (no need to create another container, it inherits the vertical layout)
+ 
+     * and finally the button group needs a horizontal layout, to put one button next to the other.
+ 
+  []
+      
+ Here's the final solution:
+ 
+[../images/layouts/CombinacionLayoutsFinal.png]
+
+ 
+ * orange containers have horizontal layout
+ 
+ * blue containers have vertical layout
+ 
+ * green containers have column layout (blue lines separate rows and columns)
+ 
+ []
+ 
+          
+ This diagram shows the object graph with same colour convention:
+ 
+[../images/layouts/Arena-Layouts.png]
+
+           

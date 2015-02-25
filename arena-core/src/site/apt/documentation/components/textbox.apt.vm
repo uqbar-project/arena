@@ -1,0 +1,48 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Textbox
+
+ A <<org.uqbar.arena.widgets.TextBox>> is an editable control that allows the user to input text information.  
+
+
+* Bindings
+
+  Every textbox should bind its property value agains a model property:
+ 
++--
+new TextBox(mainPanel).bindValueToProperty("miles")
++--
+ 
+ or
+ 
++--
+bindValue(new ObservableProperty(aModel, "miles"))
++--
+
+  
+* Another properties
+  
+ * It inherits the following properties from {{{./control.html}Control}}:
+ 
+   * enabled, visible & background (bindables)
+ 
+   * height / width (manually configured)
+ 
+ * And also inherits from Skinnable Control this properties:
+ 
+    * fontSize, foreground, background 
+
+ * withFilter(TextFilter): allows to set a specific filter (date, numeric data, etc.)
+
+ []
+
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

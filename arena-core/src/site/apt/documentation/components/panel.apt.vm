@@ -1,0 +1,29 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Panel
+
+ A <<org.uqbar.arena.widgets.Panel>> is a widget container. 
+
+ Every panel has
+ 
+ * a model. By default it uses the view model.
+ 
+ * a {{{./documentation/layout.html}layout}}. By default, it has a vertical layout.  
+
+ []
+
+ 
+Group Panel
+
+ <<org.uqbar.arena.widgets.GroupPanel>> extends Panel, adding a border and a manual title property.
+  
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

@@ -5,39 +5,28 @@
  -----
 
 Documentation (work in progress)
- 
- * {{{./usage.html}Usage}}
 
- * {{{./transformations.html}Transformations}}
+ * {{{./documentation/arenaIntro.html}Understanding Arena}}
+
+    * {{{./documentation/components.html}Components}}
+
+    * {{{./documentation/binding.html}Binding}}
+
+    * {{{./documentation/layout.html}Layout}}
+
+    * {{{./documentation/navigation.html}Navigation}} 
+
+    * {{{./documentation/state.html}State}}
+
+ * Arena Architecture
+
+    * {{{./documentation/homes.html}Repositories / Homes}}
+
+    * {{{./documentation/applicationContext.html}Application context}}
+
+    * {{{./documentation/transactions.html}Transactions}}
+    
+ * Examples can be checked out {{{https://svn2.xp-dev.com/svn/uqbar/examples/ui/arena/}here}} 
   
- * {{{./validations.html}Validations}}
- 
- * Bindings
- 
-     * {{{./bindings/bindingImages.html}Binding Images}}
-     
-     * Binding Background Colors
-     
-     * Binding Enabled / Visible
-     
- * Components
- 
-     * TextBox
-     
-     * Label
-     
-     * {{{./components/selector.html}Selectors}} (Selector, List and RadioSelectors)
-     
-     * Table
-     
-     * Panel (and Group)
+ * {{{./documentation/troubleshooting.html}Troubleshooting}} 
 
-     * Tree
-     
-     * Spinner
-     
-     * StyledText
-     
-     * Windows and Dialogs
-
- * Transactions  

@@ -1,0 +1,18 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Tree
+
+ A <<org.uqbar.arena.widgets.Tree>> is a control designed to show hierarchical nodes. 
+
+
+ TODO: an image and an example
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

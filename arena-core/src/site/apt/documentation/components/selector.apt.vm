@@ -11,7 +11,7 @@ Selectors
  
  Tipically it will look like what we commonly know as a ComboBox.
  
-[../images/selector.png]
+[../../images/selector.png]
 
 * Bindings
 
@@ -27,10 +27,10 @@ Selectors
  Here's a sample in Java from the previous screenshot
  
 +-----------------------------------------------------------------------------+
-	Selector<Country> selector = new Selector<Country>(mainPanel);
-	selector.allowNull(false)
-	selector.bindValueToProperty("country");
-	selector.bindItemsToProperty("countries")
+Selector<Country> selector = new Selector<Country>(mainPanel);
+selector.allowNull(false)
+selector.bindValueToProperty("country");
+selector.bindItemsToProperty("countries")
 +-----------------------------------------------------------------------------+
 
  This expects an underlying model object with two properties: a "country" with type Country
@@ -39,21 +39,21 @@ Selectors
  Here is the sample model in Scala
 
 +-----------------------------------------------------------------------------+ 
-	@Observable
- 	class Country(var name:String)
+@Observable
+class Country(var name:String)
 
- 	@Observable
- 	class Address {
-   	  var country: Country = _
-   	  var state: String = _
-   	  var street: String = _
+@Observable
+class Address {
+   var country: Country = _
+   var state: String = _
+   var street: String = _
   
-  	  def getCountries() =  List(
-        new Country("Argentina"),
-        new Country("Uruguay"),
-        new Country("Bolivia"),
-        new Country("North Korea")).asJava;
- 	}
+   def getCountries() =  List(
+      new Country("Argentina"),
+      new Country("Uruguay"),
+      new Country("Bolivia"),
+      new Country("North Korea")).asJava
+   }
 +-----------------------------------------------------------------------------+
 
 * Generic type
@@ -69,15 +69,23 @@ Selectors
  The subclass <<org.uqbar.arena.widgets.List[T]>> has the same behavior as Selector but it shows up
  as a list, displaying all the values at the same time.
  
-[../images/list.png]
+[../../images/list.png]
 
 * RadioSelector
 
  Same as List, this shows up as a group of mutex radio buttons.
  
-[../images/radioSelector.png]
+[../../images/radioSelector.png]
 
 * Selection on Tables
 
- Tables also allows you (not force you) to bind a single selection to a model's property.
+ Tables also allows you (not forces you) to bind a single selection to a model's property.
  See Tables section for that.
+ 
+
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}}
+  

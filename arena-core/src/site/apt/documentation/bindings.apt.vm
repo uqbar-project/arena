@@ -1,0 +1,27 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+  
+Binding in Arena
+
+ In Arena you can define a two-way <<binding>> mechanism between a UI component and a model property. 
+ This is accomplished by default <<binder>> objects that can be used or extend.        
+
+ <<Note:>> All classes are in package org.uqbar.arena.bindings (from arena-core component)
+     
+ Here are different types of bindings explained:
+      
+ * {{{./bindings/binders.html}Binders}} 
+ 
+ * {{{./bindings/transformers.html}Transformers}} (for textboxes)
+ 
+ * {{{./bindings/filters.html}Filters}} (for textboxes)
+ 
+ * {{{./bindings/adapters.html}Adapters}} (for selectors, tables and UI component collection-related)
+ 
+ []     
+ 
+ 

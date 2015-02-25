@@ -1,0 +1,85 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Table
+
+ A <<org.uqbar.arena.widgets.tables.Table[R]>> shows a table / grid with a list of elements of type R.  
+
+[../../images/table.png]
+
+* Bindings
+
+ A table must 
+ 
+ * have at least one column
+ 
+ * bind its property items against a collection of elements that match R type
+
+* Another properties
+
+ * It inherits the following properties from {{{./control.html}Control}}:
+ 
+   * enabled, visible & background (bindables)
+ 
+   * height / width (manually configured)
+ 
+ * And also inherits from Skinnable Control this properties:
+ 
+    * fontSize, foreground, background 
+
+ * value (optional): type R - bind the selected element
+
+* Example 
+
+ A Table that shows a collection of customers in a Cell Phone company:
+
++--
+var table = new Table<Customer>(mainPanel, typeof(Customer))
+table.heigth = 200
+table.width = 450
+table.bindItemsToProperty("results")
+table.bindValueToProperty("selectedCustomer")
++--
+
+ Another example, using Xtend syntactic sugar: 
+
++--
+var table = new Table<Customer>(mainPanel, typeof(Customer)) => [
+   height = 200
+   width = 450
+   bindItemsToProperty("results")
+   bindValueToProperty("selectedCustomer") 
+]
++--
+
+ Note the parallel relation between Table and Column models: the table has a <customer list> as a model, whereas every column has a <customer> as a model.
+ 
+ And this is how we add a column with the name of every customer:
+
++--
+new Column<Customer>(table) => [
+   title = "Name"
+   fixedSize = 150
+   bindContentsToProperty("name")
+]
++--
+
+ A Customer has a String property name.
+ 
+ If you want to adapt a property you can 
+
+ * use a transformer
+ 
+ * define a read-only property (eg: getXXX() method in the model)
+ 
+ []
+ 
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

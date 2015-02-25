@@ -1,0 +1,59 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Troubleshooting
+
+* Checklist
+
+ Before beginning check this list:
+ 
+ * You should use Maven 3.0.x or higher
+ 
+ * You should use a JDK 1.7 or higher. You should <<not>> use a JRE.
+ 
+ * If you checked out a project from our SVN, remember to do it from "trunk" folder
+ 
+ * Check the project nature, it should have a Maven nature and also it should recognize the language you are coding
+ 
+ * You should define a launcher as described {{{./usage.html}here}}
+ 
+ * If you are using Maven, you should have a src/main/xxxx where xxxx is your language: java, groovy, scala, etc. 
+ 
+ []
+   
+
+* Check this errors 
+
++--
+java.lang.UnsupportedClassVersionError: ---Arena app--- : Unsupported major.minor version 51.0
++--
+ JDK is 1.6 or lower. You must upgrade to a JDK 1.7 or higher version.
+
+=====================
+
++--
+Error occurred during initialization of VM
+java.lang.Error: java.lang.ClassNotFoundException: ....APOClassLoader
++--
+ Probably Maven dependencies are not correctly downloaded. Check the %user/.m2/repository folder, or try a Maven > Update project (you can check the "force update snapshots" option).
+
+=====================
+
++--
+Launch configuration references non-existing project celulares-ui-arena-scala
++-- 
+ In this case you checked out a project with a different name, but the launcher still references the original project name. Either rename the project or change the launcher.
+
+=====================
+
++--
+Exception in thread "main" java.lang.RuntimeException: Esta aplicación no está corriendo con el ClassLoader necesario. Corra  la aplicación con el siguiente parámetro para la VM: -Djava.system.class.loader=com.uqbar.apo.APOClassLoader. El ClassLoader actual es: sun.misc.Launcher$AppClassLoader@6fd3633c
+	at org.uqbar.arena.Application.validateClassLoader(Application.java:32)
+	at org.uqbar.arena.Application.<init>(Application.java:24)
++--
+ You are using a default Class Loader, use APOClassLoader instead (as described {{{./usage.html}here}})
+ 
+  

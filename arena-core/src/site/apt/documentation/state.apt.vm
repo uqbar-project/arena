@@ -1,0 +1,15 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+  
+State
+
+ Arena enforces you to use a model when defining a view. 
+ 
+ So although view is a class and therefore you could use private variables to store view's state it is usual to work with a model that maintains a 1:1 binding against UI components.
+ 
+* Application model
+
+ The appl  

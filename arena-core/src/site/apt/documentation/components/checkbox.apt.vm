@@ -1,0 +1,48 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Checkbox
+
+ A <<org.uqbar.arena.widgets.CheckBox>> is a selectable control that allows the user to make a binary choice. 
+
+* Bindings
+
+ A checkbox must bind its property <<value>> (boolean): when checked it has a true value, when unchecked a false one.
+ 
+[../../images/checkbox.png] 
+\
+\
+
+ It inherits the following properties from {{{./control.html}Control}}:
+ 
+ * enabled, visible & background (bindables)
+ 
+ * height / width (manually configured)
+ 
+ []
+ 
+ 
+* Example
+
++--
+var checkMarried = new CheckBox(form)
+checkMarried.bindEnabledToProperty("marriable")
+checkMarried.bindValueToProperty("married")
++--
+
+ * model: a Person with 2 methods <<boolean isMarriable()>> (perhaps should have a certain age) and <<boolean isMarried()>>
+ 
+ * checkbox will be selectable if the person can marry someone, and value will bind property <<married>> of a person (isMarried() / setMarried() methods)
+ 
+ []
+
+
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}}

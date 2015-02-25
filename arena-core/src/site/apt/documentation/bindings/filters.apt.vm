@@ -1,0 +1,40 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+
+Filters
+
+* TextFilter
+
+ <<org.uqbar.arena.widgets.TextFilter>> allows to intercept user input from a textbox component.
+ 
+ Interface defines a single message:
+
++--  
+override boolean accept(TextInputEvent event)
++--
+
+ Return true if character is ok, false if character should be rejected. 
+
+ <<Note:>> When you bind a Date property into a Textbox, binder throws an exception if input is incorrect. 
+ Filter goes a step beyond, incorrect input does not appear in the textbox component.  
+
+
+
+** Example: DateTextFilter
+
++--
+class DateTextFilter implements TextFilter {
+	
+	override accept(TextInputEvent event) {
+		val expected = new ArrayList(#["\\d", "\\d?", "/", "\\d", "\\d?", "/", "\\d{0,4}"])
+		val regex = expected.reverse.fold("")[result, element| '''(«element»«result»)?''']
+		
+		event.potentialTextResult.matches(regex)
+	}
+}
++-- 
+

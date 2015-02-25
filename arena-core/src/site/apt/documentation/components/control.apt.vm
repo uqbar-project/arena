@@ -1,0 +1,68 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Control
+ 
+ <org.uqbar.arena.widgets.Control> is the base widget subclass in Arena.
+ 
+ 
+* Bindings  
+ Defined as abstract, provides the following generic bindings:
+
+ * boolean <<enabled>>
+ 
+ * boolean <<visible>>
+ 
+ * ViewObservable <<background>> color
+
+ []
+
+
+ Binding can be done sending
+ 
+ * a bindXXXToProperty(String nameOfModelProperty) message
+ 
+ * a bindXXX(ObservableProperty)
+
+ []
+ 
+ whereas XXX is a name of a property in a view.
+ 
+
+ Arena team is considering another possibilities, still in testing phase.
+  
+* Examples
+
++-- 
+textComment.bindEnabledToProperty("isAvailable")
++--   
+ In this case, the text field named textComment is enabled if model has its property isAvailable set to true. Otherwise the user will not be able to modify the comment field.
+
+ Another example, using an ObservableProperty:  
+
++-- 
+textComment.bindEnabled(new ObservableProperty(this.modelObject, "isAvailable"))
++-- 
+
+ In this version we can configure our model object to be different from the default model defined by the view. We just have to use an object that fits Observable annotation. 
+
+* Another properties
+ This properties can be manually set:
+  
+ * width(int)
+ 
+ * height(int)
+ 
+ []
+
+ You instantiate a control passing a container or parent. 
+
+
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

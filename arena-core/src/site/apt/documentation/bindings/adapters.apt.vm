@@ -1,0 +1,99 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+
+Adapters
+
+* Property Adapter
+
+ Selectors (also known as Combo boxes) use an adapter object to show the elements in the list. 
+
++--
+val jobSelector = new Selector<Job>(form)
+jobSelector.allowNull(false)
+jobSelector.bindValueToProperty("job")
+val jobDescriptionProperty = jobSelector.bindItems(new ObservableProperty(homeJobs, "jobs"))
+jobDescriptionProperty.adapter = new PropertyAdapter(typeof(Job), "wholeDescription")
++--
+
+ We have a list of possible jobs that a certain employee can perform. Selector has two UI property bindings: 
+ 
+ * <<value>>: if model is an employee, value of selector binds to <job> property of that employee.  
+
+ * <<items>>: class homeJobs, method getJobs() returns a list of jobs.
+
+ []
+
+ By default, items are shown using toString() method. But you can override this definition using a <<PropertyAdapter>>.
+    
+ In the class Job we build a getWholeDescription() method
+  
++--
+def getWholeDescription() {
+	description + " ($ " + minimumSalary + " )"
+}
++-- 
+ 
+ Selector shows then the following result:
+ 
+[../../images/bindings/adapter-selector.png]
+ 
+ 
+ 
+Transformers
+
+ Every column in a <<Table>> component has a specific binding:   
+
++--
+ new Column<Customer>(table) //
+ .setTitle("Name")
+ .setFixedSize(150)
+ .bindContentsToProperty("name")
++--
+
+ But in certain cases, we must define an adapter:
+  
++--
+ new Column<Customer>(table) //
+ .setTitle("Has Debt")
+ .setFixedSize(50)
+ .bindContentsToTransformer( [ customer | if (customer.debt > 0) "YES" else "NO"])
++--
+
+ This adapter transforms an integer property getDebt() into a string YES/NO:
+ 
+[../../images/bindings/transformer-table.png]
+
+
+ Same example in Java:
+ 
++--
+Column<Customer> debtColumn = new Column<Customer>(table);
+debtColumn.setTitle("Has Debt");
+debtColumn.setFixedSize(50);
+debtColumn.bindContentsToTransformer(new BooleanToYesNoTransformer());
++-- 
+ 
+ And here's the implementation of this new transformer (useful if you have to use it several times in your application):
+ 
++--
+public final class BooleanToYesNoTransformer implements Transformer<Customer, String> {
+	@Override
+	public String transform(Customer customer) {
+		return customer.getDebt() > 0 ? "YES" : "NO";
+	}
+}
++--  
+ 
+ Transformer allows to map a property of type T into a U value:
+ 
++--
+public interface Transformer<T, U> {
+	public U transform(T element);
+}
++--
+
+ 

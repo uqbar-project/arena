@@ -1,0 +1,159 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Button
+
+ A <<org.uqbar.arena.widgets.Button>> allows the user to trigger an action.
+
+* Bindings
+
+ Property onClick is mandatory, and you should define also a caption or image property. 
+
+
+* Another properties
+
+ * It inherits the following properties from {{{./control.html}Control}}:
+ 
+   * enabled, visible & background (bindables)
+ 
+   * height / width (manually configured)
+ 
+ * And also inherits from Skinnable Control this properties:
+ 
+    * fontSize, foreground, background 
+
+ * onClick(Action): Action can be defined by an inline block closure, or instantiating a MessageSend object (see below)
+ 
+ * image(Image)
+ 
+ * setAsDefault: sets the button as the default action of the view (by pressing the <Enter> key)
+ 
+ * disableOnError: when the view gets an exception the button disables itself until the next event 
+
+ []
+
+
+* Examples
+ 
+ If we have an edition window with an "Ok" button, it is a good practice to set as a default action and disable it if view has an error. 
+
++--
+ new Button(actions)
+    .setCaption("Ok")
+    .onClick [ | this.accept]
+    .setAsDefault.disableOnError
++--
+
+ An example using the with operator of Xtend:
+  
++--
+ new Button(actionsPanel) => [
+    caption = "Play"
+    setAsDefault
+    onClick [ | play ]
+    bindEnabledToProperty("canPlay")
+    disableOnError
+ ]
++--
+
+ An example using Java 8 syntax:
+ 
++--
+new Button(mainPanel)
+    .setCaption("Convert to kilometers")
+    .onClick(()-> this.getModelObject().convert());
++--
+
+
+ onClick property can accept a MessageSend argument, as shown below:
+
++--
+new Button(mainPanel) => [
+    caption = "Convert to kilometers"
+    onClick = new MessageSend(this.modelObject, "convert")
+]
++-- 
+ 
+
+Link
+
+ A <<org.uqbar.arena.widgets.Link>> allows the user to define a link to an action.
+
+[../../images/link.png]
+
+* Bindings
+
+ Property onClick and caption are mandatory. You can define a caption
+ 
+ * manually / static
+ 
+ * or dynamic using <bindCaptionToProperty> message 
+
+ []
+ 
+* Properties
+
+   * enabled, visible & background (bindables)
+ 
+   * height, width, fontSize, foreground, background (manually configured)
+ 
+
+* Example
+
++--
+new Link(mainPanel) => [
+    caption = "Search"
+    onClick [ | modelObject.search ]
+]
++--
+
+ 
+ 
+File Selector
+
+ A <<org.uqbar.arena.widgets.FileSelector>> allows the user to select a file using a Dialog Window.
+ 
+[../../images/fileSelectorButton.png]
+
+
+* Bindings
+
+ Property value is mandatory. When user clicks the button, a dialog is shown 
+
+[../../images/fileSelectorOpen.png]
+
+ 
+
+* Properties
+
+ * <title>: title of the dialog window
+ 
+ * <caption>: the button label
+
+ * <path>: folder to browse when the dialog is opened
+ 
+ * <extensions>: file extensions (optional) 
+
+ []
+ 
+ 
+* Example
+
++--
+new FileSelector(actions)
+   .setCaption("Open")
+   .bindValueToProperty("pathFile")
+   .extensions("*.example")
++--
+
+ Then you'll bind a path (String) to the <<pathFile>> property of your view model.
+ 
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

@@ -1,0 +1,59 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Spinner
+
+ A <<org.uqbar.arena.widgets.CheckBox>> is a compound control, 
+ 
+ * it has an numeric input field
+ 
+ * and two buttons to increase/decrease its value
+  
+
+* Bindings
+
+ A spinner must bind its property <<value>>
+ 
+[../../images/spinner.png] 
+
+ \ 
+ 
+* Another properties
+ 
+ It inherits the following properties from {{{./control.html}Control}}:
+ 
+   * enabled, visible & background (bindables)
+ 
+   * height / width (manually configured)
+ 
+ * And also inherits from Skinnable Control this properties:
+ 
+    * fontSize, foreground, background 
+
+ * minimumValue(int): manual, defines the minimum value that can accept
+ 
+ * maximumValue(int): manual, defines the maximum value that can accept
+ 
+ []
+ 
+ 
+* Example
+
+ We want to fill the product items of an order, every item has a quantity property:
+ 
++--
+new Spinner(container) => [ 
+    bindValueToProperty("quantity") 
+    width = 200 
+]
++--
+ 
+ 
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 
