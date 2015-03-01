@@ -1,0 +1,225 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Repositories / Homes
+
+ A Repository stores objects of type T. The term <<Home>> in Arena stands for a place where objects live.
+ 
+ T must be a subclass of Entity, which defines the following behavior:
+
+ * a unique identifier (property id)
+ 
+ * isNew() message to identify new objects 
+ 
+ * <template methods> validateCreate() and validateDelete() you can override to add validations
+ 
+ []
+ 
+* Services 
+
+ * <<create>>: adds an object to that repository, so it can be retrieved afterwards
+ 
+ * <<delete>>: removes an object
+ 
+ * <<update>>: modify an object in position x or remove old object/add a new one in position x
+ 
+ * different kind of search. Arena provides
+ 
+   * <<searchById>>: retrieves an object T by unique identifier
+   
+   * <<searchByExample>>: passing a prototype object you retrieve all objects that match the criteria
+   
+   * <<allInstances>>: returns all objects in the repository    
+
+* Arena Implementations
+
+** org.uqbar.commons.model.CollectionBasedHome
+
+ It is a memory-based collection, without persistence capabilities. Once application is closed,
+ all data is lost. It is intended for educational purposes, or in developments
+ where persistence is not necessary (like games).
+ 
+[../../images/architecture/collectionBasedHome.png]
+
+
+** Neo4J Implementation
+ 
+ <Arena Persistence> defines an abstract class <<PersistentHome>> that persists data into a Neo4J graph database.
+
+ Component hasn't been deployed in Maven Central repositories yet, but you can add this uqbar repository in your settings.xml file:
+ 
++--
+   <profiles>
+     <profile>
+       <id>uqbar-wiki</id>
+       <repositories>
+         <repository>
+           <id>uqbar-wiki.org-releases</id>
+           <name>uqbar-wiki.org-releases</name>
+           <url>http://uqbar-wiki.org/mvn/releases</url>
+         </repository>
+         <repository>
+           <snapshots/>
+           <id>uqbar-wiki.org-snapshots</id>
+           <name>uqbar-wiki.org-snapshots</name>
+           <url>http://uqbar-wiki.org/mvn/snapshots</url>
+         </repository>
+       </repositories>
+     </profile>
+   </profiles>
+   <activeProfiles>
+     <activeProfile>uqbar-wiki</activeProfile>
+   </activeProfiles>   
++--
+   
+ 
+ Add the following dependency in your pom.xml
+ 
++--
+<dependency>
+    <groupId>org.uqbar-project</groupId>
+    <artifactId>arena-pers</artifactId>
+    <version>3.3-SNAPSHOT</version>
+</dependency>
++--  
+
+ And check out {{{https://xp-dev.com/svn/uqbar/examples/dds/datos/arena-persistence/}this examples}}
+
+   
+ 
+Things to do when defining a home
+ 
+ * it is usually defined as a Singleton, because we want to provide a global point of access, 
+ so all updates and retrieves are centralized. You can use an {{{./applicationContext.html}ApplicationContext}} object to
+ configure different homes for testing and runtime environments. 
+ 
+ * you can simply define your own Home implementation, or just subclass any available implementation
+ 
+ []
+
+ 
+ If you will subclass CollectionBasedHome:
+  
+ * it is recommended to create a fixture or data set
+ 
+ * you can define your own search() method, or use a searchByExample() implementing getCriterio() method
+ 
+ * you must override createExample(), getEntityType() and getCriterio(T) methods. createExample() should return
+ a new object of type T, getEntityType() simply returns a concrete class that fits
+ T type and getCriterio(T) defines a criteria to use in a search by example (if
+ you don't want to use it simply return a null value)
+ 
+ []
+ 
+ 
+* Example: Definition
+
+ Example of a Home overriding search by example.
+ 
++--
+@Observable
+class HomeCustomers extends CollectionBasedHome<Customer> {
+    new() {
+       this.init
+    }
+
+    def void init() {
+       this.create("Laura Iturbe", 400)
+       this.create("Chiara Dodino", 700)
+       this.create("Melina Dodino", 600)
+    }
+    
+    def void create(String pName, int pDebt) {
+		this.create(new Customer(pName, pDebt))
+	}
+
+    override void validateCreate(Celular celular) {
+        customer.validate()
+        this.validateDuplicateCustomer(customer)
+    }
+    
+    def void validateDuplicateCustomer(Customer customer) {
+        val name = customer.name
+        if (!this.search(name).isEmpty) {
+           throw new UserException("There is already a customer with name " + name)
+        }
+    }
+
+    def search(String pName) {
+        allInstances.filter [customer | this.match(pName, customer.name) ].toList
+    }
+
+    def match(Object expectedValue, Object realValue) {
+        if (expectedValue == null) {
+           return true
+        }
+        if (realValue == null) {
+           return false
+        }
+        realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+    }
+
+    override def getEntityType() {
+        typeof(Customer)
+    }
+
+    override def createExample() {
+        new Customer
+    }
+	
+    override def Predicate<Customer> getCriterio(Customer example) {
+        null
+    }
+}
++--
+ 
+  Example of a getCriterio:
+  
++--
+override def Predicate<Customer> getCriterio(Customer example) {
+    var result = this.allCriteria
+    if (example.name != null) {
+        result = new AndPredicate(result, this.getNameCriteria(example.name))
+    }
+    result
+}
+   
+override allCriteria() {
+    [ Customer customer | true ] as Predicate<Customer>
+}
+
+def getNameCriteria(String name) {
+    [ Customer customer | customer.name.toLowerCase.contains(name.toLowerCase) ] as Predicate<Customer>
+}
++--
+
+  
+* Example: Usage (usually from an {{{../state.html}Application Model}} or Panel) 
+
+ Create/Update
+ 
++--
+if (modelObject.isNew) {
+    homeCustomer.create(modelObject)
+} else {
+    homeCustomer.update(modelObject)
+}
++--
+
+ Search 
+
++--
+results = homeCustomer.search(name) 
++--
+
+ Search by example
+  
++--
+val customer = new Customer(name)
+resultados = homeCustomer.searchByExample(customer)
++--
+
+ 

@@ -1,0 +1,44 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Transactions
+
+ In an edition panel we have a bidirectional {{{../bindings.html}binding}} between UI elements and their models. 
+ But what happens when user wishes to cancel all changes?
+ 
+[../../images/architecture/transaction.png]
+   
+ And what happens if two users access the same view concurrently?
+     
+
+* Definition
+
+ You define a transactional element in Arena using <@Transactional> annotation. 
+ 
++--
+@Transactional
+@Observable
+class Customer extends Entity ...
++--
+   
+ There is also a <@TransactionalAndObservable> annotation:
+ 
++--
+@TransactionalAndObservable
+class Customer extends Entity ...
++--
+
+ All classes marked with @Transactional work in a declarative transaction within a
+ <<TransactionalDialog>> panel.
+
+* Summary
+ 
+  * Domain models and {{{../state.html}application models}} must be marked with @Transactional + @Observable / @TransactionalAndObservable annotation
+  
+  * Views must inherit TransactionalDialog instead of Dialog
+  
+     
+      

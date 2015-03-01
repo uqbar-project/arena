@@ -8,8 +8,59 @@ State
 
  Arena enforces you to use a model when defining a view. 
  
- So although view is a class and therefore you could use private variables to store view's state it is usual to work with a model that maintains a 1:1 binding against UI components.
+ So although view is a class and therefore you could use private variables 
+ to store view's state it is usual to work with a <<model>>. 
+ 
+* Domain model
+
+ Some views can use a domain object as a model: a customer, an employee,
+ a contact, an invoice. Nevertheless it is necessary to change some ui models, like
+ the "Save" button in a create panel, or the "Add phone" button in a contact edition panel. 
+  
  
 * Application model
 
- The appl  
+ If you have a panel with complex user interaction, a domain model does not fit well, thus
+ breaking the 1:1 binding relation between components and properties. <<Our goal
+ is to model an object that handles the conversational state of the view without 
+ having technological dependencies>>. We call these kind of objects <<application models>>.
+
+ * they don't depend on Arena implementation, they are UI-technology free
+ 
+ * they can be easily tested (with a Unit test framework, for example) 
+ 
+ * they don't model a domain concept, but instead they serve as a <buffer>, they represent a use case abstraction
+ 
+
+** Some examples
+
+ A search panel:
+ 
+[../images/state/applicationModel-search.png]
+
+=====================
+
+ A create panel:
+ 
+[../images/state/applicationModel-create.png]
+
+=====================
+ 
+ An order panel, where you can select/create a customer and select/create a product:
+
+[../images/state/applicationModel-complex.png]
+ 
+ 
+=====================
+
+** Implementations
+
+ It is clear that a Search panel should have a "Search object" as application model. If you want to take a look you can extend these classes: 
+ 
+ * <<Search[T]>>: base class for implementing search objects
+ 
+ * <<SearchByExample[T]>>: default implementation of a Search, delegating a {{{./architecture/homes.html}Home}} object and performing a search by example
+ 
+ []
+ 
+  

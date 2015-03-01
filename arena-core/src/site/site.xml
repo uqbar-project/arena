@@ -27,17 +27,18 @@
 				<item name="Layout" href="documentation/layout.html"/>
 				<item name="Navigation" href="documentation/navigation.html"/>
 				<item name="State" href="documentation/state.html"/>
-				<item name="Architecture">
-					<item name="Repositories/Homes" href="documentation/homes.html"/>
-					<item name="ApplicationContext" href="documentation/applicationContext.html"/>
-					<item name="Transactions" href="documentation/transactions.html"/>
+				<item name="Architecture" href="documentation/architecture.html">
+					<item name="Repositories/Homes" href="documentation/architecture/homes.html"/>
+					<item name="ApplicationContext" href="documentation/architecture/applicationContext.html"/>
+					<item name="Transactions" href="documentation/architecture/transactions.html"/>
 				</item>
+				<item name="Examples" href="https://svn2.xp-dev.com/svn/uqbar/examples/ui/arena/"/>
 				<item name="Troubleshooting" href="documentation/troubleshooting.html"/>
 			</item>
 			<item name="Development" href="development.html"/>
 		</menu>
 
-		<!--  menu ref="reports"/-->
+		<menu ref="reports"/>
 
 	</body>
 </project>

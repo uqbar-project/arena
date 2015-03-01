@@ -1,0 +1,15 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+  
+Architecture Menu
+
+ * {{{./architecture/homes.html}Repositories and Homes}}
+ 
+ * {{{./architecture/applicationContext.html}Application Context}}
+     
+ * {{{./architecture/transactions.html}Transactions}}
+
+ 

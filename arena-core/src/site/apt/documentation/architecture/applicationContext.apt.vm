@@ -1,0 +1,74 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Application Context
+
+ Arena's <<ApplicationContext>> is an implementation of {{{https://msdn.microsoft.com/en-us/library/ff648968.aspx}Service Locator}} architectural pattern.
+ 
+* Motivation
+
+ You have a Singleton object (like a {{{./homes.html}Repository / Home}}, or a configuration object) 
+ and you want to use different implementations for testing and running an application.
+
+* Implementation
+
+ An Application Context has the following services:
+ 
+[../../images/architecture/appContext-class.png]
+
+
+ * Use <configureSingleton> and <getSingleton> to store and retrieve singleton objects
+ 
+ * Up to 3.5 version, <configureHome> is not using org.uqbar.commons.model.Home interface,
+ but org.ubqar.commons.utils.Home class. So if you have defined a repository class
+ that implements a Home interface, we recommend you use <configureSingleton> and <getSingleton> methods.
+
+ []
+ 
+* Examples
+
+** Instantiation
+
+ In Application or MainWindow classes we configure the singletons for a running application:
+ 
++--
+override protected Window<?> createMainWindow() {
+    ApplicationContext.instance.configureSingleton(typeof(Customer), new HomeCustomers)
+    ...
+    return new WhateverClassMainWindow(this)
+}
++--
+
+ 
+  In test classes (i.e. JUnit) we tell the application context to use the mocked singletons:
+  
++--
+@Before
+override void init() {
+    ...
+    ApplicationContext.instance.configureSingleton(typeof(Customer), new MockHomeCustomers)
+}  
++--
+    
+** Use  
+    
+ {{{../state.html}Application model}} uses the properly configured home:
+
++--
+def HomeCustomers getHomeCustomers() {
+    ApplicationContext.instance.getSingleton(typeof(Customer))
+}
+ 
+def void search() {
+    results = getHomeCustomers().search(name)
+    ...
+
++--
+
+ So application model doesn't know if home is real or a mocked one, as shown in this picture:  
+      
+[../../images/architecture/appContext.png]
+  

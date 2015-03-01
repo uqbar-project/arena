@@ -4,7 +4,7 @@
  ${project.name}
  -----
 
-Documentation (work in progress)
+Documentation
 
  * {{{./documentation/arenaIntro.html}Understanding Arena}}
 
@@ -20,11 +20,11 @@ Documentation (work in progress)
 
  * Arena Architecture
 
-    * {{{./documentation/homes.html}Repositories / Homes}}
+    * {{{./documentation/architecture/homes.html}Repositories / Homes}}
 
-    * {{{./documentation/applicationContext.html}Application context}}
+    * {{{./documentation/architecture/applicationContext.html}Application context}}
 
-    * {{{./documentation/transactions.html}Transactions}}
+    * {{{./documentation/architecture/transactions.html}Transactions}}
     
  * Examples can be checked out {{{https://svn2.xp-dev.com/svn/uqbar/examples/ui/arena/}here}} 
   
