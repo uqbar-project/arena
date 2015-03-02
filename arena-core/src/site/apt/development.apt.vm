@@ -10,18 +10,138 @@ Developing Arena
  environment to start working in Arena development (note that these are not instructions to "use" Arena, but to extend it of change it)
 
 
-* Requirements
+Requirements
  
-   * Java Development Kit 1.7 
+   * Java Development Kit 1.7 (currently it doesn't work out-of-the-box with Java 8) 
    
-   * Scala 2.10
+   * Scala 2.11
 
-* Suggested Tools
+Checkout Projects/Repos
+
+ It's useful to create a folder to hold all the repos (projects), but well, optional:
+
++--
+mkdir arena
+cd arena
++--
+
+ The main repository is {{{https://github.com/uqbar-project/arena}here}}
  
-   * Eclipse >= 3.7:
+ 
+Main Arena Projects
 
-   * {{{http://m2eclipse.codehaus.org}m2eclipse}}: {{{http://download.eclipse.org/technology/m2e/releases}Update Site}}
+ * <<arena-core>>: contains all the components and Arena API for arena users. Although it doesn't have any implementation, so you need to use an implementation for this. Currently we only have one: arena-jface.
 
-   * {{{http://scala-ide.org/download/current.html}Scala IDE 3.0.1}}
+ * <<arena-jface>>: Implementation of Arena on top of SWT, JFace, and JFace Databindings.
+ 
+ * <<arena-examples>>: Contains some examples small apps for internal manual testing.
+ 
+ []
+ 
+* Additional Utilities
 
-   * {{{https://github.com/sonatype/m2eclipse-scala}m2e-scala}} (m2eclipse scala integration): {{{http://alchim31.free.fr/m2e-scala/update-site} Update Site}}
+ * <<Uqbar Domain>>: Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation.
+ 
+ * <<Arena-xtend>>: Extensions to use arena with xtend. Provides kind of an internal DSL for building bindings easily and in a declarative way.
+
+ []
+  
+
+* Components for Observability / Transactional Aspects
+ <<(not needed unless you'll change this foundations)>>
+ 
+ If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
+
+ * <<apo-core>> (Aspects for Pure Objects): Small AOP framework on top of Javassist. It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
+
+ * <<apo-poo>> (Pure Observable Objects): implements transparent objects observability over AOP. Based on apo-core.
+
+ * <<apo-pot>> (Pure Objects Transactions): Implements a transparent transactions mechanism for objects through AOP. (Transactional objects).
+
+ * <<apo-parent>>: Additional configuration for apo-core, apo-poo, apo-pot
+ 
+ []
+ 
+  
+IDE
+ 
+ As we use maven, you can use whatever IDE you want. Although, we can suggest some proven Environment:
+
+ * Eclipse Kepler with ScalaIDE
+ 
+ * Eclipse Luna with ScalaIDE
+ 
+ * IntelliJIDEA with Scala plugin
+ 
+ []
+
+ The proven environment is based on Eclipse Kepler version. Here's a sample environment
+ 
+* Based on latest Eclipse Version (LUNA)
+
+ * Install eclipse Luna
+
+ * <<Scalaide>>: Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
+ 
+ * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
+ 
+ []
+ 
+
+Maven configuration
+
+ You need to configure your maven settings in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
+
+ File ~/.m2/settings.xml (if .m2 folder is not already created, then create it)
+ 
++--
+#!xml
+
+ <settings xmlns="http://maven.apache.org/POM/4.0.0"  
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+   <servers>
+        <server>
+            <id>uqbar-releases</id>
+            <username>mvn@uqbar-wiki.org</username>
+            <password>PASSWORD_HERE</password>
+        </server>
+        <server>
+            <id>uqbar-snapshots</id>
+            <username>mvn@uqbar-wiki.org</username>
+            <password>repomaven88</password>
+        </server>
+        <server>
+            <id>sites-uqbar-project.org</id>
+            <username>sites@uqbar-wiki.org</username>
+            <password>PASSWORD_HERE</password>
+        </server>
+    </servers>
+   <profiles>
+     <profile>
+       <id>uqbar-wiki</id>
+       <repositories>
+         <repository>
+           <id>uqbar-wiki.org-releases</id>
+           <name>uqbar-wiki.org-releases</name>
+           <url>http://uqbar-wiki.org/mvn/releases</url>
+         </repository>
+         <repository>
+           <snapshots/>
+           <id>uqbar-wiki.org-snapshots</id>
+           <name>uqbar-wiki.org-snapshots</name>
+           <url>http://uqbar-wiki.org/mvn/snapshots</url>
+         </repository>
+       </repositories>
+     </profile>
+   </profiles>
+   <activeProfiles>
+     <activeProfile>uqbar-wiki</activeProfile>
+   </activeProfiles>
+ </settings>
++--
+
+ <NOTE THAT YOU MUST ASK SOME UQBAR MEMBER FOR THE PASSWORD AND REPLACE THERE THE "PASSWORD_HERE">
+ 
+   
