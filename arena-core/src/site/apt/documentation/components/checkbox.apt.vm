@@ -14,7 +14,7 @@ Checkbox
  
 [../../images/checkbox.png] 
 \
-\
+ []
 
  It inherits the following properties from {{{./control.html}Control}}:
  
@@ -33,7 +33,7 @@ checkMarried.bindEnabledToProperty("marriable")
 checkMarried.bindValueToProperty("married")
 +--
 
- * model: a Person with 2 methods <<boolean isMarriable()>> (perhaps should have a certain age) and <<boolean isMarried()>>
+ * model: a Person with 2 methods <<boolean isMarriable()>> (perhaps the person should have a certain age) and <<boolean isMarried()>>
  
  * checkbox will be selectable if the person can marry someone, and value will bind property <<married>> of a person (isMarried() / setMarried() methods)
  

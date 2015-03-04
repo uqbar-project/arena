@@ -38,3 +38,8 @@ class DateTextFilter implements TextFilter {
 }
 +-- 
 
+Links
+ 
+ {{{../bindings.html}Back to Binding Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}}

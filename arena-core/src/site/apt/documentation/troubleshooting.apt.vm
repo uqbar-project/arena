@@ -14,11 +14,11 @@ Troubleshooting
  
  * You should use a JDK 1.7 or higher. You should <<not>> use a JRE.
  
- * If you checked out a project from our SVN, remember to do it from "trunk" folder
+ * If you checked out a project from our SVN, remember to do it from "trunk" folder (if present)
  
  * Check the project nature, it should have a Maven nature and also it should recognize the language you are coding
  
- * You should define a launcher as described {{{./usage.html}here}}
+ * You should define a launcher as described {{{../usage.html}here}}
  
  * If you are using Maven, you should have a src/main/xxxx where xxxx is your language: java, groovy, scala, etc. 
  
@@ -54,6 +54,6 @@ Exception in thread "main" java.lang.RuntimeException: Esta aplicación no está
 	at org.uqbar.arena.Application.validateClassLoader(Application.java:32)
 	at org.uqbar.arena.Application.<init>(Application.java:24)
 +--
- You are using a default Class Loader, use APOClassLoader instead (as described {{{./usage.html}here}})
+ You are using a default Class Loader, use APOClassLoader instead (as described {{{../usage.html}here}})
  
   

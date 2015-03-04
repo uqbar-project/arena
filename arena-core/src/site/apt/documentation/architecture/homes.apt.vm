@@ -26,7 +26,7 @@ Repositories / Homes
  
  * <<update>>: modify an object in position x or remove old object/add a new one in position x
  
- * different kind of search. Arena provides
+ * different kinds of search. Arena provides
  
    * <<searchById>>: retrieves an object T by unique identifier
    
@@ -40,7 +40,7 @@ Repositories / Homes
 
  It is a memory-based collection, without persistence capabilities. Once application is closed,
  all data is lost. It is intended for educational purposes, or in developments
- where persistence is not necessary (like games).
+ where persistence is not mandatory (like games).
  
 [../../images/architecture/collectionBasedHome.png]
 
@@ -48,6 +48,8 @@ Repositories / Homes
 ** Neo4J Implementation
  
  <Arena Persistence> defines an abstract class <<PersistentHome>> that persists data into a Neo4J graph database.
+
+* Usage
 
  Component hasn't been deployed in Maven Central repositories yet, but you can add this uqbar repository in your settings.xml file:
  
@@ -96,12 +98,12 @@ Things to do when defining a home
  so all updates and retrieves are centralized. You can use an {{{./applicationContext.html}ApplicationContext}} object to
  configure different homes for testing and runtime environments. 
  
- * you can simply define your own Home implementation, or just subclass any available implementation
+ * you can simply define your own Home implementation, or subclass any available implementation
  
  []
 
  
- If you will subclass CollectionBasedHome:
+ If you subclass CollectionBasedHome:
   
  * it is recommended to create a fixture or data set
  
@@ -176,7 +178,7 @@ class HomeCustomers extends CollectionBasedHome<Customer> {
 }
 +--
  
-  Example of a getCriterio:
+  Defining a criteria for a search by example:
   
 +--
 override def Predicate<Customer> getCriterio(Customer example) {
@@ -219,7 +221,7 @@ results = homeCustomer.search(name)
   
 +--
 val customer = new Customer(name)
-resultados = homeCustomer.searchByExample(customer)
+results = homeCustomer.searchByExample(customer)
 +--
 
  

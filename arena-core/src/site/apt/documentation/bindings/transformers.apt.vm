@@ -10,14 +10,19 @@ Transformers
  <<Transformer[M, V]>> defines how to convert and validate values from view to model and viceversa (because Arena has a two-way binding). 
 
  * <<M viewToModel(V valueFromView)>>: converts a value from the UI component to the model format
+
  * <<V modelToView(M valueFromModel)>>: converts a value from the model to the UI format
- * <<Class<M> getModelType():>> returns class type of model
- * <<Class<V> getViewType()>>: returns class type of view
- 
+
+ * <<Class<M> getModelType():>> returns type of model
+
+ * <<Class<V> getViewType()>>: returns type of view
+
+ []
+  
 
 Date Adapter
 
- * Implements Transforme[Date, String]
+ * Implements Transformer[Date, String]
  
  * Converts a string in a <dd/MM/yyy> format to Date and viceversa
  
@@ -27,7 +32,7 @@ Date Adapter
  
 * Example 
 
- A textbox with a binding to a dateOfBirth property of a customer. 
+ A textbox with a binding to a customer's dateOfBirth: 
  
 +-- 
 new TextBox(it) => [
@@ -90,7 +95,7 @@ class BigDecimalTransformer implements Transformer<BigDecimal, String> {
    }
 
    override viewToModel(String valueFromView) {
-       if (valueFromView == "")
+       if (valueFromView == null || valueFromView.equals(""))
           null
        else
           try
@@ -102,3 +107,8 @@ class BigDecimalTransformer implements Transformer<BigDecimal, String> {
 }
 +--
 
+Links
+ 
+ {{{../bindings.html}Back to Binding Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

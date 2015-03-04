@@ -14,8 +14,9 @@ State
 * Domain model
 
  Some views can use a domain object as a model: a customer, an employee,
- a contact, an invoice. Nevertheless it is necessary to change some ui models, like
- the "Save" button in a create panel, or the "Add phone" button in a contact edition panel. 
+ a contact, an invoice. Nevertheless it is necessary to use a different model for 
+ some ui widgets, like the Home object for the "Ok" button when you want
+ to save the data in an edition panel.
   
  
 * Application model

@@ -12,7 +12,7 @@ Panel
  
  * a model. By default it uses the view model.
  
- * a {{{./documentation/layout.html}layout}}. By default, it has a vertical layout.  
+ * a {{{../layout.html}layout}}. By default, it has a vertical layout.  
 
  []
 

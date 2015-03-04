@@ -11,8 +11,7 @@ Maven Repositories
 
 Arena Artifacts
 
- Your UI project must depend on one of the Arena implementations. Currently the stable implementation is based on <<eclipse swt+jface>> and its call
- <<arena-jface>>:
+ Your UI project must depend on one of the Arena implementations. Currently the stable implementation is <<arena-jface>>, based on <<eclipse swt+jface>>:
 
 +---------------------------------------------+
 

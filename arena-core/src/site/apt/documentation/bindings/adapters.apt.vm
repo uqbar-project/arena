@@ -49,18 +49,18 @@ Transformers
 
 +--
  new Column<Customer>(table) //
- .setTitle("Name")
- .setFixedSize(150)
- .bindContentsToProperty("name")
+     .setTitle("Name")
+     .setFixedSize(150)
+     .bindContentsToProperty("name")
 +--
 
  But in certain cases, we must define an adapter:
   
 +--
  new Column<Customer>(table) //
- .setTitle("Has Debt")
- .setFixedSize(50)
- .bindContentsToTransformer( [ customer | if (customer.debt > 0) "YES" else "NO"])
+     .setTitle("Has Debt")
+     .setFixedSize(50)
+     .bindContentsToTransformer( [ customer | if (customer.debt > 0) "YES" else "NO"])
 +--
 
  This adapter transforms an integer property getDebt() into a string YES/NO:
@@ -96,4 +96,9 @@ public interface Transformer<T, U> {
 }
 +--
 
+Links
+ 
+ {{{../bindings.html}Back to Binding Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}}
  

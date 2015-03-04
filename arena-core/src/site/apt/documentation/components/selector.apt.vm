@@ -6,7 +6,7 @@
 
 Selectors
 
- A <<org.uqbar.arena.widgets.Selector[T]>> is a control that displays a list of options and let the user
+ A <<org.uqbar.arena.widgets.Selector[T]>> is a control that displays a list of options and lets the user
  choose (select) one of them.
  
  Tipically it will look like what we commonly know as a ComboBox.
@@ -20,7 +20,9 @@ Selectors
  * <<value:>> meaning the selected element
  
  * <<items:>> the list of options that it displays.
- 
+
+ []
+  
  Through both "bind" methods you are able to connect this properties to the underlying model. This
  way it will automatically update the view upon chances in the model.
  
@@ -79,8 +81,8 @@ class Address {
 
 * Selection on Tables
 
- Tables also allows you (not forces you) to bind a single selection to a model's property.
- See Tables section for that.
+ Tables also allows you (but does not force you) to bind a single selection to a model's property.
+ See {{{./table.html}Tables}} section for that.
  
 
 Links

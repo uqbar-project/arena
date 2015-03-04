@@ -36,7 +36,7 @@ bindValue(new ObservableProperty(aModel, "miles"))
  
     * fontSize, foreground, background 
 
- * withFilter(TextFilter): allows to set a specific filter (date, numeric data, etc.)
+ * withFilter(TextFilter): it allows to set a specific filter (date, numeric data, etc.)
 
  []
 

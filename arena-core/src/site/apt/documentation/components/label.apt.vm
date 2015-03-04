@@ -7,20 +7,25 @@
 
 Label
 
- A <<org.uqbar.arena.widgets.Label>> is a control used to display information: 
+ A <<org.uqbar.arena.widgets.Label>> is a control used to display information. 
 
 * Bindings
 
  Label content can be fixed or bindable. To define a <<static label>> you should set text property:
    
 +--
-new Label(editorPanel).setText("Fahrenheit")  <- you don't want to change this label, so text property is not Observable
+new Label(editorPanel).setText("Fahrenheit")
+          <- you don't want to change this label, so text property is not Observable
+          
+...
+// another way in Xtend syntatic sugar
+new Label(mainPanel).text = "Fahrenheit"            
 +--
  
  Or you can bind a label to a <<dynamic>> property of a model
  
 +--
-new Label(mainPanel).bindValueToProperty("kilometers") <- as soon as model changes, the label content updates its content
+new Label(mainPanel).bindValueToProperty("kilometers") <- as soon as model changes kilometers property, the label content updates its content
 +--
 
  <<Remember>>: to properly configure a label you should define text or value properties. If you define both, value property overrides text property, so it has no sense.

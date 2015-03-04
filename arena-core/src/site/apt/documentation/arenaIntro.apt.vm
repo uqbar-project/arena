@@ -10,13 +10,13 @@ Arena motivation and goals
  
  * promotes <<design>> of UI, using all techniques and tools of OO modeling 
  
- * is suitable for big applications, because you design instead of copy/pasting
+ * is suitable for big applications, because you design instead of copying & pasting
   	
  * <<fosters separation between technological (views and controllers) and non-technological components (models)>>
  
  * <<minimizes burocracy>>, focusing on concepts rather than forcing the programmer to do repetitive tasks (no middlemans)
  
- * it is intended for educational purposes, so it is half way between an automated tool and a didactic one
+ * it is intended for educational purposes, so it is not only an automated tool but also a didactic one
  
   
 

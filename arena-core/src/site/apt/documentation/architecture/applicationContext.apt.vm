@@ -68,7 +68,7 @@ def void search() {
 
 +--
 
- So application model doesn't know if home is real or a mocked one, as shown in this picture:  
+ So application model doesn't know if home is a real or a mocked one, as shown in this picture:  
       
 [../../images/architecture/appContext.png]
   
