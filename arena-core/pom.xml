@@ -26,7 +26,14 @@
 		</plugins>
 	</build>
 
-	<url>http://arena.uqbar-project.org</url>
+	<distributionManagement>
+		<site>
+			<id>sites-uqbar-project.org</id>
+			<url>ftp://arena.uqbar-project.org/arena</url>
+		</site>
+	</distributionManagement>
+	
+	<url>http://arena.uqbar-project.org/arena</url>
 
 	<dependencies>
 		<!-- UQBAR -->
