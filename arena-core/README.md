@@ -72,15 +72,16 @@ Here's a sample environment
 
 * Install eclipse Luna
 * **Scalaide**:
-* + Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
-* + Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
+  * Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
+  * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
 
 #### Maven configuration ####
 
 You need to **configure your maven settings** in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
 
-* vi ~/.m2/settings.xml
-
+```
+vi ~/.m2/settings.xml
+```
 (if .m2 folder is not already created, then create it)
 
 And put this:
