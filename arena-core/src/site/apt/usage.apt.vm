@@ -8,6 +8,34 @@ Maven Repositories
 
  Arena is released in Maven Central, so you don't have to configure any repository in your maven's settings file.  
 
+ But, in case you have dependencies problems, please add this uqbar repositories to your maven's settings file:
+
++---------------------------------------------+
+  <profiles>
+        <profile>
+              <id>uqbar-wiki</id>
+              <repositories>
+                    <repository>
+                        <id>uqbar-wiki.org-releases</id>
+                        <name>uqbar-wiki.org-releases</name>
+                        <url>http://uqbar-wiki.org/mvn/releases</url>
+                    </repository>
+                    <repository>
+                        <snapshots/>
+                        <id>uqbar-wiki.org-snapshots</id>
+                        <name>uqbar-wiki.org-snapshots</name>
+                        <url>http://uqbar-wiki.org/mvn/snapshots</url>
+                   </repository>
+              </repositories>
+        </profile>
+  </profiles>
+
+  <activeProfiles>
+       <activeProfile>uqbar-wiki</activeProfile>
+  </activeProfiles>
++---------------------------------------------+
+
+ 
 
 Arena Artifacts
 
@@ -29,7 +57,7 @@ Arena Artifacts
 <dependency>
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>uqbar-domain</artifactId>
-	<version>uqbar-domain-version</version>
+	<version>${project.version}</version>
 </dependency>
 +---------------------------------------------+
 

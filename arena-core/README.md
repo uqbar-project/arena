@@ -26,9 +26,7 @@ cd arena
 
 In order to check them out:
 ```
-hg clone https://bitbucket.org/uqbar-project/arena-core
-hg clone https://bitbucket.org/uqbar-project/arena-jface
-hg clone https://bitbucket.org/uqbar-project/arena-examples
+git clone https://github.com/uqbar-project/arena
 ```
 
 #### Additional Utilities
@@ -38,8 +36,8 @@ hg clone https://bitbucket.org/uqbar-project/arena-examples
 
 Check-out:
 ``` 
-hg clone https://bitbucket.org/uqbar-project/uqbar-domain
-hg clone https://bitbucket.org/uqbar-project/arena-xtend
+git clone https://github.com/uqbar-project/uqbar-domain
+arena-xtend is in https://github.com/uqbar-project/arena repository.
 ```
 
 ## Foundational Components for Observability / Transactional Aspects (not needed unless you'll change this foundations)
@@ -51,19 +49,13 @@ Then If you'll work on the transactional or observability aspects behind Arena, 
 * **apo-pot (Pure Objects Transactions):** Implements a transparent transactions mechanism for objects through AOP. (Transactional objects).
 * **apo-parent:** Additional configuration for apo-core, apo-poo, apo-pot
 
-Checkout:
-```
-hg clone https://bitbucket.org/uqbar-project/apo-core
-hg clone https://bitbucket.org/uqbar-project/apo-poo
-hg clone https://bitbucket.org/uqbar-project/apo-pot
-hg clone https://bitbucket.org/uqbar-project/apo-parent
 ```
 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
 ```
-hg clone https://bitbucket.org/uqbar-project/uqbar-parent-project
-hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent
+git clone https://github.com/uqbar-project/uqbar-parent-project
+hg clone https://bitbucket.org/uqbar-project/uqbar-scala-parent (soon it will be also in github)
 ```
 
 ### IDE ###
