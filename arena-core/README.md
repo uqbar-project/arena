@@ -37,19 +37,17 @@ git clone https://github.com/uqbar-project/arena
 Check-out:
 ``` 
 git clone https://github.com/uqbar-project/uqbar-domain
-arena-xtend is in https://github.com/uqbar-project/arena repository.
 ```
+arena-xtend is in https://github.com/uqbar-project/arena repository.
 
 ## Foundational Components for Observability / Transactional Aspects (not needed unless you'll change this foundations)
 
-Then If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
+If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
 * **apo-core: (Aspects for Pure Objects):** Small AOP framework on top of [Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/). It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
 * **apo-poo (Pure Observable Objects):** implements transparent objects observability over AOP. Based on apo-core.
 * **apo-pot (Pure Objects Transactions):** Implements a transparent transactions mechanism for objects through AOP. (Transactional objects).
 * **apo-parent:** Additional configuration for apo-core, apo-poo, apo-pot
-
-```
 
 In addition optionally you can checkout some **parent projects** if you need to change them:
 
