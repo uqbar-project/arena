@@ -117,7 +117,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-core</artifactId>
-			<version>3.5.1-SNAPSHOT</version>
+			<version>3.5.1</version>
 		</dependency>
 		<!-- /UQBAR -->
 
