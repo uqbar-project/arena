@@ -1,12 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-parent</artifactId>
 	<version>3.5.1-SNAPSHOT</version>
-	
+
 	<name>Arena Parent</name>
-	
+
 	<url>http://arena.uqbar-project.org</url>
 
 	<packaging>pom</packaging>
@@ -25,7 +26,7 @@
 		<module>arena-xtend</module>
 		<module>arena-examples</module>
 		<module>arena-jface</module>
-	</modules>	
+	</modules>
 
 	<licenses>
 		<license>
@@ -42,20 +43,44 @@
 	</properties>
 
 	<developers>
-		<developer><id>npasserini</id><name>Nicolás Passerini</name><email>npasserini@gmail.com</email></developer>
-		<developer><id>jfernandes</id><name>Javier Fernandes</name><email>javier.fernandes@gmail.com</email></developer>
-		<developer><id>nnydjesus</id><name>Ronny De Jesus</name><email>nnydjesus@gmail.com</email></developer>
-		<developer><id>faloi</id><name>Federico Aloi</name><email>federico.aloi@gmail.com</email></developer>
-		<developer><id>flbulgarelli</id><name>Franco Bulgarelli</name><email>flbulgarelli@yahoo.com.ar</email></developer>
-		<developer><id>tesonep</id><name>Pablo Tesone</name><email>tesonep@gmail.com</email></developer>
+		<developer>
+			<id>npasserini</id>
+			<name>Nicolás Passerini</name>
+			<email>npasserini@gmail.com</email>
+		</developer>
+		<developer>
+			<id>jfernandes</id>
+			<name>Javier Fernandes</name>
+			<email>javier.fernandes@gmail.com</email>
+		</developer>
+		<developer>
+			<id>nnydjesus</id>
+			<name>Ronny De Jesus</name>
+			<email>nnydjesus@gmail.com</email>
+		</developer>
+		<developer>
+			<id>faloi</id>
+			<name>Federico Aloi</name>
+			<email>federico.aloi@gmail.com</email>
+		</developer>
+		<developer>
+			<id>flbulgarelli</id>
+			<name>Franco Bulgarelli</name>
+			<email>flbulgarelli@yahoo.com.ar</email>
+		</developer>
+		<developer>
+			<id>tesonep</id>
+			<name>Pablo Tesone</name>
+			<email>tesonep@gmail.com</email>
+		</developer>
 	</developers>
 
 	<scm>
 		<connection>scm:git:${scm.gitServer}/arena</connection>
 		<developerConnection>scm:git:${scm.gitServer}/arena</developerConnection>
 		<url>scm:git:${scm.gitServer}/arena</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 
 
 	<dependencies>
@@ -120,7 +145,19 @@
 		</dependencies>
 	</dependencyManagement>
 
-
+	<repositories>
+		<repository>
+			<id>uqbar-wiki.org-releases</id>
+			<name>uqbar-wiki.org-releases</name>
+			<url>http://uqbar-wiki.org/mvn/releases</url>
+		</repository>
+		<repository>
+			<snapshots />
+			<id>uqbar-wiki.org-snapshots</id>
+			<name>uqbar-wiki.org-snapshots</name>
+			<url>http://uqbar-wiki.org/mvn/snapshots</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

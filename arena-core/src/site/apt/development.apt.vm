@@ -16,6 +16,13 @@ Requirements
    
    * Scala 2.11
 
+ <<Note:>> We are currently working on it, but we still don't have a C.I. 
+ in order to deploy new versions of artifacts every time someone pushes a change to master. 
+ So, this means that, every time you push something, you'll also need to 
+ manually deploy it with "mvn deploy". This also means that, probably, for now, 
+ if you want to have it all working straight right after checkout, then, 
+ go ahead and check out ALL projects listed below, instead of just picking some of them.
+
 Checkout Projects/Repos
 
  It's useful to create a folder to hold all the repos (projects), but well, optional:
@@ -37,6 +44,12 @@ Main Arena Projects
  * <<arena-examples>>: Contains some examples small apps for internal manual testing.
  
  []
+
+ In order to check them out:
+
++--
+git clone https://github.com/uqbar-project/arena
++--
  
 * Additional Utilities
 
@@ -46,7 +59,15 @@ Main Arena Projects
 
  []
   
+ Check-out:
+ 
++--
+git clone https://github.com/uqbar-project/uqbar-domain
++--  
 
+ arena-xtend is in https://github.com/uqbar-project/arena repository.
+ 
+ 
 * Components for Observability / Transactional Aspects
  <<(not needed unless you'll change this foundations)>>
  
@@ -62,6 +83,13 @@ Main Arena Projects
  
  []
  
+ 
+ In addition you can checkout some parent projects if you need to change them:
+
++--
+git clone https://github.com/uqbar-project/uqbar-parent-project
+git clone https://github.com/uqbar-project/uqbar-scala-parent
++--
   
 IDE
  
@@ -81,16 +109,18 @@ IDE
 
  * Install eclipse Luna
 
- * <<Scalaide>>: Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
+ * <<Scalaide>>
  
- * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
+  * Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
+ 
+  * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
  
  []
  
 
 Maven configuration
 
- You need to configure your maven settings in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
+ You need to <<configure your maven settings>> in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
 
  File ~/.m2/settings.xml (if .m2 folder is not already created, then create it)
  
