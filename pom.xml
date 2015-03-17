@@ -135,7 +135,7 @@
 			<dependency>
 				<groupId>org.uqbar-project</groupId>
 				<artifactId>uqbar-domain</artifactId>
-				<version>3.5-alpha-1</version>
+				<version>3.5.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.javassist</groupId>
