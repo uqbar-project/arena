@@ -3,7 +3,7 @@
 
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-parent</artifactId>
-	<version>3.6.0</version>
+	<version>3.6.1-SNAPSHOT</version>
 
 	<name>Arena Parent</name>
 
@@ -78,7 +78,7 @@
 		<connection>scm:git:${scm.gitServer}/arena</connection>
 		<developerConnection>scm:git:${scm.gitServer}/arena</developerConnection>
 		<url>scm:git:${scm.gitServer}/arena</url>
-		<tag>v3.6.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 
