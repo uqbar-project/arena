@@ -3,7 +3,7 @@
 
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-xtend</artifactId>
-	<version>3.5.1-SNAPSHOT</version>
+	<version>3.6.0</version>
 
 	<name>Arena XTend</name>
 	<description>Arena's API extension for xtend language.</description>
@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>arena-parent</artifactId>
-		<version>3.5.1-SNAPSHOT</version>
+		<version>3.6.0</version>
 	</parent>
 
 	<properties>
@@ -64,7 +64,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
-			<version>3.5.1-SNAPSHOT</version>
+			<version>3.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
