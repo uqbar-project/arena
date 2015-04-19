@@ -11,9 +11,11 @@ import javassist.Modifier
 import com.uqbar.apo.pointcut.ClassPointCut
 import com.uqbar.apo.pointcut.MethodPointCut
 import org.uqbar.commons.utils.ReflectionUtils
+import org.uqbar.commons.utils.Dependencies
+import com.uqbar.apo.pointcut.MatchPointCut
+import com.uqbar.apo.pointcut.MethodCallPointCut
 
 /**
- *
  * @author nny
  */
 trait ObservableConfiguration extends Configuration {
@@ -22,6 +24,8 @@ trait ObservableConfiguration extends Configuration {
 
   override def createAdvices(): List[Advice] = {
     val fieldPoint = new PointCut with AnnotationPointCut with FieldPointCut {
+      noStatic &&
+      fieldName(!_.toLowerCase().contains("changesupport"))
       hasAnnotation(classOf[Observable].getName())
     }
 
@@ -32,7 +36,15 @@ trait ObservableConfiguration extends Configuration {
       }
     }
 
-    super.createAdvices().::(observableAdvice)
+    val dependencyPointcut = new PointCut with AnnotationPointCut with MethodCallPointCut with FieldInfo {
+      methodName(name=> !List("tostring", "clazz", "changesupport").exists(filter=> name.toLowerCase.contains(filter))) &&
+      notConstructor &&
+      filter(mc=> isGetter(mc.getMethod()))
+      hasAnnotation(classOf[Observable].getName())
+    }
+    val dependencyAdvice = new Advice(dependencyPointcut, new DependencyFieldInterceptor())
+
+    super.createAdvices().::(dependencyAdvice).::(observableAdvice)
   }
 }
 

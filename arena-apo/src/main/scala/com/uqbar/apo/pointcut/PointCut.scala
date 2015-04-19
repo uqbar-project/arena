@@ -1,16 +1,11 @@
 package com.uqbar.apo.pointcut
 
-import javassist.CtField
 import javassist.CtClass
-import javassist.expr.FieldAccess
-import javassist.expr.MethodCall
-import scala.collection.mutable.Buffer
-import javassist.ClassPool
 import javassist.CtMethod
-import javassist.Modifier
-import com.uqbar.apo.parser.APOParser
 import javassist.bytecode.Descriptor
 import javassist.expr.ConstructorCall
+import javassist.expr.FieldAccess
+import javassist.expr.MethodCall
 
 abstract class PointCut {
   def evaluate(ctClass: CtClass): Boolean
@@ -47,20 +42,25 @@ trait InterceptMatchPointCut[T] extends PointCut{
   def &&(func: F[T]):F[T] = { val p = pointcuts ;pointcuts = F((t: T) => { p(t) && func(t) }, this); pointcuts }
   def ||(func: F[T]):F[T] = { val p = pointcuts; pointcuts = F((t: T) => { p(t) || func(t) }, this); pointcuts }
 
-  def filter(fun: (T) => Boolean) = if(pointcuts == null) {pointcuts = F(fun, this); pointcuts} else F(fun, this)  
+  def filter(fun: (T) => Boolean) = if(pointcuts == null) {pointcuts = F(fun, this); pointcuts} else F(fun, this)
 }
 
 trait FieldPointCut extends InterceptMatchPointCut[FieldAccess] {
-  filter((field) => { !field.isStatic() && !field.where().getMethodInfo().toString().startsWith("$lessinit")})
 
+  def noStatic = filter((field) => {
+    val methodName  = field.where().getMethodInfo().getName()
+    !field.isStatic() && !methodName.startsWith("$lessinit") && !methodName.startsWith("<init>")
+   })
   def fieldName(fun: (String) => Boolean) = filter(field => fun(field.getFieldName()))
   def field(fun: (FieldAccess) => Boolean) = filter(field => fun(field))
   def fieldType[T: Manifest] = filter(_.getField().getType().getName() == manifest[T].erasure.getName())
   def constructor() = filter(field=> { field.where().getMethodInfo().toString().startsWith("<init>") })
+  def hasAnnotation(annotation: Class[_]) = filter(_.where().hasAnnotation(annotation))
 }
 
 trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
   def methodName(fun: (String) => Boolean) = filter(method => fun(method.getName()))
+  def hasAnnotation(annotation: Class[_]) = filter(_.hasAnnotation(annotation))
   def method(fun: (CtMethod) => Boolean) = filter(fun)
   def modifiers(modifiers: Int) = filter(_.getModifiers() == modifiers)
   def arguments(arguments: Class[_]*) = filter(method => {
@@ -72,6 +72,8 @@ trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
 }
 
 trait MethodCallPointCut extends InterceptMatchPointCut[MethodCall] {
+  def methodName(fun: (String) => Boolean) = filter(method => fun(method.getMethodName()))
+  def notConstructor() = filter(method => { !method.where().getMethodInfo().toString().startsWith("<init>") })
 }
 
 trait ConstructorCallPointCut extends InterceptMatchPointCut[ConstructorCall] {

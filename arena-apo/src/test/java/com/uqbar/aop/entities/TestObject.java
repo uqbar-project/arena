@@ -7,12 +7,13 @@ import java.util.List;
 public class TestObject {
 	
 	private String name;
-	private String fatherName;
+	private String lastName;
 	private List<Listener> listeners = new ArrayList<Listener>();
 	
 	public TestObject(String name, String fatherName) {
 		this.name = name;
-		this.fatherName = fatherName;
+		this.lastName = fatherName;
+		this.getName();
 	}
 	
 	public void dispatch(String event){
@@ -22,27 +23,24 @@ public class TestObject {
 		}
 	}
 	
-	public void update(String name){
-	}
-	
-	public void updateName(String name){
-		this.name = name;
-	}
-	
-	public void updateFatherName(String name){
-		this.fatherName = name;
-	}
-	
 	public void addListener(Listener listener){
 		this.listeners.add(listener);
 	}
 
-	public String getFatherName() {
-		return fatherName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setFatherName(String fatherName) {
-		this.fatherName = fatherName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public String nothing() {
+		return getNothig();
+	}
+	
+	public String getNothig(){
+		return "nothing";
 	}
 
 	public String getName() {

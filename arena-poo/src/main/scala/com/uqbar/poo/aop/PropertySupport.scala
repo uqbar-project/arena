@@ -9,5 +9,7 @@ trait PropertySupport {
 	def addPropertyChangeListener(propertyName:String , listener:EventListener)
 
 	def removePropertyChangeListener(propertyName:String, listener:EventListener)
+	
+	def addDependency(clazz: String, property: String, dependency: String)
 
 }

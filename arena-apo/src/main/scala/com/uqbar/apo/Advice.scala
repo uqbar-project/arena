@@ -12,6 +12,7 @@ import javassist.CtMethod
 import javassist.CtClass
 import javassist.expr.ConstructorCall
 import javassist.CtConstructor
+import javassist.expr.MethodCall
 
 /**
  * Intruduce bytecode para que se pueda interceptar todos los fields del objeto.
@@ -55,6 +56,11 @@ class Advice(var pointCut: PointCut, interceptor: Interceptor[_]*) extends ExprE
   override def edit(method: ConstructorCall) {
     var statement = new StringBuffer(method.getSignature())
     edit[CtConstructor](method.getConstructor(), statement, classOf[CtConstructor])
+  }
+  
+  override def edit(method: MethodCall) {
+    var statement = new StringBuffer(method.getSignature())
+    edit[MethodCall](method, statement, classOf[MethodCall])
   }
 
   /**
