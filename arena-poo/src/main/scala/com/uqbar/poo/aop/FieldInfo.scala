@@ -29,10 +29,13 @@ trait FieldInfo {
   }
 
   def propertyNameFromGetter(methodName: String): String = {
+    println(s"MethodName $methodName")
     if (methodName.startsWith("get"))
       return StringUtils.uncapitalise(methodName.drop(3))
     if (methodName.startsWith("is"))
       return StringUtils.uncapitalise(methodName.drop(2))
+    if (methodName.endsWith("_$eq"))
+      return methodName.dropRight(4)
     methodName
   }
 }

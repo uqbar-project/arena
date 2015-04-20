@@ -18,15 +18,14 @@ import javassist.NotFoundException
  *
  */
 
-class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo {
+class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo with AddDependencyInConstructor{
   propertyKey = "ObservableFieldAccessInterceptor";
 
   read((statement, field) => {
     val methodInfo = field.where().getMethodInfo()
     if (isGetter(field.where())) {
       var dependency = propertyNameFromGetter(methodInfo.getName())
-      val beforeRead = "$this.getChangeSupport().addDependency($class.getName(), $S$fieldName$S, $S" + dependency + "$S);"
-      statement.insert(0, beforeRead)
+      addDependency(field.where().getDeclaringClass(), field.getFieldName(), dependency)
     }
   })
 
@@ -42,20 +41,25 @@ class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo {
 
 }
 
-class DependencyFieldInterceptor extends MethodCallInterceptor with FieldInfo {
+class DependencyFieldInterceptor extends MethodCallInterceptor with FieldInfo with AddDependencyInConstructor{
   propertyKey = "DependencyFieldInterceptor";
 
   after(mc => {
     val method = mc.where()
     val dependency = propertyNameFromGetter(method.getMethodInfo().getName())
     var property = propertyNameFromGetter(mc.getMethodName())
-    val className = method.getDeclaringClass().getName()
-
-    for {
-      constructor <- method.getDeclaringClass().getConstructors
-    } constructor.insertAfter(APOParser.parse("$this.getChangeSupport().addDependency($class.getName(), $S" + property + "$S, $S" + dependency + "$S);"))
-      
+    addDependency(method.getDeclaringClass(), property, dependency)
     ""
   })
 
+}
+
+trait AddDependencyInConstructor{
+  
+  def addDependency(ctClass:CtClass, property:String, dependency:String){
+    if(!property.equals(dependency)){
+    	ctClass.getConstructors.foreach(_.insertAfter(APOParser.parse(
+    	    "$this.getChangeSupport().addDependency($class.getName(), $S" + property + "$S, $S" + dependency + "$S);")))
+    }
+  }
 }
