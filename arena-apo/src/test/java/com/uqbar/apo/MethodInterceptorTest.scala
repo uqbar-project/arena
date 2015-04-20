@@ -5,8 +5,6 @@ import scala.collection.mutable.Buffer
 import org.junit.Assert
 import org.junit.Test
 
-import com.uqbar.aop.entities.Listener
-import com.uqbar.aop.entities.TestObject
 import com.uqbar.apo.pointcut.ClassPointCut
 import com.uqbar.apo.pointcut.MethodCallPointCut
 import com.uqbar.apo.pointcut.MethodPointCut
@@ -24,34 +22,21 @@ class MethodTestConfiguration extends Configuration {
     className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
   }
 
-  def inteceptor = method
-    .after((method) => "$this.dispatch(\"" + method.getName + "\");")
-    .before(method => "System.out.println(\"" + method.getName + "\");")
+  def inteceptor = method.after((method) => dispatch(method.getName()))
 
   def testCallPointcut = new PointCut with ClassPointCut with MethodCallPointCut {
-    methodName(cm => cm.startsWith("get")) && notConstructor
+    methodName(cm => cm.startsWith("get") && cm.length > 3) && notConstructor
     className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
   }
 
-  def callInteceptor = methodCall
-    .before(
-      (method) => "$this.dispatch(\"" + method.getMethodName()+"\");")
+  def callInteceptor = methodCall.before(method => dispatch(method.getMethodName()))
 
+  def dispatch(name: String) = "$this.dispatch($SMethodInterceptorTest$S, $S" + name + "$S);"
 }
 
-class MethodInterceptorTest extends Listener {
+class MethodInterceptorTest extends AbstractInterceptorTest {
 
-  var eventDispatch:Buffer[String]= _
-
-  def listen(event: String) = eventDispatch.append(event)
-  var testObject: TestObject = _
-
-  @org.junit.Before
-  def setup() {
-    eventDispatch  = Buffer()
-    testObject = new TestObject("Pepe", "pp@p.p")
-    testObject.addListener(this)
-  }
+  def key = "MethodInterceptorTest"
 
   @Test
   def disparaUnEventoCuandoSeInvocaUnSetter() {
@@ -63,8 +48,8 @@ class MethodInterceptorTest extends Listener {
 
   @Test
   def dispararUnEventoCuandoSeUsaUnGetterEnUnMetodo() {
-    testObject.nothing()
-    Assert.assertEquals(eventDispatch, Buffer("getNothig"))
+    testObject.description()
+    Assert.assertEquals(eventDispatch, Buffer("getFullName"))
   }
 
 }

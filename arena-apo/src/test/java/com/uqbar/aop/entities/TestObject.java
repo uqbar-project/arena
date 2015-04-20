@@ -1,30 +1,30 @@
 package com.uqbar.aop.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class TestObject {
 	
 	private String name;
 	private String lastName;
-	private List<Listener> listeners = new ArrayList<Listener>();
+	private Map<String, List<Listener>> listeners = new HashMap<String, List<Listener>>();
 	
-	public TestObject(String name, String fatherName) {
-		this.name = name;
-		this.lastName = fatherName;
-		this.getName();
-	}
-	
-	public void dispatch(String event){
-		System.out.println("dispatch "  + event);
-		for (Listener listener : listeners) {
-			listener.listen(event);
+	public void dispatch(String key, String event){
+		if(listeners.containsKey(key)){
+			for (Listener listener : listeners.get(key)) {
+				listener.listen(event);
+			}
 		}
 	}
 	
-	public void addListener(Listener listener){
-		this.listeners.add(listener);
+	public void addListener(String key, Listener listener){
+		if(!listeners.containsKey(key)){
+			this.listeners.put(key, new ArrayList<Listener>());
+		}
+		listeners.get(key).add(listener);
 	}
 
 	public String getLastName() {
@@ -35,8 +35,12 @@ public class TestObject {
 		this.lastName = lastName;
 	}
 	
-	public String nothing() {
-		return getNothig();
+	public String getFullName(){
+		return name + " " + lastName;
+	}
+	
+	public String description(){
+		return "Hi, I'm " + getFullName();
 	}
 	
 	public String getNothig(){
