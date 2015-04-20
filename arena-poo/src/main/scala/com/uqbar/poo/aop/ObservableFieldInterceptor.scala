@@ -31,13 +31,13 @@ class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo {
   })
 
   write((statement, fieldAccess) => {
-      val newStatement =
-        """
+    val newStatement =
+      """
 		  $fieldTypeName oldValue = $oldValue;
 		  $originalAsigment;
 		  $this.firePropertyChange($S$fieldName$S, $coerceToObject(oldValue), $coerceToObject($newValue));
     	"""
-      statement.replace(newStatement)
+    statement.replace(newStatement)
   })
 
 }
@@ -50,7 +50,12 @@ class DependencyFieldInterceptor extends MethodCallInterceptor with FieldInfo {
     val dependency = propertyNameFromGetter(method.getMethodInfo().getName())
     var property = propertyNameFromGetter(mc.getMethodName())
     val className = method.getDeclaringClass().getName()
-    "$this.getChangeSupport().addDependency($class.getName(), $S" + property + "$S, $S" + dependency + "$S);"
+
+    for {
+      constructor <- method.getDeclaringClass().getConstructors
+    } constructor.insertAfter(APOParser.parse("$this.getChangeSupport().addDependency($class.getName(), $S" + property + "$S, $S" + dependency + "$S);"))
+      
+    ""
   })
 
 }

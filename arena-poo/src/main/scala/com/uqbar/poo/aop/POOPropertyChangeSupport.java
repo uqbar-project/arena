@@ -50,7 +50,7 @@ public class POOPropertyChangeSupport extends PropertyChangeSupport implements P
 		super.firePropertyChange(this.convertProperty(propertyName), oldValue,
 				newValue);
 		List<String> dependencies = this.dependenciesFor(source.getClass().getName(), propertyName);
-		for (String dependency : dependencies) {
+		for (String dependency : new ArrayList<>(dependencies)) {
 			if (dependency != propertyName) {
 				firePropertyChange(dependency, null,
 						ReflectionUtils.invokeGetter(source, dependency));

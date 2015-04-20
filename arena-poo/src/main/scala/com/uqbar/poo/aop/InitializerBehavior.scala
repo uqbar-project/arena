@@ -5,6 +5,7 @@ import javassist.CtClass
 import javassist.CtMethod
 import org.uqbar.commons.utils.Dependencies
 import org.uqbar.commons.utils.ReflectionUtils
+import javassist.CtConstructor
 
 trait InitializerBehavior {
 
@@ -12,7 +13,7 @@ trait InitializerBehavior {
     for {
       constructor <- ctClass.getConstructors
       dependency <- dependenciesFor(ctClass)
-    } constructor.insertAfter(dependency.toStatement);
+    } insertCode(ctClass, constructor, dependency.toStatement)
 
   def dependenciesFor(ctClass: CtClass): Iterable[Dependency] =
     for {
@@ -29,5 +30,12 @@ trait InitializerBehavior {
 
   def dependencies(annotationProxy: Any) =
     ReflectionUtils.invokeMethod(annotationProxy, "value").asInstanceOf[Array[String]].toList;
+    
+  def insertCode(ctClass:CtClass, constructor:CtConstructor, statement:String){
+    if(ctClass.isFrozen()){
+      ctClass.defrost()
+    }
+    constructor.insertAfter(statement)
+  }
 
 }

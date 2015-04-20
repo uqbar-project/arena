@@ -9,7 +9,7 @@ import javassist.ClassPool
 trait FieldInfo {
 
   def isGetter(behaviour: CtBehavior): Boolean = {
-    if (behaviour.getDeclaringClass().isFrozen()) return false
+    if (behaviour.getDeclaringClass().isFrozen()) behaviour.getDeclaringClass().defrost()
     val method = behaviour.getDeclaringClass().getMethod(behaviour.getMethodInfo().getName(),
       behaviour.getMethodInfo().getDescriptor())
     method.getParameterTypes().length == 0 &&
