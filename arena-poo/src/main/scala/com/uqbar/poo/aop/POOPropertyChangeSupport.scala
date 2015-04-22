@@ -26,14 +26,14 @@ class POOPropertyChangeSupport(sourceBean: AnyRef) extends PropertyChangeSupport
     if (className.equals(source .getClass.getName) && bean.getPropertyDescriptor(property) != null ) {
       if (!values.contains(dependency)) {
         values.add(dependency)
-        println(" dependency: " + dependency + " to " + property)
+//        println(" dependency: " + dependency + " to " + property)
       }
     } else {
       val properies = mapping.flatMap { case (k, v) => if(v.contains(dependency)) Some(k) else None }
       properies.foreach(value => {
         if (bean.getPropertyDescriptor(value) != null) {
           mmm(value) = (property, dependency)
-          println(" relation to " + value + " with " + property)
+//          println(" relation to " + value + " with " + property)
           addListener(value, property, dependency)
         }
       })
@@ -52,7 +52,7 @@ class POOPropertyChangeSupport(sourceBean: AnyRef) extends PropertyChangeSupport
 
   override def firePropertyChange(propertyName: String, oldValue: AnyRef, newValue: AnyRef) {
     super.firePropertyChange(this.convertProperty(propertyName), oldValue, newValue)
-    println("Fire: " + propertyName)
+//    println("Fire: " + propertyName)
     val dependencies = this.dependenciesFor(source.getClass.getName, propertyName)
     for (dependency <- dependencies if dependency != propertyName &&
         ScalaBeanInfo.getPropertyDescriptor(source, dependency) != null) {

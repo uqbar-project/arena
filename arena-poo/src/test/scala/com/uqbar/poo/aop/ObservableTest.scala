@@ -34,7 +34,7 @@ class ObservableTest extends PropertyChangeListener {
   def setup() {
     model = ModelObject()
     methodListener = ReflectionUtils.findMethod(classOf[ModelObject], "addPropertyChangeListener", true,
-      Array(classOf[String], Class.forName(APOConfig.getProperty("apo.poo.propertyListener").value)))
+      Array(classOf[String], classOf[PropertyChangeListener]))
   }
 
   def addListener(event: String) = methodListener.invoke(model, event, this)
@@ -44,8 +44,7 @@ class ObservableTest extends PropertyChangeListener {
     addListener("name")
 
     model.name = "Pepe"
-    Assert.assertEquals(event.getPropertyName(), "name")
-    Assert.assertEquals(event.getNewValue(), "Pepe")
+    assertEvent("name", "Pepe")
   }
 
   @Test
@@ -53,12 +52,10 @@ class ObservableTest extends PropertyChangeListener {
     addListener("fullName")
 
     model.name = "Pepe"
-    Assert.assertEquals(event.getPropertyName(), "fullName")
-    Assert.assertEquals(event.getNewValue(), "Pepe ")
+    assertEvent("fullName", "Pepe ")
 
     model.lastName = "Pérez"
-    Assert.assertEquals(event.getPropertyName(), "fullName")
-    Assert.assertEquals(event.getNewValue(), "Pepe Pérez")
+    assertEvent("fullName", "Pepe Pérez")
   }
 
   @Test
@@ -66,9 +63,7 @@ class ObservableTest extends PropertyChangeListener {
     addListener("description")
 
     model.name = "Pepe"
-    Assert.assertEquals(event.getPropertyName(), "description")
-    println(model.description)
-    Assert.assertEquals(event.getNewValue(), "Pepe  - ")
+    assertEvent("description", "Pepe  - ")
   }
 
   @Test
@@ -76,9 +71,12 @@ class ObservableTest extends PropertyChangeListener {
     addListener("description")
 
     model.occupation.name = "Teacher"
-    Assert.assertEquals(event.getPropertyName(), "description")
-    println(model.description)
-    Assert.assertEquals(event.getNewValue(), "  - Teacher")
+    assertEvent("description", "  - Teacher")
+  }
+  
+  def assertEvent(propertyName:String, value:String){
+    Assert.assertEquals(event.getPropertyName(), propertyName)
+    Assert.assertEquals(event.getNewValue(), value)
   }
 
   def propertyChange(event: PropertyChangeEvent) = this.event = event
