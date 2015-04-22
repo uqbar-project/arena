@@ -12,6 +12,8 @@ import javassist.NotFoundException
 import javassist.bytecode.AnnotationsAttribute
 import javassist.bytecode.annotation.Annotation
 import org.uqbar.commons.utils.Observable
+import java.beans.PropertyChangeListener
+import java.beans.PropertyChangeEvent
 
 /**
  * @author nnydjesus
@@ -28,6 +30,26 @@ class ObservableBehavior extends InitializerBehavior {
     addAddPropertyChangeListenerMethod(ctClass);
     addRemovePropertyChangeListenerMethod(ctClass);
     addDependenciesInitializer(ctClass);
+    
+    
+    ctClass.addInterface(getClass(classOf[PropertyChangeListener], ctClass))
+    //void propertyChange(PropertyChangeEvent evt);
+    
+    val ctClsPCE = getClass(classOf[PropertyChangeEvent], ctClass);
+
+    val bodypc = "{$this.getChangeSupport().fireNestedPropertyChange($argument1);}"
+
+    val method = new CtMethodBuilder() {
+      withName("propertyChange")
+      withModifier(Modifier.PUBLIC)
+      withReturnType(CtClass.voidType)
+      withOwner(ctClass)
+      witBody(bodypc)
+      withparameterClass(ctClsPCE)
+    }.build()
+
+    addMethod(ctClass, method);
+    
   }
 
   /**

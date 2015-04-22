@@ -13,10 +13,10 @@ trait FieldInfo {
     val method = behaviour.getDeclaringClass().getMethod(behaviour.getMethodInfo().getName(),
       behaviour.getMethodInfo().getDescriptor())
     method.getParameterTypes().length == 0 &&
-      !method.getReturnType().equals(ClassPool.getDefault().getCtClass(Void.TYPE.getName())) &&
-      (method.getName().startsWith("get") ||
-        method.getName().startsWith("is") ||
-        hasField(behaviour.getDeclaringClass(), method.getName()));
+      !method.getReturnType().equals(CtClass.voidType) //&&
+//      (method.getName().startsWith("get") ||
+//        method.getName().startsWith("is") ||
+//        hasField(behaviour.getDeclaringClass(), method.getName()))
   }
 
   def hasField(ctClass: CtClass, fieldName: String): Boolean = {
@@ -29,7 +29,6 @@ trait FieldInfo {
   }
 
   def propertyNameFromGetter(methodName: String): String = {
-    println(s"MethodName $methodName")
     if (methodName.startsWith("get"))
       return StringUtils.uncapitalise(methodName.drop(3))
     if (methodName.startsWith("is"))

@@ -18,14 +18,15 @@ import javassist.NotFoundException
  *
  */
 
-class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo with AddDependencyInConstructor{
+class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo with AddDependencyInConstructor {
   propertyKey = "ObservableFieldAccessInterceptor";
 
   read((statement, field) => {
     val methodInfo = field.where().getMethodInfo()
     if (isGetter(field.where())) {
-      var dependency = propertyNameFromGetter(methodInfo.getName())
-      addDependency(field.where().getDeclaringClass(), field.getFieldName(), dependency)
+      val dependency = propertyNameFromGetter(methodInfo.getName())
+      val clazz = field.where().getDeclaringClass()
+      if (dependency != field.getFieldName()) addDependency(clazz, clazz.getName(), field.getFieldName(), dependency)
     }
   })
 
@@ -41,25 +42,23 @@ class ObservableFieldInterceptor extends FieldInterceptor with FieldInfo with Ad
 
 }
 
-class DependencyFieldInterceptor extends MethodCallInterceptor with FieldInfo with AddDependencyInConstructor{
+class DependencyFieldInterceptor extends MethodCallInterceptor with FieldInfo with AddDependencyInConstructor {
   propertyKey = "DependencyFieldInterceptor";
 
   after(mc => {
     val method = mc.where()
     val dependency = propertyNameFromGetter(method.getMethodInfo().getName())
     var property = propertyNameFromGetter(mc.getMethodName())
-    addDependency(method.getDeclaringClass(), property, dependency)
+    addDependency(method.getDeclaringClass(), mc.getClassName(), property, dependency)
     ""
   })
 
 }
 
-trait AddDependencyInConstructor{
-  
-  def addDependency(ctClass:CtClass, property:String, dependency:String){
-    if(!property.equals(dependency)){
-    	ctClass.getConstructors.foreach(_.insertAfter(APOParser.parse(
-    	    "$this.getChangeSupport().addDependency($class.getName(), $S" + property + "$S, $S" + dependency + "$S);")))
-    }
+trait AddDependencyInConstructor {
+
+  def addDependency(ctClass: CtClass, className: String, property: String, dependency: String) {
+    ctClass.getConstructors.foreach(_.insertAfter(APOParser.parse(
+      "$this.getChangeSupport().addDependency($S" + className + "$S,$S" + property + "$S, $S" + dependency + "$S);")))
   }
 }

@@ -15,10 +15,13 @@ import java.lang.reflect.Method
 import org.junit.Assert
 
 @Observable
-class ModelObject(var name: String = "", var lastName: String = "") {
-  
-  def getFullName() = name +" "+  lastName
-  def description() = "Persona: " + getFullName()
+case class Occupation(var name: String = "") {}
+
+@Observable
+case class ModelObject(var name: String = "", var lastName: String = "", var occupation: Occupation = Occupation()) {
+
+  def getFullName() = name + " " + lastName
+  def description() = getFullName() + " - " + occupation.name
 }
 
 class ObservableTest extends PropertyChangeListener {
@@ -29,7 +32,7 @@ class ObservableTest extends PropertyChangeListener {
 
   @Before
   def setup() {
-    model = new ModelObject
+    model = ModelObject()
     methodListener = ReflectionUtils.findMethod(classOf[ModelObject], "addPropertyChangeListener", true,
       Array(classOf[String], Class.forName(APOConfig.getProperty("apo.poo.propertyListener").value)))
   }
@@ -39,17 +42,16 @@ class ObservableTest extends PropertyChangeListener {
   @Test
   def fireEventWhenChangeProperty() {
     addListener("name")
-    
+
     model.name = "Pepe"
     Assert.assertEquals(event.getPropertyName(), "name")
     Assert.assertEquals(event.getNewValue(), "Pepe")
   }
 
-
   @Test
   def fireEventWhenChangeDependendyProperty() {
     addListener("fullName")
-    
+
     model.name = "Pepe"
     Assert.assertEquals(event.getPropertyName(), "fullName")
     Assert.assertEquals(event.getNewValue(), "Pepe ")
@@ -58,14 +60,25 @@ class ObservableTest extends PropertyChangeListener {
     Assert.assertEquals(event.getPropertyName(), "fullName")
     Assert.assertEquals(event.getNewValue(), "Pepe Pérez")
   }
-  
+
   @Test
   def fireEventWhenChangeDependendyPropertySecondLevel() {
     addListener("description")
-    
+
     model.name = "Pepe"
     Assert.assertEquals(event.getPropertyName(), "description")
-    Assert.assertEquals(event.getNewValue(), "Persona: Pepe ")
+    println(model.description)
+    Assert.assertEquals(event.getNewValue(), "Pepe  - ")
+  }
+
+  @Test
+  def fireEventWhenChangeDependendyNestedProperty() {
+    addListener("description")
+
+    model.occupation.name = "Teacher"
+    Assert.assertEquals(event.getPropertyName(), "description")
+    println(model.description)
+    Assert.assertEquals(event.getNewValue(), "  - Teacher")
   }
 
   def propertyChange(event: PropertyChangeEvent) = this.event = event
