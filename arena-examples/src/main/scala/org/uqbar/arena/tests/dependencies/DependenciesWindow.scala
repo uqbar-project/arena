@@ -6,38 +6,52 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
 import org.uqbar.commons.utils.Observable
-
-
-
-@Observable
-class Perro (var name:String ="")
+import org.uqbar.arena.layout.ColumnLayout
 
 @Observable
-class Parent (var apellido:String ="", var perro:Perro = new Perro()){
-  def nombrePerro() = perro.name
+class Direction(var address: String = "")
+
+@Observable
+class Job(var name: String = "", var direction: Direction = new Direction()) {
+  def sign() = name + ", " + direction.address
 }
 
 @Observable
-class DependencyObject(var name:String = "", var parent:Parent=new Parent()){
-  var _lastName = ""
-  
+class Employee(var name: String = "", var lastName: String = "", var job: Job = new Job()) {
+
   def getFullName() = name + lastName
   def description() = "Persona: " + getFullName()
-  
-  def lastName():String = parent.apellido  
-  def nombrePerro():String = parent.nombrePerro 
+  def jobSign() = name + ", " + job.sign
 }
 
-object DependenciesWindow extends MainWindow(new DependencyObject()) with App {
+object DependenciesWindow extends MainWindow(new Employee()) with App {
   startApplication()
-  
-  override def createContents(p:Panel) = {
-    p.setLayout(new VerticalLayout())
-    new TextBox(p).bindValueToProperty("name")
-    new TextBox(p).bindValueToProperty("parent.apellido")
-    new TextBox(p).bindValueToProperty("parent.perro.name")
-    new Label(p).bindValueToProperty("fullName")
-    new Label(p).bindValueToProperty("description")
-    new Label(p).bindValueToProperty("nombrePerro")
+
+  override def createContents(parent: Panel) = {
+    val panel = new Panel(parent);
+    panel.setLayout(new ColumnLayout(2))
+
+    textWithLabel("Employee name", "name", panel)
+    textWithLabel("Employee last name", "lastName", panel)
+    textWithLabel("Job name", "job.name", panel)
+    textWithLabel("Job direction", "job.direction.address", panel)
+
+    labelWithLabel("Employee full name", "fullName", panel)
+    labelWithLabel("Employee description", "description", panel)
+    labelWithLabel("Employee job sign", "jobSign", panel)
+
+  }
+
+  def textWithLabel(label: String, property: String, parent: Panel) {
+    new Label(parent).setText(label)
+    new TextBox(parent)
+    	.setWidth(100)
+    	.bindValueToProperty(property)
+  }
+  def labelWithLabel(label: String, property: String, parent: Panel) {
+    new Label(parent).setText(label)
+    new Label(parent)
+    	.setWidth(100)
+    	.bindValueToProperty(property)
   }
 }
