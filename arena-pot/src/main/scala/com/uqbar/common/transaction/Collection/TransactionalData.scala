@@ -20,6 +20,8 @@ abstract class TransactionalData[D](owner:Any, fieldName:String) {
       case data => this.data = data
     }
   }
+  
+  def getData() = this.data
 
   protected def updateData[T](action: (D) => T): T = {
     var act = action(data)
