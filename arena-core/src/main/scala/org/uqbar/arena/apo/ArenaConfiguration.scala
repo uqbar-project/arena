@@ -28,6 +28,8 @@ class ArenaConfiguration extends ObservableConfiguration with TransactionalConfi
 
   override def createAdvices(): List[Advice] = {
     val pointCut = new PointCut with AnnotationPointCut with FieldPointCut {
+      noStatic &&
+      fieldName(!_.toLowerCase().contains("changesupport"))
       hasAnnotation(classOf[TransactionalAndObservable].getName())
     }
 
