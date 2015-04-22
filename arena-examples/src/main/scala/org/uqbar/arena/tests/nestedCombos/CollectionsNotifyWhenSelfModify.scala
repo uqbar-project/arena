@@ -12,8 +12,9 @@ import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Window
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.utils.TransactionalAndObservable
+import org.uqbar.arena.windows.Dialog
 
-class CollectionsNotifyWhenSelfModify(owner: WindowOwner) extends TransactionalDialog[Country](owner, new Country("wewer")) {
+class CollectionsNotifyWhenSelfModify(owner: WindowOwner) extends Dialog[Country](owner, new Country("wewer")) {
 
   override def createFormPanel(mainPanel: Panel) {
     new Button(mainPanel)
