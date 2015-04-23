@@ -6,8 +6,11 @@ import javassist.bytecode.Descriptor
 import javassist.expr.ConstructorCall
 import javassist.expr.FieldAccess
 import javassist.expr.MethodCall
+import javassist.expr.Expr
+import scala.reflect.runtime.universe._
+import scala.reflect.ClassTag
 
-abstract class PointCut {
+trait PointCut {
   def evaluate(ctClass: CtClass): Boolean
   def hasIntercept(any: Any): Boolean
 }
@@ -29,12 +32,12 @@ case class FClass(fun: (CtClass) => Boolean, op: {def &&(fun: FClass): FClass
 }
 
 
-trait InterceptMatchPointCut[T] extends PointCut{
+abstract class InterceptMatchPointCut[T :ClassTag] extends PointCut{
   var pointcuts: F[T] = _
 
   override def hasIntercept(any: Any): Boolean = {
     any match {
-      case t: T => if(pointcuts == null) true else pointcuts(t)
+      case t:T => if(pointcuts == null) true else pointcuts(t)
       case _ => false;
     }
   }
@@ -45,7 +48,7 @@ trait InterceptMatchPointCut[T] extends PointCut{
   def filter(fun: (T) => Boolean) = if(pointcuts == null) {pointcuts = F(fun, this); pointcuts} else F(fun, this)
 }
 
-trait FieldPointCut extends InterceptMatchPointCut[FieldAccess] {
+abstract class FieldPointCut extends InterceptMatchPointCut[FieldAccess] {
 
   def noStatic = filter((field) => {
     val methodName  = field.where().getMethodInfo().getName()
@@ -58,7 +61,7 @@ trait FieldPointCut extends InterceptMatchPointCut[FieldAccess] {
   def hasAnnotation(annotation: Class[_]) = filter(_.where().hasAnnotation(annotation))
 }
 
-trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
+abstract class MethodPointCut extends InterceptMatchPointCut[CtMethod] {
   def methodName(fun: (String) => Boolean) = filter(method => fun(method.getName()))
   def hasAnnotation(annotation: Class[_]) = filter(_.hasAnnotation(annotation))
   def method(fun: (CtMethod) => Boolean) = filter(fun)
@@ -71,12 +74,12 @@ trait MethodPointCut extends InterceptMatchPointCut[CtMethod] {
 
 }
 
-trait MethodCallPointCut extends InterceptMatchPointCut[MethodCall] {
+abstract class MethodCallPointCut extends InterceptMatchPointCut[MethodCall] {
   def methodName(fun: (String) => Boolean) = filter(method => fun(method.getMethodName()))
   def notConstructor() = filter(method => { !method.where().getMethodInfo().toString().startsWith("<init>") })
 }
 
-trait ConstructorCallPointCut extends InterceptMatchPointCut[ConstructorCall] {
+abstract class ConstructorCallPointCut extends InterceptMatchPointCut[ConstructorCall] {
 }
 
 

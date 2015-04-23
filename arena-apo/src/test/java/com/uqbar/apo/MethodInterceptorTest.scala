@@ -17,14 +17,14 @@ class MethodTestConfiguration extends Configuration {
 
   override def createAdvices() = List(new Advice(testPoincut, inteceptor), new Advice(testCallPointcut, callInteceptor))
 
-  def testPoincut = new PointCut with ClassPointCut with MethodPointCut {
+  def testPoincut = new MethodPointCut with ClassPointCut  {
     methodName(_ startsWith ("set"))
     className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
   }
 
   def inteceptor = method.after((method) => dispatch(method.getName()))
 
-  def testCallPointcut = new PointCut with ClassPointCut with MethodCallPointCut {
+  def testCallPointcut = new MethodCallPointCut with ClassPointCut {
     methodName(cm => cm.startsWith("get") && cm.length > 3) && notConstructor
     className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
   }

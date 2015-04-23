@@ -15,7 +15,7 @@ class FieldTestConfiguration extends Configuration {
 
   override def createAdvices() = List(new Advice(testPoincut, interceptor))
 
-  def testPoincut = new PointCut with ClassPointCut with FieldPointCut {
+  def testPoincut = new FieldPointCut with ClassPointCut {
     fieldType[String]
     className(_ == "TestObject") && packageName(_ contains "com.uqbar.aop.entities")
   }

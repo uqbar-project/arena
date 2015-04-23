@@ -45,9 +45,9 @@ trait FieldInterceptor extends Interceptor[FieldAccess] { self =>
   def intercept(statement: StringBuffer, field: FieldAccess) {
     var filter = Buffer[Behavior[FieldBehaviour, FieldAccess]]()
     if (field.isWriter()) {
-      filter = intercepts.filter(_.isInstanceOf[Write[_, FieldAccess]]).asInstanceOf[Buffer[Behavior[FieldBehaviour, FieldAccess]]]
+      filter = intercepts.filter(_.isInstanceOf[Write[_, _]]).asInstanceOf[Buffer[Behavior[FieldBehaviour, FieldAccess]]]
     } else {
-      filter = intercepts.filter(_.isInstanceOf[Read[_,FieldAccess]]).asInstanceOf[Buffer[Behavior[FieldBehaviour, FieldAccess]]]
+      filter = intercepts.filter(_.isInstanceOf[Read[_, _]]).asInstanceOf[Buffer[Behavior[FieldBehaviour, FieldAccess]]]
     }
     filter.foreach(call => call.proceed(statement, new FieldBehaviour(field)))
   }

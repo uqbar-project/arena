@@ -18,7 +18,7 @@ trait TransactionalConfiguration extends Configuration {
   val transactionInterceptor = new TransactionFieldInterceptor()
 
   override def createAdvices(): List[Advice] = {
-    super.createAdvices().::(new Advice(new PointCut with AnnotationPointCut with FieldPointCut {
+    super.createAdvices().::(new Advice(new FieldPointCut with AnnotationPointCut {
       hasAnnotation(classOf[Transactional].getName()) || 
       hasAnnotation(classOf[Observable].getName())|| 
       hasAnnotation(classOf[TransactionalAndObservable].getName()) 

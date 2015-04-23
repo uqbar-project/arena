@@ -15,7 +15,7 @@ class JFaceConfiguration extends Configuration {
       m.addCatch("{return org.uqbar.commons.model.ScalaBeanInfo.getPropertyDescriptor($1, $2);}", etype)
     })
 
-    val instroperctorPoint = new PointCut with ClassPointCut with MethodPointCut {
+    val instroperctorPoint = new MethodPointCut with ClassPointCut {
       className(_.equals("BeansObservables")) && packageName(_.equals("org.eclipse.core.databinding.beans"))
 
       methodName(_.equals("getPropertyDescriptor"))

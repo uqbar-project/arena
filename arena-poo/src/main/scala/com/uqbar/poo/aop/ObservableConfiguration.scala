@@ -23,7 +23,7 @@ trait ObservableConfiguration extends Configuration {
   val observableBehavior = new ObservableBehavior()
 
   override def createAdvices(): List[Advice] = {
-    val fieldPoint = new PointCut with AnnotationPointCut with FieldPointCut {
+    val fieldPoint = new FieldPointCut with AnnotationPointCut {
       noStatic &&
       fieldName(!_.toLowerCase().contains("changesupport"))
       hasAnnotation(classOf[Observable].getName())
@@ -36,7 +36,7 @@ trait ObservableConfiguration extends Configuration {
       }
     }
 
-    val dependencyPointcut = new PointCut with AnnotationPointCut with MethodCallPointCut with FieldInfo {
+    val dependencyPointcut = new MethodCallPointCut with AnnotationPointCut  with FieldInfo {
       methodName(name=> !List("tostring", "clazz", "changesupport").exists(filter=> name.toLowerCase.contains(filter))) &&
       notConstructor &&
       filter(mc=> isGetter(mc.getMethod()))

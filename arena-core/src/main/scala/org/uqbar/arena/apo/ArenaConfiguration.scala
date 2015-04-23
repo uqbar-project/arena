@@ -27,7 +27,7 @@ import com.uqbar.apo.FieldInterceptor
 class ArenaConfiguration extends ObservableConfiguration with TransactionalConfiguration {
 
   override def createAdvices(): List[Advice] = {
-    val pointCut = new PointCut with AnnotationPointCut with FieldPointCut {
+    val pointCut = new FieldPointCut with AnnotationPointCut {
       noStatic &&
       fieldName(!_.toLowerCase().contains("changesupport"))
       hasAnnotation(classOf[TransactionalAndObservable].getName())
@@ -45,7 +45,7 @@ class ArenaConfiguration extends ObservableConfiguration with TransactionalConfi
       .addInterceptor(observableFieldInterceptor)
       .addInterceptor(transactionInterceptor)
       
-   val initPointCut = new PointCut with AnnotationPointCut with FieldPointCut{
+   val initPointCut = new FieldPointCut with AnnotationPointCut{
       ||(hasAnnotation(classOf[TransactionalAndObservable].getName())) || hasAnnotation(classOf[Observable].getName())
       constructor()
     }
