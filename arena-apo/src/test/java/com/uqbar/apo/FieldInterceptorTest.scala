@@ -30,8 +30,8 @@ class FieldInterceptorTest extends AbstractInterceptorTest {
   @Test
   def disparaUnEventoCuandoSeModificaUnaPropiedad() {
     testObject.setName("Juan")
-    Assert.assertEquals(eventDispatch, Buffer("Juan"))
+    Assert.assertEquals(Buffer("Juan"), eventDispatch)
     testObject.setLastName("Pepe")
-    Assert.assertEquals(eventDispatch, Buffer("Juan", "Pepe"))
+    Assert.assertEquals(Buffer("Juan", "Pepe"), eventDispatch)
   }
 }

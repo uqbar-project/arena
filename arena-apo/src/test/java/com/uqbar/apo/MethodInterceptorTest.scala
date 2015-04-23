@@ -41,15 +41,15 @@ class MethodInterceptorTest extends AbstractInterceptorTest {
   @Test
   def disparaUnEventoCuandoSeInvocaUnSetter() {
     testObject.setName("Juan")
-    Assert.assertEquals(eventDispatch, Buffer("setName"))
+    Assert.assertEquals(Buffer("setName"), eventDispatch)
     testObject.setLastName("Pepe")
-    Assert.assertEquals(eventDispatch, Buffer("setName", "setLastName"))
+    Assert.assertEquals(Buffer("setName", "setLastName"), eventDispatch)
   }
 
   @Test
   def dispararUnEventoCuandoSeUsaUnGetterEnUnMetodo() {
     testObject.description()
-    Assert.assertEquals(eventDispatch, Buffer("getFullName"))
+    Assert.assertEquals(Buffer("getFullName"), eventDispatch)
   }
 
 }

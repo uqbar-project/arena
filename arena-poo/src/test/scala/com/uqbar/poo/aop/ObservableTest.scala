@@ -75,8 +75,8 @@ class ObservableTest extends PropertyChangeListener {
   }
   
   def assertEvent(propertyName:String, value:String){
-    Assert.assertEquals(event.getPropertyName(), propertyName)
-    Assert.assertEquals(event.getNewValue(), value)
+    Assert.assertEquals(propertyName, event.getPropertyName())
+    Assert.assertEquals(value, event.getNewValue())
   }
 
   def propertyChange(event: PropertyChangeEvent) = this.event = event
