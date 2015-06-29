@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/uqbar-project/arena.svg?branch=master)](https://travis-ci.org/uqbar-project/arena)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.uqbar-project/arena-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.uqbar-project/arena-core/)
 
-arena
+Arena
 =====
 
 # Documentation
