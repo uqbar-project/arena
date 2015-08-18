@@ -75,7 +75,38 @@ remove.bindEnabled(elementSelected)
 edit.bindEnabled(elementSelected)
 +--
 
-Advanced bindings examples
+* Calculated Properties
+
+There are cases where the View component needs to show a model property for which there is no instance variable. This are the 
+so called "Calculated Properties". Because the value is calculated based on some other property.
+A simple example of this is the "fullName" property on the following model
+
++-- 
+class User {
+    @Accessors String firstName
+    @Accessors String lastName
+
+    def getFullName() {
+        return lastName + ", " + firstName
+    }
+}
++--
+
+In this case the "fullname" property depends on both "firstName", and "lastName".
+Arena cannot magically detect this so what will happen is that when someone changes either firstName or lastName the "fullName" property
+won't be refreshed and will be out-dated.
+
+To solve this you need to explicitly declare the relation between these properties by adding an annotation as the following:
+
++--
+    @Dependencies("firstName", "lastName")
+    def getFullName() {
+        return lastName + ", " + firstName
+    }
++--
+
+
+* Advanced bindings examples
 
      * {{{./bindingImages.html}Binding Images}}
      
@@ -83,8 +114,7 @@ Advanced bindings examples
      
      []
 
-     
-Links
+* Links
  
  {{{../bindings.html}Back to Binding Page}}
  
