@@ -1,10 +1,10 @@
 package org.uqbar.arena.jface.apo
-import com.uqbar.apo.Configuration
-import com.uqbar.apo.APODSL._
-import com.uqbar.apo.pointcut.PointCut
-import com.uqbar.apo.pointcut.ClassPointCut
-import com.uqbar.apo.Advice
-import com.uqbar.apo.pointcut.MethodPointCut
+import org.uqbar.apo.Configuration
+import org.uqbar.apo.APODSL._
+import org.uqbar.apo.pointcut.PointCut
+import org.uqbar.apo.pointcut.ClassPointCut
+import org.uqbar.apo.Advice
+import org.uqbar.apo.pointcut.MethodPointCut
 import javassist.ClassPool
 
 class JFaceConfiguration extends Configuration {

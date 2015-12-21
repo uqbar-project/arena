@@ -50,7 +50,7 @@ Launch configuration references non-existing project celulares-ui-arena-scala
 =====================
 
 +--
-Exception in thread "main" java.lang.RuntimeException: Esta aplicación no está corriendo con el ClassLoader necesario. Corra  la aplicación con el siguiente parámetro para la VM: -Djava.system.class.loader=com.uqbar.apo.APOClassLoader. El ClassLoader actual es: sun.misc.Launcher$AppClassLoader@6fd3633c
+Exception in thread "main" java.lang.RuntimeException: Esta aplicación no está corriendo con el ClassLoader necesario. Corra  la aplicación con el siguiente parámetro para la VM: -Djava.system.class.loader=org.uqbar.apo.APOClassLoader. El ClassLoader actual es: sun.misc.Launcher$AppClassLoader@6fd3633c
 	at org.uqbar.arena.Application.validateClassLoader(Application.java:32)
 	at org.uqbar.arena.Application.<init>(Application.java:24)
 +--

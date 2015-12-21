@@ -19,6 +19,7 @@ public interface PanelBuilder {
 	public LabelBuilder addLabel();
 
 	public StyledControlBuilder addTextBox(boolean multiLine);
+	public StyledControlBuilder addPasswordField();
 	public StyledControlBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);

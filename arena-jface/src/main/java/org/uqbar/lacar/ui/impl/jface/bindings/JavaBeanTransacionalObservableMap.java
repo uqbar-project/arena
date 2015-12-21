@@ -9,12 +9,11 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.map.MapDiff;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
 import org.eclipse.core.internal.databinding.beans.JavaBeanObservableMap;
+import org.uqbar.aop.transaction.ObjectTransactionManager;
+import org.uqbar.apo.APOConfig;
 import org.uqbar.arena.isolation.IsolationLevelEvents;
+import org.uqbar.common.transaction.ObjectTransaction;
 import org.uqbar.commons.utils.ReflectionUtils;
-
-import com.uqbar.aop.transaction.ObjectTransactionManager;
-import com.uqbar.apo.APOConfig;
-import com.uqbar.common.transaction.ObjectTransaction;
 
 /**
  * 

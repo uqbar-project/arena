@@ -7,13 +7,13 @@
 		<value>true</value>
 	</property>
 	<property name="apo.poo.changeSupport">
-		<value>com.uqbar.poo.aop.POOPropertyChangeSupport</value>
+		<value>org.uqbar.poo.aop.POOPropertyChangeSupport</value>
 	</property>
 	<property name="apo.poo.propertyListener">
 		<value>java.beans.PropertyChangeListener</value>
 	</property>
 	<property name="apo.adviceConfiguration">
-		<value>com.uqbar.poo.aop.ObservableConfigurationImpl</value>
+		<value>org.uqbar.poo.aop.ObservableConfigurationImpl</value>
 	</property>
 	<property name="apo.exclude.package">
 		<value>groovy.lang</value>

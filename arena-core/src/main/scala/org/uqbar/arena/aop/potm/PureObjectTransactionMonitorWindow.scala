@@ -10,7 +10,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.ErrorsPanel
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import com.uqbar.aop.transaction.ObjectTransactionImpl
+import org.uqbar.aop.transaction.ObjectTransactionImpl
 import org.uqbar.arena.layout.VerticalLayout
 
 class PureObjectTransactionMonitorWindow(parent: WindowOwner, model: MonitorApplicationModel)

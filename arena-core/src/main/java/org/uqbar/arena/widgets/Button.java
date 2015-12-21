@@ -10,7 +10,6 @@ import org.uqbar.lacar.ui.model.ButtonBuilder;
 import org.uqbar.lacar.ui.model.NoopAction;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
-
 import org.apache.commons.collections15.Closure;
 import org.apache.commons.collections15.Transformer;
 
@@ -35,6 +34,7 @@ import static org.uqbar.arena.bindings.observables.ViewObservables.*;
 public class Button extends SkinnableControl implements WidgetWithImage {
 	private String caption = this.nextCaption();
 	private Action onClick = new NoopAction();
+
 	public Button(Container container) {
 		super(container);
 	}
@@ -79,11 +79,16 @@ public class Button extends SkinnableControl implements WidgetWithImage {
 	public Binding<?,Button, ButtonBuilder> bindCaptionToProperty(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), new ObservableCaption(this));
 	}
-	
+
 	@Override
-	public <M> Binding<M,Button,ButtonBuilder> bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
+	public <M> Binding bindImageToProperty(String propertyName,
+			Transformer<M, Image> transformer) {
 		return this.addBinding(new ObservableProperty(propertyName), observableImage(this, transformer));
 	}
+
+//	public <M> Binding<M,Button,ButtonBuilder> bindImageToProperty(String propertyName, Transformer<M,Image> transformer) {
+//		return this.addBinding(new ObservableProperty(propertyName), observableImage(this, transformer));
+//	}
 	
 	// ********************************************************
 	// ** Rendering
@@ -95,4 +100,5 @@ public class Button extends SkinnableControl implements WidgetWithImage {
 		this.configureSkineableBuilder(button);
 		return button;
 	}
+
 }

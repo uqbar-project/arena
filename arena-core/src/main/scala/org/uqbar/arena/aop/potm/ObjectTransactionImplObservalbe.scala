@@ -1,7 +1,7 @@
 package org.uqbar.arena.aop.potm
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.common.transaction.ObjectTransaction
-import com.uqbar.aop.transaction.ObjectTransactionImpl
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.common.transaction.ObjectTransaction
+import org.uqbar.aop.transaction.ObjectTransactionImpl
 import scala.collection.mutable.Buffer
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._

@@ -7,9 +7,9 @@ import org.uqbar.arena.aop.potm.PureObjectTransactionMonitorWindow
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.model.UserException
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.common.transaction.ObjectTransaction
-import com.uqbar.common.transaction.TaskOwner
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.common.transaction.ObjectTransaction
+import org.uqbar.common.transaction.TaskOwner
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.lacar.ui.model.Action

@@ -166,6 +166,16 @@ public class JFaceObservableFactory {
 				return descriptor;
 			}
 		}
+		// Si no encontramos la propiedad quizás ésta existe 
+		// pero las mayúsculas y minúsculas no están bien
+		// Enviamos un mensaje de error más representativo
+		for (int i = 0; i < propertyDescriptors.length; i++) {
+			PropertyDescriptor descriptor = propertyDescriptors[i];
+			if (descriptor.getName().equalsIgnoreCase(propertyName)) {
+				throw new BindingException("Property with name " + propertyName + " in class " + beanClass + " doesn't match expected getter/setter: " + descriptor.getName() + ". Please fix either the variable name or its accessors."); //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		// Si no se encontró enviamos un mensaje de error
 		throw new BindingException("Could not find property with name " + propertyName + " in class " + beanClass); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 

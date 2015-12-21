@@ -2,7 +2,7 @@ package org.uqbar.arena.bindings;
 
 import org.uqbar.commons.model.IModel;
 import org.uqbar.lacar.ui.model.BindingBuilder;
-import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
+import org.uqbar.lacar.ui.model.transformer.NotNullTransformer;
 
 /**
  * 

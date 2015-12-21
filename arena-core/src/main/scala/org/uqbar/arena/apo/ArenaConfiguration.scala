@@ -1,24 +1,24 @@
 package org.uqbar.arena.apo
 
 import org.uqbar.commons.utils.TransactionalAndObservable
-import com.uqbar.apo.Advice
-import com.uqbar.apo.ConstructorCallInterceptor
-import com.uqbar.apo.pointcut.AnnotationPointCut
-import com.uqbar.apo.pointcut.ConstructorCallPointCut
-import com.uqbar.apo.pointcut.FieldPointCut
-import com.uqbar.apo.pointcut.PointCut
-import com.uqbar.poo.aop.ObservableConfiguration
-import com.uqbar.pot.aop.TransactionalConfiguration
+import org.uqbar.apo.Advice
+import org.uqbar.apo.ConstructorCallInterceptor
+import org.uqbar.apo.pointcut.AnnotationPointCut
+import org.uqbar.apo.pointcut.ConstructorCallPointCut
+import org.uqbar.apo.pointcut.FieldPointCut
+import org.uqbar.apo.pointcut.PointCut
+import org.uqbar.poo.aop.ObservableConfiguration
+import org.uqbar.pot.aop.TransactionalConfiguration
 import javassist.CtClass
-import com.uqbar.apo.MethodInterceptor
-import com.uqbar.apo.pointcut.MethodPointCut
-import com.uqbar.apo.ConstructorInterceptor
-import com.uqbar.apo.pointcut.InterceptMatchPointCut
+import org.uqbar.apo.MethodInterceptor
+import org.uqbar.apo.pointcut.MethodPointCut
+import org.uqbar.apo.ConstructorInterceptor
+import org.uqbar.apo.pointcut.InterceptMatchPointCut
 import javassist.CtConstructor
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.utils.Transactional
-import com.uqbar.apo.parser.APOParser
-import com.uqbar.apo.FieldInterceptor
+import org.uqbar.apo.parser.APOParser
+import org.uqbar.apo.FieldInterceptor
 /**
  *
  * @author nny

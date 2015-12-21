@@ -1,15 +1,14 @@
 package org.uqbar.arena;
 
+import org.uqbar.aop.transaction.ObjectTransactionManager;
+import org.uqbar.apo.APOClassLoader;
+import org.uqbar.apo.APOConfig;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.ReflectionUtils;
 //import org.uqbar.lacar.ui.impl.jface.JFaceApplicationBuilder;
 import org.uqbar.lacar.ui.model.ApplicationRunner;
 import org.uqbar.lacar.ui.model.WindowFactory;
-
-import com.uqbar.aop.transaction.ObjectTransactionManager;
-import com.uqbar.apo.APOClassLoader;
-import com.uqbar.apo.APOConfig;
 
 /**
  * Punto de entrada a una aplicación Arena.

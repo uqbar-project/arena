@@ -10,9 +10,9 @@ import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
 import org.uqbar.arena.aop.potm.MonitorApplicationModel
 
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.common.transaction.ObjectTransaction
-import com.uqbar.common.transaction.TaskOwner
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.common.transaction.ObjectTransaction
+import org.uqbar.common.transaction.TaskOwner
 
 trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner {
 

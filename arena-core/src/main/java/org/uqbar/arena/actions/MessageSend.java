@@ -1,9 +1,13 @@
 package org.uqbar.arena.actions;
 
+import org.uqbar.commons.model.Repo;
 import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.Action;
 
 /**
+ * 
+ * Clase deprecada, debe usarse la interfaz {@link org.uqbar.lacar.ui.model.Action}.
+ * 
  * Una acción implementada como un envío de mensaje a un objeto.
  * Se configura con el objeto al cual enviarle el mensaje y el nombre del metodo.
  * 
@@ -13,6 +17,7 @@ import org.uqbar.lacar.ui.model.Action;
  * 
  * @author npasserini
  */
+@Deprecated
 public class MessageSend implements Action {
 	private final Object target;
 	private final String methodName;

@@ -1717,7 +1717,7 @@
                           </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
                         </propertyDescriptors>
                         <stereoType></stereoType>
-                        <name>com.uqbar.common.transaction.Context.ParameterStackElement</name>
+                        <name>org.uqbar.common.transaction.Context.ParameterStackElement</name>
                         <isAbstract>false</isAbstract>
                       </net.java.amateras.uml.classdiagram.model.ClassModel>
                       <net.java.amateras.uml.classdiagram.model.ClassModel reference="../../.."/>

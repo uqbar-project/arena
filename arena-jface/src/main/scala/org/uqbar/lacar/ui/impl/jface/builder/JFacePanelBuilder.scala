@@ -28,6 +28,7 @@ import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
  */
 class JFacePanelBuilder(container:JFaceContainer, composite:Composite) 
 	extends JFaceWidgetBuilder[Composite](container, composite)
+  
 	with PanelBuilder 
 	with JFaceContainer 
 	with Layoutable {
@@ -42,6 +43,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 
 	override def addLabel() = new JFaceLabelBuilder(this)
 	override def addTextBox(multiLine: Boolean) = new JFaceTextBuilder(this, multiLine)
+  override def addPasswordField() = new JFacePasswordBuilder(this)
 	override def addStyleTextArea(configurationStyle : java.util.Map[Array[String], Style]) = new JFaceStyledTextBuilder(this, configurationStyle)
 	override def addSpinner(minValue:Integer, maxValue:Integer) = new JFaceSpinnerBuilder(this, minValue, maxValue)
 

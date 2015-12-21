@@ -74,5 +74,5 @@ Launcher configuration
  Run > Run Configurations... > Java Application > New launch configuration, Arguments tab... and fill VM Arguments with 
 
 +--   
--Djava.system.class.loader=com.uqbar.apo.APOClassLoader
+-Djava.system.class.loader=org.uqbar.apo.APOClassLoader
 +--

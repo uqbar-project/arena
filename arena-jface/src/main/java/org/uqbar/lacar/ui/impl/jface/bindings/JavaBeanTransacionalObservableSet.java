@@ -4,11 +4,10 @@ import java.beans.PropertyDescriptor;
 
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.set.SetDiff;
+import org.uqbar.aop.transaction.ObjectTransactionManager;
+import org.uqbar.apo.APOConfig;
 import org.uqbar.arena.isolation.IsolationLevelEvents;
-
-import com.uqbar.aop.transaction.ObjectTransactionManager;
-import com.uqbar.apo.APOConfig;
-import com.uqbar.common.transaction.ObjectTransaction;
+import org.uqbar.common.transaction.ObjectTransaction;
 
 public class JavaBeanTransacionalObservableSet extends ArenaJavaBeanObservableSet {
 	  private final String isolationKey = "apo.poo.isolationLevel";

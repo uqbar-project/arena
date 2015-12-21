@@ -1,6 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<properties>
+		<scala.version.major>2.11</scala.version.major>
+		<scala.version.minor>2</scala.version.minor>
+		<scala.version>${scala.version.major}.${scala.version.minor}</scala.version>
+		<scm.gitServer>https://github.com/uqbar-project</scm.gitServer>
+	</properties>
+
 	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-parent</artifactId>
 	<version>3.6.1-SNAPSHOT</version>
@@ -34,13 +41,6 @@
 		</license>
 	</licenses>
 
-	<properties>
-		<scala.version.major>2.11</scala.version.major>
-		<scala.version.minor>2</scala.version.minor>
-		<scala.version>${scala.version.major}.${scala.version.minor}</scala.version>
-		<scm.gitServer>https://github.com/uqbar-project</scm.gitServer>
-	</properties>
-
 	<developers>
 		<developer>
 			<id>npasserini</id>
@@ -71,6 +71,11 @@
 			<id>tesonep</id>
 			<name>Pablo Tesone</name>
 			<email>tesonep@gmail.com</email>
+		</developer>
+		<developer>
+			<id>fdodino</id>
+			<name>Fernando Dodino</name>
+			<email>fernando.dodino@gmail.com</email>
 		</developer>
 	</developers>
 
@@ -134,7 +139,7 @@
 			<dependency>
 				<groupId>org.uqbar-project</groupId>
 				<artifactId>uqbar-domain</artifactId>
-				<version>3.5.1</version>
+				<version>3.6.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.javassist</groupId>
@@ -164,8 +169,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>

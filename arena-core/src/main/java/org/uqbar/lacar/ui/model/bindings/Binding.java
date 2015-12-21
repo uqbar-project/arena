@@ -5,8 +5,8 @@ import org.uqbar.arena.bindings.Transformer;
 import org.uqbar.arena.widgets.Widget;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
-import org.uqbar.lacar.ui.model.adapter.NotEmptyTransformer;
-import org.uqbar.lacar.ui.model.adapter.NotNullTransformer;
+import org.uqbar.lacar.ui.model.transformer.NotEmptyTransformer;
+import org.uqbar.lacar.ui.model.transformer.NotNullTransformer;
 
 /**
  * Abstracción que vincula dos propiedades observables: una del modelo y otra de la vista. El binding se

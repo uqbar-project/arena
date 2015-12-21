@@ -29,7 +29,7 @@
 				<groupId>org.scalatest</groupId>
 				<artifactId>scalatest-maven-plugin</artifactId>
 				<configuration>
-					<argLine>-Djava.system.class.loader=com.uqbar.apo.APOClassLoader</argLine>
+					<argLine>-Djava.system.class.loader=org.uqbar.apo.APOClassLoader</argLine>
 				</configuration>
 			</plugin>
 		</plugins>

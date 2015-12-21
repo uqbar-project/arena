@@ -9,8 +9,8 @@ import org.eclipse.core.databinding.observable.Realm
 import org.eclipse.core.internal.databinding.beans.JavaBeanObservableValue
 import org.eclipse.core.internal.databinding.observable.masterdetail.DetailObservableValue
 import org.uqbar.arena.isolation.IsolationLevelEvents
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.apo.APOConfig
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.apo.APOConfig
 
 trait ObservableEvents {
   val isolationKey = "apo.poo.isolationLevel";

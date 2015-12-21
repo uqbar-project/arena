@@ -1,8 +1,8 @@
 package org.uqbar.arena.performance
 import java.util.Calendar
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.common.transaction.TaskOwner
-import com.uqbar.aop.transaction.utils.BasicTaskOwner
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.common.transaction.TaskOwner
+import org.uqbar.aop.transaction.utils.BasicTaskOwner
 import org.uqbar.commons.utils.TransactionalAndObservable
 import org.uqbar.commons.model.UserException
 import System.{ currentTimeMillis => time }

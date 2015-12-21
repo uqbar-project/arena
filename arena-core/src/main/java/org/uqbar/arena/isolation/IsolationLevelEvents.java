@@ -1,7 +1,7 @@
 package org.uqbar.arena.isolation;
 
-import com.uqbar.aop.transaction.ObjectTransactionManager;
-import com.uqbar.common.transaction.ObjectTransaction;
+import org.uqbar.aop.transaction.ObjectTransactionManager;
+import org.uqbar.common.transaction.ObjectTransaction;
 
 public enum IsolationLevelEvents {
 	

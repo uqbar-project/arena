@@ -4,12 +4,11 @@ import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.observable.set.SetDiff;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.internal.databinding.observable.masterdetail.DetailObservableSet;
+import org.uqbar.aop.transaction.ObjectTransactionManager;
+import org.uqbar.apo.APOConfig;
 import org.uqbar.arena.isolation.IsolationLevelEvents;
+import org.uqbar.common.transaction.ObjectTransaction;
 import org.uqbar.commons.utils.ReflectionUtils;
-
-import com.uqbar.aop.transaction.ObjectTransactionManager;
-import com.uqbar.apo.APOConfig;
-import com.uqbar.common.transaction.ObjectTransaction;
 
 public class DetailTransactionalObservableSet extends DetailObservableSet{
 	

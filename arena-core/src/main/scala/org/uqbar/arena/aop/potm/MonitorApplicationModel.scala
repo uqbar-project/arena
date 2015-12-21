@@ -4,8 +4,8 @@ import scala.collection.mutable.Buffer
 import org.uqbar.commons.utils.Observable
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
-import com.uqbar.aop.transaction.ObjectTransactionManager
-import com.uqbar.aop.transaction.IdentityWrapper
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.aop.transaction.IdentityWrapper
 
 @Observable
 class MonitorApplicationModel {
