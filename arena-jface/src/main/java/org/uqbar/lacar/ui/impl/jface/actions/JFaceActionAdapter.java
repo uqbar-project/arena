@@ -12,6 +12,7 @@ import org.uqbar.lacar.ui.model.Action;
  * @author npasserini
  */
 public class JFaceActionAdapter implements SelectionListener {
+	
 	private final JFaceContainer context;
 	private final Action action;
 
