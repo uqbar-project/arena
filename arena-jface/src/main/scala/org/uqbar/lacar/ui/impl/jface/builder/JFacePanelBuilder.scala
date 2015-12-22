@@ -74,10 +74,10 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 		new JFacePanelBuilder(this, group)
 	}
 
-	override def addErrorPanel(okMessage:String) = {
+	override def addErrorPanel(okMessage:String, preferredLines: Int) = {
 		// TODO Usar el framework para configurar el label en lugar de hacerlo manualmente.
 		val errorLabel = new Label(widget, SWT.WRAP)
-		errorLabel.setLayoutData(new RowData(250, 50))
+		errorLabel.setLayoutData(new RowData(250, 50 * preferredLines))
 
 		// fija el background del label. por default es blanco, al igual que el de eclipse
 		errorLabel.setBackground(widget.getDisplay.getSystemColor(SWT COLOR_WHITE))
@@ -96,7 +96,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 
 	override def setPreferredWidth(width:Int) = {
 		// TODO Hacer una abstracción más genérica que permita manejar distintos tipos de Layout Data.
-		// this.getWidget().setLayoutData(new RowData(width , 500))
+		//widget setLayoutData(new RowData(width , 500))
 	}
 
 	// ********************************************************

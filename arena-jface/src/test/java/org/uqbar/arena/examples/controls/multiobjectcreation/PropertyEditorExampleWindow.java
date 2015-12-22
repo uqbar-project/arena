@@ -1,6 +1,6 @@
 package org.uqbar.arena.examples.controls.multiobjectcreation;
 
-import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.bindings.ValueTransformer;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Panel;
@@ -31,7 +31,7 @@ public class PropertyEditorExampleWindow extends MainWindow<UbicarCosa> {
 
 		// esfera
 		// estrellas
-		Transformer<Ubicable, Boolean> esEsferaAdapter = this.esEsferaAdapter();
+		ValueTransformer<Ubicable, Boolean> esEsferaAdapter = this.esEsferaAdapter();
 
 		// new Label(mainPanel).setText("Estrellas:");
 		TextBox estrellas = new TextBox(mainPanel);
@@ -44,8 +44,8 @@ public class PropertyEditorExampleWindow extends MainWindow<UbicarCosa> {
 
 	}
 
-	protected Transformer<Ubicable, Boolean> esEsferaAdapter() {
-		return new Transformer<Ubicable, Boolean>() {
+	protected ValueTransformer<Ubicable, Boolean> esEsferaAdapter() {
+		return new ValueTransformer<Ubicable, Boolean>() {
 			@Override
 			public Boolean modelToView(Ubicable ubicable) {
 				return ubicable instanceof Esfera;

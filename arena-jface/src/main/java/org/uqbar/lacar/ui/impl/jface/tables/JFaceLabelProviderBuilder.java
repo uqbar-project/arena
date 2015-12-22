@@ -79,10 +79,11 @@ public class JFaceLabelProviderBuilder<R> implements LabelProviderBuilder<R> {
 		this.columnPropertyNames.add(propertyName);
 		final int index = this.delegatedColumnIndex++;
 		final Transformer<R, Object> propertyTransformer = this.columnsLabelProvider.getDelegatingTransformer(index);
-		Transformer<R,String> t = new Transformer<R,String>() {
+ 		Transformer<R,String> t = new Transformer<R,String>() {
 			@Override
 			public String transform(R element) {
-				return transformer.transform((P) propertyTransformer.transform(element));
+				P propertyValue = (P) propertyTransformer.transform(element);
+				return transformer.transform(propertyValue);
 			}
 		};
 		this.addCalculatedColumn(t);

@@ -1,18 +1,16 @@
 package org.uqbar.lacar.ui.model.transformer;
 
-import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.bindings.ValueTransformer;
 
 /**
  *  
  * 
  * @author jfernandes
  */
-public class NotNullTransformer implements Transformer<Object, Boolean> {
+public class NotNullTransformer implements ValueTransformer<Object, Boolean> {
 
 	@Override
 	public Object viewToModel(Boolean valueFromView) {
-		//throw new UnsupportedOperationException("This adapter cannot be used in the view to model direction");
-		// si tiramos la exception, se rompe
 		return null;
 	}
 

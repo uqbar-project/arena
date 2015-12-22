@@ -1,7 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.builder.tree
 
 import org.uqbar.lacar.ui.model.BindingBuilder
-import org.uqbar.arena.bindings.Transformer
+import org.uqbar.arena.bindings.ValueTransformer
 
 
 class JFaceContentsBindingBuilder(list:JFaceTreeBuilder[_]) extends BindingBuilder {
@@ -13,8 +13,8 @@ class JFaceContentsBindingBuilder(list:JFaceTreeBuilder[_]) extends BindingBuild
 		treeViewer.setInput(model)
 	}
 
-	override def adaptWith[M,V](transformer:Transformer[M, V]) = 
-		throw new UnsupportedOperationException("No está preparado para tener adapters.")
+	override def adaptWith[M,V](transformer:ValueTransformer[M, V]) = 
+		throw new UnsupportedOperationException("No está preparado para tener value transformers.")
 	
 	override def modelToView[M,V](transformer : org.apache.commons.collections15.Transformer[M,V]) =
 	  throw new UnsupportedOperationException("No está preparado para tener transformers.")

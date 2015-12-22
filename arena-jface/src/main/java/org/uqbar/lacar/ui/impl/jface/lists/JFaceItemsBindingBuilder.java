@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.impl.jface.lists;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
-import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.bindings.ValueTransformer;
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceObservableFactory;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 
@@ -28,7 +28,7 @@ public class JFaceItemsBindingBuilder implements BindingBuilder {
 	 * This operation is currently not supported for this kind of binding.
 	 */
 	@Override
-	public <M, V> BindingBuilder adaptWith(Transformer<M, V> transformer) {
+	public <M, V> BindingBuilder adaptWith(ValueTransformer<M, V> transformer) {
 		throw new UnsupportedOperationException("Applying transformers to item bindings is currently not supported.");
 	}
 	

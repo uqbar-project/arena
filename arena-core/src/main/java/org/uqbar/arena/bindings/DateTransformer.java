@@ -13,7 +13,7 @@ import org.uqbar.commons.model.UserException;
  * @see SimpleDateFormat
  * @author npasserini
  */
-public final class DateTransformer implements Transformer<Date, String> {
+public final class DateTransformer implements ValueTransformer<Date, String> {
 	public String pattern = "dd/MM/yyyy";
 
 	@Override

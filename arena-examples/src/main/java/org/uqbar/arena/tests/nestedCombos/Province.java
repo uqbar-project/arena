@@ -7,9 +7,11 @@ import org.uqbar.commons.utils.Transactional;
 @Transactional
 public class Province {
 	private String name;
-
+	private Boolean pretty;
+	
 	public Province(String name) {
 		this.name = name;
+		this.pretty = new Boolean(true);
 	}
 
 	public String getName() {
@@ -19,4 +21,13 @@ public class Province {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	Boolean getPretty() {
+		return pretty;
+	}
+
+	void setPretty(Boolean pretty) {
+		this.pretty = pretty;
+	}
+	
 }

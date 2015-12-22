@@ -1,9 +1,9 @@
 package org.uqbar.arena.bindings.transformers;
 
-import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.bindings.ValueTransformer;
 
 /**
- * Abstract base class for all "read-only" {@link Transformer} implementations.
+ * Abstract base class for all "read-only" {@link ValueTransformer} implementations.
  * A readonly transformer means one that is used on components just to show a value
  * and not to change it.
  * 
@@ -11,11 +11,11 @@ import org.uqbar.arena.bindings.Transformer;
  * 
  * @author jfernandes
  */
-public abstract class AbstractReadOnlyTransformer<M, V> implements Transformer<M, V> {
+public abstract class AbstractReadOnlyTransformer<M, V> implements ValueTransformer<M, V> {
 
 	@Override
 	public M viewToModel(V valueFromView) {
-		throw new UnsupportedOperationException("This adapter cannot be used to modify the model !!!");
+		throw new UnsupportedOperationException("This transformer cannot be used to modify the model !!!");
 	}
 	
 }

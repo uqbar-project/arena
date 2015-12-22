@@ -129,11 +129,15 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		table.bindValueToProperty("province");
 
 		new Column<Province>(table).setTitle("Property").bindContentsToProperty("name");
-		new Column<Province>(table).setTitle("Transformer").bindContentsToTransformer(
-			new Transformer<Province, String>() {
+		new Column<Province>(table).setTitle("Transformer").bindContentsToProperty("pretty").setTransformer(
+			new Transformer<Boolean, String>() {
 				@Override
-				public String transform(Province element) {
-					return element.getName();
+				public String transform(Boolean pretty) {
+					if (pretty) {
+						return "yes"; 
+					} else {
+						return "no";
+					}
 				}
 			});
 	}

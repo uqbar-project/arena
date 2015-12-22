@@ -50,7 +50,6 @@ public class ColumnsLabelProvider<R> extends ColumnLabelProvider implements ITab
 	@SuppressWarnings("unchecked")
 	public String getColumnText(Object element, int columnIndex) {
 		if (columnIndex >= this.calculatedColumns.size()) {
-			// by default show as string
 			return element.toString();
 		}
 		Object converted = this.calculatedColumns.get(columnIndex).transform((R) element);
@@ -61,7 +60,7 @@ public class ColumnsLabelProvider<R> extends ColumnLabelProvider implements ITab
 		return new Transformer<R, Object>() {
 			@Override
 			public Object transform(R element) {
-				return ColumnsLabelProvider.this.decorated.getColumnText(element, columnIndex);
+				return ColumnsLabelProvider.this.decorated.getColumnValue(element, columnIndex);
 			}
 		};
 	}

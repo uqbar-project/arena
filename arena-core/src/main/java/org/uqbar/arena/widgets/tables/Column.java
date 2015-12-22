@@ -4,23 +4,21 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections15.Closure;
+import org.apache.commons.collections15.Transformer;
 import org.uqbar.arena.widgets.tables.labelprovider.BackgroundProvider;
 import org.uqbar.arena.widgets.tables.labelprovider.ForegroundProvider;
 import org.uqbar.arena.widgets.tables.labelprovider.PropertyLabelProvider;
-import org.uqbar.arena.widgets.tables.labelprovider.TransformerLabelProvider;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 import org.uqbar.lacar.ui.model.TableBuilder;
-import org.apache.commons.collections15.Closure;
-
-import org.apache.commons.collections15.Transformer;
 
 /**
  * Una columna de una tabla.
  * 
- * Es obligatorio configurar los contenidos de la columna utilizando {@link #bindContentsToProperty(String)} o
- * {@link #bindContentsToTransformer(Transformer)}
- * 
+ * Es obligatorio configurar los contenidos de la columna utilizando {@link #bindContentsToProperty(String)}
+ * (luego podemos utilizar un transformer)
+ *  
  * @param <R> El tipo de los objetos que se muestran en la tabla en la que se agrega esta columna. Cada uno de
  *            estos objetos estará asociado a una fila de la tabla.
  * 
@@ -110,16 +108,19 @@ public class Column<R> {
 		return label;
 	}
 
-	/**
-	 * @deprecated usar {@link #bindContentsToProperty(String)} y luego llamar a setTransformer
+	/*
+	 * deprecated usar {@link #bindContentsToProperty(String)} y luego llamar a setTransformer
 	 * sobre el objeto que devuelve. De esa forma no se pierde el binding a la property.
 	 * Claro que ese transformer solo se puede usar para transformar el valor de la propiedad.
 	 * No recibe por parámetro al objeto modelo de la fila, sino el valor de la property.
-	 */
+	 * 
+	
 	public <U> Column<R> bindContentsToTransformer(Transformer<R, U> transformer) {
 		this.labelProvider.add(new TransformerLabelProvider<R, U>(transformer));
 		return this;
 	}
+	
+	*/
 	
 	public BackgroundProvider<R, Color> bindBackground(final String propertyName) {
 		BackgroundProvider<R, Color> label = new BackgroundProvider<R,  Color>(propertyName);

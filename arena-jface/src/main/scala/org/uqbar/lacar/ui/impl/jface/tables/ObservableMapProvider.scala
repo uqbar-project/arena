@@ -73,13 +73,17 @@ class ObservableMapProvider extends ColumnLabelProvider with ITableLabelProvider
 	def getColumnImage(element:Object, columnIndex:Int):Image = null
 
 	def getColumnText(element:Object, columnIndex:Int):String = {
+		val result = getColumnValue(element, columnIndex)
+		return if (result == null)  "" else  result.toString
+	}
+
+	def getColumnValue(element:Object, columnIndex:Int):Any = {
 		if (columnIndex < attributeLabelMaps.length) {
-			val result = attributeLabelMaps(columnIndex).get(element)
-			return if (result == null)  "" else  result.toString
+			return attributeLabelMaps(columnIndex).get(element)
 		}
 		return null;
 	}
-	
+		
 	def getForeground(element:Object, columnIndex:Int) : org.eclipse.swt.graphics.Color = {
 		if (foregroundTransformers.contains(columnIndex)) {
 			val modelValue = attributeForegroundMaps(columnIndex).getValue(element)

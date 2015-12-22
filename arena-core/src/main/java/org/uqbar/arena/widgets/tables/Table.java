@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.collections15.Closure;
+import org.uqbar.arena.ArenaException;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
 import org.uqbar.arena.widgets.Container;
@@ -15,8 +17,6 @@ import org.uqbar.lacar.ui.model.WidgetBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
-
-import org.apache.commons.collections15.Closure;
 
 /**
  * 
@@ -31,6 +31,9 @@ public class Table<R> extends Control {
 
 	public Table(Container container, Class<R> itemType) {
 		super(container);
+		if (!itemType.isAnnotationPresent(org.uqbar.commons.utils.Observable.class)) {
+			throw new ArenaException("La clase " + itemType.getName() + " debe tener la annotation @Observable");
+		}
 		setItemType(itemType);
 	}
 	

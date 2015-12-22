@@ -6,7 +6,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue
 import org.uqbar.lacar.ui.impl.jface.builder.JFaceWidgetBuilder
 import org.eclipse.core.databinding.conversion.IConverter
 import org.eclipse.core.databinding.UpdateValueStrategy
-import org.uqbar.arena.bindings.Transformer
+import org.uqbar.arena.bindings.ValueTransformer
 import org.uqbar.ui.jface.base.BaseUpdateValueStrategy
 import org.eclipse.core.runtime.IStatus
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
@@ -46,7 +46,7 @@ class JFaceBindingBuilder(val dbc: DataBindingContext, val container: JFaceConta
     viewToModel setConverter(converter)
   }
 
-  override def adaptWith[M, V](transformer: Transformer[M, V]) = {
+  override def adaptWith[M, V](transformer: ValueTransformer[M, V]) = {
     setConverter(viewToModel, new IConverter() {
       override def getToType() = transformer.getModelType
       override def getFromType() = transformer.getViewType

@@ -1,7 +1,8 @@
 package org.uqbar.lacar.ui.model.bindings;
 
 import org.uqbar.arena.bindings.Adapter;
-import org.uqbar.arena.bindings.Transformer;
+import org.uqbar.arena.bindings.PropertyAdapter;
+import org.uqbar.arena.bindings.ValueTransformer;
 import org.uqbar.arena.widgets.Widget;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
@@ -10,7 +11,7 @@ import org.uqbar.lacar.ui.model.transformer.NotNullTransformer;
 
 /**
  * Abstracción que vincula dos propiedades observables: una del modelo y otra de la vista. El binding se
- * completa con un {@link Transformer} que permite ajustar las diferencias entre los valores manejados por
+ * completa con un {@link ValueTransformer} que permite ajustar las diferencias entre los valores manejados por
  * modelo y vista.
  * 
  * @author npasserini
@@ -46,12 +47,12 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 	 * formato requerido por la vista y viceversa.
 	 * 
 	 * This modifies the adapter of this binding. You should use only one of {@link #setAdapter(Adapter)} and
-	 * {@link #setTransformer(Transformer)}.
+	 * {@link #setTransformer(ValueTransformer)}.
 	 * 
-	 * @param transformer Un {@link Transformer}
+	 * @param transformer Un {@link ValueTransformer}
 	 * @return Este mismo {@link BindingBuilder}, para encadenar mensajes.
 	 */
-	public Binding<M,V,C> setTransformer(final Transformer<?, ?> transformer) {
+	public Binding<M,V,C> setTransformer(final ValueTransformer<?, ?> transformer) {
 		return this.setAdapter(new Adapter() {
 			@Override
 			public void configure(BindingBuilder binder) {
@@ -90,6 +91,19 @@ public class Binding<M, V extends Widget, C extends WidgetBuilder> {
 		this.adapter = adapter;
 		return this;
 	}
+	
+	/**
+	 * Facade method to set the strategy that adapts the values in the model to the values in
+	 * the view.
+	 * 
+	 * @param modelClass the model's class
+	 * @param property   the property to adapt with
+	 */
+	public Binding<M,V,C> adaptWith(Class modelClass, String property) {
+		this.adapter = new PropertyAdapter(modelClass, property);
+		return this;
+	}
+
 
 	public void execute(C control) {
 		BindingBuilder binder = this.view.createBinding(control);

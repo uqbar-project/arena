@@ -53,7 +53,7 @@ public interface PanelBuilder {
 	
 	public PanelBuilder addChildGroup(String title);
 
-	public void addErrorPanel(String okMessage);
+	public void addErrorPanel(String okMessage, int preferredLines);
 
 	// ********************************************************
 	// ** Layout
