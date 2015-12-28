@@ -1,6 +1,5 @@
 package org.uqbar.arena.tests.nestedCombos;
 
-import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.aop.windows.TransactionalDialog;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
@@ -22,10 +21,10 @@ public class EditProvinceDialog extends TransactionalDialog<Province> {
 	protected void addActions(Panel actionsPanel) {
 		new Button(actionsPanel)
 			.setCaption("Accept")
-			.onClick(new MessageSend(this, ACCEPT))
+			.onClick(() -> this.accept())
 			.setAsDefault()
 			.disableOnError();
 
-		new Button(actionsPanel).setCaption("Cancel").onClick(new MessageSend(this, CANCEL));
+		new Button(actionsPanel).setCaption("Cancel").onClick(() -> this.cancel());
 	}
 }

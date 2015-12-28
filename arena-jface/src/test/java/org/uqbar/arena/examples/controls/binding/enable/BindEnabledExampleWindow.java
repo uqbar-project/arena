@@ -1,7 +1,6 @@
 package org.uqbar.arena.examples.controls.binding.enable;
 
 import org.uqbar.arena.SimpleApplication;
-import org.uqbar.arena.actions.MessageSend;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -49,8 +48,8 @@ public class BindEnabledExampleWindow extends Window<InputAddress> {
 		street.bindValueToProperty("street");
 		street.bindEnabledToProperty("state").notEmpty();
 		
-		new Button(mainPanel).setCaption("Add Country").onClick(new MessageSend(getModelObject(), "addCountry"));
-		new Button(mainPanel).setCaption("Remove Country").onClick(new MessageSend(getModelObject(), "removeSelectedCountry"));
+		new Button(mainPanel).setCaption("Add Country").onClick(() -> getModelObject().addCountry());
+		new Button(mainPanel).setCaption("Remove Country").onClick(() -> getModelObject().removeSelectedCountry());
 	}
 	
 	public static void main(String[] args) {

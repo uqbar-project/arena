@@ -3,7 +3,6 @@ package org.uqbar.arena.tests.bindings
 import java.awt.Color
 import java.util.HashMap
 import java.util.Map
-import org.uqbar.arena.actions.MessageSend
 import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.bindings.transformers.AbstractReadOnlyTransformer
 import org.uqbar.arena.layout.VerticalLayout

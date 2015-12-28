@@ -1,13 +1,16 @@
 package org.uqbar.arena.tests.transactional;
 
-import org.uqbar.arena.actions.MessageSend;
-import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 
 public class TransactionalFireEventWindow extends MainWindow<FakeObject> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -76404121229915381L;
+
 	public static void main(String[] args) {
 		new TransactionalFireEventWindow().startApplication();
 	}
@@ -19,10 +22,10 @@ public class TransactionalFireEventWindow extends MainWindow<FakeObject> {
 	@Override
 	public void createContents(Panel mainPanel) {
 		new Label(mainPanel).bindValueToProperty("name");
-		new Button(mainPanel).setCaption("Edit").onClick(new MessageSend(this, "openEditor"));
+		new Button(mainPanel).setCaption("Edit").onClick(() -> this.openEditor());
 	}
 	
 	public void openEditor(){
-		new EditFakeTransactionalDialod(this, this.getModelObject()).open();
+		new EditFakeTransactionalDialog(this, this.getModelObject()).open();
 	}
 }

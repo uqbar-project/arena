@@ -31,8 +31,8 @@ public class Table<R> extends Control {
 
 	public Table(Container container, Class<R> itemType) {
 		super(container);
-		if (!itemType.isAnnotationPresent(org.uqbar.commons.utils.Observable.class)) {
-			throw new ArenaException("La clase " + itemType.getName() + " debe tener la annotation @Observable");
+		if (!itemType.isAnnotationPresent(org.uqbar.commons.utils.Observable.class) && !itemType.isAnnotationPresent(org.uqbar.commons.utils.TransactionalAndObservable.class)) {
+			throw new ArenaException("La clase " + itemType.getName() + " debe tener la annotation @Observable o @TransactionalAndObservable");
 		}
 		setItemType(itemType);
 	}

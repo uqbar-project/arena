@@ -1,6 +1,6 @@
 package org.uqbar.arena.tests.nestedCombos;
 
-import org.uqbar.arena.actions.MessageSend;
+import org.apache.commons.collections15.Transformer;
 import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.bindings.transformers.AbstractReadOnlyTransformer;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -15,8 +15,6 @@ import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.lacar.ui.model.Action;
-
-import org.apache.commons.collections15.Transformer;
 
 /**
  * Examples on various {@link Selector} features.<br>
@@ -116,11 +114,11 @@ public class NestedCombosWindow extends MainWindow<NestedCombosDomain> {
 		
 		new Button(mainPanel) //
 			.setCaption("Edit Province")
-			.onClick(new MessageSend(this, "editProvince"));
+			.onClick(() -> this.editProvince());
 		
 		new Button(mainPanel) //
 			.setCaption("Delete Province")
-			.onClick(new MessageSend(this.getModelObject(), "deleteProvince"));
+			.onClick(() -> getModelObject().deleteProvince());
 
 		Table<Province> table = new Table<Province>(mainPanel, Province.class);
 		table.setWidth(200);

@@ -1,7 +1,5 @@
 package org.uqbar.arena.aop.windows
 
-import org.uqbar.arena.actions.MessageSend
-
 import org.uqbar.arena.aop.potm.ObjectTransactionImplObservable
 import org.uqbar.arena.aop.potm.PureObjectTransactionMonitorWindow
 import org.uqbar.arena.widgets.Button
@@ -9,12 +7,12 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
 import org.uqbar.arena.aop.potm.MonitorApplicationModel
-
 import org.uqbar.aop.transaction.ObjectTransactionManager
 import org.uqbar.common.transaction.ObjectTransaction
 import org.uqbar.common.transaction.TaskOwner
+import org.uqbar.lacar.ui.model.Action
 
-trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner {
+trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner with ActionExecuter {
 
 	var transaction: ObjectTransaction = _;
 	var inTransaction = true;
@@ -22,8 +20,10 @@ trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner {
 	ObjectTransactionManager.begin(this);
 
 	override def createMainTemplate(mainPanel: Panel) = {
-		new Button(mainPanel).setCaption("Open Monitor").onClick(new MessageSend(this, "openMonitor"));
-		super.createMainTemplate(mainPanel);
+		new Button(mainPanel).setCaption("Open Monitor").onClick( new Action() {
+			def execute : Unit = openMonitor()
+		})
+		super.createMainTemplate(mainPanel)
 	}
 
 	override def getName(): String = this.getTitle();
@@ -34,13 +34,13 @@ trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner {
 
 	override def setTransaction(transaction: ObjectTransaction) = { this.transaction = transaction };
 
-	def execute(target: Any, methodName: String): MessageSend = {
-		return new MessageSend(target, methodName) {
+	def execute(target: Object, methodName: String): Action = {
+		return new Action() {
 
 			override def execute() {
 				try {
 					ObjectTransactionManager.begin(TransactionalWindowTrait.this)
-					super.execute();
+				  call(target, methodName)
 					ObjectTransactionManager.commit(TransactionalWindowTrait.this)
 				} catch {
 					case e: Exception => {
@@ -48,8 +48,6 @@ trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner {
 						throw new UserException(e.getMessage(), e)
 					}
 				}
-				super.execute();
-
 			}
 		}
 	}

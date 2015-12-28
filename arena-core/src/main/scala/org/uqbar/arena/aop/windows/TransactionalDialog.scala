@@ -1,7 +1,6 @@
 package org.uqbar.arena.aop.windows;
 
 import org.uqbar.arena.aop.potm.MonitorApplicationModel
-import org.uqbar.arena.actions.MessageSend
 import org.uqbar.arena.aop.potm.ObjectTransactionImplObservable
 import org.uqbar.arena.aop.potm.PureObjectTransactionMonitorWindow
 import org.uqbar.arena.windows.Dialog
@@ -16,7 +15,7 @@ import org.uqbar.lacar.ui.model.Action
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.Window
 
-abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dialog[T](owner, model) with TaskOwner {
+abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dialog[T](owner, model) with TaskOwner with ActionExecuter {
   var transaction: ObjectTransaction = null
 
   ObjectTransactionManager.begin(this)
@@ -49,9 +48,9 @@ abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dial
     close
   }
 
-  def execute(target: Object, methodName: String): MessageSend =
-    new MessageSend(target, methodName) {
-      override def execute(): Unit = doTransactionally(super.execute)
+  def execute(target: Object, methodName: String): Action =
+    new Action() {
+      override def execute(): Unit = doTransactionally(() => call(target, methodName))
     }
 
   def doTransactionally[A](transactionBody:() => A): A = {
