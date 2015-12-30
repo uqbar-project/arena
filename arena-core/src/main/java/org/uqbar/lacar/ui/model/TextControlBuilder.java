@@ -1,7 +1,7 @@
 package org.uqbar.lacar.ui.model;
 
+import org.uqbar.arena.filters.TextFilter;
 import org.uqbar.arena.widgets.TextBox;
-import org.uqbar.arena.widgets.TextFilter;
 
 /**
  * Special builder for {@link TextBox} controls

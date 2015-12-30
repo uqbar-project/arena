@@ -54,7 +54,9 @@ public class ControlObservableValue extends AbstractSWTObservableValue {
 	public Object getValueType() {
 		return Object.class;
 	}
+	
 	protected org.eclipse.swt.graphics.Color getSWTColor(Color color) {
 		return new org.eclipse.swt.graphics.Color(getWidget().getDisplay(), color.getRed(), color.getGreen(), color.getBlue());
 	}
+	
 }

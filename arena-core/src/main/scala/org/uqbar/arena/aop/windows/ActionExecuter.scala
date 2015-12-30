@@ -8,7 +8,7 @@ package org.uqbar.arena.aop.windows
  * onClick de un botón estén dentro de un closure forzando así la validación
  * del mensaje que se envía)
  * 
- * author Dodain
+ * author dodain
  * 
  */
 trait ActionExecuter {

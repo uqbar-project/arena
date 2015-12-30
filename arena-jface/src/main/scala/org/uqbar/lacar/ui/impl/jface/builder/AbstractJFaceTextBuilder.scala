@@ -5,7 +5,7 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.events.ModifyEvent
 import org.eclipse.swt.events.VerifyEvent
 import org.eclipse.swt.widgets.Text
-import org.uqbar.arena.widgets.TextFilter
+import org.uqbar.arena.filters.TextFilter
 import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.model.TextControlBuilder

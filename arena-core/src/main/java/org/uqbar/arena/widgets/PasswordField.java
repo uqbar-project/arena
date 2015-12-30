@@ -7,7 +7,7 @@ import org.uqbar.lacar.ui.model.builder.StyledControlBuilder;
 /**
  * Control que permite ingresar una contraseña
  * 
- * @author npasserini
+ * @author dodain
  */
 public class PasswordField extends TextBox {
 
@@ -26,6 +26,5 @@ public class PasswordField extends TextBox {
 		this.configureSkineableBuilder(passwordField);
 		return passwordField;
 	}
-
 
 }

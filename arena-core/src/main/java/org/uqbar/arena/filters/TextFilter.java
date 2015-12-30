@@ -1,6 +1,7 @@
-package org.uqbar.arena.widgets;
+package org.uqbar.arena.filters;
 
 import org.apache.commons.lang.StringUtils;
+import org.uqbar.arena.widgets.TextInputEvent;
 
 /**
  * An object that receives {@link TextInputEvent} events

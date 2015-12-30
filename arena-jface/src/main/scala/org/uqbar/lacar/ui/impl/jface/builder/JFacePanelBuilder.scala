@@ -44,6 +44,7 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 	override def addLabel() = new JFaceLabelBuilder(this)
 	override def addTextBox(multiLine: Boolean) = new JFaceTextBuilder(this, multiLine)
   override def addPasswordField() = new JFacePasswordBuilder(this)
+  override def addNumericField(withDecimals: Boolean) = new JFaceTextBuilder(this, false)
 	override def addStyleTextArea(configurationStyle : java.util.Map[Array[String], Style]) = new JFaceStyledTextBuilder(this, configurationStyle)
 	override def addSpinner(minValue:Integer, maxValue:Integer) = new JFaceSpinnerBuilder(this, minValue, maxValue)
 

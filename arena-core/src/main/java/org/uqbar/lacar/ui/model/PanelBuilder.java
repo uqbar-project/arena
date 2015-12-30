@@ -21,6 +21,7 @@ public interface PanelBuilder {
 	public StyledControlBuilder addTextBox(boolean multiLine);
 	public StyledControlBuilder addPasswordField();
 	public StyledControlBuilder addStyleTextArea(Map<String[], Style> configurationStyle);
+	public StyledControlBuilder addNumericField(boolean withDecimals);
 
 	public ControlBuilder addSpinner(Integer minValue, Integer maxValue);
 
@@ -66,5 +67,6 @@ public interface PanelBuilder {
 	public void setLayoutInColumns(int columnCount);
 
 	public void setPreferredWidth(int width);
+
 }
 
