@@ -6,7 +6,7 @@ import org.uqbar.arena.windows.MainWindow
 import org.uqbar.arena.xtend.ArenaXTendFactory
 
 /**
- * miles -> kilometers converter.
+ * miles to kilometers converter.
  */
 class TypeSafeDistanceConverterWindow extends MainWindow<DistanceConverter> {
 	extension ArenaXTendFactory = new ArenaXTendFactory

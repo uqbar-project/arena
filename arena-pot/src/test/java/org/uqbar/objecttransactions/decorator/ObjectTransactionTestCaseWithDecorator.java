@@ -22,7 +22,7 @@ public class ObjectTransactionTestCaseWithDecorator {
 
 	/**
 	 * Simple test case with a single nested transaction showing
-	 * the isolation between parent & child transaction.
+	 * the isolation between parent and child transaction.
 	 * With a commit at the end of the nested transaction.
 	 */
 //	@Test
@@ -48,7 +48,7 @@ public class ObjectTransactionTestCaseWithDecorator {
 	
 	/**
 	 * Simple test case with a single nested transaction showing
-	 * the isolation between parent & child transaction.
+	 * the isolation between parent and child transaction.
 	 * With a commit at the end of the nested transaction.
 	 */
 	@Test
@@ -66,7 +66,7 @@ public class ObjectTransactionTestCaseWithDecorator {
 		doorKeeper.enterHouse(new Person("Foo Bar"));
 		assertEquals(2, house.getPersons().size());
 		
-		// COMMIT & ASSERT
+		// COMMIT AND ASSERT
 		doorKeeper.commitTransaction();
 		assertEquals(2, house.getPersons().size());
 	}

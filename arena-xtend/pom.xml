@@ -15,7 +15,7 @@
 	</parent>
 
 	<properties>
-		<xtend.version>2.6.2</xtend.version>
+		<xtend.version>2.9.1</xtend.version>
 	</properties>
 
 	<build>
@@ -37,7 +37,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
+				<version>${xtend.version}</version>
 				<configuration>
 					<projectnatures>
 						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
@@ -50,8 +50,6 @@
 					</sourceIncludes>
 				</configuration>
 			</plugin>
-
-
 		</plugins>
 	</build>
 

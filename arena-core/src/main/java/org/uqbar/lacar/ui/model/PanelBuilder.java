@@ -31,7 +31,6 @@ public interface PanelBuilder {
 	public LinkBuilder addLink(String caption, Action action);
 	public ButtonBuilder addFileButton(String caption, String title, String path, String[] extensions);
 
-
 	// SELECTORS
 	
 	public <T> ListBuilder<T> addSelector(boolean nullValue);

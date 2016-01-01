@@ -49,7 +49,7 @@ class ArenaXTendFactory {
 		val onC = captionAndAction.value  // keep this line to avoid compilation error in java. Seems like a bug in xtend
 		new Button(panel) => [
 			caption = captionAndAction.key
-			onClick = onC
+			onClick(onC)
 		]
 	}
 	
