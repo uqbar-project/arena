@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/uqbar-project/arena.svg?branch=master)](https://travis-ci.org/uqbar-project/arena)
+[![Coverage Status](https://coveralls.io/repos/uqbar-project/arena/badge.svg?branch=master&service=github)](https://coveralls.io/github/uqbar-project/arena?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.uqbar-project/arena-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.uqbar-project/arena-core/)
 
 Arena
