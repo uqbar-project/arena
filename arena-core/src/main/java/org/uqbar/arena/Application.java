@@ -3,6 +3,8 @@ package org.uqbar.arena;
 import org.uqbar.aop.transaction.ObjectTransactionManager;
 import org.uqbar.apo.APOClassLoader;
 import org.uqbar.apo.APOConfig;
+import org.uqbar.arena.bootstrap.Bootstrap;
+import org.uqbar.arena.bootstrap.NullBootstrap;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.ReflectionUtils;
@@ -17,13 +19,20 @@ import org.uqbar.lacar.ui.model.WindowFactory;
  */
 public abstract class Application implements WindowOwner, Runnable {
 	private ApplicationRunner delegate;
+	private Bootstrap bootstrap; 
+	
 	private static final String APPLICATION_RUNNER_PROPERTY = "arena.applicationRunner";
 
 	public Application() {
+		this(new NullBootstrap());
+	}
+	
+	public Application(Bootstrap bootstrap) {
 		this.delegate = ReflectionUtils.newInstanceForName(APOConfig.getProperty(APPLICATION_RUNNER_PROPERTY).value());
 		this.validateClassLoader();
+		this.bootstrap = bootstrap;
 	}
-
+	
 	/**
 	 * Se fija que se esté usando el class loader necesario
 	 */
@@ -72,6 +81,7 @@ public abstract class Application implements WindowOwner, Runnable {
 	@Override
 	public void run() {
 		ObjectTransactionManager.getTransaction();
+		this.bootstrap.run();
 		this.createMainWindow().open();
 	}
 
