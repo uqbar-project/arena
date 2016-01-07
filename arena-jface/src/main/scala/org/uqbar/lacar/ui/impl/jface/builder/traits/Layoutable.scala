@@ -18,7 +18,7 @@ trait Layoutable {
 
   }
 
-  def setLayoutInColumns(columnCount: Int) = setLayout(new GridLayout(columnCount, false))
+  def setLayoutInColumns(columnCount: Int) = setLayout(new GridLayout(columnCount, true))
 
   def setVerticalLayout() = {
     val layout = new RowLayout(SWT.VERTICAL)

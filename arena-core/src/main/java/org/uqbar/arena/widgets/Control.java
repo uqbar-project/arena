@@ -113,8 +113,12 @@ public abstract class Control extends Widget {
 	public <C extends ControlBuilder> Binding<?,Control, C> bindVisibleToProperty(String propertyName) {
 		return this.bindVisible(new ObservableProperty(propertyName));
 	}
-	
-	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindBackground(String propertyName) {
+
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindBackground(Observable modelObservable) {
+		return this.addBinding(modelObservable, this.<C>background());
+	}
+
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindBackgroundToProperty(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), this.<C>background());
 	}
 	
@@ -127,10 +131,14 @@ public abstract class Control extends Widget {
 		};
 	}
 	
-	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindForeground(String propertyName) {
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindForegroundToProperty(String propertyName) {
 		return this.addBinding(new ObservableProperty(propertyName), this.<C>foreground());
 	}
-	
+
+	public <C extends ControlBuilder, T, U> Binding<?,Control, C> bindForeground(Observable modelObservable) {
+		return this.addBinding(modelObservable, this.<C>foreground());
+	}
+
 	public <C extends ControlBuilder> ViewObservable<Control, C> foreground() {
 		return new AbstractViewObservable<Control, C>(this) {
 			@Override

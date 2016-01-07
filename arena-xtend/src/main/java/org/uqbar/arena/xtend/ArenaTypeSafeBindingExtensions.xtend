@@ -1,6 +1,7 @@
 package org.uqbar.arena.xtend
 
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.eclipse.xtext.xbase.lib.Functions.Function1
 import org.mockito.internal.InternalMockHandler
 import org.mockito.internal.configuration.ClassPathLoader
@@ -55,8 +56,9 @@ class ArenaTypeSafeBindingExtensions {
  * @author jfernandes
  */
 //TODO: support nested properties
+@Accessors
 class ArenaMockHandler implements InternalMockHandler<Object> {
-	@Property String propertyName
+	String propertyName
 	
 	override Object handle(Invocation invocation) throws Throwable {
 		val m = invocation.getMethod()
