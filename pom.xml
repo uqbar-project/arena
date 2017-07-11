@@ -9,9 +9,8 @@
 		<scm.gitServer>https://github.com/uqbar-project</scm.gitServer>
 	</properties>
 
-	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-parent</artifactId>
-	<version>3.6.1-SNAPSHOT</version>
+	<version>3.6.1</version>
 
 	<name>Arena Parent</name>
 
