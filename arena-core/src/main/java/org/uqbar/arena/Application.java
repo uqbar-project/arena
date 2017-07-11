@@ -81,7 +81,7 @@ public abstract class Application implements WindowOwner, Runnable {
 	@Override
 	public void run() {
 		ObjectTransactionManager.getTransaction();
-		this.bootstrap.run();
+		if (this.bootstrap.isPending()) this.bootstrap.run();
 		this.createMainWindow().open();
 	}
 

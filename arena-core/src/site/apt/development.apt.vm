@@ -12,9 +12,9 @@ Developing Arena
 
 Requirements
  
-   * Java Development Kit 1.7 (currently it doesn't work out-of-the-box with Java 8) 
+   * Java Development Kit 1.8 
    
-   * Scala 2.11
+   * Scala 2.11 (2.11.8 is fine)
 
  <<Note:>> We are currently working on it, but we still don't have a C.I. 
  in order to deploy new versions of artifacts every time someone pushes a change to master. 
@@ -53,9 +53,10 @@ git clone https://github.com/uqbar-project/arena
  
 * Additional Utilities
 
- * <<Uqbar Domain>>: Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation.
+ * <<uqbar-domain>>: Utility to model domains. Allows to annotate objects as @Observables. Also contains some API for persistence without coupling it to any implementation.
  
- * <<Arena-xtend>>: Extensions to use arena with xtend. Provides kind of an internal DSL for building bindings easily and in a declarative way.
+ * <<arena-xtend>>: Extensions to use arena with xtend. Provides kind of an internal DSL for building bindings easily and in a declarative way.
+   Xtend 2.11+ is required (tested with Xtend 2.12)
 
  []
   
@@ -73,7 +74,7 @@ git clone https://github.com/uqbar-project/uqbar-domain
  
  If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
- * <<apo-core>> (Aspects for Pure Objects): Small AOP framework on top of Javassist. It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
+ * <<apo-apo>> (Aspects for Pure Objects): Small AOP framework on top of Javassist. It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
 
  * <<apo-poo>> (Pure Observable Objects): implements transparent objects observability over AOP. Based on apo-core.
 
@@ -95,23 +96,21 @@ IDE
  
  As we use maven, you can use whatever IDE you want. Although, we can suggest some proven Environment:
 
- * Eclipse Kepler with ScalaIDE
- 
- * Eclipse Luna with ScalaIDE
+ * Eclipse Neon with ScalaIDE 
  
  * IntelliJIDEA with Scala plugin
  
  []
 
- The proven environment is based on Eclipse Kepler version. Here's a sample environment
+ The proven environment is based on Eclipse Neon version. Here's a sample environment
  
-* Based on latest Eclipse Version (LUNA)
+* Based on Eclipse
 
- * Install eclipse Luna
+ * Install Eclipse Neon (4.6.3 is fine)
 
  * <<Scalaide>>
  
-  * Install scalaide from the following update site: http://download.scala-ide.org/nightly-scala-ide-luna-211x
+  * Install ScalaIde for Scala 2.11.x from the following update site: http://download.scala-ide.org/sdk/lithium/e46/scala211/stable/site
  
   * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
  

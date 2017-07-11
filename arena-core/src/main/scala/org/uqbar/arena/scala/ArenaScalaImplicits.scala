@@ -23,6 +23,7 @@ import org.uqbar.lacar.ui.model.BindingBuilder
 import org.uqbar.arena.widgets.Container
 import org.uqbar.arena.widgets.Widget
 import org.apache.commons.collections15.Transformer
+import org.mockito.internal.configuration.plugins.Plugins
 
 /**
  * Contiene implicits utiles para usar arena desde scala
@@ -101,7 +102,8 @@ object ArenaScalaImplicits {
   def createInvocationHandler() = new BindingMockHandler
 
   def createMockFor[T](tipe: Class[T], handler: MockHandler): T = {
-    ClassPathLoader.getMockMaker.createMock(createMockCreationSettings(tipe), handler)
+    //ClassPathLoader.getMockMaker.createMock(createMockCreationSettings(tipe), handler)
+    Plugins.getMockMaker.createMock(createMockCreationSettings(tipe), handler)
   }
 
   def createMockCreationSettings[T](typeToMock: Class[T]) = {
