@@ -1,10 +1,7 @@
 package org.uqbar.arena.windows;
-import org.apache.commons.collections15.Closure;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Widget;
-import org.uqbar.arena.widgets.traits.Sizeable;
 import org.uqbar.lacar.ui.model.PanelBuilder;
-import org.uqbar.lacar.ui.model.WidgetBuilder;
 
 /**
  * 

@@ -64,6 +64,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	private boolean contentsReady;
 
 	private int minHeight;
+	private int minWidth;
 
 	@SuppressWarnings("unchecked")
 	public Window(WindowOwner owner, T model) {
@@ -148,6 +149,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		delegate.setContents(this);
 		delegate.setIcon(this.iconImage);
 		delegate.setMinHeight(this.minHeight);
+		delegate.setMinWidth(this.minWidth);
 		delegate.open();
 	}
 
@@ -205,6 +207,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	}
 
 	/**
+	 * 
 	 * New method added for validation before showing
 	 * Now you can't open a window if its model is not a class annotated with @Observable 
 	 * 
@@ -216,6 +219,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		if (!clazz.isAnnotationPresent(ObservableAnnotation) && !clazz.isAnnotationPresent(TransactionalAndObservableAnnotation)) {
 			throw new RuntimeException("La clase " + clazz.getName() + " no tiene la annotation " + ObservableAnnotation.getSimpleName() + " ni " + TransactionalAndObservableAnnotation.getSimpleName() + " que es necesaria para ser modelo de una vista en Arena");
 		}
+		// TODO: Validate children bindings?
 	}
 
 	// ********************************************************
@@ -239,6 +243,10 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	
 	public void setMinHeight(int minPreferedSize) {
 		this.minHeight = minPreferedSize;
+	}
+
+	public void setMinWidth(int minPreferedSize) {
+		this.minWidth = minPreferedSize;
 	}
 
 }

@@ -14,6 +14,8 @@ public class LabelsResize extends MainWindow<ObjectWithProperty> {
 
 	public LabelsResize(ObjectWithProperty model) {
 		super(model);
+		setMinWidth(500);
+		setMinHeight(500);
 	}
 
 	@Override

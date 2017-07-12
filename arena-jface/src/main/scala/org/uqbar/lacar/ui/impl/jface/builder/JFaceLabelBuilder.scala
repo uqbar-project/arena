@@ -20,7 +20,7 @@ class JFaceLabelBuilder(container:JFaceContainer, label: Label)
   def this(container: JFaceContainer) = {
     this(container,new Label(container.getJFaceComposite, SWT.CENTER))
   }
-
+  
   override def setText(text:String) = widget.setText(text)
   
   // Esto no parece tener sentido. Si el label es readonly para qué observar o bindear ? 
@@ -30,4 +30,14 @@ class JFaceLabelBuilder(container:JFaceContainer, label: Label)
   override def alignRight() = label.setAlignment(SWT.RIGHT)
   override def alignCenter() = label.setAlignment(SWT.CENTER)
   
+}
+
+class JFaceErrorsPanelBuilder(container:JFaceContainer, label: Label) extends JFaceLabelBuilder(container, label) {
+
+  def this(container: JFaceContainer, label: Label, preferredLines: Int) {
+      this(container, label)
+      this.height = 22 * preferredLines
+      this.width = SWT.DEFAULT
+  }
+
 }

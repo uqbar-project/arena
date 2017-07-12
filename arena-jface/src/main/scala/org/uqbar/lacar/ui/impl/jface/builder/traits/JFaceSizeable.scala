@@ -38,7 +38,7 @@ trait JFaceSizeable extends Sizeable with WidgetBuilder {
     }
 
     if (widget.getParent.getLayout.isInstanceOf[RowLayout]) {
-      widget.setLayoutData(new RowData(width, height))
+        widget.setLayoutData(new RowData(width, height))
     }
   }
 

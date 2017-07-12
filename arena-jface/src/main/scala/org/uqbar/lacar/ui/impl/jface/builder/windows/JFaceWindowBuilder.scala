@@ -37,6 +37,7 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
   lazy val status: AggregateValidationStatus = new AggregateValidationStatus(dbc, AggregateValidationStatus.MAX_SEVERITY)
   var iconImage: String = _
   var minHeight:Int = 0
+  var minWidth:Int = 0
 
   override def setTitle(title: String) {
     this.title = title;
@@ -66,9 +67,9 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
     window.setBlockOnOpen(true)
 
     val actualSize = window.getShell().getSize()
-    if(actualSize.y < minHeight){
-      window.getShell().setSize(actualSize.x, minHeight)
-    }
+    val currentHeight = actualSize.y.max(minHeight)
+    val currentWidth = actualSize.x.max(minWidth)
+    window.getShell().setSize(currentWidth, currentHeight)
     
     window.getShell.addListener(SWT.Close, (event: Event) => windowDescriptor close)
 
@@ -150,6 +151,10 @@ class JFaceWindowBuilder extends AbstractWidgetBuilder with WindowBuilder with J
   
   def setMinHeight(minHeight:Int) = {
 	  this.minHeight = minHeight
+  }
+
+  def setMinWidth(minWidth:Int) = {
+	  this.minWidth = minWidth
   }
 
 }

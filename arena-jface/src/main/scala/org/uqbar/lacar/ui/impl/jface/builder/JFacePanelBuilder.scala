@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
 import scala.collection.mutable.ArrayBuffer
+
 import org.eclipse.jface.databinding.swt.SWTObservables
 import org.eclipse.swt.SWT
 import org.eclipse.swt.layout.RowData
@@ -16,12 +17,12 @@ import org.uqbar.lacar.ui.impl.jface.bindings.ObservableStatusMessage
 import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceListBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.lists.JFaceRadioGroupBuilder
 import org.uqbar.lacar.ui.impl.jface.builder.tables.JFaceTableBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.builder.traits.Layoutable
 import org.uqbar.lacar.ui.impl.jface.builder.tree.JFaceTreeBuilder
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.lacar.ui.model.PanelBuilder
 import org.uqbar.lacar.ui.model.WidgetBuilder
-import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 
 /**
  * @author jfernandes
@@ -77,14 +78,11 @@ class JFacePanelBuilder(container:JFaceContainer, composite:Composite)
 
 	override def addErrorPanel(okMessage:String, preferredLines: Int) = {
 		// TODO Usar el framework para configurar el label en lugar de hacerlo manualmente.
-		val errorLabel = new Label(widget, SWT.WRAP) // 
-		val layoutLabel = new RowData(250, 50 * preferredLines)
-		errorLabel.setLayoutData(layoutLabel)
-
+		val errorLabel = new Label(widget, SWT.LEFT | SWT.WRAP) //
 		// fija el background del label. por default es blanco, al igual que el de eclipse
 		errorLabel.setBackground(widget.getDisplay.getSystemColor(SWT COLOR_WHITE))
 
-		val labelBuilder = new JFaceLabelBuilder(this, errorLabel)
+		val labelBuilder = new JFaceErrorsPanelBuilder(this, errorLabel, preferredLines)
 		labelBuilder.bind(//
 			new ObservableStatusMessage(status, okMessage), //
 			SWTObservables.observeText(errorLabel))
