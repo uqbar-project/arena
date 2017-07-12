@@ -1,8 +1,10 @@
 package org.uqbar.arena.widgets;
 
+import org.apache.commons.collections15.Closure;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
 import org.uqbar.arena.widgets.traits.Sizeable;
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment;
 import org.uqbar.lacar.ui.model.BindingBuilder;
 import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.WidgetBuilder;
@@ -10,8 +12,6 @@ import org.uqbar.lacar.ui.model.bindings.AbstractViewObservable;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import org.uqbar.lacar.ui.model.bindings.Observable;
 import org.uqbar.lacar.ui.model.bindings.ViewObservable;
-
-import org.apache.commons.collections15.Closure;
 
 /**
  * A {@link Widget} that allows to edit a single value. Superclass for all of the most common widgets: text
@@ -173,4 +173,38 @@ public abstract class Control extends Widget {
 
 		return this;
 	}
+	
+	public Control alignLeft() {
+		this.configurations.add(new Closure<WidgetBuilder>() {
+			@Override
+			public void execute(WidgetBuilder builder) {
+				((WidgetWithAlignment) builder).alignLeft();
+			}
+		});
+
+		return this;
+	}
+
+	public Control alignRight() {
+		this.configurations.add(new Closure<WidgetBuilder>() {
+			@Override
+			public void execute(WidgetBuilder builder) {
+				((WidgetWithAlignment) builder).alignRight();
+			}
+		});
+
+		return this;
+	}
+
+	public Control alignCenter() {
+		this.configurations.add(new Closure<WidgetBuilder>() {
+			@Override
+			public void execute(WidgetBuilder builder) {
+				((WidgetWithAlignment) builder).alignCenter();
+			}
+		});
+
+		return this;
+	}
+
 }

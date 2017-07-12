@@ -11,6 +11,8 @@ import org.uqbar.arena.widgets.Widget;
 import org.uqbar.commons.model.IModel;
 import org.uqbar.commons.model.Model;
 import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.utils.TransactionalAndObservable;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;
 import org.uqbar.lacar.ui.model.WindowBuilder;
@@ -23,6 +25,9 @@ import org.uqbar.lacar.ui.model.WindowBuilder;
  * @author npasserini
  */
 public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilder>, WindowOwner, HierarchicalLoggeable {
+	public Class<Observable> ObservableAnnotation = Observable.class;
+	public Class<TransactionalAndObservable> TransactionalAndObservableAnnotation = TransactionalAndObservable.class;
+	
 	/**
 	 * Puede ser la ventana padre o bien la aplicación en caso de que esta sea una ventana de primer nivel.
 	 */
@@ -107,6 +112,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	 * 
 	 */
 	public final void createContents() {
+		this.validate();
 		if (!this.contentsReady) {
 			this.createContents(this.createMainPanel());
 			this.contentsReady = true;
@@ -195,6 +201,20 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	public void showOn(PanelBuilder delegate) {
 		for (Widget widget : this.children) {
 			widget.showOn(delegate);
+		}
+	}
+
+	/**
+	 * New method added for validation before showing
+	 * Now you can't open a window if its model is not a class annotated with @Observable 
+	 * 
+	 * @since 3.6.2
+	 * 
+	 */
+	public void validate() {
+		Class<?> clazz = this.getModelObject().getClass();
+		if (!clazz.isAnnotationPresent(ObservableAnnotation) && !clazz.isAnnotationPresent(TransactionalAndObservableAnnotation)) {
+			throw new RuntimeException("La clase " + clazz.getName() + " no tiene la annotation " + ObservableAnnotation.getSimpleName() + " ni " + TransactionalAndObservableAnnotation.getSimpleName() + " que es necesaria para ser modelo de una vista en Arena");
 		}
 	}
 

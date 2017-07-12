@@ -29,7 +29,7 @@ public class TableResize extends MainWindow<ObjectWithProperty> {
 		
 	    new Column<Persona>(tbl)
 	      .setTitle("Nombre")
-	      .setFixedSize(200)
+	      .setFixedSize(150)
 	      .bindContentsToProperty("nombre");
 
 	    new Column<Persona>(tbl)
@@ -37,15 +37,21 @@ public class TableResize extends MainWindow<ObjectWithProperty> {
 	      .setFixedSize(200)
 	      .bindContentsToProperty("apellido");
 
+	    new Column<Persona>(tbl)
+	      .setTitle("Edad")
+	      .setFixedSize(50)
+	      .alignRight()
+	      .bindContentsToProperty("edad");
+
 		
 		new Button(mainPanel).onClick(new Action() {
 			@Override
 			public void execute() {
-				model.getPersonas().add(new Persona("Pepe", "Sanchez"));
-				model.getPersonas().add(new Persona("Fabrizio", "Oberto"));
-				model.getPersonas().add(new Persona("Hector", "Campana"));
-				model.getPersonas().add(new Persona("Luis", "Lopez"));
-				model.getPersonas().add(new Persona("Angel", "Lopez"));
+				model.getPersonas().add(new Persona("Pepe", "Sanchez", 41));
+				model.getPersonas().add(new Persona("Fabrizio", "Oberto", 38));
+				model.getPersonas().add(new Persona("Hector", "Campana", 40));
+				model.getPersonas().add(new Persona("Luis", "Lopez", 28));
+				model.getPersonas().add(new Persona("Angel", "Lopez", 26));
 			}
 		}).setCaption("Llenar Tabla");
 	}

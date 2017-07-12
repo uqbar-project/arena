@@ -16,9 +16,12 @@ import org.uqbar.arena.jface.JFaceImplicits.verifyEventToTextInputEvent
 class AbstractJFaceTextBuilder(container: JFaceContainer)
 	extends JFaceSkinnableControlBuilder[Text](container)
 	with TextControlBuilder {
+
+  var text : Text = null
   
   def this(container:JFaceContainer, jfaceWidget:Text) {
 		this(container)
+		text = jfaceWidget
 		this.initialize(jfaceWidget)
   }
   

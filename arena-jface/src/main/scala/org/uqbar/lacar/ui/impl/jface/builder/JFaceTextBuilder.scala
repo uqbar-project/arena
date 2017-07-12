@@ -8,19 +8,15 @@ import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.model.TextControlBuilder
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Text
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment
 
-class JFaceTextBuilder(container:JFaceContainer, multiLine:Boolean) 
-	extends AbstractJFaceTextBuilder(container, new Text(container.getJFaceComposite(), if (multiLine) SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP else SWT.SINGLE | SWT.BORDER)) 
-	with TextControlBuilder {
-  /*
-	override def observeValue() = new JFaceBindingBuilder(this, SWTObservables.observeText(widget, SWT.Modify))
-	
-	override def selectFinalLine() = {
-	  widget addModifyListener((e:ModifyEvent) => widget setSelection(widget.getText.length))
-	}
+class JFaceTextBuilder(container:JFaceContainer, multiLine:Boolean, numeric: Boolean = false) 
+	extends AbstractJFaceTextBuilder(container, new Text(container.getJFaceComposite(), (if (numeric) SWT.RIGHT else SWT.LEFT) | (if (multiLine) SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP else SWT.SINGLE | SWT.BORDER))) 
+	with TextControlBuilder 
+	with WidgetWithAlignment {
 
-	override def addTextFilter(filter:TextFilter) = {
-	  widget addVerifyListener((event:VerifyEvent) => event.doit = filter accept(event))
-	}
-  */
+  override def alignLeft() = text.setOrientation(SWT.LEFT_TO_RIGHT)
+  override def alignRight() = text.setOrientation(SWT.RIGHT_TO_LEFT)
+  override def alignCenter() = text.setOrientation(SWT.LEFT_TO_RIGHT) // you can't align text center
+  
 }

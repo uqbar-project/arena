@@ -6,12 +6,15 @@ import java.util.List;
 
 import org.apache.commons.collections15.Closure;
 import org.apache.commons.collections15.Transformer;
+import org.uqbar.arena.widgets.Control;
 import org.uqbar.arena.widgets.tables.labelprovider.BackgroundProvider;
 import org.uqbar.arena.widgets.tables.labelprovider.ForegroundProvider;
 import org.uqbar.arena.widgets.tables.labelprovider.PropertyLabelProvider;
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment;
 import org.uqbar.lacar.ui.model.ColumnBuilder;
 import org.uqbar.lacar.ui.model.LabelProvider;
 import org.uqbar.lacar.ui.model.TableBuilder;
+import org.uqbar.lacar.ui.model.WidgetBuilder;
 
 /**
  * Una columna de una tabla.
@@ -97,6 +100,38 @@ public class Column<R> {
 		return this;
 	}
 	
+	public Column<R> alignLeft() {
+		this.configurations.add(new Closure<ColumnBuilder<R>>() {
+			@Override
+			public void execute(ColumnBuilder<R> builder) {
+				((WidgetWithAlignment) builder).alignLeft();
+			}
+		});
+
+		return this;
+	}
+
+	public Column<R> alignRight() {
+		this.configurations.add(new Closure<ColumnBuilder<R>>() {
+			@Override
+			public void execute(ColumnBuilder<R> builder) {
+				((WidgetWithAlignment) builder).alignRight();
+			}
+		});
+
+		return this;
+	}
+
+	public Column<R> alignCenter() {
+		this.configurations.add(new Closure<ColumnBuilder<R>>() {
+			@Override
+			public void execute(ColumnBuilder<R> builder) {
+				((WidgetWithAlignment) builder).alignCenter();
+			}
+		});
+
+		return this;
+	}
 
 	// ********************************************************
 	// ** Binding

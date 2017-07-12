@@ -1,6 +1,7 @@
 package org.uqbar.lacar.ui.model;
 
 import org.uqbar.arena.widgets.traits.Sizeable;
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment;
 import org.uqbar.lacar.ui.model.builder.traits.DisableEnable;
 
 /**
@@ -33,6 +34,5 @@ public interface ControlBuilder extends WidgetBuilder, Sizeable, DisableEnable {
 	
 	//TODO: comment me
 	public BindingBuilder observeTooltip();
-	
 
 }

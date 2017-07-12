@@ -3,6 +3,7 @@ package org.uqbar.arena.tests.labels;
 import org.uqbar.arena.tests.ObjectWithProperty;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.windows.MainWindow;
 import org.uqbar.lacar.ui.model.Action;
@@ -21,8 +22,13 @@ public class LabelsResize extends MainWindow<ObjectWithProperty> {
 		
 		Label lbl = new Label(mainPanel);
 		lbl.bindValueToProperty("nombre");
+		lbl.alignRight();
 		
-		new Button(mainPanel).onClick(new Action() {
+		NumericField nf = new NumericField(mainPanel);
+		
+		Button btn = new Button(mainPanel);
+		btn.alignRight();
+		btn.onClick(new Action() {
 			@Override
 			public void execute() {
 				model.setNombre("Soy un string largo y vivo en el bosque!!!");

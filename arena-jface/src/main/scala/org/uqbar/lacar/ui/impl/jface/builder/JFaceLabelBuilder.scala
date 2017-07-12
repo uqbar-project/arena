@@ -9,10 +9,12 @@ import org.uqbar.lacar.ui.impl.jface.builder.traits.WithImageBuilder
 import org.uqbar.lacar.ui.model.LabelBuilder
 import org.eclipse.swt.events.ControlListener
 import org.eclipse.core.databinding.observable.Realm
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment
 
 class JFaceLabelBuilder(container:JFaceContainer, label: Label) 
 	extends JFaceSkinnableControlBuilder[Label](container, label)
-	with LabelBuilder 
+	with LabelBuilder
+	with WidgetWithAlignment
 	with WithImageBuilder[Label] {
   
   def this(container: JFaceContainer) = {
@@ -23,5 +25,9 @@ class JFaceLabelBuilder(container:JFaceContainer, label: Label)
   
   // Esto no parece tener sentido. Si el label es readonly para qué observar o bindear ? 
   override def observeValue() = new JFaceBindingBuilder(this, observeText(widget))
+
+  override def alignLeft() = label.setAlignment(SWT.LEFT)
+  override def alignRight() = label.setAlignment(SWT.RIGHT)
+  override def alignCenter() = label.setAlignment(SWT.CENTER)
   
 }
