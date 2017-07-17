@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.model.exceptions.UserException;
 import org.uqbar.ui.jface.base.converters.ArenaBigDecimalToStringConverter;
 import org.uqbar.ui.jface.base.converters.ArenaDoubleToStringConverter;
 import org.uqbar.ui.jface.base.converters.ArenaFloatToStringConverter;
@@ -28,38 +28,41 @@ import org.uqbar.ui.jface.base.converters.ArenaStringToBigDecimalConverter;
 public class BaseUpdateValueStrategy extends UpdateValueStrategy {
 
 	private HashMap<Pair, IConverter> converters = null;
-
+	
 	@Override
 	protected IStatus doSet(IObservableValue observableValue, Object value) {
 		try {
-			// No se puede llamar a super porque atrapa las excepciones y nosotros queremos poder manejarlas
+			// No se puede llamar a super porque atrapa las excepciones y
+			// nosotros queremos poder manejarlas
 			// para diferenciar la UserException
 			observableValue.setValue(value);
-			
-			if(observableValue instanceof AbstractSWTObservableValue){
+
+			if (observableValue instanceof AbstractSWTObservableValue) {
 				AbstractSWTObservableValue ov = (AbstractSWTObservableValue) observableValue;
-				
-                if(ov.getWidget() instanceof Control){
-                    Control c = (Control) ov.getWidget();
-				    Composite p = c.getParent();
-				    while(p!=null){
-					    p.layout();
-					    p = p.getParent();
-				    }
-                }
+
+				if (ov.getWidget() instanceof Control) {
+					Control c = (Control) ov.getWidget();
+					Composite p = c.getParent();
+					while (p != null) {
+						p.layout();
+						p = p.getParent();
+					}
+				}
 			}
-			
+
 			return ValidationStatus.ok();
-		}
-		catch (UnsupportedOperationException ex) {
-			// TODO Esto se produce porque el ObservableValue es read-only. Revisar cómo se maneja esto,
-			// por ahora repito el código de la superclase pero no estoy convencido.
-			// Atrapar la excepción así es equivalente a ignorarla porque el error no se va a mostrar en
+		} catch (UnsupportedOperationException ex) {
+			// TODO Esto se produce porque el ObservableValue es read-only.
+			// Revisar cómo se maneja esto,
+			// por ahora repito el código de la superclase pero no estoy
+			// convencido.
+			// Atrapar la excepción así es equivalente a ignorarla porque el
+			// error no se va a mostrar en
 			// ningún lado.
 			return ValidationStatus.error(BindingMessages.getString("ValueBinding_ErrorWhileSettingValue"), ex);
-		}
-		catch (RuntimeException exception) {
-			// Las excepciones nos llegan wrappeadas dentro de una runtime, por eso atrapamos todas y buscamos
+		} catch (RuntimeException exception) {
+			// Las excepciones nos llegan wrappeadas dentro de una runtime, por
+			// eso atrapamos todas y buscamos
 			// si en la causa tienen alguna UserException.
 			return ValidationStatus.error(UserException.find(exception).getMessage());
 		}
@@ -92,5 +95,5 @@ public class BaseUpdateValueStrategy extends UpdateValueStrategy {
 		}
 		return converters;
 	}
-	
+
 }

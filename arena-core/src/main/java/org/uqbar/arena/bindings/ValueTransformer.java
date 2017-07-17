@@ -1,6 +1,6 @@
 package org.uqbar.arena.bindings;
 
-import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.model.exceptions.UserException;
 
 /**
  * Converts and validates values coming from the view to the type and/or format needed in the model, and

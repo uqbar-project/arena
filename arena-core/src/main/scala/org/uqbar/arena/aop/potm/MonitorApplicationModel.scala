@@ -1,11 +1,11 @@
 package org.uqbar.arena.aop.potm
 
 import scala.collection.mutable.Buffer
-import org.uqbar.commons.utils.Observable
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import org.uqbar.aop.transaction.ObjectTransactionManager
 import org.uqbar.aop.transaction.IdentityWrapper
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 class MonitorApplicationModel {

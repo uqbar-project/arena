@@ -8,12 +8,13 @@
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>arena-parent</artifactId>
-		<version>3.6.1-SNAPSHOT</version>
+		<version>3.6.2-SNAPSHOT</version>
 	</parent>
 
 	<properties>
 		<xtend.version>2.12.0</xtend.version>
 	</properties>
+
 
 	<build>
 		<plugins>
@@ -30,10 +31,12 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
 				<configuration>
 					<projectnatures>
 						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
@@ -45,7 +48,7 @@
 						<sourceInclude>**/*.java</sourceInclude>
 					</sourceIncludes>
 				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 
@@ -58,7 +61,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-jface</artifactId>
-			<version>3.6.1-SNAPSHOT</version>
+			<version>3.6.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.model.exceptions.UserException;
 import org.uqbar.lacar.ui.model.Action;
 
 /**

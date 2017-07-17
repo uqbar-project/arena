@@ -12,10 +12,10 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.MainWindow
-import org.uqbar.commons.utils.Observable
 import org.uqbar.lacar.ui.impl.jface.builder.JFacePanelBuilder
 
 import org.apache.commons.collections15.Transformer
+import org.uqbar.commons.model.annotations.Observable
 
 
 @Observable

@@ -3,8 +3,8 @@ package org.uqbar.poo.aop
 import org.apache.commons.lang.StringUtils
 import javassist.CtClass
 import javassist.CtMethod
-import org.uqbar.commons.utils.Dependencies
-import org.uqbar.commons.utils.ReflectionUtils
+import org.uqbar.commons.model.annotations.Dependencies
+import org.uqbar.commons.model.utils.ReflectionUtils
 
 trait InitializerBehavior {
 

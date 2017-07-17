@@ -3,7 +3,7 @@ package org.uqbar.objecttransactions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.commons.utils.Transactional;
+import org.uqbar.commons.model.annotations.Transactional;
 
 /**
  * @author jfernandes

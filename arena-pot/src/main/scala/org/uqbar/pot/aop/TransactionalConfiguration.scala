@@ -1,12 +1,11 @@
 package org.uqbar.pot.aop
 
-import org.uqbar.commons.utils.Transactional
-
 import org.uqbar.apo.Advice
 import org.uqbar.apo.Configuration
 import org.uqbar.apo.pointcut.AnnotationPointCut
 import org.uqbar.apo.pointcut.FieldPointCut
 import org.uqbar.apo.pointcut.PointCut
+import org.uqbar.commons.model.annotations.Transactional
 
 /**
  *

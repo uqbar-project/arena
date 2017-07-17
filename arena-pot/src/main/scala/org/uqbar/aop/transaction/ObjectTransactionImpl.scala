@@ -7,9 +7,6 @@ import scala.collection.JavaConversions.mutableMapAsJavaMap
 import scala.collection.mutable.Buffer
 import scala.collection.mutable.Map
 import org.apache.commons.logging.LogFactory
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.utils.ReflectionUtils
-import org.uqbar.commons.utils.Transactional
 import org.uqbar.common.transaction.Collection.TransacionalList
 import org.uqbar.common.transaction.Collection.TransactionalData
 import org.uqbar.common.transaction.Collection.TransactionalMap
@@ -17,6 +14,7 @@ import org.uqbar.common.transaction.Collection.TransactionalSet
 import org.uqbar.common.transaction.ObjectTransaction
 import org.uqbar.common.transaction.TaskOwner
 import org.uqbar.common.transaction.ObjectTransactionException
+import org.uqbar.commons.model.utils.ReflectionUtils
 
 /**
  * {@link ObjectTransaction} default implementation.

@@ -19,9 +19,8 @@ Requirements
  <<Note:>> We are currently working on it, but we still don't have a C.I. 
  in order to deploy new versions of artifacts every time someone pushes a change to master. 
  So, this means that, every time you push something, you'll also need to 
- manually deploy it with "mvn deploy". This also means that, probably, for now, 
- if you want to have it all working straight right after checkout, then, 
- go ahead and check out ALL projects listed below, instead of just picking some of them.
+ manually deploy it following {{{http://wiki.uqbar.org/wiki/articles/deploy-en-maven-central.html}this instructions}}
+
 
 Checkout Projects/Repos
 
@@ -172,5 +171,7 @@ Maven configuration
 +--
 
  <NOTE THAT YOU MUST ASK SOME UQBAR MEMBER FOR THE PASSWORD AND REPLACE THERE THE "PASSWORD_HERE">
+ 
+
  
    

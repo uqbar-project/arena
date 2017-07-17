@@ -4,11 +4,11 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
-import org.uqbar.commons.utils.Observable
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Label
 import scala.collection.mutable.ArrayBuffer
 import org.uqbar.arena.widgets.{ List => Lista }
+import org.uqbar.commons.model.annotations.Observable
 
 object TableWithScalaListWindow extends MainWindow(ProgramacionFox) with App {
   startApplication()

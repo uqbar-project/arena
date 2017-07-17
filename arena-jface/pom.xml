@@ -2,7 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.uqbar-project</groupId>
 	<artifactId>arena-jface</artifactId>
 
 	<packaging>jar</packaging>
@@ -11,7 +10,7 @@
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>arena-parent</artifactId>
-		<version>3.6.1-SNAPSHOT</version>
+		<version>3.6.2-SNAPSHOT</version>
 	</parent>
 
 	<profiles>
@@ -118,7 +117,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>arena-core</artifactId>
-			<version>3.6.1-SNAPSHOT</version>
+			<version>3.6.2-SNAPSHOT</version>
 		</dependency>
 		<!-- /UQBAR -->
 

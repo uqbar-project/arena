@@ -3,7 +3,7 @@ package org.uqbar.lacar.ui.impl.jface.builder.tree
 import org.eclipse.jface.viewers.ITreeContentProvider
 import org.eclipse.core.databinding.observable.value.IObservableValue
 import org.eclipse.core.databinding.observable.set.IObservableSet
-import org.uqbar.commons.utils.ReflectionUtils._
+import org.uqbar.commons.model.utils.ReflectionUtils._
 import java.util.List
 import org.eclipse.jface.viewers.Viewer
 import org.uqbar.arena.jface.JFaceImplicits._

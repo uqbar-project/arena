@@ -24,7 +24,7 @@ class JFaceContentsBindingBuilder(list:JFaceTreeBuilder[_]) extends BindingBuild
 	}
 
 	override def observeProperty(model:Object, propertyName:String) =
-		throw new UnsupportedOperationException("No se puede usar este binding, utilize " +
+		throw new UnsupportedOperationException("No se puede usar este binding, utilice " +
 				" observeProperty(ObservableObject model, String parentPropertyName, String childPropertyName)");
 	
 	override def observeErrors() = 

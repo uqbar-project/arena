@@ -1,6 +1,6 @@
 package org.uqbar.arena.tests.nestedProperties;
 
-import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.model.annotations.Observable;
 
 @Observable
 public class Nested {

@@ -4,13 +4,12 @@ import org.uqbar.arena.aop.potm.ObjectTransactionImplObservable
 import org.uqbar.arena.aop.potm.PureObjectTransactionMonitorWindow
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.Observable
 import org.uqbar.arena.aop.potm.MonitorApplicationModel
 import org.uqbar.aop.transaction.ObjectTransactionManager
 import org.uqbar.common.transaction.ObjectTransaction
 import org.uqbar.common.transaction.TaskOwner
 import org.uqbar.lacar.ui.model.Action
+import org.uqbar.commons.model.exceptions.UserException
 
 trait TransactionalWindowTrait[T] extends DialogTrait[T] with TaskOwner with ActionExecuter {
 

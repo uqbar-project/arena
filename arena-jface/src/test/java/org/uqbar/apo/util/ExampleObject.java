@@ -2,7 +2,7 @@ package org.uqbar.apo.util;
 
 
 import org.uqbar.commons.model.ObservableObject;
-import org.uqbar.commons.utils.ReflectionUtils;
+import org.uqbar.commons.model.utils.ReflectionUtils;
 
 
 public class ExampleObject extends ObservableObject implements IExampleObject {

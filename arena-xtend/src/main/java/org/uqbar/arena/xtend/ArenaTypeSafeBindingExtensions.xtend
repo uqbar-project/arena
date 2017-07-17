@@ -4,7 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.eclipse.xtext.xbase.lib.Functions.Function1
 import org.mockito.internal.InternalMockHandler
-import org.mockito.internal.configuration.plugins.Plugins
+import org.mockito.internal.configuration.ClassPathLoader
 import org.mockito.internal.creation.settings.CreationSettings
 import org.mockito.invocation.Invocation
 import org.mockito.invocation.MockHandler
@@ -23,15 +23,15 @@ class ArenaTypeSafeBindingExtensions {
 		val modelObservableAsString = calculateObservable(control.containerModelObject, propertyBinder)
 		control.bindValueToProperty(modelObservableAsString)
 	}
-	
+
 	def static <M,R> calculateObservable(Object model, Function1<M, R> propertyBinder) {
 		val Class<M> concreteModelType = model.class as Class<M>
 		val handler = createInvocationHandler()
-		val M mock = createMockFor(concreteModelType, handler) 
-		
+		var M mock = createMockFor(concreteModelType, handler)
+
 		// call closure
 		propertyBinder.apply(mock)
-		
+
 		//TODO: inspect mock for getter calls, register binding.
 		handler.getPropertyName
 	}
@@ -39,7 +39,7 @@ class ArenaTypeSafeBindingExtensions {
 	def static createInvocationHandler() { new ArenaMockHandler }
 	
 	def static <T> T createMockFor(Class<T> type, MockHandler handler) {
-		Plugins.getMockMaker.createMock(createMockCreationSettings(type), handler)
+		ClassPathLoader.getMockMaker().createMock(createMockCreationSettings(type), handler)
 	}
 	
 	def static <T> createMockCreationSettings(Class<T> typeToMock) {

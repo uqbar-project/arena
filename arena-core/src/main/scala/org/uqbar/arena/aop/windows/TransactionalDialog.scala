@@ -5,7 +5,6 @@ import org.uqbar.arena.aop.potm.ObjectTransactionImplObservable
 import org.uqbar.arena.aop.potm.PureObjectTransactionMonitorWindow
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import org.uqbar.commons.model.UserException
 import org.uqbar.aop.transaction.ObjectTransactionManager
 import org.uqbar.common.transaction.ObjectTransaction
 import org.uqbar.common.transaction.TaskOwner
@@ -14,6 +13,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.lacar.ui.model.Action
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.Window
+import org.uqbar.commons.model.exceptions.UserException
 
 abstract class TransactionalDialog[T](owner: WindowOwner, model: T) extends Dialog[T](owner, model) with TaskOwner with ActionExecuter {
   var transaction: ObjectTransaction = null

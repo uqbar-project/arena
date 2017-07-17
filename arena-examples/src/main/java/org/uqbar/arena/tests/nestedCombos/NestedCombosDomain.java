@@ -3,7 +3,7 @@ package org.uqbar.arena.tests.nestedCombos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.model.annotations.Observable;
 
 @Observable
 public class NestedCombosDomain {

@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>arena-parent</artifactId>
-		<version>3.6.1-SNAPSHOT</version>
+		<version>3.6.2-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -18,6 +18,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>uqbar-domain</artifactId>
+			<version>3.6.2-SNAPSHOT</version>
 		</dependency>
 
 		<!-- /UQBAR DEPENDENCIES -->

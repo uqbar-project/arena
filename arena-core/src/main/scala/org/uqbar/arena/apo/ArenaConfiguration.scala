@@ -1,6 +1,5 @@
 package org.uqbar.arena.apo
 
-import org.uqbar.commons.utils.TransactionalAndObservable
 import org.uqbar.apo.Advice
 import org.uqbar.apo.ConstructorCallInterceptor
 import org.uqbar.apo.pointcut.AnnotationPointCut
@@ -15,10 +14,11 @@ import org.uqbar.apo.pointcut.MethodPointCut
 import org.uqbar.apo.ConstructorInterceptor
 import org.uqbar.apo.pointcut.InterceptMatchPointCut
 import javassist.CtConstructor
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.utils.Transactional
 import org.uqbar.apo.parser.APOParser
 import org.uqbar.apo.FieldInterceptor
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.Observable
+
 /**
  *
  * @author nny

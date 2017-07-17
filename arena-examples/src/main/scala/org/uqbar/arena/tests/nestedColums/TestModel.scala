@@ -1,8 +1,8 @@
 package org.uqbar.arena.tests.nestedColums
 
-import org.uqbar.commons.utils.TransactionalAndObservable
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 case class Estudent(var name: String, var courses: java.util.List[Course], var department: Department, var status: EstudenStatus.Status)

@@ -5,14 +5,13 @@ import java.util.List;
 
 import org.uqbar.arena.hierarchiallogger.HierarchicalLoggeable;
 import org.uqbar.arena.hierarchiallogger.HierarchicalLogger;
+import org.uqbar.arena.utils.ArenaUtils;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Widget;
 import org.uqbar.commons.model.IModel;
 import org.uqbar.commons.model.Model;
-import org.uqbar.commons.model.UserException;
-import org.uqbar.commons.utils.Observable;
-import org.uqbar.commons.utils.TransactionalAndObservable;
+import org.uqbar.commons.model.exceptions.UserException;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;
 import org.uqbar.lacar.ui.model.WindowBuilder;
@@ -25,9 +24,9 @@ import org.uqbar.lacar.ui.model.WindowBuilder;
  * @author npasserini
  */
 public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilder>, WindowOwner, HierarchicalLoggeable {
-	public Class<Observable> ObservableAnnotation = Observable.class;
-	public Class<TransactionalAndObservable> TransactionalAndObservableAnnotation = TransactionalAndObservable.class;
-	
+
+	private static final long serialVersionUID = -3298627133588225582L;
+
 	/**
 	 * Puede ser la ventana padre o bien la aplicación en caso de que esta sea una ventana de primer nivel.
 	 */
@@ -216,8 +215,8 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	 */
 	public void validate() {
 		Class<?> clazz = this.getModelObject().getClass();
-		if (!clazz.isAnnotationPresent(ObservableAnnotation) && !clazz.isAnnotationPresent(TransactionalAndObservableAnnotation)) {
-			throw new RuntimeException("La clase " + clazz.getName() + " no tiene la annotation " + ObservableAnnotation.getSimpleName() + " ni " + TransactionalAndObservableAnnotation.getSimpleName() + " que es necesaria para ser modelo de una vista en Arena");
+		if (!ArenaUtils.isObservable(clazz)) {
+			throw new RuntimeException("La clase " + clazz.getName() + " no tiene alguna de estas annotations " + ArenaUtils.getRequiredAnnotationForModels() + " que son necesarias para ser modelo de una vista en Arena");
 		}
 		// TODO: Validate children bindings?
 	}

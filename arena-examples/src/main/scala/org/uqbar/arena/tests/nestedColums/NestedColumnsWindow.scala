@@ -4,6 +4,7 @@ import java.awt.Color
 
 import scala.collection.JavaConversions.seqAsJavaList
 
+import org.apache.commons.collections15.Transformer
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.scala.ArenaScalaImplicits.closureToTransformer
@@ -14,9 +15,6 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.MainWindow
-import org.uqbar.commons.utils.TransactionalAndObservable
-
-import org.apache.commons.collections15.Transformer
 
 
 /**

@@ -3,8 +3,7 @@ package org.uqbar.common.transaction.Collection
 import java.util.Collection
 import java.util.ArrayList
 import java.util.List
-
-import org.uqbar.commons.utils.Transactional
+import org.uqbar.commons.model.annotations.Transactional
 
 @Transactional
 class TransacionalList[E](owner:Any, fieldName:String) extends TransactionalCollection[List[E], E](owner, fieldName) with List[E]{
