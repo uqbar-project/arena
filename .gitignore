@@ -8,5 +8,6 @@
 **/.hg/**
 **/bin/**
 **/*.orig
+**/.tmp**
 arena-xtend/src/test/generated-sources/**
 arena-xtend/src/main/generated-sources/**
