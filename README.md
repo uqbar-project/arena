@@ -25,3 +25,5 @@ mvn --batch-mode release:clean release:prepare
 git push --follow-tags
 # This will publish both the commits and the new tag
 ```
+
+For further information, please refer to [this page](http://wiki.uqbar.org/wiki/articles/deploy-en-maven-central.html)
