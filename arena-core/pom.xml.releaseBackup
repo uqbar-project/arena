@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>Arena Core</name>
+	<artifactId>arena-core</artifactId>
+
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>org.uqbar-project</groupId>
+		<artifactId>arena-parent</artifactId>
+		<version>3.6.2-SNAPSHOT</version>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<locales>en</locales>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<site>
+			<id>sites-uqbar-project.org</id>
+			<url>ftp://arena.uqbar-project.org/arena</url>
+		</site>
+	</distributionManagement>
+	
+	<url>http://arena.uqbar-project.org/arena</url>
+
+	<dependencies>
+		<!-- UQBAR -->
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>arena-pot</artifactId>
+			<version>3.6.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>arena-poo</artifactId>
+			<version>3.6.2-SNAPSHOT</version>
+		</dependency>
+		<!-- /UQBAR -->
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+	</dependencies>
+
+</project>
