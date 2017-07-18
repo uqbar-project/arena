@@ -1,7 +1,7 @@
 package org.uqbar.arena.tests.nestedCombos;
 
-import org.uqbar.commons.utils.Observable;
-import org.uqbar.commons.utils.Transactional;
+import org.uqbar.commons.model.annotations.Observable;
+import org.uqbar.commons.model.annotations.Transactional;
 
 @Observable
 @Transactional

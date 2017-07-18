@@ -1,12 +1,11 @@
 package org.uqbar.arena.performance
-import java.util.Calendar
-import org.uqbar.aop.transaction.ObjectTransactionManager
-import org.uqbar.common.transaction.TaskOwner
-import org.uqbar.aop.transaction.utils.BasicTaskOwner
-import org.uqbar.commons.utils.TransactionalAndObservable
-import org.uqbar.commons.model.UserException
 import System.{ currentTimeMillis => time }
+
 import scala.collection.mutable.ArrayBuffer
+
+import org.uqbar.aop.transaction.ObjectTransactionManager
+import org.uqbar.aop.transaction.utils.BasicTaskOwner
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 object PerformanceApp extends BasicTaskOwner("Performance test") with App {
 

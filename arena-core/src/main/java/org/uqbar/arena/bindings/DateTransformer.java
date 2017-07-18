@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
-import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.model.exceptions.UserException;
 
 /**
  * Convierte a Date los Strings en formato dd/MM/yyy. Acepta valores nulos.
@@ -22,7 +22,7 @@ public final class DateTransformer implements ValueTransformer<Date, String> {
 			return StringUtils.isBlank(valueFromView) ? null : new SimpleDateFormat(pattern).parse(valueFromView);
 		}
 		catch (ParseException e) {
-			throw new UserException("Debe INGRESAR una fecha en formato: " + this.pattern);
+			throw new UserException("Debe ingresar una fecha en formato: " + this.pattern);
 		}
 	}
 

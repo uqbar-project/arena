@@ -1,9 +1,9 @@
 package org.uqbar.arena.examples.controls.spinner;
 
+import org.uqbar.commons.model.annotations.Observable;
+
 import net.sf.oval.constraint.Max;
 import net.sf.oval.constraint.Min;
-
-import org.uqbar.commons.utils.Observable;
 
 /**
  * 

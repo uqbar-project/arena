@@ -1,10 +1,10 @@
 package org.uqbar.arena.examples.controls.binding.enable
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
-import org.uqbar.commons.utils.Observable
 import org.eclipse.core.databinding.observable.list.IObservableList
 import org.eclipse.core.databinding.observable.Realm
 import org.uqbar.lacar.ui.model.bindings.Observables
+import org.uqbar.commons.model.annotations.Observable
 
 @Observable
 class Country(var name:String)

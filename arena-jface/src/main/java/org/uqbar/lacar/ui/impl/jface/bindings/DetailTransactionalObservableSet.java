@@ -8,7 +8,7 @@ import org.uqbar.aop.transaction.ObjectTransactionManager;
 import org.uqbar.apo.APOConfig;
 import org.uqbar.arena.isolation.IsolationLevelEvents;
 import org.uqbar.common.transaction.ObjectTransaction;
-import org.uqbar.commons.utils.ReflectionUtils;
+import org.uqbar.commons.model.utils.ReflectionUtils;
 
 public class DetailTransactionalObservableSet extends DetailObservableSet{
 	

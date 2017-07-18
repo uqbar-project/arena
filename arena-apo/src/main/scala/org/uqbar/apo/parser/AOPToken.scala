@@ -1,7 +1,7 @@
 package org.uqbar.apo.parser
 import javassist.CtPrimitiveType
 import javassist.expr.FieldAccess
-import org.uqbar.commons.utils.ReflectionUtils
+import org.uqbar.commons.model.utils.ReflectionUtils
 
 abstract class Token[T]() {
   def apply(t: T): String

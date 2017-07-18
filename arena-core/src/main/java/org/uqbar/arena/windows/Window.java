@@ -5,12 +5,13 @@ import java.util.List;
 
 import org.uqbar.arena.hierarchiallogger.HierarchicalLoggeable;
 import org.uqbar.arena.hierarchiallogger.HierarchicalLogger;
+import org.uqbar.arena.utils.ArenaUtils;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Widget;
 import org.uqbar.commons.model.IModel;
 import org.uqbar.commons.model.Model;
-import org.uqbar.commons.model.UserException;
+import org.uqbar.commons.model.exceptions.UserException;
 import org.uqbar.lacar.ui.model.PanelBuilder;
 import org.uqbar.lacar.ui.model.ViewDescriptor;
 import org.uqbar.lacar.ui.model.WindowBuilder;
@@ -23,6 +24,9 @@ import org.uqbar.lacar.ui.model.WindowBuilder;
  * @author npasserini
  */
 public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilder>, WindowOwner, HierarchicalLoggeable {
+
+	private static final long serialVersionUID = -3298627133588225582L;
+
 	/**
 	 * Puede ser la ventana padre o bien la aplicación en caso de que esta sea una ventana de primer nivel.
 	 */
@@ -59,6 +63,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	private boolean contentsReady;
 
 	private int minHeight;
+	private int minWidth;
 
 	@SuppressWarnings("unchecked")
 	public Window(WindowOwner owner, T model) {
@@ -107,6 +112,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	 * 
 	 */
 	public final void createContents() {
+		this.validate();
 		if (!this.contentsReady) {
 			this.createContents(this.createMainPanel());
 			this.contentsReady = true;
@@ -142,6 +148,7 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		delegate.setContents(this);
 		delegate.setIcon(this.iconImage);
 		delegate.setMinHeight(this.minHeight);
+		delegate.setMinWidth(this.minWidth);
 		delegate.open();
 	}
 
@@ -198,6 +205,22 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 		}
 	}
 
+	/**
+	 * 
+	 * New method added for validation before showing
+	 * Now you can't open a window if its model is not a class annotated with @Observable 
+	 * 
+	 * @since 3.6.2
+	 * 
+	 */
+	public void validate() {
+		Class<?> clazz = this.getModelObject().getClass();
+		if (!ArenaUtils.isObservable(clazz)) {
+			throw new RuntimeException("La clase " + clazz.getName() + " no tiene alguna de estas annotations " + ArenaUtils.getRequiredAnnotationForModels() + " que son necesarias para ser modelo de una vista en Arena");
+		}
+		// TODO: Validate children bindings?
+	}
+
 	// ********************************************************
 	// ** Utilities
 	// ********************************************************
@@ -219,6 +242,10 @@ public abstract class Window<T> implements Container, ViewDescriptor<PanelBuilde
 	
 	public void setMinHeight(int minPreferedSize) {
 		this.minHeight = minPreferedSize;
+	}
+
+	public void setMinWidth(int minPreferedSize) {
+		this.minWidth = minPreferedSize;
 	}
 
 }

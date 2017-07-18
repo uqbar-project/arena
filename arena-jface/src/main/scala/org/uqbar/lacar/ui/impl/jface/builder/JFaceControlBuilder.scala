@@ -1,22 +1,19 @@
 package org.uqbar.lacar.ui.impl.jface.builder
 
-import org.uqbar.lacar.ui.model.ControlBuilder
-import org.eclipse.swt.widgets.Control
-import org.eclipse.swt.SWT
-import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
-import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
-import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue
-import org.eclipse.jface.internal.databinding.swt.SWTProperties
-import org.eclipse.swt.widgets.Text
-import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis, observeEditable, observeEnabled => observeEnab, observeTooltipText }
-import org.apache.commons.collections15.Transformer
 import org.eclipse.core.databinding.observable.value.IObservableValue
-import org.eclipse.swt.layout.GridLayout
-import org.eclipse.swt.layout.GridData
-import org.eclipse.swt.layout.RowLayout
-import org.eclipse.swt.layout.RowData
-import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
+import org.eclipse.jface.databinding.swt.SWTObservables.observeEditable
+import org.eclipse.jface.databinding.swt.SWTObservables.{ observeEnabled => observeEnab }
+import org.eclipse.jface.databinding.swt.SWTObservables.observeTooltipText
+import org.eclipse.jface.databinding.swt.SWTObservables.{ observeVisible => observeVis }
+import org.eclipse.jface.internal.databinding.swt.SWTProperties
+import org.eclipse.swt.widgets.Control
+import org.eclipse.swt.widgets.Text
+import org.uqbar.lacar.ui.impl.jface.bindings.JFaceBindingBuilder
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceContainer
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceEnabledDisabled
+import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
+import org.uqbar.lacar.ui.impl.jface.swt.observables.ControlObservableValue
+import org.uqbar.lacar.ui.model.ControlBuilder
 
 /**
  * @author npasserini
@@ -55,5 +52,5 @@ abstract class JFaceControlBuilder[T <: Control](c: JFaceContainer)
   def bind(model: IObservableValue, view: IObservableValue) = new JFaceBindingBuilder(this, view, model).build
 
   def getControlLayout(): Control = widget
-
+  
 }

@@ -1,20 +1,13 @@
 package org.uqbar.poo.aop
 
-import org.uqbar.apo.pointcut.AnnotationPointCut
-import org.uqbar.apo.pointcut.FieldPointCut
-
-import javassist.CtClass
-
-import org.uqbar.apo.pointcut.PointCut
 import org.uqbar.apo.Advice
 import org.uqbar.apo.Configuration
-import org.uqbar.commons.utils.Observable
+import org.uqbar.apo.pointcut.AnnotationPointCut
+import org.uqbar.apo.pointcut.FieldPointCut
+import org.uqbar.apo.pointcut.PointCut
+import org.uqbar.commons.model.annotations.Observable
 
-import javassist.Modifier
-
-import org.uqbar.apo.pointcut.ClassPointCut
-import org.uqbar.apo.pointcut.MethodPointCut
-import org.uqbar.commons.utils.ReflectionUtils
+import javassist.CtClass
 
 /**
  *

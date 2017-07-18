@@ -1,6 +1,6 @@
 package org.uqbar.objecttransactions;
 
-import org.uqbar.commons.utils.Transactional;
+import org.uqbar.commons.model.annotations.Transactional;
 
 
 /**

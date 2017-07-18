@@ -10,17 +10,18 @@ import javassist.ClassPool
 class JFaceConfiguration extends Configuration {
 
   override def createAdvices(): List[Advice] = {
-    var inteceptor = method.around((s, m) => {
+    val ScalaBeanInfoFQN = "org.uqbar.commons.model.utils.ScalaBeanInfo"
+    var interceptor = method.around((s, m) => {
       var etype = ClassPool.getDefault().get("org.eclipse.core.databinding.BindingException")
-      m.addCatch("{return org.uqbar.commons.model.ScalaBeanInfo.getPropertyDescriptor($1, $2);}", etype)
+      m.addCatch("{return " + ScalaBeanInfoFQN +".getPropertyDescriptor($1, $2);}", etype)
     })
 
-    val instroperctorPoint = new PointCut with ClassPointCut with MethodPointCut {
+    val instrospectorPoint = new PointCut with ClassPointCut with MethodPointCut {
       className(_.equals("BeansObservables")) && packageName(_.equals("org.eclipse.core.databinding.beans"))
 
       methodName(_.equals("getPropertyDescriptor"))
     }
-    super.createAdvices().::(new Advice(instroperctorPoint, inteceptor))
+    super.createAdvices().::(new Advice(instrospectorPoint, interceptor))
   }
   
 }

@@ -40,11 +40,11 @@ public class TableWithoutSize extends MainWindow<ObjectWithProperty> {
 		new Button(mainPanel).onClick(new Action() {
 			@Override
 			public void execute() {
-				model.getPersonas().add(new Persona("Pepe", "Sanchez"));
-				model.getPersonas().add(new Persona("Fabrizio", "Oberto"));
-				model.getPersonas().add(new Persona("Hector", "Campana"));
-				model.getPersonas().add(new Persona("Luis", "Lopez"));
-				model.getPersonas().add(new Persona("Angel", "Lopez"));
+				model.getPersonas().add(new Persona("Pepe", "Sanchez", 41));
+				model.getPersonas().add(new Persona("Fabrizio", "Oberto", 38));
+				model.getPersonas().add(new Persona("Hector", "Campana", 40));
+				model.getPersonas().add(new Persona("Luis", "Lopez", 28));
+				model.getPersonas().add(new Persona("Angel", "Lopez", 26));
 			}
 		}).setCaption("Llenar Tabla");
 	}

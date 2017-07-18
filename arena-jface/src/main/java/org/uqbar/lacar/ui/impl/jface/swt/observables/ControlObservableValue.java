@@ -1,7 +1,9 @@
 package org.uqbar.lacar.ui.impl.jface.swt.observables;
 import java.awt.Color;
 import java.util.List;
+import java.util.Map;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.jface.internal.databinding.provisional.swt.AbstractSWTObservableValue;
@@ -20,14 +22,20 @@ public class ControlObservableValue extends AbstractSWTObservableValue {
 	private final String attribute;
 	
 	@SuppressWarnings("unchecked")
-	private static final List<String> SUPPORTED_ATTRIBUTES = Arrays.asList( new String[]{
-				SWTProperties.FOREGROUND, SWTProperties.BACKGROUND, SWTProperties.FONT});
+	private static final Map SUPPORTED_ATTRIBUTES = new HashMap();
+	static {
+		SUPPORTED_ATTRIBUTES.put(SWTProperties.ENABLED, Boolean.TYPE);
+		SUPPORTED_ATTRIBUTES.put(SWTProperties.VISIBLE, Boolean.TYPE);
+		SUPPORTED_ATTRIBUTES.put(SWTProperties.FOREGROUND, Color.class);
+		SUPPORTED_ATTRIBUTES.put(SWTProperties.BACKGROUND, Color.class);
+		SUPPORTED_ATTRIBUTES.put(SWTProperties.FONT, Font.class);
+	}
 	
 	public ControlObservableValue(Control control, String attribute) {
 		super(control);
 		this.control = control;
 		this.attribute = attribute;
-		if (!SUPPORTED_ATTRIBUTES.contains(attribute)) {
+		if (!SUPPORTED_ATTRIBUTES.keySet().contains(attribute)) {
 			throw new IllegalArgumentException();
 		}
 	}
@@ -37,6 +45,11 @@ public class ControlObservableValue extends AbstractSWTObservableValue {
 		Object oldValue = doGetValue();
 		if(modelValue== null)
 			return;
+		if (attribute.equals(SWTProperties.ENABLED)) {
+			control.setEnabled(((Boolean) modelValue).booleanValue());
+		} else if (attribute.equals(SWTProperties.VISIBLE)) {
+			control.setVisible(((Boolean) modelValue).booleanValue());
+		}
 		if (attribute.equals(SWTProperties.FOREGROUND)) {
 			control.setForeground(getSWTColor((Color) modelValue));
 		} else if (attribute.equals(SWTProperties.BACKGROUND)) {
@@ -52,7 +65,11 @@ public class ControlObservableValue extends AbstractSWTObservableValue {
 	}
 
 	public Object getValueType() {
-		return Object.class;
+		return SUPPORTED_ATTRIBUTES.get(attribute);
+	}
+	
+	public String getAttribute() {
+		return attribute;
 	}
 	
 	protected org.eclipse.swt.graphics.Color getSWTColor(Color color) {

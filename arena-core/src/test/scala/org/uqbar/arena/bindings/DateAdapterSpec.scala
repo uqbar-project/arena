@@ -2,7 +2,7 @@ package org.uqbar.arena.bindings
 
 import org.uqbar.arena.UnitSpec
 import java.util.Date
-import org.uqbar.commons.model.UserException
+import org.uqbar.commons.model.exceptions.UserException
 
 class dateTransformerSpec extends UnitSpec {
 

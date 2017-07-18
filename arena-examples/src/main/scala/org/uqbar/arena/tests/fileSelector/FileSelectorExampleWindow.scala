@@ -10,13 +10,13 @@ import org.uqbar.arena.widgets.FileSelector
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
-import org.uqbar.commons.utils.Observable
 import org.uqbar.arena.windows.MainWindow
-import org.uqbar.commons.utils.TransactionalAndObservable
 import java.util.ArrayList
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.scala.ArenaScalaImplicits._
 import org.uqbar.arena.bindings.PropertyAdapter
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.Observable
 
 @TransactionalAndObservable class File(var path:String){
 }

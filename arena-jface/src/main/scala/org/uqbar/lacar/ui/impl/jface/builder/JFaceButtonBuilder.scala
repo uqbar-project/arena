@@ -15,6 +15,7 @@ import org.eclipse.jface.databinding.swt.SWTObservables
 import org.uqbar.lacar.ui.impl.jface.builder.traits.Aesthetic
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceSizeable
 import org.uqbar.lacar.ui.impl.jface.builder.traits.JFaceEnabledDisabled
+import org.uqbar.arena.widgets.traits.WidgetWithAlignment
 
 /**
  * @author jfernandes
@@ -28,6 +29,7 @@ class JFaceButtonBuilder(c: JFaceContainer)
   with JFaceWithCaption
   with Aesthetic
   with JFaceSizeable
+  with WidgetWithAlignment
   with JFaceEnabledDisabled {
 
   override def setAsDefault() = {
@@ -38,4 +40,8 @@ class JFaceButtonBuilder(c: JFaceContainer)
   override def observeValue(): BindingBuilder = throw new UnsupportedOperationException(
       "Se intentó observar la propiedad 'value' de un Button, que no tiene dicha propiedad")
 
+  override def alignLeft() = widget.setAlignment(SWT.LEFT)
+  override def alignRight() = widget.setAlignment(SWT.RIGHT)
+  override def alignCenter() = widget.setAlignment(SWT.CENTER)
+  
 }

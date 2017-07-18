@@ -1,10 +1,9 @@
 package org.uqbar.common.transaction.Collection
 
-import org.uqbar.commons.utils.TransactionalAndObservable
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.utils.ReflectionUtils
 import org.uqbar.commons.utils.When
-import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.ObservableUtils
-import org.uqbar.commons.utils.ReflectionUtils
 
 @Observable
 abstract class TransactionalData[D](owner:Any, fieldName:String) {

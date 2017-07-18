@@ -1,6 +1,6 @@
 package org.uqbar.arena.bindings;
 
-import org.uqbar.commons.utils.Observable;
+import org.uqbar.commons.model.annotations.Observable;
 
 @Observable
 public class ValueHolder<T> {

@@ -1,11 +1,12 @@
 package org.uqbar.commons.utils
 
-import org.uqbar.commons.model.ObservableUtils
 import java.beans.PropertyChangeListener
 import java.beans.PropertyChangeEvent
 import scala.collection.mutable.Buffer
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
+import org.uqbar.commons.model.utils.ObservableUtils
+import org.uqbar.commons.model.utils.ReflectionUtils
 
 case class When(val obj:Any){
   def change(property:String) = Change(property, this)

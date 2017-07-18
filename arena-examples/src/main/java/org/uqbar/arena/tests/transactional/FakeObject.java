@@ -1,6 +1,6 @@
 package org.uqbar.arena.tests.transactional;
 
-import org.uqbar.commons.utils.TransactionalAndObservable;
+import org.uqbar.commons.model.annotations.TransactionalAndObservable;
 
 @TransactionalAndObservable
 public class FakeObject {

@@ -1,12 +1,10 @@
 package org.uqbar.arena;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.commons.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.ApplicationRunner;
 
 /**

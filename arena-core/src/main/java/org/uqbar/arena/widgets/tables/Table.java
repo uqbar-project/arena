@@ -8,6 +8,7 @@ import org.apache.commons.collections15.Closure;
 import org.uqbar.arena.ArenaException;
 import org.uqbar.arena.bindings.ObservableProperty;
 import org.uqbar.arena.bindings.ObservableValue;
+import org.uqbar.arena.utils.ArenaUtils;
 import org.uqbar.arena.widgets.Container;
 import org.uqbar.arena.widgets.Control;
 import org.uqbar.lacar.ui.model.ControlBuilder;
@@ -31,8 +32,9 @@ public class Table<R> extends Control {
 
 	public Table(Container container, Class<R> itemType) {
 		super(container);
-		if (!itemType.isAnnotationPresent(org.uqbar.commons.utils.Observable.class) && !itemType.isAnnotationPresent(org.uqbar.commons.utils.TransactionalAndObservable.class)) {
-			throw new ArenaException("La clase " + itemType.getName() + " debe tener la annotation @Observable o @TransactionalAndObservable");
+		if (!ArenaUtils.isObservable(itemType)) {
+			// TODO: i18n
+			throw new ArenaException("La clase " + itemType.getName() + " debe tener alguna de estas annotations para poder ser modelo de una tabla en Arena: " + ArenaUtils.getRequiredAnnotationForModels());
 		}
 		setItemType(itemType);
 	}

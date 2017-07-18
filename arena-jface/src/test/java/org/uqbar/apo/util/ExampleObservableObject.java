@@ -1,7 +1,7 @@
 package org.uqbar.apo.util;
 
-import org.uqbar.commons.utils.ReflectionUtils;
-import org.uqbar.commons.utils.TransactionalAndObservable;
+import org.uqbar.commons.model.annotations.TransactionalAndObservable;
+import org.uqbar.commons.model.utils.ReflectionUtils;
 
 
 @TransactionalAndObservable

@@ -23,15 +23,15 @@ class ArenaTypeSafeBindingExtensions {
 		val modelObservableAsString = calculateObservable(control.containerModelObject, propertyBinder)
 		control.bindValueToProperty(modelObservableAsString)
 	}
-	
+
 	def static <M,R> calculateObservable(Object model, Function1<M, R> propertyBinder) {
 		val Class<M> concreteModelType = model.class as Class<M>
 		val handler = createInvocationHandler()
-		val M mock = createMockFor(concreteModelType, handler) 
-		
+		var M mock = createMockFor(concreteModelType, handler)
+
 		// call closure
 		propertyBinder.apply(mock)
-		
+
 		//TODO: inspect mock for getter calls, register binding.
 		handler.getPropertyName
 	}

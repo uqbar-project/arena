@@ -7,8 +7,7 @@ import org.uqbar.arena.bootstrap.Bootstrap;
 import org.uqbar.arena.bootstrap.NullBootstrap;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
-import org.uqbar.commons.utils.ReflectionUtils;
-//import org.uqbar.lacar.ui.impl.jface.JFaceApplicationBuilder;
+import org.uqbar.commons.model.utils.ReflectionUtils;
 import org.uqbar.lacar.ui.model.ApplicationRunner;
 import org.uqbar.lacar.ui.model.WindowFactory;
 
@@ -81,7 +80,7 @@ public abstract class Application implements WindowOwner, Runnable {
 	@Override
 	public void run() {
 		ObjectTransactionManager.getTransaction();
-		this.bootstrap.run();
+		if (this.bootstrap.isPending()) this.bootstrap.run();
 		this.createMainWindow().open();
 	}
 
