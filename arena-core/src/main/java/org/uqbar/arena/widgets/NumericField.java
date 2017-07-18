@@ -17,7 +17,7 @@ public class NumericField extends TextBox {
 	private boolean withDecimals;
 
 	public NumericField(Panel container) {
-		this(container, false);
+		this(container, true);
 	}
 
 	public NumericField(Panel container, boolean withDecimals) {
@@ -28,7 +28,7 @@ public class NumericField extends TextBox {
 	@Override
 	protected ControlBuilder createBuilder(PanelBuilder container) {
 		StyledControlBuilder numericField = container.addNumericField(withDecimals);
-		this.withFilter(new NumericFilter());
+		this.withFilter(new NumericFilter(withDecimals));
 		this.configureSkineableBuilder(numericField);
 		return numericField;
 	}
