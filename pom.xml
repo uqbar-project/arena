@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<properties>
@@ -10,7 +9,7 @@
 	</properties>
 
 	<artifactId>arena-parent</artifactId>
-	<version>3.6.2-SNAPSHOT</version>
+	<version>3.6.2</version>
 
 	<name>Arena Parent</name>
 
@@ -83,7 +82,7 @@
 		<connection>scm:git:${scm.gitServer}/arena</connection>
 		<developerConnection>scm:git:${scm.gitServer}/arena</developerConnection>
 		<url>scm:git:${scm.gitServer}/arena</url>
-		<tag>HEAD</tag>
+		<tag>v3.6.2</tag>
 	</scm>
 
 
