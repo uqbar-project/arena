@@ -22,6 +22,7 @@ public final class DateTransformer implements ValueTransformer<Date, String> {
 			return StringUtils.isBlank(valueFromView) ? null : new SimpleDateFormat(pattern).parse(valueFromView);
 		}
 		catch (ParseException e) {
+			// TODO: i18n
 			throw new UserException("Debe ingresar una fecha en formato: " + this.pattern);
 		}
 	}

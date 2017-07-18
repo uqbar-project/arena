@@ -7,81 +7,128 @@ import org.uqbar.arena.filters.NumericFilter;
 
 public class TestNumericFilter {
 
-	NumericFilter filter;
+	NumericFilter filterWithDecimals;
+	NumericFilter filterInteger;
 	
 	@Before
 	public void init() {
-		filter = new NumericFilter();
+		filterWithDecimals = new NumericFilter();
+		filterInteger = new NumericFilter(false);
 	}
 	
 	@Test
 	public void testPositiveNumber() {
-		Assert.assertTrue(filter.isNumeric("120"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("120"));
 	}
 	
 	@Test
 	public void testZeroNumber() {
-		Assert.assertTrue(filter.isNumeric("0"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("0"));
 	}
 
 	@Test
 	public void testZeroStringNumber() {
-		Assert.assertFalse(filter.isNumeric(""));
+		Assert.assertFalse(filterWithDecimals.isNumeric(""));
 	}
 
 	@Test
 	public void testAlphabeticDigitIsNotANumber() {
-		Assert.assertFalse(filter.isNumeric("A"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("A"));
 	}
 
 	@Test
 	public void testFirstAlphabeticDigitIsNotANumber() {
-		Assert.assertFalse(filter.isNumeric("A11"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("A11"));
 	}
 
 	@Test
 	public void testLastAlphabeticDigitIsNotANumber() {
-		Assert.assertFalse(filter.isNumeric("11A"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("11A"));
 	}
 
 	@Test
 	public void testASpaceBetweenNumberFailsToConvertAsNumber() {
-		Assert.assertFalse(filter.isNumeric("1 1"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("1 1"));
 	}
 
 	@Test
 	public void testDecimalCommaNumber() {
-		Assert.assertTrue(filter.isNumeric("3,3"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("3,3"));
 	}
 
 	@Test
 	public void testDecimalPointNumber() {
-		Assert.assertTrue(filter.isNumeric("3.3"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("3.3"));
 	}
 
 	@Test
 	public void testNegativeNumber() {
-		Assert.assertTrue(filter.isNumeric("-33"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("-33"));
 	}
 
 	@Test
 	public void testNegativeDecimalCommaNumber() {
-		Assert.assertTrue(filter.isNumeric("-3,3"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("-3,3"));
 	}
 
 	@Test
 	public void testNegativeDecimalPointNumber() {
-		Assert.assertTrue(filter.isNumeric("-3.3"));
+		Assert.assertTrue(filterWithDecimals.isNumeric("-3.3"));
 	}
 
 	@Test
 	public void testInvalidNegativeNumber() {
-		Assert.assertFalse(filter.isNumeric("-3AU"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("-3AU"));
 	}
 
 	@Test
 	public void testInvalidNumber() {
-		Assert.assertFalse(filter.isNumeric("/44"));
+		Assert.assertFalse(filterWithDecimals.isNumeric("/44"));
+	}
+
+	@Test
+	public void testNull() {
+		Assert.assertFalse(filterWithDecimals.isNumeric(null));
+	}
+
+	@Test
+	public void testIntegerOk() {
+		Assert.assertTrue(filterInteger.isNumeric("20"));
+	}
+
+	@Test
+	public void testIntegerNotOkBecauseOfComma() {
+		Assert.assertFalse(filterInteger.isNumeric("20,4"));
+	}
+	
+	@Test
+	public void testIntegerNotOkBecauseOfPoint() {
+		Assert.assertFalse(filterInteger.isNumeric("20.4"));
+	}
+	
+	@Test
+	public void testIntegerNotOkBecauseOfChar() {
+		Assert.assertFalse(filterInteger.isNumeric("20A4"));
+	}
+
+	@Test
+	public void testNegativeIntegerOk() {
+		Assert.assertTrue(filterInteger.isNumeric("-20"));
+	}
+
+	@Test
+	public void testNegativeIntegerNotOkBecauseOfComma() {
+		Assert.assertFalse(filterInteger.isNumeric("-20,4"));
+	}
+	
+	@Test
+	public void testNegativeIntegerNotOkBecauseOfPoint() {
+		Assert.assertFalse(filterInteger.isNumeric("-20.4"));
+	}
+	
+	@Test
+	public void testNegativeIntegerNotOkBecauseOfChar() {
+		Assert.assertFalse(filterInteger.isNumeric("-20A4"));
 	}
 
 }

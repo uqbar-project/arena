@@ -13,13 +13,32 @@ import org.uqbar.arena.widgets.TextInputEvent;
  */
 public class NumericFilter implements TextFilter {
 
+	public static String RegExpWithDecimals = "-?[0-9.]+(,[0-9])?";
+	public static String RegExpWithoutDecimals = "-?[0-9]+";
+	
+	private boolean withDecimals = true;
+	
+	public NumericFilter() {
+		
+	}
+	
+	public NumericFilter(boolean withDecimals) {
+		this.withDecimals = withDecimals;
+	}
+	
 	@Override
 	public boolean accept(TextInputEvent event) {
-		return isNumeric(event.getPotentialTextResult());
+		String value = event.getPotentialTextResult();
+		return (value == null || value.trim().equals("") || isNumeric(value));
 	}
 
 	public boolean isNumeric(String value) {
-		return value.matches("-?[0-9.]+(,[0-9])?");
+		if (value == null) return false;
+		if (withDecimals) {
+			return value.matches(RegExpWithDecimals);	
+		} else {
+			return value.matches(RegExpWithoutDecimals);
+		}
 	}
 	
 }
