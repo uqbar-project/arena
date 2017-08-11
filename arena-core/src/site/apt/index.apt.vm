@@ -14,19 +14,37 @@ Introduction
  extremely easy the developer tasks in order to bind UI components with domain, by reducing repeatable domain code such as triggering events
  or handling transactions.
 
- Arena is being used since 2010 in several argentinean public universities in order to teach the core concepts of object-oriented
- user interfaces.
+ Arena is being used since 2010 in several argentinean public universities in order to teach the core concepts of object-oriented user interfaces.
+
+
+August 2017 - New version released!
+
+ 3.6.3 version is out! {{{https://github.com/uqbar-project/arena/issues?q=is%3Aissue+milestone%3A3.6.3+is%3Aclosed}Here}} can you see a complete list of issues solved.
 
 
 Usage
 
- Check the {{{./usage.html}Usage}} page for configuration and understanding of the different implementations and *flavors* of Arena.
+ Check the {{{./usage.html}usage}} page for configuration and understanding of the different implementations and <flavors> of Arena (specially if your are programming in <<Xtend>>).
+
+
+Examples
+
+ Check our {{{./examples.html}example}} links to get familiar with the framework.
+
  
 Documentation
 
- Then check {{{./documentation.html}Documentation}} to get started with some code examples and a reference guide to the different
+ Then check {{{./documentation.html}documentation}} to get started with some code examples and a reference guide to the different
  components and concepts in Arena.
+
 
 Development
   
  If you want to collaborate with Arena's development then take a look at {{{./development.html}this page}}.
+
+
+Troubles? Features?
+
+ If you find a bug or want a new feature, there is an {{{http://github.com/uqbar-project/arena/issues}issue tracker}}.
+
+

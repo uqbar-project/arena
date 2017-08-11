@@ -11,16 +11,19 @@ Textbox
 
 * Bindings
 
-  Every textbox should bind its property value agains a model property:
+  Every textbox should bind its property value against a model property:
  
 +--
-new TextBox(mainPanel).bindValueToProperty("miles")
-+--
- 
- or
- 
-+--
-bindValue(new ObservableProperty(aModel, "miles"))
+// Xtend
+new TextBox(form) => [
+    value <=> "name"
+    width = 200 
+]
+
+// Java
+new TextBox(form)
+    .setWidth(250)
+    .bindValueToProperty("name");
 +--
 
   
@@ -36,10 +39,62 @@ bindValue(new ObservableProperty(aModel, "miles"))
  
     * fontSize, foreground, background 
 
- * withFilter(TextFilter): it allows to set a specific filter (date, numeric data, etc.)
+ * withFilter(TextFilter): allows to set a specific filter (date, numeric data, etc.)
+ 
+ * alignments: you can use alignRight() and alignLeft() messages (alignCenter() has no effect)
 
  []
 
+
+NumericField
+
+ A <<org.uqbar.arena.widgets.NumericField>> is a TextBox specially suited for numeric inputs.
+ 
+ It inherits all properties and bindings from TextBox control. 
+ 
+ You can configure to use it with or without decimals. 
+
+ * Fixed right alignment
+ 
+ * Allows positive and negative inputs 
+ 
+ []
+ 
+ 
++-- 
+// Xtend - Default is to allow decimal input
+new NumericField(form) => [
+    value <=> "number"
+    width = 100
+]
+
+// Another example, a numeric field without decimals
+new NumericField(mainPanel, false).value <=> "age"
+
+// Java
+new NumericField(form)
+    .setWidth(150)
+    .bindValueToProperty("number");
++--
+  
+
+PasswordField
+
+ A <<org.uqbar.arena.widgets.PasswordField>> is a special textbox suitable for
+ sensitive data, such as passwords. Input does not appear in control.
+ 
+ It inherits all properties and bindings from TextBox control.
+ 
++--
+// Xtend
+new PasswordField(mainPanel).value <=> "password"
+
+// Java
+new PasswordField(form)
+    .setWidth(150)
+    .bindValueToProperty("password");
++--
+  
  
 Links
  

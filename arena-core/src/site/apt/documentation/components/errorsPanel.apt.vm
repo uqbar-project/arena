@@ -1,0 +1,39 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Errors Panel
+
+ If you define a window inheriting from SimpleWindow, you will get an special kind of panel called <<Errors Panel>>. Every time an exception is thrown, its message will appear in this panel.
+
+
+ If you want to configure the number of lines to show, override createErrorsPanel:
+
++--
+    @Override
+    protected ErrorsPanel createErrorsPanel(Panel mainPanel) {
+        new ErrorsPanel(mainPanel, "Ready. \n Set. \n GO! \n", 
+             4 /* preferred number of lines */);
+    }
++-- 
+ 
+ You can also build your own ErrorsPanel, if your window doesn't fit in SimpleWindow hierarchy (like MainWindow or Window):
+
++--
+public class ErrorsPanelWindow extends MainWindow<Persona> {
+
+    @Override
+    public void createContents(Panel mainPanel) {
+        new ErrorsPanel(mainPanel, "Ready. \n Set. \n GO! \n", 
+             4 /* optional, preferred number of lines */);
+
+    }
++--
+
+Links
+ 
+ {{{../components.html}Back to Component Page}}
+ 
+ {{{../../documentation.html}Back to Documentation Page}} 

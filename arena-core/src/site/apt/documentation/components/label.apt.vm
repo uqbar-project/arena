@@ -14,18 +14,24 @@ Label
  Label content can be fixed or bindable. To define a <<static label>> you should set text property:
    
 +--
-new Label(editorPanel).setText("Fahrenheit")
-          <- you don't want to change this label, so text property is not Observable
-          
-...
-// another way in Xtend syntatic sugar
-new Label(mainPanel).text = "Fahrenheit"            
+// Xtend
+new Label(editorPanel).text = "Fahrenheit"
+
+// Java
+new Label(editorPanel).setText("Fahrenheit");
 +--
  
  Or you can bind a label to a <<dynamic>> property of a model
  
 +--
-new Label(mainPanel).bindValueToProperty("kilometers") <- as soon as model changes kilometers property, the label content updates its content
+// Xtend
+new Label(mainPanel) => [
+    value <=> "kilometers"  <- as soon as model changes kilometers property, the label content updates its content
+]
+
+// Java
+new Label(mainPanel) //
+    .bindValueToProperty("kilometers");
 +--
 
  <<Remember>>: to properly configure a label you should define text or value properties. If you define both, value property overrides text property, so it has no sense.
@@ -45,9 +51,50 @@ new Label(mainPanel).bindValueToProperty("kilometers") <- as soon as model chang
  
     * fontSize, foreground, background 
 
- * withFilter(TextFilter): allows to set a specific filter (date, numeric data, etc.)
+ * You can align a label using alignLeft() -default-, alignCenter() and alignRight() messages
 
  []
+
+
+Images
+
+ Labels can be also used to show images, binding <image> property. 
+ 
+ See example above: a model has a path property matching an existing image
+ 
++--
+@Observable
+class ImageExample {
+    
+   def getImagePath() {
+       "picture.jpg"
+   }
++--
+ 
+ Label binds its image property using a transformer:
+ 
++--
+override createContents(Panel mainPanel) {
+   new Label(mainPanel) => [
+       bindImageToProperty("imagePath", [ imagePath |
+           new Image(imagePath)
+       ])
+   ]
++--
+
+ If using Maven and Eclipse, image should be located in a special source folder 
+ defined in pom.xml:
+ 
++--
+<build>
+   <resources>
+      <resource>
+         <directory>src/main/resources</directory>
+      </resource>
+   </resources>
++-- 
+
+ You can see {{{https://github.com/uqbar-project/eg-widget-arena-xtend}this example}} for further investigation.
 
 
 Links

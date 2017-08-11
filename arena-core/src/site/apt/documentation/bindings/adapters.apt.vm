@@ -12,27 +12,38 @@ Adapters
  Selectors (also known as Combo boxes) use an adapter object to show the elements in the list. 
 
 +--
-val jobSelector = new Selector<Job>(form)
-jobSelector.allowNull(false)
-jobSelector.bindValueToProperty("job")
-val jobDescriptionProperty = jobSelector.bindItems(new ObservableProperty(homeJobs, "jobs"))
-jobDescriptionProperty.adapter = new PropertyAdapter(typeof(Job), "wholeDescription")
+// Xtend
+new Selector<Job>(form) => [
+    value <=> "job"
+    val bindingItems = bindItems(new ObservableProperty("jobs"))  // you can also do val bindingItems = items <=> "jobs"
+    bindingItems.adaptWith(typeof(Job), "fullDescription") // first option
+    //bindingItems.adapter = new PropertyAdapter(typeof(Job), "fullDescription") // second option
+]
+
+// Java
+Selector<Job> selector = new Selector<Job>(form); 
+selector.bindValueToProperty("job");
+Binding<Job, Selector<Job>, ListBuilder<Job>> bindingItems = selector.bindItems( //
+   new ObservableProperty<Job>("jobs"));
+bindingItems.setAdapter( //
+   new PropertyAdapter(Job.class, "fullDescription"));
+
 +--
 
  We have a list of possible jobs that a certain employee can perform. Selector has two UI property bindings: 
  
  * <<value>>: if model is an employee, value of selector binds to <job> property of that employee.  
 
- * <<items>>: class homeJobs, method getJobs() returns a list of jobs.
+ * <<items>>: view model class has a method getJobs() that returns a list of jobs (well, it should only delegate to a repository or DAO class).
 
  []
 
  By default, items are shown using toString() method. But you can override this definition using a <<PropertyAdapter>>.
     
- In the class Job we build a getWholeDescription() method
+ In the class Job we build a getFullDescription() method
   
 +--
-def getWholeDescription() {
+def getFullDescription() {
 	description + " ($ " + minimumSalary + " )"
 }
 +-- 
@@ -95,6 +106,16 @@ public interface Transformer<T, U> {
 	public U transform(T element);
 }
 +--
+
+ Another example, binding background color of each column. When debt amount is even, column background color will be green, otherwise will be red:
+
++--
+        new Column<Celular>(table) => [
+            bindBackground("debt").transformer =
+                [ Integer debt | if (debt % 2 == 0) Color.GREEN else Color.RED ]
+            ...            
+        ]
++-- 
 
 Links
  

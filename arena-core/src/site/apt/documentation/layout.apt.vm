@@ -34,7 +34,7 @@ Vertical Layout
 * Example
 
 +--
-var aPanel = new Panel(parentPanel)
+val aPanel = new Panel(parentPanel)
 aPanel.layout = new VerticalLayout // no need to do this, it's the default
 +--
 
@@ -60,9 +60,9 @@ Horizontal Layout
 
 +--
 def void createGridActions(Panel mainPanel) {
-    var actionsPanel = new Panel(mainPanel)  // mainPanel is the parent panel / container
+    val actionsPanel = new Panel(mainPanel)  // mainPanel is the parent panel / container
     actionsPanel.layout = new HorizontalLayout
-    var edit = new Button(actionsPanel)
+    new Button(actionsPanel)
     // ... etc.
 +--
 
@@ -82,9 +82,9 @@ Column Layout
   
 +--
 override def void createFormPanel(Panel mainPanel) {
-    var searchFormPanel = new Panel(mainPanel)
+    val searchFormPanel = new Panel(mainPanel)
     searchFormPanel.setLayout(new ColumnLayout(2))
-    var labelNumber = new Label(searchFormPanel)
+    val labelNumber = new Label(searchFormPanel)
     // etc.
 +--
     

@@ -7,7 +7,7 @@
 
 Binders
 
-* ObservableProperty[T] (default)
+* ObservableProperty\<T\> (default)
 
  This default implementation is a listener: whenever a property of a model changes, a notification is sent to this object.    
   
@@ -53,6 +53,19 @@ new Selector(editorPanel) => [
  
  In the latter case model is acquired from the container of the visual component: if selector is in a container and container is in a Window that has an object Game as a model, then ObservableProperty will take this object as its model.
  
+ In Xtend, you can use spaceship operator (\<=\>):
+
++--
+new Selector(editorPanel) => [
+  items <=> "players"
+]
++--
+
+ Remember to import ArenaXtendExtensions operations:
+
++--
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
++--
 
 
 * NotNullObservable
@@ -77,11 +90,12 @@ edit.bindEnabled(elementSelected)
 
 * Calculated Properties
 
-There are cases where the View component needs to show a model property for which there is no instance variable. This are the 
-so called "Calculated Properties". Because the value is calculated based on some other property.
-A simple example of this is the "fullName" property on the following model
+ There are cases where the View component needs to show a model property for which there is no instance variable. This are the 
+ so called "Calculated Properties". Because the value is calculated based on some other property.
+ A simple example of this is the "fullName" property on the following model
 
 +-- 
+@Observable
 class User {
     @Accessors String firstName
     @Accessors String lastName
@@ -92,11 +106,11 @@ class User {
 }
 +--
 
-In this case the "fullname" property depends on both "firstName", and "lastName".
-Arena cannot magically detect this so what will happen is that when someone changes either firstName or lastName the "fullName" property
-won't be refreshed and will be out-dated.
+ In this case the "fullname" property depends on both "firstName", and "lastName".
+ Arena cannot magically detect this so what will happen is that when someone changes either firstName or lastName the "fullName" property
+ won't be refreshed and will be out-dated.
 
-To solve this you need to explicitly declare the relation between these properties by adding an annotation as the following:
+ To solve this you need to explicitly declare the relation between these properties by adding an annotation as the following:
 
 +--
     @Dependencies("firstName", "lastName")
@@ -109,8 +123,6 @@ To solve this you need to explicitly declare the relation between these properti
 * Advanced bindings examples
 
      * {{{./bindingImages.html}Binding Images}}
-     
-     * Binding Background Colors (<<TO DO>>)
      
      []
 

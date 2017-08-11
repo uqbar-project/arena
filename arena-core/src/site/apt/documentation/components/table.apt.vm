@@ -24,7 +24,9 @@ Table
  
    * enabled, visible & background (bindables)
  
-   * height / width (manually configured)
+   * height property has no effect, you should use numberVisibleRows instead
+
+   * width property has no effect, you should use fixedWidth for every column
  
  * And also inherits from Skinnable Control this properties:
  
@@ -37,22 +39,16 @@ Table
  A Table that shows a collection of customers in a Cell Phone company:
 
 +--
-var table = new Table<Customer>(mainPanel, typeof(Customer))
-table.heigth = 200
-table.width = 450
-table.bindItemsToProperty("results")
-table.bindValueToProperty("selectedCustomer")
-+--
-
- Another example, using Xtend syntactic sugar: 
-
-+--
-var table = new Table<Customer>(mainPanel, typeof(Customer)) => [
-   height = 200
-   width = 450
-   bindItemsToProperty("results")
-   bindValueToProperty("selectedCustomer") 
+// Xtend
+val table = new Table<Customer>(mainPanel, typeof(Customer)) => [
+    items <=> "results"
+    value <=> "selectedCustomer"
 ]
+
+// Java
+Table<Customer> table = new Table<Celular>(mainPanel, Customer.class);
+table.bindItemsToProperty("results");
+table.bindValueToProperty("selectedCustomer");
 +--
 
  Note the parallel relation between Table and Column models: the table has a <customer list> as a model, whereas every column has a <customer> as a model.
@@ -60,18 +56,42 @@ var table = new Table<Customer>(mainPanel, typeof(Customer)) => [
  And this is how we add a column with the name of every customer:
 
 +--
+// Xtend
 new Column<Customer>(table) => [
-   title = "Name"
-   fixedSize = 150
-   bindContentsToProperty("name")
+    title = "Name"
+    fixedSize = 200
+    bindContentsToProperty("fullName")
 ]
+
+// Java
+new Column<Celular>(table) //
+    .setTitle("Name")
+    .setFixedSize(250)
+    .bindContentsToProperty("fullName");
 +--
 
- A Customer has a String property name.
+ A Customer has a String property fullName.
+
+ You can align a column by using alignLeft() -default-, alignCenter() or alignRight() messages.
+
++--
+// Xtend
+new Column<Customer>(table) => [
+    title = "Amount"
+    alignRight
+    bindContentsToProperty("amount")
+]
+
+// Java
+new Column<Celular>(table) //
+    .setTitle("Amount")
+    .alignRight()
+    .bindContentsToProperty("amount");
++-- 
  
  If you want to adapt a property you can 
 
- * use a transformer
+ * use a {{{../bindings/transformers.html}transformer}}
  
  * define a read-only property (eg: getXXX() method in the model)
  

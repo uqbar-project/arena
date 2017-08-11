@@ -16,11 +16,11 @@ Binding in Arena
       
  * {{{./bindings/binders.html}Binders}} 
  
- * {{{./bindings/transformers.html}Transformers}} (for textboxes)
+ * {{{./bindings/transformers.html}Value Transformers}} (for textboxes)
  
  * {{{./bindings/filters.html}Filters}} (for textboxes)
  
- * {{{./bindings/adapters.html}Adapters}} (for selectors, tables and UI component collection-related)
+ * {{{./bindings/adapters.html}Adapters}} (for selectors, columns in tables and other UI component collection-related)
  
  []     
  

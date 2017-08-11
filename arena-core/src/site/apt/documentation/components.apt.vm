@@ -8,30 +8,32 @@ Component List
 
  * {{{./components/control.html}Control}} (abstract base class)
  
-     * {{{./components/textbox.html}Text Box}}
+     * {{{./components/textbox.html}Text Boxes (also Numeric Fields and Password Fields)}}
      
-     * {{{./components/label.html}Label}}
+     * {{{./components/label.html}Labels (and Images)}}
      
-     * {{{./components/selector.html}Selectors}} (Selector, List and RadioSelectors)
+     * {{{./components/selector.html}Selectors}} (Selectors, Lists and RadioSelectors)
      
-     * {{{./components/checkbox.html}Check Box}}
+     * {{{./components/checkbox.html}Check Boxes}}
      
      * {{{./components/actions.html}Actions}} (Button, Link and File Selector)
 
-     * {{{./components/table.html}Table}}
+     * {{{./components/table.html}Tables}}
      
-     * {{{./components/tree.html}Tree}}
+     * {{{./components/tree.html}Trees}}
      
-     * {{{./components/spinner.html}Spinner}}
+     * {{{./components/spinner.html}Spinners}}
      
-     * {{{./components/panel.html}Panel}} (and Group Panel)
+     * {{{./components/panel.html}Panels}} (and Group Panels)
 
      * {{{./components/windows.html}Windows and Dialogs}}
 
+     * {{{./components/errorsPanel.html}Errors Panels}}
 
-Components Hierarchy in Arena: Widget 
+
+Components Hierarchy in Arena: Widget and subclasses 
 
  Widget is the abstract base class that defines a component in Arena.  
 
-[../images/arena-widgets-hierarchy.png]
-     
+[../images/arena-widgets-hierarchy2.png]
+          

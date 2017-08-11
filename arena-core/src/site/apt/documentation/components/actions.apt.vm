@@ -25,7 +25,7 @@ Button
  
     * fontSize, foreground, background 
 
- * onClick(Action): Action can be defined by an inline block closure, or instantiating a MessageSend object (see below)
+ * onClick(Action): Action can be defined by an inline block closure, or instantiating it
  
  * image(Image)
  
@@ -41,41 +41,22 @@ Button
  If we have an edition window with an "Ok" button, it is a good practice to set as a default action and disable it if view has an error. 
 
 +--
- new Button(actions)
-    .setCaption("Ok")
-    .onClick [ | this.accept]
-    .setAsDefault.disableOnError
-+--
-
- An example using the with operator of Xtend:
-  
-+--
- new Button(actionsPanel) => [
-    caption = "Play"
-    setAsDefault
-    onClick [ | play ]
-    bindEnabledToProperty("canPlay")
-    disableOnError
- ]
-+--
-
- An example using Java 8 syntax:
- 
-+--
-new Button(mainPanel)
-    .setCaption("Convert to kilometers")
-    .onClick(()-> this.getModelObject().convert());
-+--
-
-
- onClick property can also accept a MessageSend argument, as shown below:
-
-+--
-new Button(mainPanel) => [
-    caption = "Convert to kilometers"
-    onClick = new MessageSend(this.modelObject, "convert")
+// Xtend
+new Button(actionsPanel) => [
+      caption = "Ok"
+      setAsDefault
+      onClick[ | convert ]
+      enabled <=> "canConvert"
+      disableOnError
 ]
-+-- 
+
+// Java
+new Button(actions)
+    .setCaption("Ok")
+    .onClick(this::convert)
+    .setAsDefault()
+    .disableOnError();
++--
  
  <<TO DO>>: Add a setImage() example for a button.
 
@@ -84,6 +65,7 @@ Link
  A <<org.uqbar.arena.widgets.Link>> allows the user to define a link to an action.
 
 [../../images/link.png]
+
 
 * Bindings
 
@@ -105,12 +87,17 @@ Link
 * Example
 
 +--
+// Xtend
 new Link(mainPanel) => [
     caption = "Search"
     onClick [ | modelObject.search ]
 ]
-+--
 
+// Java
+new Link(mainPanel)
+    .setCaption("Search")
+    .onClick( () -> this.modelObject.search() );
++--
  
  
 File Selector
@@ -144,13 +131,21 @@ File Selector
 * Example
 
 +--
+/ Xtend
+new FileSelector(actions) => [
+    caption = "Open"
+    value <=> "documentationFile"
+    extensions("*.example")
+]
+
+// Java
 new FileSelector(actions)
-   .setCaption("Open")
-   .bindValueToProperty("pathFile")
-   .extensions("*.example")
+    .setCaption("Open")
+    .bindValueToProperty("documentationFile")
+    .extensions("*.example");
 +--
 
- Then you'll bind a path (String) to the <<pathFile>> property of your view model.
+ Then you'll bind a path (String) to the <<documentationFile>> property of your view model.
  
  
 Links

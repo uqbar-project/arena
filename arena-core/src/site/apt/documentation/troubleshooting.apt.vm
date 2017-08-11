@@ -12,15 +12,13 @@ Troubleshooting
  
  * You should use Maven 3.0.x or higher
  
- * You should use a JDK 1.7 or higher. You should <<not>> use a JRE.
- 
- * If you checked out a project from our SVN, remember to do it from "trunk" folder (if present)
+ * You should use a JDK 1.8 or higher. You should <<not>> use a JRE.
  
  * Check the project nature, it should have a Maven nature and also it should recognize the language you are coding
  
  * You should define a launcher as described {{{../usage.html}here}}
  
- * If you are using Maven, you should have a src/main/xxxx where xxxx is your language: java, groovy, scala, etc. 
+ * If you are using Maven, you should have a src/main/xxxx where xxxx is your language: java (for Java and Xtend), groovy, scala, etc. 
  
  []
    
@@ -30,7 +28,7 @@ Troubleshooting
 +--
 java.lang.UnsupportedClassVersionError: ---Arena app--- : Unsupported major.minor version 51.0
 +--
- JDK is 1.6 or lower. You must upgrade to a JDK 1.7 or higher version.
+ JDK is 1.7 or lower. You must upgrade to a JDK 1.8 or higher version.
 
 =====================
 
@@ -45,7 +43,7 @@ java.lang.Error: java.lang.ClassNotFoundException: ....APOClassLoader
 +--
 Launch configuration references non-existing project celulares-ui-arena-scala
 +-- 
- In this case you checked out a project with a different name, but the launcher still references the original project name. Either rename the project or change the launcher.
+ In this case you checked out a project with a different name, but the launcher still references the original project name. Either rename the project or change the launcher configuration.
 
 =====================
 
@@ -56,4 +54,16 @@ Exception in thread "main" java.lang.RuntimeException: Esta aplicación no está
 +--
  You are using a default Class Loader, use APOClassLoader instead (as described {{{../usage.html}here}})
  
-  
+======================
+
+* "I'm not able to use \<=\> operator"
+
+ If you are programming in other language than Xtend, this won't
+ work: you must use bindXXXX messages.
+
+ If you are programming in Xtend language, then you have a missing import as described {{{../usage.html}here}}:
+
++--
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
++-- 
+

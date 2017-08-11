@@ -5,9 +5,9 @@
  -----
 
 
-Transformers
+Value Transformers
 
- <<Transformer[M, V]>> defines how to convert and validate values from view to model and viceversa (because Arena has a two-way binding). 
+ <<ValueTransformer\<M, V\>>> defines how to convert and validate values from view to model and viceversa (because Arena has a two-way binding). 
 
  * <<M viewToModel(V valueFromView)>>: converts a value from the UI component to the model format
 
@@ -20,9 +20,9 @@ Transformers
  []
   
 
-Date Adapter
+Date Transformer
 
- * Implements Transformer[Date, String]
+ * Implements ValueTransformer\<Date, String\>
  
  * Converts a string in a <dd/MM/yyy> format to Date and viceversa
  
@@ -35,17 +35,21 @@ Date Adapter
  A textbox with a binding to a customer's dateOfBirth: 
  
 +-- 
-new TextBox(it) => [
-   width = 80
-   bindValueToProperty("dateOfBirth").transformer = new DateAdapter
-] 
+// Xtend
+new TextBox(mainPanel) => [
+      width = 80
+      value <=> "dateOfBirth".transformer = new DateTransformer
+]
+
+// Java
+new TextBox(mainPanel)
+      .setWidth(80)
+      .bindValueToProperty("dateOfBirth").setTransformer(new DateTransformer());
 +--
 
 NotEmptyTransformer
 
- * located in package org.uqbar.lacar.ui.model.adapter
- 
- * implements Transformer[String, Boolean]
+ * implements ValueTransformer\<String, Boolean\>
  
  * maps a String object with a boolean value <true> (string is empty or null) / <false> (string is not empty or null)
  
@@ -55,20 +59,18 @@ NotEmptyTransformer
 
 NotNullTransformer
 
- * located in package org.uqbar.lacar.ui.model.adapter
- 
- * implements Transformer[Object, Boolean]
+ * implements ValueTransformer\<Object, Boolean\>
 
- * maps any object with a boolean value <true> (object is not null) / false (object is null)
+ * maps any object with a boolean value <true> (object is not null) / <false> (object is null)
  
  []
  
  
-What do you need to define a new Transformer
+What do you need to define a new Value Transformer
 
  * Find concrete classes for M and V 
  
- * Implement a Transformer for this concrete classes M and V
+ * Implement a Value Transformer for this concrete classes M and V
  
  * Define getModelType() and getViewType() methods. They should return concrete classes.
  
@@ -80,30 +82,29 @@ What do you need to define a new Transformer
 * Example: BigDecimalTransformer
 
 +--
-class BigDecimalTransformer implements Transformer<BigDecimal, String> {
-  
-   override getModelType() {
-       BigDecimal
-   }
-
-   override getViewType() {
-       String
-   }
-
-   override modelToView(BigDecimal valueFromModel) {
-       valueFromModel.toString
-   }
-
-   override viewToModel(String valueFromView) {
-       if (valueFromView == null || valueFromView.equals(""))
-          null
-       else
-          try
-              new BigDecimal(valueFromView)
-          catch (NumberFormatException e)
-              throw new UserException("You must enter a number", e)
-   }
-   
+class BigDecimalTransformer implements ValueTransformer<BigDecimal, String> {
+      override getModelType() {
+            BigDecimal
+      }
+ 
+      override getViewType() {
+            String
+      }
+ 
+      override modelToView(BigDecimal valueFromModel) {
+            valueFromModel.toString
+      }
+ 
+      override viewToModel(String valueFromView) {
+            if (valueFromView == null || valueFromView.equals(""))
+                  null
+            else
+                  try
+                        new BigDecimal(valueFromView)
+                  catch (NumberFormatException e)
+                        throw new UserException("Value must be a number", e)
+ 
+      }
 }
 +--
 

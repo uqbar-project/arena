@@ -4,40 +4,30 @@
  ${project.name}
  -----
 
+Using Arena in Xtend and other languages
+
+ Arena is built in a JDK environment, so you can use it in a wide variety of languages:
+
+ * Java 8 or higher
+
+ * Xtend
+
+ * Scala
+
+ * Groovy
+
+ * Kotlin
+
+ []
+
+
+
 Maven Repositories
 
  Arena is released in Maven Central, so you don't have to configure any repository in your maven's settings file.  
 
- But, in case you have dependencies problems, please add this uqbar repositories to your maven's settings file:
 
-+---------------------------------------------+
-  <profiles>
-        <profile>
-              <id>uqbar-wiki</id>
-              <repositories>
-                    <repository>
-                        <id>uqbar-wiki.org-releases</id>
-                        <name>uqbar-wiki.org-releases</name>
-                        <url>http://uqbar-wiki.org/mvn/releases</url>
-                    </repository>
-                    <repository>
-                        <snapshots/>
-                        <id>uqbar-wiki.org-snapshots</id>
-                        <name>uqbar-wiki.org-snapshots</name>
-                        <url>http://uqbar-wiki.org/mvn/snapshots</url>
-                   </repository>
-              </repositories>
-        </profile>
-  </profiles>
-
-  <activeProfiles>
-       <activeProfile>uqbar-wiki</activeProfile>
-  </activeProfiles>
-+---------------------------------------------+
-
- 
-
-Arena Artifacts
+Arena Artifacts for common languages
 
  Your UI project must depend on one of the Arena implementations. Currently the stable implementation is <<arena-jface>>, based on <<eclipse swt+jface>>:
 
@@ -66,6 +56,29 @@ Arena Artifacts
  If you have a single project which contains the ui along with the domain, then you just need to include the dependency to <<arena-jface>> only. 
  
  This is not the recommended way to do it since you'll be coupling model with UI in terms of artifacts.
+
+
+Using Arena with Xtend
+
+ If you are in Xtend, there is a parent pom you can use:
+
++--
+
+<parent>
+  <groupId>org.uqbar-project</groupId>
+  <artifactId>arena-xtend-parent</artifactId>
+  <version>3.6.3</version>
+</parent>
+
++--
+
+
+ In order to use \<=\> (spaceship operator) to define {{{./documentation/bindings.html}bindings}} you must add this import to your class definition:
+
++--
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
++-- 
+
 
 Launcher configuration
 

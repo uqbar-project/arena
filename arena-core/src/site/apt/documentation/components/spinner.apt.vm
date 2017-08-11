@@ -6,7 +6,7 @@
 
 Spinner
 
- A <<org.uqbar.arena.widgets.CheckBox>> is a compound control, 
+ A <<org.uqbar.arena.widgets.Spinner>> is a compound control, 
  
  * it has an numeric input field
  
@@ -45,13 +45,19 @@ Spinner
  We want to fill the product items of an order, every item has a quantity property:
  
 +--
-new Spinner(container) => [ 
-    bindValueToProperty("quantity") 
-    width = 200 
+// Xtend
+new Spinner(mainPanel) => [ 
+    value <=> "quantity"
 ]
+
+// Java
+new Spinner(mainPanel)
+    .bindValueToProperty("quantity");
 +--
+
+ Order class has a quantity property (def Integer or int getQuantity() method) 
  
- 
+
 Links
  
  {{{../components.html}Back to Component Page}}

@@ -47,52 +47,25 @@ Repositories / Homes
 
 ** Neo4J Implementation
  
- <Arena Persistence> defines an abstract class <<PersistentHome>> that persists data into a Neo4J graph database.
+ {{{http://arena-pers.uqbar.org/}<Arena Persistence>}} defines an abstract class <<PersistentRepo>> that persists data into a Neo4J graph database.
 
 * Usage
 
- Component hasn't been deployed in Maven Central repositories yet, but you can add this uqbar repository in your settings.xml file:
- 
-+--
-   <profiles>
-     <profile>
-       <id>uqbar-wiki</id>
-       <repositories>
-         <repository>
-           <id>uqbar-wiki.org-releases</id>
-           <name>uqbar-wiki.org-releases</name>
-           <url>http://uqbar-wiki.org/mvn/releases</url>
-         </repository>
-         <repository>
-           <snapshots/>
-           <id>uqbar-wiki.org-snapshots</id>
-           <name>uqbar-wiki.org-snapshots</name>
-           <url>http://uqbar-wiki.org/mvn/snapshots</url>
-         </repository>
-       </repositories>
-     </profile>
-   </profiles>
-   <activeProfiles>
-     <activeProfile>uqbar-wiki</activeProfile>
-   </activeProfiles>   
-+--
-   
- 
  Add the following dependency in your pom.xml
  
 +--
 <dependency>
     <groupId>org.uqbar-project</groupId>
     <artifactId>arena-pers</artifactId>
-    <version>3.3-SNAPSHOT</version>
+    <version>3.6.1</version>
 </dependency>
 +--  
 
- And check out {{{https://xp-dev.com/svn/uqbar/examples/dds/datos/arena-persistence/}this examples}}
+ And check out {{{https://github.com/uqbar-project?utf8=%E2%9C%93&q=arenapers&type=&language=}this examples}}
 
    
  
-Things to do when defining a home
+Things to do when defining a repo
  
  * it is usually defined as a Singleton, because we want to provide a global point of access, 
  so all updates and retrieves are centralized. You can use an {{{./applicationContext.html}ApplicationContext}} object to
@@ -103,7 +76,7 @@ Things to do when defining a home
  []
 
  
- If you subclass CollectionBasedHome:
+ If you subclass CollectionBasedRepo:
   
  * it is recommended to create a fixture or data set
  

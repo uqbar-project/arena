@@ -58,9 +58,9 @@ State
 
  It is clear that a Search panel should have a "Search object" as application model. If you want to take a look you can extend these classes: 
  
- * <<Search[T]>>: base class for implementing search objects
+ * <<Search\<T\>>>: base class for implementing search objects
  
- * <<SearchByExample[T]>>: default implementation of a Search, delegating a {{{./architecture/homes.html}Home}} object and performing a search by example
+ * <<SearchByExample\<T\>>>: default implementation of a Search, delegating a {{{./architecture/homes.html}Home}} object and performing a search by example
  
  []
  

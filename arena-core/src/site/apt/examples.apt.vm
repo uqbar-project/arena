@@ -1,0 +1,60 @@
+ -----
+ Uqbar Project
+ -----
+ ${project.name}
+ -----
+
+Examples
+
+
+[./images/xtend-logo.png]
+
+  
+
+ * {{{https://github.com/uqbar-project/eg-conversor-arena-xtend}Miles to kilometers converter}}
+
+ * {{{https://github.com/uqbar-project/eg-tabla-arena-xtend}Table usage example}}
+
+ * {{{https://github.com/uqbar-project/eg-login-arena-xtend}Login window}}
+
+ * {{{https://github.com/uqbar-project/eg-widget-arena-xtend}Widgets demostration}} <<very useful>>
+
+ * {{{https://github.com/uqbar-project/eg-apuestas-ui-arena-xtend}Roulette Gambling}}
+
+ * {{{https://github.com/uqbar-project/eg-celulares-ui-arena-xtend}Cell company customers}}
+
+ * {{{https://github.com/uqbar-project/eg-telefonia-ui-arena-xtend}Telephone company customers}}
+
+ * {{{https://github.com/uqbar-project/eg-seguidor-carrera-ui-arena-xtend}Student status}}
+
+ * {{{https://github.com/uqbar-project/eg-ventas-ui-arena-xtend}Sales application}}
+
+ * {{{https://github.com/uqbar-project/eg-plants-vs-zombies-ui-arena-xtend}Plants vs. Zombies}}
+
+ []
+
+
+=====================
+
+[./images/java-logo.png]
+
+  
+
+ * {{{https://github.com/uqbar-project/eg-conversor-arena-java}Miles to kilometers converter}}
+
+ * {{{https://github.com/uqbar-project/eg-celulares-ui-arena-java}Cell phone company customers}}
+
+ []
+
+=====================
+
+[./images/scala-logo.png]
+
+  
+
+ * {{{https://github.com/uqbar-project/eg-conversor-arena-scala}Miles to kilometers converter}}
+
+ * {{{https://github.com/uqbar-project/eg-celulares-ui-arena-scala}Cell phone company customers}}
+
+ []
+

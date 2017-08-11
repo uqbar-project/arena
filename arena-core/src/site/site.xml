@@ -21,6 +21,7 @@
 		<menu name="Overview">
 			<item name="Introduction" href="index.html"/>
 			<item name="Usage" href="usage.html"/>
+			<item name="Examples" href="examples.html"/>
 			<item name="Documentation" href="documentation.html">
 				<item name="Components" href="documentation/components.html"/>
 				<item name="Binding" href="documentation/bindings.html"/>
@@ -32,7 +33,6 @@
 					<item name="ApplicationContext" href="documentation/architecture/applicationContext.html"/>
 					<item name="Transactions" href="documentation/architecture/transactions.html"/>
 				</item>
-				<item name="Examples" href="https://svn2.xp-dev.com/svn/uqbar/examples/ui/arena/"/>
 				<item name="Troubleshooting" href="documentation/troubleshooting.html"/>
 			</item>
 			<item name="Development" href="development.html"/>

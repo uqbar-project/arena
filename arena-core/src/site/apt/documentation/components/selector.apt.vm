@@ -26,17 +26,28 @@ Selectors
  Through both "bind" methods you are able to connect this properties to the underlying model. This
  way it will automatically update the view upon chances in the model.
  
- Here's a sample in Java from the previous screenshot
- 
+  
 +-----------------------------------------------------------------------------+
-Selector<Country> selector = new Selector<Country>(mainPanel);
-selector.allowNull(false)
-selector.bindValueToProperty("country");
-selector.bindItemsToProperty("countries")
+// Xtend
+new Selector<Computer>(form) => [
+     allowNull(false)
+     value <=> "country"
+     val bindingItems = items <=> new ObservableProperty(repoCountries, "countries")
+     bindingItems.adapter = new PropertyAdapter(typeof(Country), "description")
+]
+
+// Java
+Selector<Computer> computerSelector = new Selector<Computer>(form)
+    .allowNull(false);
+computerSelector.bindValueToProperty("country");
+Binding<Country, Selector<Country>, ListBuilder<Country>> bindingItems = 
+	computerSelector.bindItems(new ObservableProperty(repoCountries, "countries"));
+bindingItems.setAdapter(new PropertyAdapter(Country.class, "description"));
 +-----------------------------------------------------------------------------+
 
  This expects an underlying model object with two properties: a "country" with type Country
- and "countries" as a list/collection of Country objects.
+ and "countries" as a list/collection of Country objects. Each option in selector is shown
+ using <description> property. This involves creating a getDescription() method.
  
  Here is the sample model in Scala
 
@@ -54,7 +65,7 @@ class Address {
       new Country("Argentina"),
       new Country("Uruguay"),
       new Country("Bolivia"),
-      new Country("North Korea")).asJava
+      new Country("Poland")).asJava
    }
 +-----------------------------------------------------------------------------+
 
@@ -64,7 +75,7 @@ class Address {
  This type must be the type of options or, what is the same, the type of element it allows
  you to select.
  
- In our example we show a list of Country and select one of them. Therefore it is a Select<Country>
+ In our example we show a list of Country and select one of them. Therefore it is a Select[Country]
 
 * List
 
@@ -73,16 +84,64 @@ class Address {
  
 [../../images/list.png]
 
+
++--
+// Xtend
+new Panel(it) => [
+      layout = new HorizontalLayout
+      new List(it) => [
+            items <=> "products")
+            value <=> "selectedProduct"
+            width = 220
+            height = 220
+      ]
+]
+
+// Java
+List<Product> lstProducts = new List<Producto>(mainPanel);
+lstProducts.bindItemsToProperty("products");
+lstProducts.bindValueToProperty("selectedProduct");
+lstProducts.setWidth(220);
+lstProducts.setHeight(220);
++--
+
 * RadioSelector
 
  Same as List, this shows up as a group of mutex radio buttons.
  
 [../../images/radioSelector.png]
 
+ You can configure Radio Selector with a group of selectable options:
+ 
++--
+RadioSelector(Container container, String itemsProperty)
++--
+
+ Lets say you want to select civil status. As there are few options, you can use a
+ radio selector:
+ 
++--
+def getCivilStatusList() {
+      #["Married", "Single", "Widow", "Separated", "Divorced"]       
+}
+ 
+...
+ 
+      new RadioSelector(mainPanel) => [
+            bindItems(new ObservableProperty(this, "civilStatusList"))
+            bindValueToProperty("civilStatus")
+      ]
++-- 
+
+
 * Selection on Tables
 
  Tables also allows you (but does not force you) to bind a single selection to a model's property.
  See {{{./table.html}Tables}} section for that.
+
+* Further Configuration
+ 
+ You can catch selection event in onSelection(Action).
  
 
 Links

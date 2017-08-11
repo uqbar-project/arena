@@ -11,7 +11,11 @@ Navigation
  Suppose you are in a Search Window with a "New" button. What should this button do?   
  
 +--
+// Xtend
 new CreateCustomerDialog(this).open
+
+// Java
+new CreateCustomerDialog(this).open();
 +--
  
 * Navigation back
@@ -19,21 +23,19 @@ new CreateCustomerDialog(this).open
  Dialogs offer a way to define behavior once they are closed. This can be done <<before they are opened>>:
  
 +--
-val dialog = new SomeKindOfDialog(this, anObject)
+// Xtend
+val dialog = new SomeKindOfDialog(this, modelObjectForSomeKindOfDialog)
 dialog.onAccept [ | modelObject.search ]   
 dialog.open
+
+// Java
+SomeKindOfDialog dialog = new SomeKindOfDialog(this, modelObjectForSomeKindOfDialog);
+dialog.onAccept(getModelObject()::search);
+dialog.open();
 +--    
 
  In the above example we instantiate the dialog, and before we open it we define that as soon as the dialog is closed we should trigger a search the model object in the parent view.
  
- Same example in Java 8:
- 
-+--
-protected void openDialog(Dialog<?> dialog) {
-   dialog.onAccept(getModelObject()::search);
-   dialog.open();
-}
-+-- 
 
 * Passing data to another view
 

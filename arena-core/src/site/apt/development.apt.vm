@@ -19,7 +19,7 @@ Requirements
  <<Note:>> We are currently working on it, but we still don't have a C.I. 
  in order to deploy new versions of artifacts every time someone pushes a change to master. 
  So, this means that, every time you push something, you'll also need to 
- manually deploy it following {{{http://wiki.uqbar.org/wiki/articles/deploy-en-maven-central.html}this instructions}}
+ manually deploy it following {{{http://wiki.uqbar.org/wiki/articles/deploy-en-maven-central.html}this instructions}} (sorry, they are in spanish)
 
 
 Checkout Projects/Repos
@@ -36,7 +36,7 @@ cd arena
  
 Main Arena Projects
 
- * <<arena-core>>: contains all the components and Arena API for arena users. Although it doesn't have any implementation, so you need to use an implementation for this. Currently we only have one: arena-jface.
+ * <<arena-core>>: contains all the components and Arena API for arena users. It was designed to have as many implementations as you want (SWT + JFaces, AWT, Swing, JavaFx, etc). Currently we have just one implementation: arena-jface.
 
  * <<arena-jface>>: Implementation of Arena on top of SWT, JFace, and JFace Databindings.
  
@@ -65,12 +65,13 @@ git clone https://github.com/uqbar-project/arena
 git clone https://github.com/uqbar-project/uqbar-domain
 +--  
 
- arena-xtend is in https://github.com/uqbar-project/arena repository.
+ arena-xtend is in {{{https://github.com/uqbar-project/arena}Arena repository}}.
  
  
-* Components for Observability / Transactional Aspects
- <<(not needed unless you'll change this foundations)>>
+* Components for Observability / Transactional Aspects <<(not needed unless you'll change this foundations)>>
  
+ []
+
  If you'll work on the transactional or observability aspects behind Arena, you must download the following projects:
 
  * <<apo-apo>> (Aspects for Pure Objects): Small AOP framework on top of Javassist. It creates a more abstract general layer on top of javassist in order to express all AOP concepts: pointcuts, join-points, aspects, etc.
@@ -83,7 +84,9 @@ git clone https://github.com/uqbar-project/uqbar-domain
  
  []
  
- 
+
+Parent projects
+
  In addition you can checkout some parent projects if you need to change them:
 
 +--
@@ -93,7 +96,7 @@ git clone https://github.com/uqbar-project/uqbar-scala-parent
   
 IDE
  
- As we use maven, you can use whatever IDE you want. Although, we can suggest some proven Environment:
+ As we use maven, you can use whatever IDE you want. Although, we can suggest some proven environment:
 
  * Eclipse Neon with ScalaIDE 
  
@@ -109,13 +112,37 @@ IDE
 
  * <<Scalaide>>
  
-  * Install ScalaIde for Scala 2.11.x from the following update site: http://download.scala-ide.org/sdk/lithium/e46/scala211/stable/site
+  * Install ScalaIde for Scala 2.11.x from the {{{http://download.scala-ide.org/sdk/lithium/e46/scala211/stable/site}following update site}}
  
-  * Install m2e-scala from update site: http://alchim31.free.fr/m2e-scala/update-site
+  * Install m2e-scala from {{{http://alchim31.free.fr/m2e-scala/update-site}update site}}
  
  []
  
 
+This site
+
+ This site was built with Maven APT (Almost plain text) technology. Page sources
+ are located in {{{https://github.com/uqbar-project/arena/tree/master/arena-core/src/site}Arena Core site folder}}, then
+ you must follow its {{{https://maven.apache.org/doxia/references/apt-format.html}format}}. 
+
+ You can download APT plugin {{{https://marketplace.eclipse.org/content/apt-editor}here}}.
+ 
+ After adding, changing or removing pages, you can test them locally by doing
+ 
++--
+mvn site:site
++--
+ 
+ Site is generated according to {{{https://maven.apache.org/plugins/maven-site-plugin/}Maven site plugin}}, 
+ and you can browse html files in arena-core project, file: target/site/index.html
+ 
+ When all changes are ready, you can publish the local site with
+ 
++--
+mvn site:deploy
++--
+ 
+ 
 Maven configuration
 
  You need to <<configure your maven settings>> in order to connect to Uqbar's repositories, both to retrieve artifacts, but also to deploy new versions:
@@ -171,7 +198,3 @@ Maven configuration
 +--
 
  <NOTE THAT YOU MUST ASK SOME UQBAR MEMBER FOR THE PASSWORD AND REPLACE THERE THE "PASSWORD_HERE">
- 
-
- 
-   

@@ -9,19 +9,19 @@ Filters
 
 * TextFilter
 
- <<org.uqbar.arena.widgets.TextFilter>> allows to intercept user input from a textbox component.
+ <<org.uqbar.arena.filters.TextFilter>> allows to intercept user input from a textbox component.
  
  Interface defines a single message:
 
 +--  
-override boolean accept(TextInputEvent event)
+/**
+ * Returns false if you want to forbid the user's action.
+ */
+public boolean accept(TextInputEvent event);
 +--
-
- Return true if character is ok, false if character should be rejected. 
 
  <<Note:>> When you bind a Date property into a Textbox, binder throws an exception if input is incorrect. 
  Filter goes a step beyond, incorrect input does not appear in the textbox component.  
-
 
 
 ** Example: DateTextFilter
