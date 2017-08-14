@@ -20,7 +20,7 @@ Documentation
 
  * Arena Architecture
 
-    * {{{./documentation/architecture/homes.html}Repositories / Homes}}
+    * {{{./documentation/architecture/repositories.html}Repositories / Homes}}
 
     * {{{./documentation/architecture/applicationContext.html}Application context}}
 

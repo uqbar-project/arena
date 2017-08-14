@@ -6,7 +6,7 @@
 
 Table
 
- A <<org.uqbar.arena.widgets.tables.Table[R]>> shows a table / grid with a list of elements of type R.  
+ A <<org.uqbar.arena.widgets.tables.Table\<R\>>> shows a table / grid with a list of elements of type R.  
 
 [../../images/table.png]
 

@@ -69,7 +69,7 @@ Things to do when defining a repo
  
  * it is usually defined as a Singleton, because we want to provide a global point of access, 
  so all updates and retrieves are centralized. You can use an {{{./applicationContext.html}ApplicationContext}} object to
- configure different homes for testing and runtime environments. 
+ configure different repositories for testing and runtime environments. 
  
  * you can simply define your own Home implementation, or subclass any available implementation
  

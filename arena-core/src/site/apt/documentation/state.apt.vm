@@ -60,7 +60,7 @@ State
  
  * <<Search\<T\>>>: base class for implementing search objects
  
- * <<SearchByExample\<T\>>>: default implementation of a Search, delegating a {{{./architecture/homes.html}Home}} object and performing a search by example
+ * <<SearchByExample\<T\>>>: default implementation of a Search, delegating a {{{./architecture/repositories.html}Repository}} object and performing a search by example
  
  []
  

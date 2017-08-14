@@ -36,7 +36,7 @@
 				<item name="Navigation" href="documentation/navigation.html"/>
 				<item name="State" href="documentation/state.html"/>
 				<item name="Architecture" href="documentation/architecture.html">
-					<item name="Repositories/Homes" href="documentation/architecture/homes.html"/>
+					<item name="Repositories/Homes" href="documentation/architecture/repositories.html"/>
 					<item name="ApplicationContext" href="documentation/architecture/applicationContext.html"/>
 					<item name="Transactions" href="documentation/architecture/transactions.html"/>
 				</item>

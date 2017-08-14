@@ -6,7 +6,7 @@
 
 Selectors
 
- A <<org.uqbar.arena.widgets.Selector[T]>> is a control that displays a list of options and lets the user
+ A <<org.uqbar.arena.widgets.Selector\<T\>>> is a control that displays a list of options and lets the user
  choose (select) one of them.
  
  Tipically it will look like what we commonly know as a ComboBox.
@@ -71,7 +71,7 @@ class Address {
 
 * Generic type
  
- Note that Selector[T] is a parametric type. Meaning that it has a generic parameter.
+ Note that Selector\<T\> is a parametric type. Meaning that it has a generic parameter.
  This type must be the type of options or, what is the same, the type of element it allows
  you to select.
  
@@ -79,7 +79,7 @@ class Address {
 
 * List
 
- The subclass <<org.uqbar.arena.widgets.List[T]>> has the same behavior as Selector but it shows up
+ The subclass <<org.uqbar.arena.widgets.List\<T\>>> has the same behavior as Selector but it shows up
  as a list, displaying all the values at the same time.
  
 [../../images/list.png]
