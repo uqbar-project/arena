@@ -2,13 +2,20 @@
 <project>
 	<bannerLeft>
 		<name>Uqbar Project</name>
-		<src>images/logo.png</src>
+		<src>images/logoUqbar.jpg</src>
+		<height>532</height>
+		<width>247</width>
+		<href>http://www.uqbar-project.org/</href>
+		<title>Powered by Uqbar Project</title>
+		<alt>Powered by Uqbar Project</alt>
 	</bannerLeft>
 	<bannerRight>
 		<src>images/uqbar-arena-logo.png</src>
 	</bannerRight>
 
-	<publishDate position="right"/>
+	<publishDate 
+		position="right"
+		format="dd/MM/yyyy"/>
 	<version position="left"/>
 
 	<skin>

@@ -125,7 +125,7 @@ This site
  are located in {{{https://github.com/uqbar-project/arena/tree/master/arena-core/src/site}Arena Core site folder}}, then
  you must follow its {{{https://maven.apache.org/doxia/references/apt-format.html}format}}. 
 
- You can download APT plugin {{{https://marketplace.eclipse.org/content/apt-editor}here}}.
+ You can download APT plugin for Eclipse {{{https://marketplace.eclipse.org/content/apt-editor}here}}.
  
  After adding, changing or removing pages, you can test them locally by doing
  
