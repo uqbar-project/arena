@@ -121,7 +121,7 @@ IDE
 
 This site
 
- This site was built with Maven APT (Almost plain text) technology. Page sources
+ This site was built with Maven APT (Almost plain text) and Markdown technology. Page sources
  are located in {{{https://github.com/uqbar-project/arena/tree/master/arena-core/src/site}Arena Core site folder}}, then
  you must follow its {{{https://maven.apache.org/doxia/references/apt-format.html}format}}. 
 

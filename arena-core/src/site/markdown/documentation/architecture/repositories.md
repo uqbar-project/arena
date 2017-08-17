@@ -193,6 +193,19 @@ class CelularesBootstrap extends CollectionBasedBootstrap {
 
     - if using a persistent repository, we should avoid creating data twice
 
+Then, you instantiate an application passing your own bootstrap definition:
+
+```xtend
+class CelularApplication extends Application {
+
+    new(CelularesBootstrap bootstrap) {
+        super(bootstrap)
+    }
+
+    static def void main(String[] args) {
+        new CelularApplication(new CelularesBootstrap).start()
+    }
+```
 
 ## Repository Usage    
 
